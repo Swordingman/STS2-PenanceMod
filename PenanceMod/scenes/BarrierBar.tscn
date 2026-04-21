@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://buuahqnko8qp8"]
+
+[ext_resource type="Script" uid="uid://jm3v47jhcqb4" path="res://PenanceMod/scenes/BarrierBar.cs" id="1_umi4j"]
+
+[node name="BarrierBar" type="TextureRect"]
+modulate = Color(0.6799785, 0.43190715, 0.20868343, 1)
+offset_right = 40.0
+offset_bottom = 38.0
+script = ExtResource("1_umi4j")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

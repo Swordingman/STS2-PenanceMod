@@ -1,0 +1,13 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://drtvf7pveh6dl"
+valid=false
+
+[deps]
+
+source_file="res://examples/restsite_ironclad38.skel"
+
+[params]
+

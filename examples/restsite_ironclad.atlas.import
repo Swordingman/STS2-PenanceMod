@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://uowl42l8jh3s"
+path="res://.godot/imported/restsite_ironclad.atlas-f80e4284005f9d35dff1c5be9cb3a053.spatlas"
+
+[deps]
+
+source_file="res://examples/restsite_ironclad.atlas"
+dest_files=["res://.godot/imported/restsite_ironclad.atlas-f80e4284005f9d35dff1c5be9cb3a053.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

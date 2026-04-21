@@ -1,0 +1,11 @@
+{
+  "id": "Penance",
+  "name": "PenanceMod",
+  "author": "Chirpchump",
+  "description": "杀戮尖塔2斥罪模组",
+  "version": "1.0",
+  "has_pck": true,
+  "has_dll": true,
+  "dependencies": ["BaseLib"],
+  "affects_gameplay": true
+}

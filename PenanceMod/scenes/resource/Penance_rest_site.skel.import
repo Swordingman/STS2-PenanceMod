@@ -1,0 +1,13 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://b0eb21stbwq1v"
+valid=false
+
+[deps]
+
+source_file="res://PenanceMod/scenes/resource/Penance_rest_site.skel"
+
+[params]
+

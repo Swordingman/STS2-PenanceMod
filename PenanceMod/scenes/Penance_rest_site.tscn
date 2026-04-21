@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://jsga4a5folfx"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://roumj4cratvx" path="res://PenanceMod/scenes/Penance_rest_site.tres" id="1_be1hp"]
+
+[node name="PenanceRestSite" type="Node2D"]
+position = Vector2(15, 40)
+scale = Vector2(0.760006, 0.760006)
+
+[node name="SpineSprite" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("1_be1hp")
+preview_skin = "Default"
+preview_animation = "hive_loop"
+preview_frame = false
+preview_time = 0.0
+
+[node name="ControlRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Hitbox" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -235.52444
+offset_top = -368.41815
+offset_right = 234.20868
+offset_bottom = 348.68146
+metadata/_edit_use_anchors_ = true
+
+[node name="ThoughtBubbleRight" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 146.05148
+offset_top = -317.103
+offset_right = 146.05148
+offset_bottom = -317.103
+metadata/_edit_use_anchors_ = true
+
+[node name="ThoughtBubbleLeft" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -200
+offset_top = -324.997
+offset_right = -200
+offset_bottom = -324.997
+metadata/_edit_use_anchors_ = true

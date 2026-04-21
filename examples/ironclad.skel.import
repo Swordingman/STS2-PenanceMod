@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://dyk0k8i37hi8g"
+path="res://.godot/imported/ironclad.skel-5a4d0af9c622a4d380cb0e93fd7db406.spskel"
+
+[deps]
+
+source_file="res://examples/ironclad.skel"
+dest_files=["res://.godot/imported/ironclad.skel-5a4d0af9c622a4d380cb0e93fd7db406.spskel"]
+
+[params]
+
