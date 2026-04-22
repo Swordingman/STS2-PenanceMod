@@ -35,8 +35,8 @@ public class BarrierPower : CustomPowerModel
             SetAmount(0); 
 
             // 触发破碎特效
-            // var wrath = Owner.GetPower<SilenceWrathPower>();
-            // wrath?.OnBarrierBroken();
+            var wrath = Owner.GetPower<SilenceWrathPower>();
+            wrath?.OnBarrierBroken();
 
             amount = remainingDamage; // 剩余伤害继续扣除玩家血量
         }
@@ -51,18 +51,17 @@ public class BarrierPower : CustomPowerModel
         // 3. 只要抵挡了伤害，就触发通用受损判定
         if (damageBlocked > 0)
         {
-            // var asceticism = Owner.GetPower<AsceticismPower>();
-            // asceticism?.OnBarrierDamaged();
+            var asceticism = Owner.GetPower<AsceticismPower>();
+            asceticism?.OnBarrierDamaged();
 
-            // // var guardian = Owner.GetPower<GuardianOfTheLawPower>();
-            // guardian?.OnBarrierDamaged();
+            var guardian = Owner.GetPower<GuardianOfTheLawPower>();
+            guardian?.OnBarrierDamaged();
             
-            // 裁决
-            // if (dealer != null && dealer != Owner)
-            // {
-            //     // var judgement = Owner.GetPower<JudgementPower>();
-            //     judgement?.OnBarrierDamaged(dealer);
-            // }
+            if (dealer != null && dealer != Owner)
+            {
+                var judgement = Owner.GetPower<JudgementPower>();
+                judgement?.OnBarrierDamaged(dealer);
+            }
         }
 
         // 4. 返回处理后的最终伤害值给游戏引擎去结算

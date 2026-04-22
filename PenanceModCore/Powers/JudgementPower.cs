@@ -6,7 +6,8 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Combat; 
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.ValueProps; // 原版能力的命名空间（如力量）可能在这里
+using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.Models.Powers; // 原版能力的命名空间（如力量）可能在这里
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -38,35 +39,34 @@ public class JudgementPower : CustomPowerModel
     {
         var player = Owner;
         int baseDamage = Amount;
-        int finalDamage = baseDamage;
 
-        // // --- 1. 力量加成 ---
-        // // (注：InTheNameOfTheLawPower 记得替换为你实际的类名)
-        // if (player.GetPower<InTheNameOfTheLawPower>() != null)
-        // {
-        //     // 获取原版的力量能力 (注意引用的命名空间要对)
-        //     var strength = player.GetPower<StrengthPower>(); 
-        //     if (strength != null)
-        //     {
-        //         baseDamage += strength.Amount;
-        //     }
-        // }
+        // --- 1. 力量加成 ---
+        // (注：InTheNameOfTheLawPower 记得替换为你实际的类名)
+        if (player.GetPower<InTheNameOfTheLawPower>() != null)
+        {
+            // 获取原版的力量能力 (注意引用的命名空间要对)
+            var strength = player.GetPower<StrengthPower>(); 
+            if (strength != null)
+            {
+                baseDamage += strength.Amount;
+            }
+        }
 
-        // // --- 2. 乘区加成 ---
-        // float calculatedDamage = baseDamage;
-        // if (player.GetRelic<InnocentRelic>() != null)
-        // {
-        //     calculatedDamage *= 1.2f;
-        // }
+        // --- 2. 乘区加成 ---
+        float calculatedDamage = baseDamage;
+        if (player.GetRelic<InnocentRelic>() != null)
+        {
+            calculatedDamage *= 1.2f;
+        }
 
-        // // --- 3. 固定增伤 ---
-        // int finalDamage = (int)Math.Floor(calculatedDamage); // 显式取整更安全
-        // var shopVoucher = player.GetRelic<ShopVoucherRelic>();
-        // if (shopVoucher != null)
-        // {
-        //     finalDamage += 2;
-        //     shopVoucher.Flash(); // 遗物闪烁
-        // }
+        // --- 3. 固定增伤 ---
+        int finalDamage = (int)Math.Floor(calculatedDamage); // 显式取整更安全
+        var shopVoucher = player.GetRelic<ShopVoucherRelic>();
+        if (shopVoucher != null)
+        {
+            finalDamage += 2;
+            shopVoucher.Flash(); // 遗物闪烁
+        }
 
         // 防跌破底线
         if (finalDamage < 0) finalDamage = 0;
@@ -86,9 +86,8 @@ public class JudgementPower : CustomPowerModel
                 null                      // cardSource
             );
 
-            // 触发复仇法典
-            // var revenge = player.GetPower<CodeOfRevengePower>();
-            // revenge?.OnJudgementTriggered();
+            var revenge = player.GetPower<CodeOfRevengePower>();
+            revenge?.OnJudgementTriggered();
         }
     }
 }
