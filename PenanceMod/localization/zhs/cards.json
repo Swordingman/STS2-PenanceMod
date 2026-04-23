@@ -1,3 +1,31 @@
 {
-  
+  "PENANCEMOD-STRIKE_PENANCE.title": "打击",
+  "PENANCEMOD-STRIKE_PENANCE.description": "造成{Damage:diff()}点伤害。",
+
+  "PENANCEMOD-DEFEND_PENANCE.title": "防御",
+  "PENANCEMOD-DEFEND_PENANCE.description": "获得{Block:diff()}点格挡。",
+
+  "PENANCEMOD-ADJOURN.title": "休庭",
+  "PENANCEMOD-ADJOURN.description": "结束你的回合。\n本回合每打出一张牌，获得{Magic:diff()}点屏障。\n（若生命值低于 50%，改为恢复{Magic:diff()}点生命）",
+
+  "PENANCEMOD-AMBUSH_SHADOW.title": "伏击之影",
+  "PENANCEMOD-AMBUSH_SHADOW.description": "抽到时施放。\n随机丢弃{Ambush-Magic:diff()}张手牌。\n获得 1 层无实体。",
+
+  "PENANCEMOD-ART_OF_THE_HIDING_FOX.title": "隐狐之艺",
+  "PENANCEMOD-ART_OF_THE_HIDING_FOX.description": "抽到时释放。\n跳过你的回合。获得{Fox-Magic:diff()}点力量、裁决和荆棘。获得{Fox-Barrier:diff()}点屏障。[purple]{IfUpgraded:UpgradePreview|\n本回合保留手牌。}[/purple]",
+
+  "PENANCEMOD-ASCETICISM.title": "苦行",
+  "PENANCEMOD-ASCETICISM.description": "每当你的屏障受到伤害时，获得{Asceticism-Magic:diff()}层荆棘环身。",
+
+  "PENANCEMOD-ASIP.title": "小酌一杯",
+  "PENANCEMOD-ASIP.description": "失去{ASip-Penalty:diff()}点屏障。如果不足，则失去等量生命值。\n获得 2 点力量。\n在手牌中加入一张此牌的复制品。该复制品拥有虚无，且失去的数值增加 2 点。",
+
+  "PENANCEMOD-BAD_OPERA.title": "烂歌剧",
+  "PENANCEMOD-BAD_OPERA.description": "随机将 {BadOpera-Magic:diff()} 张攻击牌加入手牌。[purple]{IfUpgraded:UpgradePreview|\n生成的卡牌将被升级。}[/purple]",
+
+  "PENANCEMOD-BARBED_REBUKE.title": "你荆然敢!",
+  "PENANCEMOD-BARBED_REBUKE.description": "造成{Damage:diff()}点伤害。\n触发一次荆棘环身伤害。\n如果目标意图为攻击，额外再造成一半数值的荆棘环身伤害。",
+
+  "PENANCEMOD-BLOOD_DEBT_CLAUSE.title": "血债条款",
+  "PENANCEMOD-BLOOD_DEBT_CLAUSE.description": "对所有敌人造成{Damage:diff()}点伤害。\n场上每有一名存活的敌人，将一张随机的狼群诅咒放入弃牌堆。"
 }
