@@ -4,6 +4,8 @@ using MegaCrit.Sts2.Core.Commands;
 using System.Linq;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Localization;
 
 namespace PenanceMod.Scripts;
 
@@ -76,9 +78,10 @@ public static class WolfCurseHelper
 
         for (int i = 0; i < amount; i++)
         {
-            // 这行代码会挂起执行，直到玩家在屏幕上选好一张牌
-            CardModel selectedCard = await CardSelectCmd.FromChooseACardScreen(choiceContext, options, player, canSkip: false);
-
+            var prefs = new CardSelectorPrefs(new LocString("gameplay_ui", "CHOOSE_A_CURSE"), 1); // 选1张
+            IEnumerable<CardModel> selectedCards = await CardSelectCmd.FromSimpleGrid(choiceContext, options, player, prefs);
+            CardModel selectedCard = selectedCards?.FirstOrDefault();
+            
             if (selectedCard != null)
             {
                 var finalCopy = selectedCard.ToMutable();
