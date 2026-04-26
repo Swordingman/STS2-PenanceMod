@@ -14,37 +14,29 @@ using System.Threading.Tasks;
 namespace PenanceMod.Scripts.Cards;
 
 [Pool(typeof(PenanceModCardPool))]
-public class EmergencyRepair : PenanceBaseCard
+public class GuardianOfTheLaw : PenanceBaseCard
 {
-    // 耗能 1，类型 Skill，稀有度 Common，目标 Self
-    public EmergencyRepair() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, true)
+    // 耗能 2，类型 Power，稀有度 Rare，目标 Self
+    public GuardianOfTheLaw() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self, true)
     {
     }
 
-    // 🌟 注册变量：屏障获取量 (初始 4)
+    // 🌟 注册变量：获得的裁决点数 (3)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Repair-Barrier", 4m)
+        new DynamicVar("Guardian-Magic", 3m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var vars = DynamicVars.Values.ToList();
-        int barrierGain = vars.Count > 0 ? vars[0].IntValue : 4;
+        int magicGain = vars.Count > 0 ? vars[0].IntValue : 3;
 
-        // 1. 获得屏障
-        await PowerCmd.Apply<BarrierPower>(Owner.Creature, barrierGain, Owner.Creature, this);
-
-        // 2. 抽 1 张牌 (复用之前在查阅卷宗学到的底层 API)
-        await CardPileCmd.Draw(choiceContext, 1, Owner);
+        // 挂载律法卫士能力
+        await PowerCmd.Apply<GuardianOfTheLawPower>(Owner.Creature, magicGain, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        // 升级屏障获取量 (4 -> 7)
-        var vars = DynamicVars.Values.ToList();
-        if (vars.Count > 0)
-        {
-            vars[0].UpgradeValueBy(3);
-        }
+        EnergyCost.UpgradeBy(-1);
     }
 }

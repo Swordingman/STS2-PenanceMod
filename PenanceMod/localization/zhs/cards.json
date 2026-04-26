@@ -108,5 +108,75 @@
   "PENANCEMOD-FORCED_SUMMONS.title": "强制传唤",
   "PENANCEMOD-FORCED_SUMMONS.description": "造成{Damage:diff()}点伤害。\n抽 1 张牌。如果目标意图是攻击，改为抽 2 张。",
 
+  "PENANCEMOD-GAVEL_BARRAGE.title": "法槌连击",
+  "PENANCEMOD-GAVEL_BARRAGE.description": "对敌人造成 {Damage:diff()} 点伤害 X 次。\n每次造成伤害，获得 1 点裁决和 1 层荆棘环身。",
+  "PENANCEMOD-GAVEL_BARRAGE.upgrade_description": "对敌人造成 {Damage:diff()} 点伤害 X+1 次。\n每次造成伤害，获得 1 点裁决和 1 层荆棘环身。",
+
+  "PENANCEMOD-GAVEL_STRIKE.title": "落下法槌",
+  "PENANCEMOD-GAVEL_STRIKE.description": "造成{Damage:diff()}点伤害。\n若屏障高于目标生命值且其非精英或首领，则直接将其击杀。",
+
+  "PENANCEMOD-GLOW_OF_SUFFERING.title": "苦难辉光",
+  "PENANCEMOD-GLOW_OF_SUFFERING.description": "每当你通过卡牌效果失去生命值时，获得失去值 {Glow-Mult:diff()} 倍的屏障，和 {Glow-Mult:diff()} 倍的荆棘环身。",
+
+  "PENANCEMOD-GUARDIAN_OF_THE_LAW.title": "律法卫士",
+  "PENANCEMOD-GUARDIAN_OF_THE_LAW.description": "每当你的屏障受到伤害时，获得 {Guardian-Magic:diff()} 点裁决。",
+
+  "PENANCEMOD-GUILTY_AS_CHARGED.title": "有罪！",
+  "PENANCEMOD-GUILTY_AS_CHARGED.description": "移除目标的所有格挡。\n造成{Damage:diff()}点伤害。\n基于你的层数是否大于等于 10 追加效果：\n裁决：造成等量伤害。\n荆棘环身：给予 1 层止戈。\n力量：上述效果触发两次。",
+
+  "PENANCEMOD-HOUR_OF_RECKONING.title": "清算时刻",
+  "PENANCEMOD-HOUR_OF_RECKONING.description": "造成{Damage:diff()}点伤害。{DynamicHpLostText}\n本场战斗你每失去 1 点生命值，伤害增加 1 点。",
+  "PENANCEMOD-HOUR_OF_RECKONING.extended_description": "\n[purple]（当前额外增加 {amount} 点伤害。）[/purple]",
+
+  "PENANCEMOD-IMMEDIATE_EXECUTION.title": "即刻行刑",
+  "PENANCEMOD-IMMEDIATE_EXECUTION.description": "获得 {Execution-Judge:diff()} 点裁决。\n造成等同于裁决的伤害。",
+
+  "PENANCEMOD-IN_THE_NAME_OF_THE_LAW.title": "法律之名",
+  "PENANCEMOD-IN_THE_NAME_OF_THE_LAW.description": "你的裁决伤害现在会受到力量加成。",
+
+  "PENANCEMOD-IRONCLAD_DOCTRINE.title": "铁律护体",
+  "PENANCEMOD-IRONCLAD_DOCTRINE.description": "在你的回合开始时，消耗 {Doctrine-Cost:diff()} 点屏障，恢复 3 点生命值。",
+
+  "PENANCEMOD-JOINT_LIABILITY.title": "连带责任",
+  "PENANCEMOD-JOINT_LIABILITY.description": "对所有敌人造成 {Damage:diff()} 点伤害。{DynamicJudgeText}\n你每有一层裁决，伤害增加 1 点。",
+  "PENANCEMOD-JOINT_LIABILITY.extended_description": "\n[purple]（当前额外增加 {amount} 点伤害。）[/purple]",
+
+  "PENANCEMOD-JUDGEMENT_BACKLASH.title": "裁决反冲",
+  "PENANCEMOD-JUDGEMENT_BACKLASH.description": "造成 {Damage:diff()} 点伤害。你每拥有 3 层裁决，额外触发一次。",
+
+  "PENANCEMOD-JUDGMENT_HAS_BEGUN.title": "裁决早已开始",
+  "PENANCEMOD-JUDGMENT_HAS_BEGUN.description": "消耗。本回合每使用 1 张攻击牌，获得 5 点屏障、1 点力量和 1 点裁决。累积使用 3 张后，获得 2 点 [E] 。",
+  "PENANCEMOD-JUDGMENT_HAS_BEGUN.upgrade_description": "保留。消耗。本回合每使用 1 张攻击牌，获得 5 点屏障、1 点力量和 1 点裁决。累积使用 3 张后，获得 2 点 [E] 。",
+
+  "PENANCEMOD-JUDICIAL_DISCRETION.title": "司法斟酌",
+  "PENANCEMOD-JUDICIAL_DISCRETION.description": "失去 5 点屏障。\n获得 1 点 [E] 。抽 {Judicial-Draw:diff()} 张牌。",
+
+  "PENANCEMOD-JUSTIFIED_RETALIATION.title": "你先动手的",
+  "PENANCEMOD-JUSTIFIED_RETALIATION.description": "获得 {Justified-Barrier:diff()} 点屏障。\n获得 1 层正当防卫。",
+
+  "PENANCEMOD-LAST_STAND.title": "最后防线",
+  "PENANCEMOD-LAST_STAND.description": "消耗。\n获得 {LastStand-Barrier:diff()} 点屏障。\n获得 {LastStand-Ceasefire:diff()} 层止戈。",
+
+  "PENANCEMOD-LAW_ENFORCEMENT.title": "执法",
+  "PENANCEMOD-LAW_ENFORCEMENT.description": "造成等同于你当前屏障值 {Law-Percent:diff()}% 的伤害。{DynamicDamageText}\n如果该伤害的基础值不足 10 点，获得该值两倍的屏障。",
+  "PENANCEMOD-LAW_ENFORCEMENT.extended_description": "\n[purple]（当前基础伤害：{amount} 点）[/purple]",
+
+  "PENANCEMOD-LAW_IS_CANON.title": "法为正典",
+  "PENANCEMOD-LAW_IS_CANON.description": "回合结束时，如果你拥有屏障，获得等同于力量值的裁决。",
+
+  "PENANCEMOD-LAW_MODIFICATION.title": "法则修正",
+  "PENANCEMOD-LAW_MODIFICATION.description": "将你的格挡转换为屏障。",
+
+  "PENANCEMOD-MALICIOUS_COMPETITION.title": "恶意竞争",
+  "PENANCEMOD-MALICIOUS_COMPETITION.description": "造成 {Damage:diff()} 点伤害。\n若目标生命值高于你，获得 {Malicious-Barrier:diff()} 点屏障。",
+  "PENANCEMOD-MALICIOUS_COMPETITION.upgrade_description": "造成 {Damage:diff()} 点伤害。\n若目标生命值高于你的一半，获得 {Malicious-Barrier:diff()} 点屏障。",
+
+  "PENANCEMOD-NO_SENTENCE_NEEDED.title": "无需宣判",
+  "PENANCEMOD-NO_SENTENCE_NEEDED.description": "消耗。\n如果你的屏障为 0 且当前生命值不足一半，此牌可以打出。\n造成 {Damage:diff()} 点伤害。",
+  "PENANCEMOD-NO_SENTENCE_NEEDED.cant_use_message": "我必须在屏障归零且生命值不足一半时才能打出这张牌。",
+
+  "PENANCEMOD-OVERRULE.title": "驳回",
+  "PENANCEMOD-OVERRULE.description": "造成 {Damage:diff()} 点伤害。给予 1 层虚弱。\n如果目标已经拥有虚弱，获得 {Overrule-Barrier:diff()} 点屏障。",
+
   
 }

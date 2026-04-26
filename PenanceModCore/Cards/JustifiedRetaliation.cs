@@ -14,33 +14,38 @@ using System.Threading.Tasks;
 namespace PenanceMod.Scripts.Cards;
 
 [Pool(typeof(PenanceModCardPool))]
-public class EmergencyRepair : PenanceBaseCard
+public class JustifiedRetaliation : PenanceBaseCard
 {
-    // 耗能 1，类型 Skill，稀有度 Common，目标 Self
-    public EmergencyRepair() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, true)
+    // 耗能 1，类型 Skill，稀有度 Uncommon，目标 Self
+    public JustifiedRetaliation() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
     {
     }
 
-    // 🌟 注册变量：屏障获取量 (初始 4)
+    // 🌟 注册变量：获得的屏障数 (初始 7)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Repair-Barrier", 4m)
+        new DynamicVar("Justified-Barrier", 7m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var vars = DynamicVars.Values.ToList();
-        int barrierGain = vars.Count > 0 ? vars[0].IntValue : 4;
+        int barrierAmount = vars.Count > 0 ? vars[0].IntValue : 7;
 
-        // 1. 获得屏障
-        await PowerCmd.Apply<BarrierPower>(Owner.Creature, barrierGain, Owner.Creature, this);
+        var creature = Owner.Creature;
 
-        // 2. 抽 1 张牌 (复用之前在查阅卷宗学到的底层 API)
-        await CardPileCmd.Draw(choiceContext, 1, Owner);
+        // 1. 获得指定层数的屏障
+        await PowerCmd.Apply<BarrierPower>(creature, barrierAmount, creature, this);
+
+        // 稍微停顿一下特效，让连招看起来更舒服（可选）
+        await Cmd.Wait(0.1f);
+
+        // 2. 获得 1 层“正当防卫”
+        await PowerCmd.Apply<JustifiedDefensePower>(creature, 1, creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        // 升级屏障获取量 (4 -> 7)
+        // 屏障数值 +3 (7 -> 10)
         var vars = DynamicVars.Values.ToList();
         if (vars.Count > 0)
         {

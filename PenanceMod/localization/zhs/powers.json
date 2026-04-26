@@ -51,8 +51,8 @@
   "PENANCEMOD-CUMULATIVE_PRECEDENT_POWER.description": "每打出一张技能牌，获得 {Amount} 层 {BarrierPower:local_icon()}屏障 。",
   
   "PENANCEMOD-INESCAPABLE_NET_POWER.title": "法网恢恢",
-  "PENANCEMOD-INESCAPABLE_NET_POWER.description": "下个回合开始时，获得 {Amount} 层 {BarrierPower:local_icon()}屏障 并抽 1 张牌。",
-  
+  "PENANCEMOD-INESCAPABLE_NET_POWER.description": "下个回合开始时，获得 {Amount} 层 {BarrierPower:local_icon()}屏障 并抽 {draw} 张牌。",
+
   "PENANCEMOD-PROCEDURAL_JUSTICE_POWER.title": "程序正义",
   "PENANCEMOD-PROCEDURAL_JUSTICE_POWER.description": "每当你获得格挡时，获得等同于格挡值 {Amount} 倍的 {BarrierPower:local_icon()}屏障 。",
   

@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -58,5 +59,17 @@ public class DeadlyEnemy : PenanceBaseCard
         }
 
         return incomingDamage;
+    }
+
+    public override decimal ModifyDamageAdditive(Creature? target, decimal damage, ValueProp props, Creature? dealer, CardModel? cardSource)
+    {
+        if (target != null && target.IsPlayer && damage > 0)
+        {
+            if (this.Pile != null && this.Pile.Type == PileType.Hand)
+            {
+                return 1m; 
+            }
+        }
+        return 0m;
     }
 }

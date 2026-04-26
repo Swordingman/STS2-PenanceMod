@@ -14,33 +14,31 @@ using System.Threading.Tasks;
 namespace PenanceMod.Scripts.Cards;
 
 [Pool(typeof(PenanceModCardPool))]
-public class EmergencyRepair : PenanceBaseCard
+public class InescapableNet : PenanceBaseCard
 {
-    // 耗能 1，类型 Skill，稀有度 Common，目标 Self
-    public EmergencyRepair() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, true)
+    // 耗能 1，类型 Skill，稀有度 Uncommon，目标 Self
+    public InescapableNet() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
     {
     }
 
-    // 🌟 注册变量：屏障获取量 (初始 4)
+    // 🌟 注册变量：下回合获得的屏障数 (初始 12)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Repair-Barrier", 4m)
+        new DynamicVar("Net-Barrier", 12m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var vars = DynamicVars.Values.ToList();
-        int barrierGain = vars.Count > 0 ? vars[0].IntValue : 4;
+        int barrierGain = vars.Count > 0 ? vars[0].IntValue : 12;
 
-        // 1. 获得屏障
-        await PowerCmd.Apply<BarrierPower>(Owner.Creature, barrierGain, Owner.Creature, this);
-
-        // 2. 抽 1 张牌 (复用之前在查阅卷宗学到的底层 API)
-        await CardPileCmd.Draw(choiceContext, 1, Owner);
+        // 给自己挂上“法网恢恢”状态，层数等于屏障数值
+        // (抽 1 张牌的逻辑是固定的，所以不需要通过变量传给 Power，直接在 Power 内部写死抽 1 张即可)
+        await PowerCmd.Apply<InescapableNetPower>(Owner.Creature, barrierGain, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        // 升级屏障获取量 (4 -> 7)
+        // 升级后获得的屏障提升 3 (12 -> 15)
         var vars = DynamicVars.Values.ToList();
         if (vars.Count > 0)
         {
