@@ -178,5 +178,58 @@
   "PENANCEMOD-OVERRULE.title": "驳回",
   "PENANCEMOD-OVERRULE.description": "造成 {Damage:diff()} 点伤害。给予 1 层虚弱。\n如果目标已经拥有虚弱，获得 {Overrule-Barrier:diff()} 点屏障。",
 
+  "PENANCEMOD-PENALTY_REGRESSION.title": "刑责回溯",
+  "PENANCEMOD-PENALTY_REGRESSION.description": "造成 {Damage:diff()} 点伤害。\n使你身上的所有减益效果层数减少 1。",
+
+  "PENANCEMOD-PENDING_JUDGMENT.title": "待命裁定",
+  "PENANCEMOD-PENDING_JUDGMENT.description": "每有一个意图为攻击的敌人，便获得 {Pending-Barrier:diff()} 点屏障。{DynamicBarrierText}",
+  "PENANCEMOD-PENDING_JUDGMENT.extended_description": "\n[purple]（当前提供 {amount} 点屏障。）[/purple]",
+
+  "PENANCEMOD-PERJURY.title": "伪证",
+  "PENANCEMOD-PERJURY.description": "消耗。\n将一张悔恨置入你的手牌。获得 2 点 [E] 。",
+
+  "PENANCEMOD-PRE_EXECUTION_PREP.title": "执行前准备",
+  "PENANCEMOD-PRE_EXECUTION_PREP.description": "消耗。\n抽牌直到手牌上限。根据抽到的类型获得：\n攻击牌 -> 获得 1 点裁决；\n技能牌 -> 获得 1 层荆棘环身；\n能力牌 -> 获得 1 点力量；\n诅咒牌 -> 获得 1 点 [E] 。",
+
+  "PENANCEMOD-PROCEDURAL_JUSTICE.title": "程序正义",
+  "PENANCEMOD-PROCEDURAL_JUSTICE.description": "每当你获得格挡时，获得等量的屏障。",
+
+  "PENANCEMOD-PUNISHMENT_FOR_TRANSGRESSION.title": "越界必罚",
+  "PENANCEMOD-PUNISHMENT_FOR_TRANSGRESSION.description": "如果你本回合没有使用过攻击牌，回合结束时，获得 {Transgression-Amt:diff()} 层正当防卫。",
+
+  "PENANCEMOD-QUELL.title": "镇暴",
+  "PENANCEMOD-QUELL.description": "造成 {Damage:diff()} 点伤害。\n如果你拥有屏障，给予 {Quell-Weak:diff()} 层虚弱。",
+
+  "PENANCEMOD-READ_CHARGES.title": "宣读罪状",
+  "PENANCEMOD-READ_CHARGES.description": "获得 3 点裁决。\n抽 {Read-Draw:diff()} 张牌。",
+  
+  "PENANCEMOD-SCENE_INVESTIGATION.title": "调查现场",
+  "PENANCEMOD-SCENE_INVESTIGATION.description": "连续打出 2 张同类牌时获得奖励：\n攻击牌 -> 随机技能牌；\n技能牌 -> 随机攻击牌；\n能力牌 -> {Scene-Energy:diff()} 点 [E] 。\n（生成的牌消耗且虚无）",
+  "PENANCEMOD-SCENE_INVESTIGATION.upgrade_description": "固有。\n连续打出 2 张同类牌时获得奖励：\n攻击牌 -> 随机升级后的技能牌；\n技能牌 -> 随机升级后的攻击牌；\n能力牌 -> {Scene-Energy:diff()} 点 [E] 。\n（生成的牌消耗且虚无）",
+
+  "PENANCEMOD-SELF_INCRIMINATION.title": "自证其罪",
+  "PENANCEMOD-SELF_INCRIMINATION.description": "消耗。\n必须消耗手牌中一张诅咒牌才能打出。\n将一张证据和伪证置入你的手牌。",
+  "PENANCEMOD-SELF_INCRIMINATION.select_message": "选择一张诅咒牌消耗",
+
+  "PENANCEMOD-SILENCE.title": "缄默",
+  "PENANCEMOD-SILENCE.description": "获得 {Silence-Barrier:diff()} 点屏障。\n如果当前生命值低于 50% ，额外获得 3 点裁决。",
+
+  "PENANCEMOD-SILENCE_WRATH.title": "沉默之怒",
+  "PENANCEMOD-SILENCE_WRATH.description": "每当屏障被击碎时，获得 {SilenceWrath-Amt:diff()} 点力量，并给予所有敌人 {SilenceWrath-Amt:diff()} 层虚弱。",
+
+  "PENANCEMOD-SOLID_DEFENSE.title": "坚固防守",
+  "PENANCEMOD-SOLID_DEFENSE.description": "获得 {Block:diff()} 点格挡。\n获得 {Solid-Barrier:diff()} 点屏障。",
+
+  "PENANCEMOD-STING.title": "刺痛",
+  "PENANCEMOD-STING.description": "失去 3 点生命值。\n获得 {Sting-Thorns:diff()} 层荆棘环身和 {Sting-Judge:diff()} 点裁决。",
+
+  "PENANCEMOD-SYRACUSAN_WOLVES.title": "叙拉古的狼群",
+  "PENANCEMOD-SYRACUSAN_WOLVES.description": "消耗。\n将随机 5 张狼群诅咒洗入你的抽牌堆。",
+  "PENANCEMOD-SYRACUSAN_WOLVES.upgrade_description": "消耗。\n将随机 5 张升级后的狼群诅咒洗入你的抽牌堆。",
+
+  "PENANCEMOD-RESOLUTE.title": "坚决",
+  "PENANCEMOD-RESOLUTE.description": "获得 3 点屏障。\n获得 {Resolute-BarrierX:diff()} 点屏障 X 次，获得 X 点裁决。",
+  "PENANCEMOD-RESOLUTE.upgrade_description": "获得 3 点屏障。\n获得 {Resolute-BarrierX:diff()} 点屏障 X 次，获得 X+1 点裁决。",
+
   
 }

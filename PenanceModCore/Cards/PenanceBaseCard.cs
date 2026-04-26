@@ -30,7 +30,7 @@ public abstract class PenanceBaseCard : CustomCardModel
     protected bool IsHalfHealth(Creature creature)
     {
         // 提示：如果在你的 IDE 中报错，请将 CurrentHealth / MaxHealth 替换为代码提示中的正确属性（例如 HpCurrent 等）
-        return creature.CurrentHp < (creature.MaxHp / 2f);
+        return creature.CurrentHp <= (creature.MaxHp / 2f);
     }
 
     /// <summary>

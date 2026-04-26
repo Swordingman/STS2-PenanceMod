@@ -76,12 +76,6 @@ public class SceneInvestigationPower : CustomPowerModel
         }
     }
 
-    // ==========================================
-    // 核心修改：使用你提供的真实底层指令！
-    // ==========================================
-// ==========================================
-    // 核心修改：完全遵循 StS2 CardModel 原生接口
-    // ==========================================
     private async Task GiveRandomCards(CardType targetType, int count)
     {
         for (int i = 0; i < count; i++)
