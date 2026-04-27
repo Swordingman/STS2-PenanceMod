@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using PenanceMod.PenanceModCode.Relics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,7 +83,7 @@ public static class WolfCurseHelper
         //
         // 如果你的 GetRelic<T>() 是 BaseLib 或你自己写的扩展方法，这里可以直接用。
         // 如果 IDE 提示没有 GetRelic<T>()，就需要换成你项目里获取遗物的方式。
-        var relic = player.GetRelic<CarnivalMomentRelic>();
+        var relic = player.GetRelic<CarnivalMoment>();
         if (relic != null)
         {
             shouldUpgrade = true;

@@ -231,5 +231,37 @@
   "PENANCEMOD-RESOLUTE.description": "获得 3 点屏障。\n获得 {Resolute-BarrierX:diff()} 点屏障 X 次，获得 X 点裁决。",
   "PENANCEMOD-RESOLUTE.upgrade_description": "获得 3 点屏障。\n获得 {Resolute-BarrierX:diff()} 点屏障 X 次，获得 X+1 点裁决。",
 
-  
+  "PENANCEMOD-TANGLED_THREADS.title": "缝线缠身",
+  "PENANCEMOD-TANGLED_THREADS.description": "抽到时释放。\n消耗。\n随机消耗手牌中 X 张牌。\n随机造成 X 次伤害，伤害值等于被消耗牌的总耗能。",
+  "PENANCEMOD-TANGLED_THREADS.upgrade_description": "抽到时释放。\n消耗。\n随机消耗手牌中 X 张牌。\n随机造成 X+X 次伤害，伤害值等于被消耗牌的总耗能。",
+
+  "PENANCEMOD-TEMPERING.title": "淬炼",
+  "PENANCEMOD-TEMPERING.description": "失去 3 点生命值。\n获得 {Tempering-Barrier:diff()} 点屏障。",
+
+  "PENANCEMOD-THE_TRIAL.title": "审判",
+  "PENANCEMOD-THE_TRIAL.description": "造成 {Damage:diff()} 点伤害。\n力量对此牌的加成效果改为乘算。",
+
+  "PENANCEMOD-THORNY_PATH.title": "披荆斩棘",
+  "PENANCEMOD-THORNY_PATH.description": "回合结束时，获得等同于裁决 {ThornyPath-Percent:diff()}% 的荆棘环身。",
+
+  "PENANCEMOD-TIPPING_SCALES.title": "倾斜天平",
+  "PENANCEMOD-TIPPING_SCALES.description": "消耗所有裁决。\n每消耗 {Tipping-JudgeCost:diff()} 层裁决，便获得 {Tipping-Str:diff()} 点力量。",
+
+  "PENANCEMOD-TOOTH_FOR_TOOTH.title": "以牙还牙",
+  "PENANCEMOD-TOOTH_FOR_TOOTH.description": "失去 2 点生命值。\n造成 {Damage:diff()} 点伤害。\n向你的弃牌堆中洗入一张狼群诅咒。\n如果你的生命值低于 50% ，抽 {Tooth-Draw:diff()} 张牌。",
+
+  "PENANCEMOD-UNWAVERING.title": "坚心苦修",
+  "PENANCEMOD-UNWAVERING.description": "使你的所有攻击牌获得消耗。\n使你受到的伤害减少 30% 。\n在你的回合结束时，获得 {Unwavering-Thorns:diff()} 层荆棘环身。",
+
+  "PENANCEMOD-UPRIGHT.title": "刚正不阿",
+  "PENANCEMOD-UPRIGHT.description": "获得 {Upright-Str:diff()} 点力量。\n（数值基于所有区域中的诅咒牌总数）",
+
+  "PENANCEMOD-WALL_BREAKER_SMASH.title": "破壁重击",
+  "PENANCEMOD-WALL_BREAKER_SMASH.description": "失去 {WallBreaker-Cost:diff()} 点屏障。\n造成 {Damage:diff()} 点伤害。",
+
+  "PENANCEMOD-WEIGHT_OF_LAW.title": "律法之重",
+  "PENANCEMOD-WEIGHT_OF_LAW.description": "消耗。\n失去 6 点生命值。\n获得 {WeightOfLaw-MaxHp:diff()} 点最大生命值。",
+
+  "PENANCEMOD-UNWRITTEN_LAW.title": "不成文的法律",
+  "PENANCEMOD-UNWRITTEN_LAW.description": "从抽牌堆随机抽一张能力牌。\n如果你在本回合打出了它，额外打出一次。"
 }

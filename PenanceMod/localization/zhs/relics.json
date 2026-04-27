@@ -1,3 +1,20 @@
 {
-  
+  "PENANCEMOD-PENANCE_BASIC_RELIC.title": "通往未来的荆棘之路",
+  "PENANCEMOD-PENANCE_BASIC_RELIC.description": "战斗开始时，获得 [blue]10%[/blue] 最大生命值的屏障和 [blue]1[/blue] 点裁决。\n来自药物、事件与休息的治疗效果将转化为等量的屏障（非战斗时会储存）。\n战斗结束时，将剩余屏障的 [blue]10%[/blue] 转化为生命回复。",
+  "PENANCEMOD-PENANCE_BASIC_RELIC.flavor": "它时刻刺痛着你，提醒着你正义的重量。",
+  "PENANCEMOD-PENANCE_BASIC_RELIC.upgrade_description": "战斗开始时，获得 [blue]30%[/blue] 最大生命值的屏障和 [blue]1[/blue] 点裁决。\n击杀非爪牙敌人时会额外存储相当于生命值上限 5% 的屏障。\n来自药物、事件与休息的治疗效果将转化为等量的屏障（非战斗时会储存）。\n战斗结束时，将剩余屏障的 [blue]10%[/blue] 转化为生命回复。",
+
+  "PENANCEMOD-BLACK_UMBRELLA.title": "黑雨伞",
+  "PENANCEMOD-BLACK_UMBRELLA.description": "每次战斗中，你的格挡首次被击碎时，给予攻击者 [blue]{Umbrella-Vuln}[/blue] 层易伤，给予自己 [blue]{Umbrella-Str}[/blue] 点力量。",
+  "PENANCEMOD-BLACK_UMBRELLA.flavor": "真不赶巧，你选择在这时候来叙拉古？",
+
+  "PENANCEMOD-BLOODSTAINED_CLOTH.title": "染血的布料",
+  "PENANCEMOD-BLOODSTAINED_CLOTH.description": "在战斗开始时，获得 [blue]{Cloth-Str}[/blue] 点力量，和 [blue]{Cloth-Thorns}[/blue] 层荆棘环身。",
+  "PENANCEMOD-BLOODSTAINED_CLOTH.flavor": "你无法保护所有人......",
+
+  "PENANCEMOD-CARNIVAL_MOMENT.title": "狂欢时刻",
+  "PENANCEMOD-CARNIVAL_MOMENT.description": "你目前及以后获得的狼群诅咒全部升级。",
+  "PENANCEMOD-CARNIVAL_MOMENT.flavor": "看吧，这就是叙拉古——狂欢之主邀你共赏！",
+
+
 }

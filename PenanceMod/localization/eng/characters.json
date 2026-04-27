@@ -1,3 +1,17 @@
 {
-  
+  "TEST-TEST_CHARACTER.aromaPrinciple": "[sine][gold]没有绝对的正义，但我仍要呼唤它！[/gold][/sine]",
+  "TEST-TEST_CHARACTER.banter.alive.endTurnPing": "不要无端拖延审判的流程，你的犹豫只会给这些法外之徒喘息的机会。",
+  "TEST-TEST_CHARACTER.banter.dead.endTurnPing": "即便我已经倒下，法庭的目光依然在注视着你……做出你的裁决，别再拖延了。",
+  "TEST-TEST_CHARACTER.cardsModifierDescription": "斥罪的卡牌现在会出现在奖励和商店中。",
+  "TEST-TEST_CHARACTER.cardsModifierTitle": "斥罪卡牌",
+  "TEST-TEST_CHARACTER.description": "叙拉古的城邦法官，背负着过往的阴影与法律的重量。 \n 既然法律无法触及这座高塔，那便由她化身为行走的秩序，披荆斩棘，以身卫道。",
+  "TEST-TEST_CHARACTER.eventDeathPrevention": "他们和他们身后的黑暗偶尔也会占据上风……但再恼人的雨季也总会过去。",
+  "TEST-TEST_CHARACTER.goldMonologue": "[sine]或许这笔巨款足够用来建设新沃尔西尼那千疮百孔的司法体系……[/sine]",
+  "TEST-TEST_CHARACTER.possessiveAdjective": "她的",
+  "TEST-TEST_CHARACTER.pronounObject": "她",
+  "TEST-TEST_CHARACTER.pronounPossessive": "她的",
+  "TEST-TEST_CHARACTER.pronounSubject": "她",
+  "TEST-TEST_CHARACTER.title": "斥罪",
+  "TEST-TEST_CHARACTER.titleObject": "斥罪",
+  "TEST-TEST_CHARACTER.unlockText": "用[pink]{Prerequisite}[/pink]进行一局游戏来解锁这个角色。"
 }

@@ -1,3 +1,82 @@
 {
+  "PENANCEMOD-JUDGEMENT_POWER.title": "裁决",
+  "PENANCEMOD-JUDGEMENT_POWER.description": "每当你的 {BarrierPower:local_icon()}屏障 受到攻击时，对攻击者造成 {Amount} 点伤害。",
   
+  "PENANCEMOD-BARRIER_POWER.title": "屏障",
+  "PENANCEMOD-BARRIER_POWER.description": "抵挡 {Amount} 点伤害。",
+  
+  "PENANCEMOD-THORN_AURA_POWER.title": "荆棘环身",
+  "PENANCEMOD-THORN_AURA_POWER.description": "回合结束时，对所有敌人造成 {Amount} 点伤害。",
+  
+  "PENANCEMOD-CODE_OF_REVENGE_POWER.title": "复仇法典",
+  "PENANCEMOD-CODE_OF_REVENGE_POWER.description": "每当你触发 {JudgementPower:local_icon()}裁决 造成伤害时，获得 {Amount} 层 {BarrierPower:local_icon()}屏障 。",
+  
+  "PENANCEMOD-THORNY_PATH_POWER.title": "披荆斩棘",
+  "PENANCEMOD-THORNY_PATH_POWER.description": "回合结束时，获得等同于当前 {JudgementPower:local_icon()}裁决 层数 {Amount}% 的 {ThornAuraPower:local_icon()}荆棘环身 。",
+  
+  "PENANCEMOD-SILENCE_WRATH_POWER.title": "沉默之怒",
+  "PENANCEMOD-SILENCE_WRATH_POWER.description": "每当你的 {BarrierPower:local_icon()}屏障 破裂时，获得 {Amount} 点 力量 ，并给予所有敌人 {Amount} 层 虚弱 。",
+  
+  "PENANCEMOD-GUARDIAN_OF_THE_LAW_POWER.title": "律法卫士",
+  "PENANCEMOD-GUARDIAN_OF_THE_LAW_POWER.description": "每当你的 {BarrierPower:local_icon()}屏障 受到伤害时，获得 {Amount} 点 {JudgementPower:local_icon()}裁决 。",
+  
+  "PENANCEMOD-LAW_IS_CANON_POWER.title": "法为正典",
+  "PENANCEMOD-LAW_IS_CANON_POWER.description": "回合结束时，如果你拥有 {BarrierPower:local_icon()}屏障 ，获得等同于你 力量 {Amount} 倍的 {JudgementPower:local_icon()}裁决 。",
+  
+  "PENANCEMOD-IN_THE_NAME_OF_THE_LAW_POWER.title": "法律之名",
+  "PENANCEMOD-IN_THE_NAME_OF_THE_LAW_POWER.description": "你触发的 {JudgementPower:local_icon()}裁决 会额外造成等同于你 力量 的伤害。",
+  
+  "PENANCEMOD-UNWAVERING_POWER.title": "坚心苦修",
+  "PENANCEMOD-UNWAVERING_POWER.description": "你打出的所有 攻击牌 获得 消耗 。\n受到的攻击伤害减少 30% 。\n回合结束时，获得 {Amount} 层 {ThornAuraPower:local_icon()}荆棘环身 。",
+  
+  "PENANCEMOD-STUN_MONSTER_POWER.title": "眩晕",
+  "PENANCEMOD-STUN_MONSTER_POWER.description": "目标被 眩晕 了，无法在本回合行动。",
+  
+  "PENANCEMOD-ASCETICISM_POWER.title": "苦行",
+  "PENANCEMOD-ASCETICISM_POWER.description": "每当你的 {BarrierPower:local_icon()}屏障 受到伤害时，获得 {Amount} 层 {ThornAuraPower:local_icon()}荆棘环身 。",
+  
+  "PENANCEMOD-CEASEFIRE_POWER.title": "止戈",
+  "PENANCEMOD-CEASEFIRE_POWER.smartDescription": "{OnPlayer?你无法打出攻击牌。:该敌人本回合如果意图是攻击，将跳过回合。}\n持续 {Amount} 回合。",
+  
+  "PENANCEMOD-CROWN_OF_THORNS_POWER.title": "荆棘冠冕",
+  "PENANCEMOD-CROWN_OF_THORNS_POWER.description": "回合开始时，失去 2 点生命，获得 {Amount} 层 {ThornAuraPower:local_icon()}荆棘环身 。",
+  
+  "PENANCEMOD-SCENE_INVESTIGATION_POWER.title": "调查现场",
+  "PENANCEMOD-SCENE_INVESTIGATION_POWER.description": "你的回合中：\n连续使用 2 张攻击牌，获得 {Amount} 张{IsUpgraded?升级后的:}随机技能牌；\n连续使用 2 张技能牌，获得 {Amount} 张{IsUpgraded?升级后的:}随机攻击牌；\n连续使用 2 张能力牌，获得 {EnergyTotal} 点 [E] 。\n(生成的卡牌具有 消耗 和 虚无 )",
+  
+  "PENANCEMOD-PLAYER_FACING_POWER.title": "被包围",
+  "PENANCEMOD-PLAYER_FACING_POWER.description": "你正处于包围之中。打出 攻击牌 会改变你的朝向。\n当你 背对 敌人时，敌人会优先攻击平民。",
+  
+  "PENANCEMOD-CUMULATIVE_PRECEDENT_POWER.title": "判例累积",
+  "PENANCEMOD-CUMULATIVE_PRECEDENT_POWER.description": "每打出一张技能牌，获得 {Amount} 层 {BarrierPower:local_icon()}屏障 。",
+  
+  "PENANCEMOD-INESCAPABLE_NET_POWER.title": "法网恢恢",
+  "PENANCEMOD-INESCAPABLE_NET_POWER.description": "下个回合开始时，获得 {Amount} 层 {BarrierPower:local_icon()}屏障 并抽 {draw} 张牌。",
+
+  "PENANCEMOD-PROCEDURAL_JUSTICE_POWER.title": "程序正义",
+  "PENANCEMOD-PROCEDURAL_JUSTICE_POWER.description": "每当你获得格挡时，获得等同于格挡值 {Amount} 倍的 {BarrierPower:local_icon()}屏障 。",
+  
+  "PENANCEMOD-IRONCLAD_DOCTRINE_POWER.title": "铁律护体",
+  "PENANCEMOD-IRONCLAD_DOCTRINE_POWER.description": "回合开始时，如果你拥有至少 {Amount} 层 {BarrierPower:local_icon()}屏障 ，则失去它们并恢复 {HealAmount} 点生命。",
+  
+  "PENANCEMOD-JUSTIFIED_DEFENSE_POWER.title": "正当防卫",
+  "PENANCEMOD-JUSTIFIED_DEFENSE_POWER.description": "每当你受到攻击时，获得 1 层 {JustifiedDefenseTriggeredPower:local_icon()}正当防卫(触发) 。\n在此卡牌触发 {Amount} 次或下个回合开始时移除。",
+  
+  "PENANCEMOD-JUSTIFIED_DEFENSE_TRIGGERED_POWER.title": "正当防卫(触发)",
+  "PENANCEMOD-JUSTIFIED_DEFENSE_TRIGGERED_POWER.description": "下个回合开始时，获得 {Amount} 点能量并抽 {Amount} 张牌。",
+  
+  "PENANCEMOD-PUNISHMENT_FOR_TRANSGRESSION_POWER.title": "越界必罚",
+  "PENANCEMOD-PUNISHMENT_FOR_TRANSGRESSION_POWER.description": "回合结束时，若本回合未打出过攻击牌，获得 {Amount} 层 {JustifiedDefensePower:local_icon()}正当防卫 。",
+  
+  "PENANCEMOD-JUDGMENT_HAS_BEGUN_POWER.title": "裁决早已开始",
+  "PENANCEMOD-JUDGMENT_HAS_BEGUN_POWER.description": "每打出一张攻击牌，获得 5 层 {BarrierPower:local_icon()}屏障 ，1 点 力量 和 1 点 {JudgementPower:local_icon()}裁决 。\n在累积打出 3 张攻击牌后，获得 2 点能量。\n本回合你还需要打出 {AttacksRemaining} 张攻击牌以获得能量。",
+  
+  "PENANCEMOD-UNWRITTEN_LAW_POWER.title": "不成文的法律",
+  "PENANCEMOD-UNWRITTEN_LAW_POWER.description": "本回合内，被选定的卡牌将会额外生效一次。",
+  
+  "PENANCEMOD-GLOW_OF_SUFFERING_POWER.title": "苦难辉光",
+  "PENANCEMOD-GLOW_OF_SUFFERING_POWER.description": "每当你因卡牌效果失去生命时，获得失去生命值 {Amount}% 的 {BarrierPower:local_icon()}屏障 与 {ThornAuraPower:local_icon()}荆棘环身 。",
+  
+  "PENANCEMOD-LOSE_SLOW_POWER.title": "临时缓慢",
+  "PENANCEMOD-LOSE_SLOW_POWER.description": "回合开始时，移除 缓慢 。"
 }
