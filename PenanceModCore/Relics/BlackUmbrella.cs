@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Models.RelicPools;
 using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using PenanceMod.PenanceModCode.Character;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace PenanceMod.PenanceModCode.Relics;
 
-[Pool(typeof(PenanceModRelicPool))]
+[Pool(typeof(SharedRelicPool))]
 public class BlackUmbrella : CustomRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Common;

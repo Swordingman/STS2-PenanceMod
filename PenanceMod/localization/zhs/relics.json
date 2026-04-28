@@ -16,5 +16,39 @@
   "PENANCEMOD-CARNIVAL_MOMENT.description": "你目前及以后获得的狼群诅咒全部升级。",
   "PENANCEMOD-CARNIVAL_MOMENT.flavor": "看吧，这就是叙拉古——狂欢之主邀你共赏！",
 
+  "PENANCEMOD-GOLDEN_SCALES.title": "金天平",
+  "PENANCEMOD-GOLDEN_SCALES.description": "回合结束时，如果你本回合丢弃了攻击牌，获得 [blue]{Scales-Def}[/blue] 层正当防卫。",
+  "PENANCEMOD-GOLDEN_SCALES.flavor": "法典之外的罪恶，是否可以用法典之外的方式惩戒呢？",
 
+  "PENANCEMOD-INNOCENT.title": "“无罪”",
+  "PENANCEMOD-INNOCENT.description": "你的裁决造成的伤害提升 [blue]{Innocent-DmgUp}%[/blue] 。",
+  "PENANCEMOD-INNOCENT.flavor": "在黎明前，与黑夜相处的方式有两种，或是任由它浸透自己，直至感觉不到它的存在；或是在黑夜中寻找一切本不该被其吞噬的事物，然后小心珍藏。",
+
+  "PENANCEMOD-LETTER_OF_GRATITUDE.title": "感谢信",
+  "PENANCEMOD-LETTER_OF_GRATITUDE.description": "每当你获得屏障时，额外获得 [blue]{Gratitude-Pct}%[/blue] （至少为 [blue]{Gratitude-Min}[/blue] 点）。",
+  "PENANCEMOD-LETTER_OF_GRATITUDE.flavor": "......但至少你所做的一切，都是值得的。",
+
+  "PENANCEMOD-MEDAL_OF_PERSEVERANCE.title": "毅力勋章",
+  "PENANCEMOD-MEDAL_OF_PERSEVERANCE.description": "恭喜你，你通过叠取屏障证明了你的毅力！",
+  "PENANCEMOD-MEDAL_OF_PERSEVERANCE.flavor": "有些人认为这是设计失误，有些人认为这是数值崩坏。而你，我的朋友，你证明了只要愿意花上一段时间叠屏障，没有什么东西是杀不死的。这是给你的奖励，别嫌弃，毕竟你把那个可怜的家伙折磨得够呛。别担心，这段文本溢出也是计算之内。",
+
+  "PENANCEMOD-SHOP_VOUCHER.title": "某个小店的消费券",
+  "PENANCEMOD-SHOP_VOUCHER.description": "在你触发裁决伤害时，额外造成 [blue]{Voucher-Dmg}[/blue] 点伤害。",
+  "PENANCEMOD-SHOP_VOUCHER.flavor": "如果你在叙拉古的雨季来到了这里，不妨找家街边的小店坐会吧。",
+
+  "PENANCEMOD-SIRACUSAN_WINE.title": "叙拉古红酒",
+  "PENANCEMOD-SIRACUSAN_WINE.description": "每场战斗中，当你首次失去 [blue]{Wine-TriggerDmg}[/blue] 点或以上生命值时，获得 [blue]{Wine-MaxHp}[/blue] 点最大生命值并回复 [blue]{Wine-Heal}[/blue] 点生命值。",
+  "PENANCEMOD-SIRACUSAN_WINE.flavor": "叙拉古的昂贵货。它所生成的功效不管是纾解疲乏，还是缓解痛苦，在看到价格的那一刻，都会变为压力。",
+
+  "PENANCEMOD-PLASTIC_MOLE.title": "塑料鼹兽",
+  "PENANCEMOD-PLASTIC_MOLE.description": "每当敌人累计做出 [blue]{Mole-Threshold}[/blue] 次攻击意图，获得 [blue]{Mole-Energy}[/blue] 点能量。",
+  "PENANCEMOD-PLASTIC_MOLE.flavor": "至少在游戏中，那把槌子会实在地落在这些塑料鼹兽头上。",
+
+  "PENANCEMOD-THORNBOUND_CODEX.title": "荆棘法典",
+  "PENANCEMOD-THORNBOUND_CODEX.description": "每回合开始时获得 [energy] 。\n你的回合结束时，将一张随机狼群诅咒洗入抽牌堆。",
+  "PENANCEMOD-THORNBOUND_CODEX.flavor": "法典中未曾详述的，我会以实践来探明。",
+
+  "PENANCEMOD-LITTLE_GAVEL.title": "小木槌",
+  "PENANCEMOD-LITTLE_GAVEL.description": "每当你的格挡被击碎时，获得等同于被击碎时格挡受到伤害量的屏障。",
+  "PENANCEMOD-LITTLE_GAVEL.flavor": "再大的公义，也要从小处着手。"
 }

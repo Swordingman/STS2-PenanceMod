@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace PenanceMod.Scripts.Cards;
 
-[Pool(typeof(PenanceModCardPool))]
+[Pool(typeof(TokenCardPool))]
 public class ExhibitA : PenanceBaseCard
 {
     // 耗能 0，类型 Skill，稀有度 Special，目标 Self

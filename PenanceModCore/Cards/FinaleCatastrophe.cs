@@ -15,7 +15,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace PenanceMod.Scripts.Cards;
 
-[Pool(typeof(PenanceModCardPool))]
+[Pool(typeof(CurseCardPool))]
 public class FinaleCatastrophe : PenanceBaseCard
 {
     // 耗能 1，诅咒，特殊，全场随机目标

@@ -126,7 +126,7 @@ public class PenanceBasicRelic : CustomRelicModel
     }
 }
 
-[HarmonyPatch(typeof(Creature), "Heal")]
+[HarmonyPatch(typeof(Creature), "HealInternal")]
 public static class PotionHealPatch
 {
     [HarmonyPrefix]

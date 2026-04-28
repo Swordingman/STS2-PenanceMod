@@ -15,7 +15,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace PenanceMod.Scripts.Cards;
 
-[Pool(typeof(PenanceModCardPool))]
+[Pool(typeof(CurseCardPool))]
 public class ContinuousRain : PenanceBaseCard
 {
     public ContinuousRain() : base(1, CardType.Curse, CardRarity.Curse, TargetType.None, true)

@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace PenanceMod.Scripts.Cards;
 
-[Pool(typeof(PenanceModCardPool))]
+[Pool(typeof(CurseCardPool))]
 public class ArtOfTheHidingFox : PenanceBaseCard
 {
     public ArtOfTheHidingFox() : base(1, CardType.Curse, CardRarity.Curse, TargetType.Self, true)

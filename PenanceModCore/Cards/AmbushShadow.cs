@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace PenanceMod.Scripts.Cards;
 
-[Pool(typeof(PenanceModCardPool))]
+[Pool(typeof(CurseCardPool))]
 public class AmbushShadow : PenanceBaseCard
 {
     // 定义占位符字符串，仅用于 CanonicalVars 的初始化

@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace PenanceMod.Scripts.Cards;
 
-[Pool(typeof(PenanceModCardPool))]
+[Pool(typeof(CurseCardPool))]
 public class FameOfTheCrownSlayer : PenanceBaseCard
 {
     // 耗能 1，诅咒，特殊稀有度，目标 None (因为自动对全场判定)

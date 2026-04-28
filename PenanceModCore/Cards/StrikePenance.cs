@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using PenanceMod.PenanceModCode.Character;
+using PenanceMod.Scripts.Cards;
 
 namespace PenanceMod.PenanceModCode.Cards;
 

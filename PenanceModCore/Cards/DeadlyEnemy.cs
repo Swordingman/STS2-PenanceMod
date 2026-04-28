@@ -16,7 +16,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace PenanceMod.Scripts.Cards;
 
-[Pool(typeof(PenanceModCardPool))]
+[Pool(typeof(CurseCardPool))]
 public class DeadlyEnemy : PenanceBaseCard
 {
     // 耗能 1，诅咒，特殊稀有度，目标 None (因为不需要指向打出)

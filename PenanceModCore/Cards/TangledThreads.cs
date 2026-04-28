@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace PenanceMod.Scripts.Cards;
 
-[Pool(typeof(PenanceModCardPool))]
+[Pool(typeof(CurseCardPool))]
 public class TangledThreads : PenanceBaseCard
 {
     public TangledThreads() : base(-1, CardType.Curse, CardRarity.Curse, TargetType.AllEnemies, true)

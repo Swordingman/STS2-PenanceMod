@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace PenanceMod.Scripts.Cards;
 
-[Pool(typeof(PenanceModCardPool))]
+[Pool(typeof(CurseCardPool))]
 public class DignityOfTheLeader : PenanceBaseCard
 {
     // 耗能 1，诅咒，特殊稀有度，目标 None (因为对全场生效且不需要选定)

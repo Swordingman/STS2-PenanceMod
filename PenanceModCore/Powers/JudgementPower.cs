@@ -7,7 +7,9 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
-using MegaCrit.Sts2.Core.Models.Powers; // 原版能力的命名空间（如力量）可能在这里
+using MegaCrit.Sts2.Core.Models.Powers;
+using PenanceMod.PenanceModCode.Relics;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer; // 原版能力的命名空间（如力量）可能在这里
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -37,57 +39,71 @@ public class JudgementPower : CustomPowerModel
     // ==========================================
     private async Task TriggerJudgementDamageAsync(Creature target)
     {
-        var player = Owner;
+        // Owner 是 Creature，不是 Player。
+        // 这里为了避免混淆，命名为 ownerCreature。
+        var ownerCreature = Owner;
+
+        // 如果裁决是在玩家身上，Owner.Player 就是玩家。
+        // 如果以后有宠物/召唤物持有裁决，可以用 PetOwner 兜底。
+        var player = ownerCreature.Player ?? ownerCreature.PetOwner;
+
+        // 没有玩家来源就不处理遗物逻辑，直接退出更安全。
+        if (player == null)
+            return;
+
         int baseDamage = Amount;
 
-        // --- 1. 力量加成 ---
-        // (注：InTheNameOfTheLawPower 记得替换为你实际的类名)
-        if (player.GetPower<InTheNameOfTheLawPower>() != null)
+        // 1. 力量加成
+        //
+        // Power 在 Creature 身上，所以用 ownerCreature.GetPower<T>()。
+        // 这里不要用 player.GetPower<T>()，Player 本身不是 Creature。
+        if (ownerCreature.GetPower<InTheNameOfTheLawPower>() != null)
         {
-            // 获取原版的力量能力 (注意引用的命名空间要对)
-            var strength = player.GetPower<StrengthPower>(); 
+            var strength = ownerCreature.GetPower<StrengthPower>();
             if (strength != null)
             {
                 baseDamage += strength.Amount;
             }
         }
 
-        // --- 2. 乘区加成 ---
+        // 2. 乘区加成
         float calculatedDamage = baseDamage;
-        if (player.GetRelic<InnocentRelic>() != null)
+
+        // 遗物在 Player 身上，所以用 player.GetRelic<T>()。
+        if (player.GetRelic<Innocent>() != null)
         {
             calculatedDamage *= 1.2f;
         }
 
-        // --- 3. 固定增伤 ---
-        int finalDamage = (int)Math.Floor(calculatedDamage); // 显式取整更安全
-        var shopVoucher = player.GetRelic<ShopVoucherRelic>();
+        // 3. 固定增伤
+        int finalDamage = (int)Math.Floor(calculatedDamage);
+
+        var shopVoucher = player.GetRelic<ShopVoucher>();
         if (shopVoucher != null)
         {
             finalDamage += 2;
-            shopVoucher.Flash(); // 遗物闪烁
+            shopVoucher.Flash();
         }
 
-        // 防跌破底线
-        if (finalDamage < 0) finalDamage = 0;
+        if (finalDamage <= 0)
+            return;
 
-        // --- 4. 造成伤害与后续触发 ---
-        if (finalDamage > 0)
-        {
-            Flash(); // 裁决能力自身闪烁
+        Flash();
 
-            // 造成反伤。使用 Thorns 荆棘伤害类型，避免触发易伤/虚弱等标准攻击判定
-            await CreatureCmd.Damage(
-                null!,                    // PlayerChoiceContext
-                target,                   // 目标
-                finalDamage,              // 伤害数值
-                ValueProp.Unpowered,      // 关键：更接近你想要的“非普通攻击伤害”
-                player,                   // dealer / 伤害来源
-                null                      // cardSource
-            );
+        // 4. 造成伤害
+        //
+        // 推荐用命名参数版本，和 AttackCommand 内部调用 CreatureCmd.Damage 的方式一致。
+        // AttackCommand 也是传 choiceContext、targets、props、dealer、cardSource 进去结算伤害。
+        await CreatureCmd.Damage(
+            choiceContext: new BlockingPlayerChoiceContext(),
+            targets: new[] { target },
+            amount: finalDamage,
+            props: ValueProp.Unpowered,
+            dealer: ownerCreature,
+            cardSource: null
+        );
 
-            var revenge = player.GetPower<CodeOfRevengePower>();
-            revenge?.OnJudgementTriggered();
-        }
+        var revenge = ownerCreature.GetPower<CodeOfRevengePower>();
+        revenge?.OnJudgementTriggered();
     }
 }

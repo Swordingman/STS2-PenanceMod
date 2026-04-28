@@ -5,7 +5,8 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer; // 用于判断 CardType
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Commands.Builders; // 用于判断 CardType
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -31,27 +32,29 @@ public class CeasefirePower : CustomPowerModel
         return true; 
     }
 
+// ==========================================
+    // 敌人侧效果：拦截真正的攻击动作
     // ==========================================
-    // 敌人侧效果：跳过攻击回合
-    // ==========================================
-    // 在敌方回合开始时进行拦截判定
-    public override Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override Task BeforeAttack(AttackCommand command)
     {
-        if (Owner.IsEnemy && side == Owner.Side)
+        // 如果拥有者是敌人，且这次攻击的【发起者】是这个敌人
+        if (Owner.IsEnemy && command.Attacker == Owner)
         {
-            // 【提示】由于怪物的“意图(Intent)”数据储存在 MonsterModel 中，
-            // 你需要在 IDE 里敲下 Owner.Monster. 看看弹出的意图变量名叫什么。
+            Flash(); // 闪烁停火图标
             
-            if (Owner.Monster.BeforeAttack) 
-            {
-                // 方案 A: 直接给予 StS2 原生的“眩晕(Stun)”能力，最省事且有 UI 提示
-                _ = PowerCmd.Apply<StunPower>(Owner, 1, Owner, null);
-
-                // 方案 B: 或者强制清空它的行动队列跳过回合
-                // Owner.Monster.ClearActionQueue();
-            }
-            */
+            // 没收攻击！
+            // 由于具体的 AttackCommand API 需要你看一下智能提示，通常有以下几种暴力破解法：
+            
+            // 方案 A：直接清空它的攻击次数（最推荐，引擎连动画都不会播了）
+            command.WithHitCount(0);
+            
+            // 方案 B：如果它没有 HitCount 属性，可以清空它的目标列表
+            // command.Targets.Clear();
+            
+            // 方案 C：如果这是一个只读 Command，你还可以配合另一个钩子：
+            // public override int ModifyAttackHitCount(AttackCommand attack, int hitCount) { return 0; }
         }
+        
         return Task.CompletedTask;
     }
 

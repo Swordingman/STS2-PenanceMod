@@ -8,10 +8,12 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models;
+using System.Drawing;
+using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace PenanceMod.Scripts.Cards;
 
-// 注意：如果是特殊/无色牌，通常不需要加上专属职业牌池的 [Pool] 属性
+[Pool(typeof(TokenCardPool))]
 public class Perjury : PenanceBaseCard
 {
     public Perjury() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self, false)
