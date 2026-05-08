@@ -39,8 +39,10 @@ public class SyracusanWolves : PenanceBaseCard
     // 注意：
     // 这里依赖 HoverTipFactory.FromCard(CardModel) 这个重载。
     // 如果你的版本只有 HoverTipFactory.FromCard<T>()，看下面 Helper 里的替代说明。
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        WolfCurseHelper.GetWolfCurseHoverTips(IsUpgraded);
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves),
+        ..WolfCurseHelper.GetWolfCurseHoverTips(IsUpgraded)
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -51,26 +53,10 @@ public class SyracusanWolves : PenanceBaseCard
 
         for (int i = 0; i < amount; i++)
         {
-            // GetRandomWolfCurse 会：
-            // 1. 从所有狼群诅咒里随机一张；
-            // 2. 如果本牌已升级，则把生成的诅咒升级；
-            // 3. 如果玩家有 CarnivalMomentRelic，也会按你的遗物逻辑升级。
-            CardModel curse = WolfCurseHelper.GetRandomWolfCurse(
-                player,
-                upgradeBecauseSourceCardIsUpgraded: IsUpgraded
-            );
+            var randomCurse = WolfCurseHelper.GetRandomWolfCurse(player, CombatState, IsUpgraded);
 
             // 加入抽牌堆。
-            //
-            // 用法说明：
-            // CardPileCmd.Add(card, PileType.Draw) 表示把这张临时牌加入抽牌堆。
-            //
-            // 如果你项目里的抽牌堆枚举不是 PileType.Draw，
-            // 可能叫 PileType.DrawPile，请把这里替换成 IDE 提示里的正确名字。
-            await CardPileCmd.Add(curse, PileType.Draw);
-
-            // 视觉停顿，避免 5 张牌瞬间全部塞进去没有反馈。
-            await Cmd.Wait(0.08f);
+            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(randomCurse, PileType.Draw, Owner), 2.2f);
         }
     }
 

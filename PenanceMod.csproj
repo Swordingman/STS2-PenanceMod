@@ -1,0 +1,66 @@
+<Project Sdk="Godot.NET.Sdk/4.5.1">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>true</ImplicitUsings>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+    <!-- 你的杀戮尖塔2目录 -->
+    <Sts2Dir>Z:\steam\steamapps\common\Slay the Spire 2</Sts2Dir>
+    <Sts2DataDir>$(Sts2Dir)\data_sts2_windows_x86_64</Sts2DataDir>
+    
+    <!-- === 新增：Godot 打包配置 === -->
+    <GodotExe>D:\Godot_v4.5.1-stable_mono_win64\Godot_v4.5.1-stable_mono_win64.exe</GodotExe>
+    <!-- Godot 里的导出预设名称 -->
+    <ExportPresetName>1</ExportPresetName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="sts2">
+      <HintPath>$(Sts2DataDir)\sts2.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(Sts2DataDir)\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BaseLib">
+      <HintPath>$(Sts2Dir)\mods\BaseLib\BaseLib.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- === 修改：加入防死循环锁的自动化打包，并修正触发时机 === -->
+  <!-- 触发时机改为标准的 Build 之后 -->
+  <Target Name="BuildAndDeployMod" AfterTargets="Build">
+    
+    <!-- 先检查锁文件是否存在。如果存在，打印一条警告，方便你下次发现问题 -->
+    <Warning Text="检测到 build_lock.tmp 文件，跳过 Godot 打包！如果是残留文件，请手动删除它。" Condition="Exists('build_lock.tmp')" />
+
+    <!-- 把真正执行的步骤包在一个只有不存在锁文件时才运行的 CallTarget 里 -->
+    <CallTarget Targets="DoGodotExport" Condition="!Exists('build_lock.tmp')" />
+  </Target>
+
+  <Target Name="DoGodotExport">
+    <!-- 1. 创建防套娃锁文件 -->
+    <Touch Files="build_lock.tmp" AlwaysCreate="true" />
+    
+    <!-- 2. 准备目标文件夹 -->
+    <MakeDir Directories="$(Sts2Dir)\mods\$(MSBuildProjectName)\" />
+    <MakeDir Directories="build\" />
+
+    <!-- 3. 调用 Godot 命令行自动打包 PCK -->
+    <Message Text="[1/2] 正在使用 Godot 导出 PCK 包 (已避开死锁)..." Importance="high" />
+    <Exec Command="&quot;$(GodotExe)&quot; --headless --export-pack &quot;1&quot; &quot;build\$(MSBuildProjectName).pck&quot;" />
+
+    <!-- 4. 复制所有文件到游戏 Mod 目录 -->
+    <Message Text="[2/2] 正在将 DLL, JSON 和 PCK 复制到游戏目录..." Importance="high" />
+    <Copy SourceFiles="build\$(MSBuildProjectName).pck" DestinationFolder="$(Sts2Dir)\mods\$(MSBuildProjectName)\" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(Sts2Dir)\mods\$(MSBuildProjectName)\" />
+    <Copy SourceFiles="$(MSBuildProjectName).json" DestinationFolder="$(Sts2Dir)\mods\$(MSBuildProjectName)\" />
+
+    <!-- 5. 打包完成，解除锁文件 -->
+    <Delete Files="build_lock.tmp" />
+  </Target>
+</Project>

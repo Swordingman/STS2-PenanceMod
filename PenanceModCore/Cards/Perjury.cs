@@ -39,7 +39,7 @@ public class Perjury : PenanceBaseCard
             var regretCopy = regretModel.ToMutable();
             
             // 将生成的卡牌加入手牌
-            await CardPileCmd.AddGeneratedCardToCombat(regretCopy, PileType.Hand, addedByPlayer: false);
+            await CardPileCmd.AddGeneratedCardToCombat(regretCopy, PileType.Hand, Owner);
         }
 
         // 稍微等待，让卡牌入手的音效和加能量的特效错开

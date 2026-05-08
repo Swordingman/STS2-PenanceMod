@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -23,26 +24,37 @@ public class DignityOfTheLeader : PenanceBaseCard
     }
 
     // 绑定消耗和狼群诅咒关键词 (写全路径防报错)
-    public override IEnumerable<MegaCrit.Sts2.Core.Entities.Cards.CardKeyword> CanonicalKeywords => 
-        [MegaCrit.Sts2.Core.Entities.Cards.CardKeyword.Exhaust, PenanceKeywords.CurseOfWolves];
-
-    // 绑定狼群诅咒后台标签
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, PenanceKeywords.CurseOfWolves];
     protected override HashSet<CardTag> CanonicalTags => [PenanceCardTags.CurseOfWolves];
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves)
+    ];
+    
     // 🌟 注册变量：获得的能量数 (初始 2)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Dignity-Energy", 2m)
     ];
 
-    // ==========================================
-    // 抽到时触发变身 (狼群诅咒模板)
-    // ==========================================
+    private bool _autoPlaying;
+
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
-        if (card == this)
+        if (card != this)
+            return;
+
+        if (_autoPlaying)
+            return;
+
+        _autoPlaying = true;
+
+        try
         {
-            await Cmd.Wait(0.25f);
-            await TriggerWolfAutoplay();
+            await TriggerWolfAutoplay(choiceContext, card);
+        }
+        finally
+        {
+            _autoPlaying = false;
         }
     }
 
@@ -54,13 +66,13 @@ public class DignityOfTheLeader : PenanceBaseCard
 
         // 1. 给自己施加 1 层“止戈”
         // 假设官方底层没有这个能力，这里调用你自己写的 CeasefirePower
-        await PowerCmd.Apply<CeasefirePower>(creature, 1, creature, this);
+        await PowerCmd.Apply<CeasefirePower>(choiceContext,creature, 1, creature, this);
 
         // 2. 给所有存活的敌人施加 1 层“止戈”
         var aliveEnemies = CombatState.Enemies.Where(e => e.IsAlive).ToList();
         foreach (var enemy in aliveEnemies)
         {
-            await PowerCmd.Apply<CeasefirePower>(enemy, 1, creature, this);
+            await PowerCmd.Apply<CeasefirePower>(choiceContext,enemy, 1, creature, this);
         }
 
         // 3. 获得能量

@@ -78,7 +78,7 @@ public class BreakTheShackles : PenanceBaseCard
         int total = CalculateTotalAmount();
         if (total > 0)
         {
-            await PowerCmd.Apply<ThornAuraPower>(Owner.Creature, total, Owner.Creature, this);
+            await PowerCmd.Apply<ThornAuraPower>(choiceContext,Owner.Creature, total, Owner.Creature, this);
         }
     }
 

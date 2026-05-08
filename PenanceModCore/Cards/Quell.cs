@@ -25,8 +25,8 @@ public class Quell : PenanceBaseCard
 
     // 🌟 注册变量：[0] 伤害(8)，[1] 虚弱层数(1)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(8, ValueProp.Move),
-        new DynamicVar("Quell-Weak", 1m)
+        new DamageVar(7, ValueProp.Move),
+        new DynamicVar("Quell-Weak", 2m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -55,16 +55,16 @@ public class Quell : PenanceBaseCard
             await Cmd.Wait(0.1f);
             
             // 注意：二代的虚弱通常是内置的 WeakPower
-            await PowerCmd.Apply<WeakPower>(target, weakAmount, creature, this);
+            await PowerCmd.Apply<WeakPower>(choiceContext,target, weakAmount, creature, this);
         }
     }
 
     protected override void OnUpgrade()
     {
-        // 伤害提升 3 (8 -> 11)
+        // 伤害提升 3 (7 -> 10)
         DynamicVars.Damage.UpgradeValueBy(3);
 
-        // 虚弱层数提升 1 (1 -> 2)
+        // 虚弱层数提升 1 (2 -> 3)
         var vars = DynamicVars.Values.ToList();
         if (vars.Count > 1)
         {

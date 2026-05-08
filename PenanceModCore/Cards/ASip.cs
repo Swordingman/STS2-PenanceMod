@@ -12,13 +12,14 @@ using PenanceMod.PenanceModCode.Character;
 using PenanceMod.PenanceModCode.Powers; 
 using System;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace PenanceMod.Scripts.Cards;
 
 [Pool(typeof(PenanceModCardPool))]
 public class ASip : PenanceBaseCard
 {
-    // 仅仅用来初始化占个坑
     private const string PenaltyKey = "ASip-Penalty";
 
     public int CopyCount { get; set; } = 0;
@@ -37,7 +38,6 @@ public class ASip : PenanceBaseCard
     {
         var creature = Owner.Creature;
         
-        // ✅ 记吃记打版：直接拿第一个变量，绝不去碰那个不存在的 Key
         var penaltyVar = DynamicVars.Values.First();
         int penalty = penaltyVar.IntValue;
 
@@ -49,7 +49,7 @@ public class ASip : PenanceBaseCard
 
         if (barrierToLose > 0)
         {
-            await PowerCmd.Apply<BarrierPower>(creature, -barrierToLose, creature, this);
+            await PowerCmd.Apply<BarrierPower>(choiceContext, creature, -barrierToLose, creature, this);
         }
 
         if (hpToLose > 0)
@@ -57,30 +57,28 @@ public class ASip : PenanceBaseCard
             await CreatureCmd.Damage(choiceContext, creature, hpToLose, ValueProp.Unblockable, this);
         }
 
-        await PowerCmd.Apply<StrengthPower>(creature, 2, creature, this);
+        await PowerCmd.Apply<StrengthPower>(choiceContext, creature, 2, creature, this);
 
-        var copy = (ASip)ModelDb.GetById<CardModel>(this.Id).ToMutable();
+        var copy = (ASip)this.CreateClone();
         
         copy.CopyCount = this.CopyCount + 1;
-        
-        // ✅ 记吃记打版：获取衍生卡的第一个变量并累加
-        var copyPenaltyVar = copy.DynamicVars.Values.First();
-        copyPenaltyVar.UpgradeValueBy(copy.CopyCount * 2);
 
         if (this.IsUpgraded)
         {
             copy.UpgradeInternal();
             copy.FinalizeUpgradeInternal();
         }
+        
+        var copyPenaltyVar = copy.DynamicVars.Values.First();
+        copyPenaltyVar.UpgradeValueBy(copy.CopyCount + 2);
 
         copy.AddKeyword(CardKeyword.Ethereal);
 
-        await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Hand, addedByPlayer: true);
+        await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Hand, Owner);
     }
 
     protected override void OnUpgrade()
     {
-        // ✅ 记吃记打版：依然直接拿第一个变量升级
         var penaltyVar = DynamicVars.Values.First();
         penaltyVar.UpgradeValueBy(-1); 
     }

@@ -21,7 +21,7 @@ public class ProceduralJustice : PenanceBaseCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 给自己挂上 1 层程序正义能力
-        await PowerCmd.Apply<ProceduralJusticePower>(Owner.Creature, 1, Owner.Creature, this);
+        await PowerCmd.Apply<ProceduralJusticePower>(choiceContext,Owner.Creature, 1, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

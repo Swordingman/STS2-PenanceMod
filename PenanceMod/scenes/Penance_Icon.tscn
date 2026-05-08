@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjj77atdigu66"]
+
+[ext_resource type="Texture2D" uid="uid://c74j78xov786k" path="res://icon.svg" id="1_2861s"]
+
+[node name="PenanceIcon" type="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_2861s")
+expand_mode = 1
+stretch_mode = 5

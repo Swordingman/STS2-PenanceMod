@@ -42,7 +42,7 @@ public class BloodForBlood : PenanceBaseCard
         }
 
         // 2. 获得 1 层正当防卫 (JustifiedDefensePower)
-        await PowerCmd.Apply<JustifiedDefensePower>(creature, 1, creature, this);
+        await PowerCmd.Apply<JustifiedDefensePower>(choiceContext,creature, 1, creature, this);
     }
 
     protected override void OnUpgrade()

@@ -43,7 +43,7 @@ public class Sting : PenanceBaseCard
 
         // 2. 获得荆棘环身 (使用字典式安全读取！)
         int thornsAmt = DynamicVars["Sting-Thorns"].IntValue;
-        await PowerCmd.Apply<ThornAuraPower>(creature, thornsAmt, creature, this);
+        await PowerCmd.Apply<ThornAuraPower>(choiceContext,creature, thornsAmt, creature, this);
 
         // 3. 获得裁决 (复用基类快捷方法)
         int judgeAmt = DynamicVars["Sting-Judge"].IntValue;

@@ -73,7 +73,7 @@ public class GuiltyAsCharged : PenanceBaseCard
             int thornsAmount = creature.GetPower<ThornAuraPower>()?.Amount ?? 0;
             if (thornsAmount >= 10)
             {
-                await PowerCmd.Apply<CeasefirePower>(target, 1, creature, this);
+                await PowerCmd.Apply<CeasefirePower>(choiceContext,target, 1, creature, this);
             }
 
             // 如果触发了力量的双倍效果，在两套连击之间加上演出停顿

@@ -61,7 +61,7 @@ public class PunishmentForTransgressionPower : CustomPowerModel
 
             // 给予等同于此能力层数的“正当防卫”
             // 使用异步 Apply
-            await PowerCmd.Apply<JustifiedDefensePower>(Owner, Amount, Owner, null);
+            await PowerCmd.Apply<JustifiedDefensePower>(choiceContext,Owner, Amount, Owner, null);
         }
     }
 }

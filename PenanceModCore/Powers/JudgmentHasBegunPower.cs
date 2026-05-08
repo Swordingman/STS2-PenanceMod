@@ -44,9 +44,9 @@ public class JudgmentHasBegunPower : CustomPowerModel
             _attacksPlayed++;
 
             // 1. 获得 5屏障, 1力量, 1裁决 (直接异步依次施加，安全顺滑)
-            await PowerCmd.Apply<BarrierPower>(Owner, BarrierGain, Owner, null);
-            await PowerCmd.Apply<StrengthPower>(Owner, StrJudgeGain, Owner, null);
-            await PowerCmd.Apply<JudgementPower>(Owner, StrJudgeGain, Owner, null);
+            await PowerCmd.Apply<BarrierPower>(new ThrowingPlayerChoiceContext(), Owner, BarrierGain, Owner, null);
+            await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(), Owner, StrJudgeGain, Owner, null);
+            await PowerCmd.Apply<JudgementPower>(new ThrowingPlayerChoiceContext(), Owner, StrJudgeGain, Owner, null);
 
             // 2. 达到阈值时，获得能量
             if (_attacksPlayed == Threshold)

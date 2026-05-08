@@ -21,15 +21,18 @@ public class InTheNameOfTheLaw : PenanceBaseCard
     {
     }
 
+    protected override IEnumerable<DynamicVar> CanonicalVars => [
+        new DynamicVar("Law-Weak", 1m)
+    ];
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 给自己挂上 1 层法律之名状态
-        await PowerCmd.Apply<InTheNameOfTheLawPower>(Owner.Creature, 1, Owner.Creature, this);
+        int weakAmount = DynamicVars["Law-Weak"].IntValue;
+        await PowerCmd.Apply<InTheNameOfTheLawPower>(choiceContext, Owner.Creature, weakAmount, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        // 升级减费 (1 -> 0)
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars["Law-Weak"].UpgradeValueBy(1);
     }
 }

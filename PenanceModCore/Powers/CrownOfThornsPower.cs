@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -40,7 +41,10 @@ public class CrownOfThornsPower : CustomPowerModel
             );
 
             // 2. 获得荆棘环身
-            await PowerCmd.Apply<ThornAuraPower>(Owner, Amount, Owner, null);
+            await PowerCmd.Apply<ThornAuraPower>(choiceContext,Owner, Amount, Owner, null);
+
+            var enemies = Owner.CombatState.GetOpponentsOf(Owner).ToList();
+            await PowerCmd.Apply<WeakPower>(choiceContext, enemies, HpLossAmount, Owner, null);
         }
     }
 }

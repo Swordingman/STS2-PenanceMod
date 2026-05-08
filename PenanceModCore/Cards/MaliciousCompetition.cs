@@ -62,7 +62,7 @@ public class MaliciousCompetition : PenanceBaseCard
 
             // 稍微停顿，分离攻击和加防特效
             await Cmd.Wait(0.15f);
-            await PowerCmd.Apply<BarrierPower>(creature, barrierAmount, creature, this);
+            await PowerCmd.Apply<BarrierPower>(choiceContext,creature, barrierAmount, creature, this);
         }
     }
 

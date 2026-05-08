@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using PenanceMod.PenanceModCode.Character;
@@ -25,35 +26,54 @@ public class WallBreakerSmash : PenanceBaseCard
         new DynamicVar("WallBreaker-Cost", 10m)
     ];
 
+    // ==========================================
+    // ✅ 官方标准拦截：使用 ShouldPlay 钩子
+    // ==========================================
+    public override bool ShouldPlay(CardModel card, AutoPlayType autoPlayType)
+    {
+        // 既然这是个全局广播的钩子，我们只需要管“这张牌自己”要被打出时的情况
+        if (card == this)
+        {
+            int barrierCost = DynamicVars["WallBreaker-Cost"].IntValue;
+            var barrierPower = Owner?.Creature.GetPower<BarrierPower>();
+
+            // 屏障不足，直接无情拒绝！
+            // 引擎会自动把 this (本卡) 登记为 preventer。
+            if (barrierPower == null || barrierPower.Amount < barrierCost)
+            {
+                return false; 
+            }
+        }
+
+        return base.ShouldPlay(card, autoPlayType);
+    }
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var creature = Owner?.Creature;
         if (creature == null || cardPlay.Target == null) return;
 
+        // 既然能走到 OnPlay，说明 ShouldPlay 已经通过，屏障绝对够扣，闭眼直扣！
         int barrierCost = DynamicVars["WallBreaker-Cost"].IntValue;
         var barrierPower = creature.GetPower<BarrierPower>();
 
-        if (barrierPower != null && barrierPower.Amount > 0)
+        if (barrierPower != null)
         {
-            int reduceAmt = System.Math.Min(barrierPower.Amount, barrierCost);
-            
-            if (reduceAmt == barrierPower.Amount)
+            if (barrierPower.Amount == barrierCost)
             {
                 await PowerCmd.Remove(barrierPower);
             }
             else
             {
-                // 若底层有专门的 Reduce 接口，可替换此处的负数叠加逻辑
-                await PowerCmd.Apply<BarrierPower>(creature, -reduceAmt, creature, this);
+                await PowerCmd.Apply<BarrierPower>(choiceContext, creature, -barrierCost, creature, this);
             }
-            
-            await Cmd.Wait(0.1f);
         }
 
+        // 大锤落下
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_blunt_heavy")
+            .WithHitFx(VfxCmd.heavyBluntPath)
             .Execute(choiceContext);
     }
 

@@ -65,15 +65,15 @@ public class PreExecutionPrep : PenanceBaseCard
         switch (card.Type)
         {
             case CardType.Attack:
-                await PowerCmd.Apply<JudgementPower>(creature, 1, creature, this);
+                await PowerCmd.Apply<JudgementPower>(new ThrowingPlayerChoiceContext(), creature, 1, creature, this);
                 break;
 
             case CardType.Skill:
-                await PowerCmd.Apply<ThornAuraPower>(creature, 1, creature, this);
+                await PowerCmd.Apply<ThornAuraPower>(new ThrowingPlayerChoiceContext(), creature, 1, creature, this);
                 break;
 
             case CardType.Power:
-                await PowerCmd.Apply<StrengthPower>(creature, 1, creature, this);
+                await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(), creature, 1, creature, this);
                 break;
 
             case CardType.Curse:

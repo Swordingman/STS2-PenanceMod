@@ -29,7 +29,7 @@ public class IroncladDoctrinePower : CustomPowerModel
     // 核心一：自定义双层堆叠逻辑
     // ==========================================
     // 当这个能力的层数发生改变（通常是被再次施加叠加时）触发
-    public override Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
+    public override Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
     {
         // 确保是自己这个能力发生改变，且 amount > 0 表示“叠加增加”而不是扣除
         if (power == this && amount > 0)

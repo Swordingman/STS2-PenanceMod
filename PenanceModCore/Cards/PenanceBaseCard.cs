@@ -7,6 +7,8 @@ using System.Linq;
 using PenanceMod.PenanceModCode.Powers;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.GameActions;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -52,7 +54,7 @@ public abstract class PenanceBaseCard : CustomCardModel
     protected async Task ApplyBarrier(Creature target, int amount)
     {
         if (amount <= 0) return;
-        await PowerCmd.Apply<BarrierPower>(target, amount, Owner.Creature, this);
+        await PowerCmd.Apply<BarrierPower>(new ThrowingPlayerChoiceContext(), target, amount, Owner.Creature, this);
     }
 
     /// <summary>
@@ -61,28 +63,39 @@ public abstract class PenanceBaseCard : CustomCardModel
     protected async Task ApplyJudgement(Creature target, int amount)
     {
         if (amount <= 0) return;
-        await PowerCmd.Apply<JudgementPower>(target, amount, Owner.Creature, this);
+        await PowerCmd.Apply<JudgementPower>(new ThrowingPlayerChoiceContext(), target, amount, Owner.Creature, this);
+    }
+
+        /// <summary>
+    /// 快捷施加“荆棘环身” (ThornAura)
+    /// </summary>
+    protected async Task ApplyThornAura(Creature target, int amount)
+    {
+        if (amount <= 0) return;
+        await PowerCmd.Apply<ThornAuraPower>(new ThrowingPlayerChoiceContext(), target, amount, Owner.Creature, this);
     }
 
     /// <summary>
     /// 触发狼群自动打出逻辑
     /// </summary>
-    protected async Task TriggerWolfAutoplay()
+    protected async Task TriggerWolfAutoplay(PlayerChoiceContext choiceContext, CardModel card, Creature? target = null)
     {
-        // 1. 视觉提示：闪烁卡牌
-        // 注意：二代的视觉节点通常与 Model 分离。如果需要在 Model 层触发视觉闪烁，
-        // 可能会有一个专门的 Cmd（例如 VfxCmd）或者触发一个 Event，这里暂时留空或使用官方 API
-        
-        // 2. 强制等待 1.0 秒 (无视游戏内的快速模式)
-        // C# 原生 Task.Delay 传入的是毫秒 (1000ms = 1s)，它直接按真实时间挂起，不受游戏倍速影响！
-        await Task.Delay(1000); 
+        if (card == null)
+            return;
 
-        // 3. 加入打出队列
-        // 在二代中，强制玩家打出一张特定的牌，可以直接向同步队列里压入一个 PlayCardAction
-        // (this: 打出的卡, null: 随机/无目标)
-        if (CombatManager.Instance.IsInProgress && !Owner.Creature.IsDead)
-        {
-            RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(new PlayCardAction(this, null));
-        }
+        if (card.Owner == null || card.Owner.Creature == null)
+            return;
+
+        if (CombatManager.Instance.IsOverOrEnding)
+            return;
+
+        if (card.Owner.Creature.IsDead)
+            return;
+
+        await CardCmd.AutoPlay(
+            choiceContext,
+            card,
+            target
+        );
     }
 }

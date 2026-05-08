@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://die611ochhwol"
+path="res://.godot/imported/defect_shop.atlas-522307c8c24aeab1d93be2645b6b51c4.spatlas"
+
+[deps]
+
+source_file="res://examples/defect_shop.atlas"
+dest_files=["res://.godot/imported/defect_shop.atlas-522307c8c24aeab1d93be2645b6b51c4.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

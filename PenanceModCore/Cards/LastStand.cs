@@ -39,13 +39,13 @@ public class LastStand : PenanceBaseCard
         var creature = Owner.Creature;
 
         // 1. 获得巨额屏障
-        await PowerCmd.Apply<BarrierPower>(creature, barrierAmount, creature, this);
+        await PowerCmd.Apply<BarrierPower>(choiceContext,creature, barrierAmount, creature, this);
 
         // 停顿一下，让两股强大的力量视觉上分离开
         await Cmd.Wait(0.15f);
 
         // 2. 获得止戈副作用
-        await PowerCmd.Apply<CeasefirePower>(creature, ceasefireAmount, creature, this);
+        await PowerCmd.Apply<CeasefirePower>(choiceContext,creature, ceasefireAmount, creature, this);
     }
 
     protected override void OnUpgrade()

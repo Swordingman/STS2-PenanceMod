@@ -1,0 +1,6 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=2 format=3 uid="uid://c1ej2qj2xodpi"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://die611ochhwol" path="res://examples/defect_shop.atlas" id="1_0nrh2"]
+
+[resource]
+atlas_res = ExtResource("1_0nrh2")

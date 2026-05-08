@@ -89,7 +89,7 @@ public class Castigation : PenanceBaseCard
 
         // 2. 获得屏障 (使用我们计算过力量加成的最终数值)
         int barrierAmount = CalculateBarrier();
-        await PowerCmd.Apply<BarrierPower>(Owner.Creature, barrierAmount, Owner.Creature, this);
+        await PowerCmd.Apply<BarrierPower>(choiceContext,Owner.Creature, barrierAmount, Owner.Creature, this);
     }
 
     // ==========================================

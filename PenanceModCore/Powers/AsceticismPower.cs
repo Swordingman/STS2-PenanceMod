@@ -2,6 +2,7 @@ using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -20,6 +21,6 @@ public class AsceticismPower : CustomPowerModel
         
         // 核心：给予荆棘环身 (ThornAuraPower)
         // 使用 _ = 进行“弃用等待”，让 Apply 动作在底层安全排队，不阻塞当前的伤害结算
-        _ = PowerCmd.Apply<ThornAuraPower>(Owner, Amount, Owner, null);
+        _ = PowerCmd.Apply<ThornAuraPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
     }
 }

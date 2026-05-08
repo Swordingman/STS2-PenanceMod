@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -25,8 +26,8 @@ public class FinalVerdict : PenanceBaseCard
     }
 
     // 绑定“消耗”词条
-    public override IEnumerable<MegaCrit.Sts2.Core.Entities.Cards.CardKeyword> CanonicalKeywords => 
-        [MegaCrit.Sts2.Core.Entities.Cards.CardKeyword.Exhaust];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => 
+        [CardKeyword.Exhaust];
 
     // 🌟 注册变量：索引 0 = 基础伤害 (18)， 索引 1 = 最大生命值收益 (3)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
@@ -57,7 +58,7 @@ public class FinalVerdict : PenanceBaseCard
             .Execute(choiceContext);
 
         // 4. 判定是否击杀！(利用二代官方的 WasTargetKilled 属性)
-        bool wasKilled = attackCmd.Results.Any(r => r.WasTargetKilled);
+        bool wasKilled = attackCmd.Results.Any(hitList => hitList.Any(r => r.WasTargetKilled));
 
         // 6. 结算最大生命值增加
         if (wasKilled)

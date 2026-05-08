@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq; // 👈 必须有这个，才能使用 ToList()
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer; // 引入 ValueProp 命名空间
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -20,36 +22,38 @@ public class ThornAuraPower : CustomPowerModel
 
     public override async Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
     {
-        // 确保只在拥有者（通常是玩家）的回合结束时触发
         if (Owner != null && side == Owner.Side && Amount > 0)
         {
-            Flash(); // 闪烁特效
+            Flash();
 
-            var enemies = Owner.CombatState.GetOpponentsOf(Owner);
-            
-            // 建立一个任务列表，用来收集所有即将造成的伤害任务
-            List<Task> damageTasks = new List<Task>();
+            var enemies = Owner.CombatState.GetOpponentsOf(Owner).ToList();
 
-            foreach (var enemy in enemies)
+            VfxCmd.PlayOnSide(CombatSide.Enemy, VfxCmd.giantHorizontalSlashPath, Owner.CombatState);
+
+            await CreatureCmd.Damage(
+                choiceContext,        
+                enemies,               
+                Amount,               
+                ValueProp.Unpowered,  
+                Owner,                
+                null                  
+            );
+
+            var lawPower = Owner.GetPower<InTheNameOfTheLawPower>();
+            int weakAmount = lawPower?.Amount ?? 0;
+
+            if (weakAmount > 0)
             {
-                if (enemy.IsHittable)
-                {
-                    // 不直接 await，而是把任务装进列表里
-                    damageTasks.Add(CreatureCmd.Damage(
-                        choiceContext,        // 直接传入钩子自带的上下文，比 null! 更安全
-                        enemy,                // 目标
-                        Amount,               // 伤害数值
-                        ValueProp.Unpowered,  // 伤害属性：非攻击牌造成的伤害
-                        Owner,                // 伤害来源
-                        null                  // 来源卡牌为空
-                    ));
+                // 注意：刚刚的荆棘伤害可能已经扎死了某些敌人，所以需要重新过滤出存活的敌人
+                var aliveEnemies = enemies.Where(e => !e.IsDead).ToList();
+                
+                if (aliveEnemies.Count > 0)
+                {   
+                    foreach (var enemy in aliveEnemies)
+                    {
+                        await PowerCmd.Apply<WeakPower>(choiceContext, enemy, weakAmount, Owner, null);
+                    }
                 }
-            }
-
-            // 万箭齐发：如果列表里有任务，让它们在同一帧瞬间全部结算！
-            if (damageTasks.Count > 0)
-            {
-                await Task.WhenAll(damageTasks);
             }
         }
     }

@@ -2,6 +2,7 @@ using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -20,6 +21,6 @@ public class GuardianOfTheLawPower : CustomPowerModel
         
         // 核心：给予裁决
         // 使用 _ = 进行弃用等待，让赋予动作在底层安全排队，不阻塞屏障的扣血流水线
-        _ = PowerCmd.Apply<JudgementPower>(Owner, Amount, Owner, null);
+        _ = PowerCmd.Apply<JudgementPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
     }
 }

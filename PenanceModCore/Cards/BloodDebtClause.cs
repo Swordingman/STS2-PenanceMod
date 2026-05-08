@@ -3,6 +3,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -14,6 +15,11 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(PenanceModCardPool))]
 public class BloodDebtClause : PenanceBaseCard
 {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves),
+        ..WolfCurseHelper.GetWolfCurseHoverTips(IsUpgraded)
+    ];
+
     // 耗能 1，类型为 Attack，稀有度 Common，目标为 AllEnemies (全体敌人)
     public BloodDebtClause() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies, true)
     {
@@ -45,11 +51,9 @@ public class BloodDebtClause : PenanceBaseCard
 
         foreach (var enemy in survivingEnemies)
         {
-            // 直接调用我们写好的强力 Helper
-            var randomCurse = WolfCurseHelper.GetRandomWolfCurse(Owner);
-            
-            // 将生成的诅咒卡加入弃牌堆 (PileType.Discard)
-            await CardPileCmd.Add(randomCurse, PileType.Discard);
+            var randomCurse = WolfCurseHelper.GetRandomWolfCurse(Owner, CombatState, IsUpgraded);
+
+            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(randomCurse, PileType.Discard, Owner), 2.2f);
         }
     }
 

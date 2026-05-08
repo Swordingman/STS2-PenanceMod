@@ -16,14 +16,13 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(PenanceModCardPool))]
 public class SilenceWrath : PenanceBaseCard
 {
-    // 耗能 1，类型 Power，稀有度 Uncommon，目标 Self
     public SilenceWrath() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, true)
     {
     }
 
-    // 🌟 注册变量：获得的力量/虚弱层数 (初始 2)
+    // 只有一个通用变量
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("SilenceWrath-Amt", 2m)
+        new DynamicVar("SilenceWrath-Amt", 1m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -31,21 +30,13 @@ public class SilenceWrath : PenanceBaseCard
         var creature = Owner?.Creature;
         if (creature == null) return;
 
-        var vars = DynamicVars.Values.ToList();
-        int amount = vars.Count > 0 ? vars[0].IntValue : 2;
-
-        // 挂载核心 Power
-        // 传入 this 作为 source，保持良好的数据追溯性
-        await PowerCmd.Apply<SilenceWrathPower>(creature, amount, creature, this);
+        int amount = DynamicVars["SilenceWrath-Amt"].IntValue;
+        await PowerCmd.Apply<SilenceWrathPower>(choiceContext, creature, amount, creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        // 层数提升 1 (2 -> 3)
-        var vars = DynamicVars.Values.ToList();
-        if (vars.Count > 0)
-        {
-            vars[0].UpgradeValueBy(1);
-        }
+        // 升级层数 +1
+        DynamicVars["SilenceWrath-Amt"].UpgradeValueBy(1);
     }
 }

@@ -11,6 +11,7 @@ using PenanceMod.PenanceModCode.Character;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -27,16 +28,33 @@ public class AmbushShadow : PenanceBaseCard
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, PenanceKeywords.CurseOfWolves];
     protected override HashSet<CardTag> CanonicalTags => [PenanceCardTags.CurseOfWolves];
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves)
+    ];
+    
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar(MagicKey, 3m)
     ];
 
+    private bool _autoPlaying;
+
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
-        if (card == this)
+        if (card != this)
+            return;
+
+        if (_autoPlaying)
+            return;
+
+        _autoPlaying = true;
+
+        try
         {
-            await Cmd.Wait(0.25f);
-            await TriggerWolfAutoplay();
+            await TriggerWolfAutoplay(choiceContext, card);
+        }
+        finally
+        {
+            _autoPlaying = false;
         }
     }
 
@@ -71,7 +89,7 @@ public class AmbushShadow : PenanceBaseCard
         }
 
         // 获得 1 层无实体 (如果无实体叫其他名字，请调整泛型类型)
-        await PowerCmd.Apply<IntangiblePower>(creature, 1, creature, this);
+        await PowerCmd.Apply<IntangiblePower>(choiceContext,creature, 1, creature, this);
     }
 
     protected override void OnUpgrade()

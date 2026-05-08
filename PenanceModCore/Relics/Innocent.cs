@@ -13,9 +13,9 @@ public class Innocent : CustomRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Event;
 
-    public override string PackedIconPath => $"res://PenanceMod/images/relics/{Id.Entry.ToLowerInvariant()}.png";
-    protected override string PackedIconOutlinePath => $"res://PenanceMod/images/relics/{Id.Entry.ToLowerInvariant()}.png";
-    protected override string BigIconPath => $"res://PenanceMod/images/relics/large/{Id.Entry.ToLowerInvariant()}.png";
+    public override string PackedIconPath => $"res://PenanceMod/images/relics/large/{nameof(Innocent)}.png";
+    protected override string PackedIconOutlinePath => $"res://PenanceMod/images/relics/large/{nameof(Innocent)}.png";
+    protected override string BigIconPath => $"res://PenanceMod/images/relics/large/{nameof(Innocent)}.png";
 
     // 注册变量：20%
     // 供你的“裁决”伤害计算公式外部读取：

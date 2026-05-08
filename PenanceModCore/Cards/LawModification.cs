@@ -39,7 +39,7 @@ public class LawModification : PenanceBaseCard
             await Cmd.Wait(0.15f);
 
             // 2. 获得等量的屏障
-            await PowerCmd.Apply<BarrierPower>(creature, currentBlock, creature, this);
+            await PowerCmd.Apply<BarrierPower>(choiceContext,creature, currentBlock, creature, this);
         }
     }
 

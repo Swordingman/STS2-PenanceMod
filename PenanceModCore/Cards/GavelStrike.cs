@@ -27,6 +27,8 @@ public class GavelStrike : PenanceBaseCard
         new DamageVar(10, ValueProp.Move)
     ];
 
+    protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var target = cardPlay.Target;

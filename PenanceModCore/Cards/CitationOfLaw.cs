@@ -39,7 +39,7 @@ public class CitationOfLaw : PenanceBaseCard
         int percent = vars[1].IntValue;
 
         // 1. 获得基础屏障 (await 确保此处结算完毕)
-        await PowerCmd.Apply<BarrierPower>(creature, baseBarrier, creature, this);
+        await PowerCmd.Apply<BarrierPower>(choiceContext,creature, baseBarrier, creature, this);
 
         // 2. 获得当前屏障百分比的屏障
         // 此时获取的 Amount 已经是加上基础值之后的结果
@@ -51,7 +51,7 @@ public class CitationOfLaw : PenanceBaseCard
             
             if (bonusGain > 0)
             {
-                await PowerCmd.Apply<BarrierPower>(creature, bonusGain, creature, this);
+                await PowerCmd.Apply<BarrierPower>(choiceContext,creature, bonusGain, creature, this);
             }
         }
     }

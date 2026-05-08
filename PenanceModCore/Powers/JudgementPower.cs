@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Models.Powers;
 using PenanceMod.PenanceModCode.Relics;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer; // 原版能力的命名空间（如力量）可能在这里
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -37,7 +37,7 @@ public class JudgementPower : CustomPowerModel
     // ==========================================
     // 异步伤害结算核心（彻底取代 TriggerJudgementAction）
     // ==========================================
-    private async Task TriggerJudgementDamageAsync(Creature target)
+    public async Task TriggerJudgementDamageAsync(Creature target)
     {
         // Owner 是 Creature，不是 Player。
         // 这里为了避免混淆，命名为 ownerCreature。
@@ -53,20 +53,6 @@ public class JudgementPower : CustomPowerModel
 
         int baseDamage = Amount;
 
-        // 1. 力量加成
-        //
-        // Power 在 Creature 身上，所以用 ownerCreature.GetPower<T>()。
-        // 这里不要用 player.GetPower<T>()，Player 本身不是 Creature。
-        if (ownerCreature.GetPower<InTheNameOfTheLawPower>() != null)
-        {
-            var strength = ownerCreature.GetPower<StrengthPower>();
-            if (strength != null)
-            {
-                baseDamage += strength.Amount;
-            }
-        }
-
-        // 2. 乘区加成
         float calculatedDamage = baseDamage;
 
         // 遗物在 Player 身上，所以用 player.GetRelic<T>()。
@@ -75,7 +61,6 @@ public class JudgementPower : CustomPowerModel
             calculatedDamage *= 1.2f;
         }
 
-        // 3. 固定增伤
         int finalDamage = (int)Math.Floor(calculatedDamage);
 
         var shopVoucher = player.GetRelic<ShopVoucher>();
@@ -90,10 +75,8 @@ public class JudgementPower : CustomPowerModel
 
         Flash();
 
-        // 4. 造成伤害
-        //
-        // 推荐用命名参数版本，和 AttackCommand 内部调用 CreatureCmd.Damage 的方式一致。
-        // AttackCommand 也是传 choiceContext、targets、props、dealer、cardSource 进去结算伤害。
+        VfxCmd.PlayOnCreatureCenter(target, VfxCmd.slashPath);
+
         await CreatureCmd.Damage(
             choiceContext: new BlockingPlayerChoiceContext(),
             targets: new[] { target },

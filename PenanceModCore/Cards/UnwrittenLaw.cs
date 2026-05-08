@@ -84,7 +84,7 @@ public class UnwrittenLaw : PenanceBaseCard
         // 给玩家施加 UnwrittenLawPower，并把目标卡传进去。
         //
         // 注意：
-        // 不能直接用 PowerCmd.Apply<UnwrittenLawPower>(...)
+        // 不能直接用 PowerCmd.Apply<UnwrittenLawPower>(choiceContext,...)
         // 因为那样没有机会在 Apply 前调用 Initialize(selectedPowerCard)。
         //
         // 正确做法：
@@ -107,6 +107,7 @@ public class UnwrittenLaw : PenanceBaseCard
             power.Initialize(selectedPowerCard);
 
             await PowerCmd.Apply(
+                choiceContext,
                 power,
                 creature,
                 1,

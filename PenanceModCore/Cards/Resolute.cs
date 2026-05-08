@@ -9,12 +9,15 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using PenanceMod.PenanceModCode.Powers; 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Models;
 
 namespace PenanceMod.Scripts.Cards;
 
 [Pool(typeof(PenanceModCardPool))]
-public class Resolute : PenanceBaseCard
+public class Resolute : PenanceBaseCard, ITranscendenceCard
 {
+    public CardModel GetTranscendenceTransformedCard() => ModelDb.Card<Unyield>();
+
     // 🌟 核心：开启 X 费卡牌标识
     protected override bool HasEnergyCostX => true;
 

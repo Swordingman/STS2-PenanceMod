@@ -32,7 +32,7 @@ public class CrownOfThorns : PenanceBaseCard
         int thornsGain = vars.Count > 0 ? vars[0].IntValue : 3;
 
         // 挂载荆棘冠冕能力
-        await PowerCmd.Apply<CrownOfThornsPower>(Owner.Creature, thornsGain, Owner.Creature, this);
+        await PowerCmd.Apply<CrownOfThornsPower>(choiceContext,Owner.Creature, thornsGain, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

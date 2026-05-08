@@ -39,8 +39,8 @@ metadata/_edit_use_anchors_ = true
 [node name="ThoughtBubbleLeft" type="Control" parent="ControlRoot"]
 unique_name_in_owner = true
 anchors_preset = 0
-offset_left = -200
+offset_left = -200.0
 offset_top = -324.997
-offset_right = -200
+offset_right = -200.0
 offset_bottom = -324.997
 metadata/_edit_use_anchors_ = true

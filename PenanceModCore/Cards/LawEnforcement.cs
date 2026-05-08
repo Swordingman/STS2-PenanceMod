@@ -57,7 +57,7 @@ public class LawEnforcement : PenanceBaseCard
             {
                 // 等待伤害动画演完
                 await Cmd.Wait(0.2f);
-                await PowerCmd.Apply<BarrierPower>(creature, barrierGain, creature, this);
+                await PowerCmd.Apply<BarrierPower>(choiceContext,creature, barrierGain, creature, this);
             }
         }
     }

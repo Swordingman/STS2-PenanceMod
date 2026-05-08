@@ -16,13 +16,17 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(PenanceModCardPool))]
 public class TippingScales : PenanceBaseCard
 {
-    public TippingScales() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
+    public TippingScales() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
     {
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Tipping-JudgeCost", 2m),
         new DynamicVar("Tipping-Str", 1m)
+    ];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [
+        CardKeyword.Exhaust
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -42,12 +46,9 @@ public class TippingScales : PenanceBaseCard
             if (multiplier > 0)
             {
                 int totalStr = multiplier * strPerUnit;
-                await PowerCmd.Apply<StrengthPower>(creature, totalStr, creature, this);
+                await PowerCmd.Apply<StrengthPower>(choiceContext,creature, totalStr, creature, this);
                 await Cmd.Wait(0.1f);
             }
-
-            // 彻底移除裁决
-            await PowerCmd.Remove(judgePower);
         }
     }
 

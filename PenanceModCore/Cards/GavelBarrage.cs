@@ -59,10 +59,10 @@ public class GavelBarrage : PenanceBaseCard
 
                 // 3.2 获得 1 层裁决
                 // (注意：这里假设你之前的 ApplyJudgement 是一个通用的辅助方法，如果没有写，直接调用 PowerCmd.Apply 即可)
-                await PowerCmd.Apply<JudgementPower>(creature, 1, creature, this);
+                await PowerCmd.Apply<JudgementPower>(choiceContext,creature, 1, creature, this);
 
                 // 3.3 获得 1 层荆棘环身
-                await PowerCmd.Apply<ThornAuraPower>(creature, 1, creature, this);
+                await PowerCmd.Apply<ThornAuraPower>(choiceContext,creature, 1, creature, this);
 
                 // 🌟 给每次连击之间加一点微小的延迟，让打击感更强，动画不至于全部黏在一帧里
                 await Cmd.Wait(0.1f);

@@ -16,41 +16,43 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(PenanceModCardPool))]
 public class ConsultTheDossier : PenanceBaseCard
 {
-    // 耗能 1，类型 Skill，稀有度 Uncommon，目标 Self
     public ConsultTheDossier() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
     {
     }
 
-    // 🌟 注册变量：索引 0 为抽牌数 (2)，索引 1 为裁决数值 (3)
+    // 🌟 注册变量：抽牌数 (2)，每次给的裁决层数 (改为 1)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Consult-Draw", 2m),
-        new DynamicVar("Consult-Judge", 3m)
+        new DynamicVar("Consult-Judge", 1m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var vars = DynamicVars.Values.ToList();
-        int drawAmount = vars.Count > 0 ? vars[0].IntValue : 2;
-        int judgeAmount = vars.Count > 1 ? vars[1].IntValue : 3;
+        // 字典取值更稳妥和直观
+        int drawAmount = DynamicVars["Consult-Draw"].IntValue;
+        int judgeAmountPerCard = DynamicVars["Consult-Judge"].IntValue;
 
-        // 1. 抽牌，并直接拿到实际抽上来的这些牌
+        // 1. 抽牌
         var drawnCards = await CardPileCmd.Draw(choiceContext, drawAmount, Owner);
 
-        // 2. 一行代码完成判断：只要抽上来的牌里有任何一张是能力牌
-        if (drawnCards != null && drawnCards.Any(c => c.Type == CardType.Power))
+        if (drawnCards != null)
         {
-            // 3. 获得裁决
-            await PowerCmd.Apply<JudgementPower>(Owner.Creature, judgeAmount, Owner.Creature, this);
+            // 2. 统计抽到的技能牌数量 (利用 LINQ 的 Count)
+            int skillCardCount = drawnCards.Count(c => c.Type == CardType.Skill);
+
+            if (skillCardCount > 0)
+            {
+                // 3. 计算总获得量：技能牌数量 * 1
+                int totalJudgement = skillCardCount * judgeAmountPerCard;
+                
+                await PowerCmd.Apply<JudgementPower>(choiceContext, Owner.Creature, totalJudgement, Owner.Creature, this);
+            }
         }
     }
 
     protected override void OnUpgrade()
     {
         // 升级抽牌数 (2 -> 3)
-        var vars = DynamicVars.Values.ToList();
-        if (vars.Count > 0)
-        {
-            vars[0].UpgradeValueBy(1);
-        }
+        DynamicVars["Consult-Draw"].UpgradeValueBy(1);
     }
 }

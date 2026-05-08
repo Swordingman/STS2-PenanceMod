@@ -21,9 +21,9 @@ public class PlasticMole : CustomRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
 
-    public override string PackedIconPath => $"res://PenanceMod/images/relics/{Id.Entry.ToLowerInvariant()}.png";
-    protected override string PackedIconOutlinePath => $"res://PenanceMod/images/relics/{Id.Entry.ToLowerInvariant()}.png";
-    protected override string BigIconPath => $"res://PenanceMod/images/relics/large/{Id.Entry.ToLowerInvariant()}.png";
+    public override string PackedIconPath => $"res://PenanceMod/images/relics/large/{nameof(PlasticMole)}.png";
+    protected override string PackedIconOutlinePath => $"res://PenanceMod/images/relics/large/{nameof(PlasticMole)}.png";
+    protected override string BigIconPath => $"res://PenanceMod/images/relics/large/{nameof(PlasticMole)}.png";
 
     // 注册变量：阈值 (3)，获得能量数 (1)
     protected override IEnumerable<DynamicVar> CanonicalVars => [

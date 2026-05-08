@@ -70,8 +70,8 @@ public class GlowOfSufferingPower : CustomPowerModel
             {
                 // 注意：因为我们已经在一个 async Task 里面了，所以可以直接优雅地 await，
                 // 引擎会乖乖把你的给盾和给荆棘的动画排队播完，不需要加 _ = 弃用等待。
-                await PowerCmd.Apply<BarrierPower>(Owner, bonus, Owner, null);
-                await PowerCmd.Apply<ThornAuraPower>(Owner, bonus, Owner, null);
+                await PowerCmd.Apply<BarrierPower>(choiceContext,Owner, bonus, Owner, null);
+                await PowerCmd.Apply<ThornAuraPower>(choiceContext,Owner, bonus, Owner, null);
             }
         }
     }

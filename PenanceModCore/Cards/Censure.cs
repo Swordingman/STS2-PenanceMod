@@ -43,7 +43,7 @@ public class Censure : PenanceBaseCard
         var vars = DynamicVars.Values.ToList();
         int judgementAmount = vars.Count > 1 ? vars[1].IntValue : 2;
 
-        await PowerCmd.Apply<JudgementPower>(Owner.Creature, judgementAmount, Owner.Creature, this);
+        await PowerCmd.Apply<JudgementPower>(choiceContext,Owner.Creature, judgementAmount, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

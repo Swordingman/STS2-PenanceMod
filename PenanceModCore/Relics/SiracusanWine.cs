@@ -18,9 +18,9 @@ public class SiracusanWine : CustomRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
 
-    public override string PackedIconPath => $"res://PenanceMod/images/relics/{Id.Entry.ToLowerInvariant()}.png";
-    protected override string PackedIconOutlinePath => $"res://PenanceMod/images/relics/{Id.Entry.ToLowerInvariant()}.png";
-    protected override string BigIconPath => $"res://PenanceMod/images/relics/large/{Id.Entry.ToLowerInvariant()}.png";
+    public override string PackedIconPath => $"res://PenanceMod/images/relics/large/{nameof(SiracusanWine)}.png";
+    protected override string PackedIconOutlinePath => $"res://PenanceMod/images/relics/large/{nameof(SiracusanWine)}.png";
+    protected override string BigIconPath => $"res://PenanceMod/images/relics/large/{nameof(SiracusanWine)}.png";
 
     // 注册变量：触发阈值(8)，最大生命值增加(3)，回复量(4)
     protected override IEnumerable<DynamicVar> CanonicalVars => [

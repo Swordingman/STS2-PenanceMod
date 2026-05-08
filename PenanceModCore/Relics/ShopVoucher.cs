@@ -13,9 +13,9 @@ public class ShopVoucher : CustomRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Common;
 
-    public override string PackedIconPath => $"res://PenanceMod/images/relics/{Id.Entry.ToLowerInvariant()}.png";
-    protected override string PackedIconOutlinePath => $"res://PenanceMod/images/relics/{Id.Entry.ToLowerInvariant()}.png";
-    protected override string BigIconPath => $"res://PenanceMod/images/relics/large/{Id.Entry.ToLowerInvariant()}.png";
+    public override string PackedIconPath => $"res://PenanceMod/images/relics/large/{nameof(ShopVoucher)}.png";
+    protected override string PackedIconOutlinePath => $"res://PenanceMod/images/relics/large/{nameof(ShopVoucher)}.png";
+    protected override string BigIconPath => $"res://PenanceMod/images/relics/large/{nameof(ShopVoucher)}.png";
 
     // 注册变量：2 点额外伤害
     protected override IEnumerable<DynamicVar> CanonicalVars => [

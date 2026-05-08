@@ -40,7 +40,7 @@ public class ImmediateExecution : PenanceBaseCard
         // ==========================================
         // 1. 获得裁决
         // ==========================================
-        await PowerCmd.Apply<JudgementPower>(creature, judgeGain, creature, this);
+        await PowerCmd.Apply<JudgementPower>(choiceContext,creature, judgeGain, creature, this);
 
         // 稍微停顿一下，让上 Buff 的特效播完，增加“行刑”的节奏感
         await Cmd.Wait(0.2f);

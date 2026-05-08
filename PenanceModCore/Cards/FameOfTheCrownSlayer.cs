@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -22,28 +23,38 @@ public class FameOfTheCrownSlayer : PenanceBaseCard
     {
     }
 
-    // 绑定“消耗”和“狼群诅咒”关键词
-    public override IEnumerable<MegaCrit.Sts2.Core.Entities.Cards.CardKeyword> CanonicalKeywords => 
-        [MegaCrit.Sts2.Core.Entities.Cards.CardKeyword.Exhaust, PenanceKeywords.CurseOfWolves];
-
-    // 绑定后台判定标签
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, PenanceKeywords.CurseOfWolves];
     protected override HashSet<CardTag> CanonicalTags => [PenanceCardTags.CurseOfWolves];
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves)
+    ];
+    
     // 🌟 注册变量：索引 0 = 抽牌数(2), 索引 1 = 临时力量(3)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Fame-Draw", 2m),
         new DynamicVar("Fame-TempStr", 3m)
     ];
 
-    // ==========================================
-    // 抽到时触发 (狼群诅咒模板)
-    // ==========================================
+    private bool _autoPlaying;
+
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
-        if (card == this)
+        if (card != this)
+            return;
+
+        if (_autoPlaying)
+            return;
+
+        _autoPlaying = true;
+
+        try
         {
-            await Cmd.Wait(0.25f);
-            await TriggerWolfAutoplay();
+            await TriggerWolfAutoplay(choiceContext, card);
+        }
+        finally
+        {
+            _autoPlaying = false;
         }
     }
 
@@ -58,7 +69,7 @@ public class FameOfTheCrownSlayer : PenanceBaseCard
         foreach (var enemy in aliveEnemies)
         {
             // 加力量
-            await PowerCmd.Apply<FlexPotionPower>(enemy, tempStr, Owner.Creature, this);
+            await PowerCmd.Apply<FlexPotionPower>(choiceContext,enemy, tempStr, Owner.Creature, this);
         }
 
         // 2. 抽牌

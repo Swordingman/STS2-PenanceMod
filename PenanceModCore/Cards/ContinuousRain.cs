@@ -12,6 +12,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Assets;
+using MegaCrit.Sts2.Core.Nodes;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -23,62 +28,61 @@ public class ContinuousRain : PenanceBaseCard
     }
 
     // ⭐ 完美套用模板：同时注册消耗和狼群诅咒的 UI 关键词（写全路径防报错）
-    public override IEnumerable<MegaCrit.Sts2.Core.Entities.Cards.CardKeyword> CanonicalKeywords => 
-        [MegaCrit.Sts2.Core.Entities.Cards.CardKeyword.Exhaust, PenanceKeywords.CurseOfWolves];
-
-    // ⭐ 完美套用模板：注入后台逻辑检测用的标签
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, PenanceKeywords.CurseOfWolves];
     protected override HashSet<CardTag> CanonicalTags => [PenanceCardTags.CurseOfWolves];
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves)
+    ];
+    
     // 顺序注册变量：0 = 伤害, 1 = 给自己的Debuff(2), 2 = 给敌人的Debuff(2)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(5, ValueProp.Unpowered),
         new DynamicVar("Rain-SelfDebuff", 2m),
         new DynamicVar("Rain-EnemyDebuff", 2m)
     ];
+    
+    private bool _autoPlaying;
 
-    // ==========================================
-    // 抽到时触发 (二代最新异步钩子)
-    // ==========================================
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
-        // 必须判断抽到的牌是不是自己，因为这个钩子可能会广播给所有监听者
-        if (card == this)
+        if (card != this)
+            return;
+
+        if (_autoPlaying)
+            return;
+
+        _autoPlaying = true;
+
+        try
         {
-            await Cmd.Wait(0.25f); // 稍微等待抽牌动画，防止逻辑卡死
-            await TriggerWolfAutoplay(); 
+            await TriggerWolfAutoplay(choiceContext, card);
+        }
+        finally
+        {
+            _autoPlaying = false;
         }
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var creature = Owner.Creature;
-        var vars = DynamicVars.Values.ToList();
-        int selfDebuff = vars.Count > 1 ? vars[1].IntValue : 2;
-        int enemyDebuff = vars.Count > 2 ? vars[2].IntValue : 2;
+        var allCreatures = CombatState.Creatures;
+        var player = Owner.Creature;
+        int selfDebuff = DynamicVars.ContainsKey("Rain-SelfDebuff") ? DynamicVars["Rain-SelfDebuff"].IntValue : 2;
+        int enemyDebuff = DynamicVars.ContainsKey("Rain-EnemyDebuff") ? DynamicVars["Rain-EnemyDebuff"].IntValue : 2;
 
-        // 1. 对玩家造成伤害 (无视防御但受护甲阻挡，吃不到力量加成)
-        await CreatureCmd.Damage(choiceContext, creature, DynamicVars.Damage.BaseValue, ValueProp.Unpowered, this);
+        VfxCmd.PlayFullScreenInCombat(VfxCmd.giantHorizontalSlashPath, player);
+        
+        await CreatureCmd.Damage(choiceContext, allCreatures, DynamicVars.Damage.BaseValue, ValueProp.Unpowered, player, this);
 
-        // 2. 对所有敌人造成伤害 (同理)
+        await PowerCmd.Apply<VulnerablePower>(choiceContext,player, selfDebuff, player, this);
+        await PowerCmd.Apply<WeakPower>(choiceContext,player, selfDebuff, player, this);
+
         var aliveEnemies = CombatState.Enemies.Where(e => e.IsAlive).ToList();
         foreach (var enemy in aliveEnemies)
         {
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this)
-                .Targeting(enemy)
-                .Unpowered() 
-                .Execute(choiceContext);
-        }
-
-        // 3. 给自己施加易伤和脆弱
-        await PowerCmd.Apply<VulnerablePower>(creature, selfDebuff, creature, this);
-        await PowerCmd.Apply<FrailPower>(creature, selfDebuff, creature, this);
-
-        // 4. 给所有存活敌人施加易伤和脆弱
-        foreach (var enemy in aliveEnemies)
-        {
-            await PowerCmd.Apply<VulnerablePower>(enemy, enemyDebuff, creature, this);
-            await PowerCmd.Apply<FrailPower>(enemy, enemyDebuff, creature, this);
+            await PowerCmd.Apply<VulnerablePower>(choiceContext,enemy, enemyDebuff, player, this);
+            await PowerCmd.Apply<WeakPower>(choiceContext,enemy, enemyDebuff, player, this);
         }
     }
 

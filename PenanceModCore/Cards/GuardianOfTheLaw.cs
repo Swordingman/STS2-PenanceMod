@@ -32,7 +32,7 @@ public class GuardianOfTheLaw : PenanceBaseCard
         int magicGain = vars.Count > 0 ? vars[0].IntValue : 3;
 
         // 挂载律法卫士能力
-        await PowerCmd.Apply<GuardianOfTheLawPower>(Owner.Creature, magicGain, Owner.Creature, this);
+        await PowerCmd.Apply<GuardianOfTheLawPower>(choiceContext,Owner.Creature, magicGain, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

@@ -21,8 +21,8 @@ public class ExhibitA : PenanceBaseCard
     }
 
     // 绑定消耗词条 (写全路径防报错)
-    public override IEnumerable<MegaCrit.Sts2.Core.Entities.Cards.CardKeyword> CanonicalKeywords => 
-        [MegaCrit.Sts2.Core.Entities.Cards.CardKeyword.Exhaust];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => 
+        [CardKeyword.Exhaust];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -38,7 +38,7 @@ public class ExhibitA : PenanceBaseCard
             var doubtCopy = doubtModel.ToMutable();
             
             // 将生成的卡牌加入手牌
-            await CardPileCmd.AddGeneratedCardToCombat(doubtCopy, PileType.Hand, addedByPlayer: false);
+            await CardPileCmd.AddGeneratedCardToCombat(doubtCopy, PileType.Hand, Owner);
         }
 
         // 2. 抽 2 张牌

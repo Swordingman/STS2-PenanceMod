@@ -4,9 +4,8 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
-using MegaCrit.Sts2.Core.ValueProps;
-using MegaCrit.Sts2.Core.Combat; 
-using System.Linq; 
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using PenanceMod.PenanceModCode.Powers;
 using PenanceMod.PenanceModCode.Character;
 using BaseLib.Utils;
@@ -14,45 +13,45 @@ using BaseLib.Utils;
 namespace PenanceMod.Scripts.Cards;
 
 [Pool(typeof(PenanceModCardPool))]
-public class Adjourn : CustomCardModel
+public class Adjourn : PenanceBaseCard // 🌟 继承你自己的基类，享受工具方法的便利
 {
-    // 倍率常量，代替 MagicVar
-    private const int EffectMultiplier = 2;
-
     public Adjourn() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
     {
     }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
+    // 🌟 核心修复：注册名为 "Magic" 的动态变量，初始值为 2
+    protected override IEnumerable<DynamicVar> CanonicalVars => [
+        new DynamicVar("Magic", 2m) 
+    ];
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var player = Owner;
         var creature = player.Creature;
         
-        // 查询本回合出牌数
-        int cardsPlayedCount = CombatManager.Instance.History.CardPlaysStarted
-            .Count(entry => 
-                entry.RoundNumber == CombatState.RoundNumber && 
-                entry.CardPlay.Card.Owner == player);
+        // 1. 安全读取注册的 Magic 变量值
+        int magicValue = DynamicVars.ContainsKey("Magic") ? DynamicVars["Magic"].IntValue : 2;
+
+        // 2. 直接调用基类的方法，取代原本冗长的 LINQ 查询
+        int cardsPlayedCount = GetCardsPlayedThisTurn();
         
-        // 计算最终数值
-        int effectValue = cardsPlayedCount * EffectMultiplier;
+        // 3. 计算最终数值
+        int effectValue = cardsPlayedCount * magicValue;
 
-        // 注意：这里改用了 CurrentHp。如果官方属性名叫 CurrentHealth，请替换一下
-        bool isLowHealth = creature.CurrentHp < (creature.MaxHp / 2f);
-
-        if (isLowHealth)
+        // 4. 调用基类的半血判定方法
+        if (IsHalfHealth(creature))
         {
-            // 直接 await 方法本身，不需要 .Execute()
             await CreatureCmd.Heal(creature, effectValue);
         }
         else
         {
-            // 直接 await 方法本身
-            await PowerCmd.Apply<BarrierPower>(creature, effectValue, creature, this);
+            // 调用基类的施加屏障方法
+            await ApplyBarrier(creature, effectValue);
         }
 
+        // 强制结束回合
         PlayerCmd.EndTurn(player, false);
     }
 

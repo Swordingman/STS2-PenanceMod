@@ -1,31 +1,41 @@
-using HarmonyLib;
-using Godot;
-using MegaCrit.Sts2.Core.Nodes.Combat;
-using PenanceMod.PenanceModCode.UI; // 引入你的 UI 脚本命名空间
+// using HarmonyLib;
+// using Godot;
+// using MegaCrit.Sts2.Core.Nodes.Combat;
+// using PenanceMod.PenanceModCode.UI; 
 
-namespace PenanceMod.PenanceModCode.Patches;
+// namespace PenanceMod.PenanceModCode.Patches;
 
-[HarmonyPatch(typeof(NCreature), nameof(NCreature._Ready))]
-public static class InjectBarrierUIPatch
-{
-    public static void Postfix(NCreature __instance)
-    {
-        // 拿到这个节点的内存数据本体
-        var creature = __instance.Entity;
-        if (creature == null) return;
+// [HarmonyPatch(typeof(NCreature), nameof(NCreature._Ready))]
+// public static class InjectBarrierUIPatch
+// {
+//     // 依然保留缓存，避免每次读取硬盘掉帧
+//     private static PackedScene _barSceneCache;
 
-        // 加载你的紫血条场景
-        var barScene = GD.Load<PackedScene>("res://PenanceMod/scenes/ui/BarrierBar.tscn");
-        if (barScene != null)
-        {
-            // 实例化
-            var barInstance = barScene.Instantiate<BarrierBarUI>();
+//     private const string PenanceId = "PenanceMod"; 
+
+//     public static void Postfix(NCreature __instance)
+//     {
+//         var creature = __instance.Entity;
+//         if (creature == null) return;
+
+//         // 【终极过滤】：必须是玩家，且 ModelId 必须是你的自定义角色
+//         if (!creature.IsPlayer || creature.ModelId.ToString() != PenanceId) 
+//         {
+//             return; 
+//         }
+
+//         if (_barSceneCache == null)
+//         {
+//             _barSceneCache = GD.Load<PackedScene>("res://PenanceMod/scenes/ui/BarrierBar.tscn");
+//         }
+
+//         if (_barSceneCache != null)
+//         {
+//             var barInstance = _barSceneCache.Instantiate<BarrierBarUI>();
+//             barInstance.TargetCreature = creature;
             
-            // 关键：告诉这个雷达 UI，你要盯着这个 creature 看！
-            barInstance.TargetCreature = creature;
-            
-            // 把紫血条挂到角色的 Visuals 画面节点上
-            __instance.Visuals.AddChild(barInstance);
-        }
-    }
-}
+//             // 延迟挂载，避免时序问题导致的不显示或报错
+//             __instance.Visuals.CallDeferred(Node.MethodName.AddChild, barInstance);
+//         }
+//     }
+// }

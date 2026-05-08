@@ -22,7 +22,7 @@ public class Upright : PenanceBaseCard
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Upright-Str", 1m)
+        new UprightStrengthVar("Upright-Str", 1m)
     ];
 
     private int GetTotalStrengthGain()
@@ -36,6 +36,7 @@ public class Upright : PenanceBaseCard
         curseCount += PileType.Hand.GetPile(player).Cards.Count(c => c.Type == CardType.Curse);
         curseCount += PileType.Draw.GetPile(player).Cards.Count(c => c.Type == CardType.Curse);
         curseCount += PileType.Discard.GetPile(player).Cards.Count(c => c.Type == CardType.Curse);
+        curseCount += PileType.Exhaust.GetPile(player).Cards.Count(c => c.Type == CardType.Curse);
 
         return (int)DynamicVars["Upright-Str"].BaseValue + curseCount;
     }
@@ -46,11 +47,12 @@ public class Upright : PenanceBaseCard
         if (creature == null) 
             return;
 
-        int totalStr = GetTotalStrengthGain();
+        // 读取 PreviewValue，并强转为 int
+        int totalStr = (int)DynamicVars["Upright-Str"].PreviewValue;
 
         if (totalStr > 0)
         {
-            await PowerCmd.Apply<StrengthPower>(creature, totalStr, creature, this);
+            await PowerCmd.Apply<StrengthPower>(choiceContext, creature, totalStr, creature, this);
         }
     }
 

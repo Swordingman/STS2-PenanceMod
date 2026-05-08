@@ -17,8 +17,8 @@
   "PENANCEMOD-ASCETICISM.title": "苦行",
   "PENANCEMOD-ASCETICISM.description": "每当你的屏障受到伤害时，获得{Asceticism-Magic:diff()}层荆棘环身。",
 
-  "PENANCEMOD-ASIP.title": "小酌一杯",
-  "PENANCEMOD-ASIP.description": "失去{ASip-Penalty:diff()}点屏障。如果不足，则失去等量生命值。\n获得 2 点力量。\n在手牌中加入一张此牌的复制品。该复制品拥有虚无，且失去的数值增加 2 点。",
+  "PENANCEMOD-A_SIP.title": "小酌一杯",
+  "PENANCEMOD-A_SIP.description": "失去{A_SIP-Penalty:diff()}点屏障。如果不足，则失去等量生命值。\n获得 2 点力量。\n在手牌中加入一张此牌的复制品。该复制品拥有虚无，且失去的数值增加 2 点。",
 
   "PENANCEMOD-BAD_OPERA.title": "烂歌剧",
   "PENANCEMOD-BAD_OPERA.description": "随机将 {BadOpera-Magic:diff()} 张攻击牌加入手牌。[purple]{IfUpgraded:UpgradePreview|\n生成的卡牌将被升级。}[/purple]",
@@ -263,5 +263,14 @@
   "PENANCEMOD-WEIGHT_OF_LAW.description": "消耗。\n失去 6 点生命值。\n获得 {WeightOfLaw-MaxHp:diff()} 点最大生命值。",
 
   "PENANCEMOD-UNWRITTEN_LAW.title": "不成文的法律",
-  "PENANCEMOD-UNWRITTEN_LAW.description": "从抽牌堆随机抽一张能力牌。\n如果你在本回合打出了它，额外打出一次。"
+  "PENANCEMOD-UNWRITTEN_LAW.description": "从抽牌堆随机抽一张能力牌。\n如果你在本回合打出了它，额外打出一次。",
+
+  "PENANCEMOD-OBJECTION.title": "异议！",
+  "PENANCEMOD-OBJECTION.description": "造成 {Damage:diff()} 点伤害。\n目标意图为：\n攻击时，获得 {Obj-Small:diff()} 点裁决；\n格挡时，获得 {Obj-Small:diff()} 层荆棘环身；\n否则，获得 {Obj-Large:diff()} 点屏障。",
+
+  "PENANCEMOD-PURGE.title": "肃清",
+  "PENANCEMOD-PURGE.description": "对所有敌人造成 {Damage:diff()} 点伤害。\n获得等同于未被格挡伤害总量的屏障。",
+
+  "PENANCEMOD-INESCAPABLE_NET.title": "法网恢恢",
+  "PENANCEMOD-INESCAPABLE_NET.description": "下回合开始时，获得 {Net-Barrier:diff()} 点屏障，并抽 1 张牌。"
 }

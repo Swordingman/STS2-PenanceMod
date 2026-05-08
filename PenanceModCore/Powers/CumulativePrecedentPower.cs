@@ -31,7 +31,7 @@ public class CumulativePrecedentPower : CustomPowerModel
             Flash(); // 闪烁图标
 
             // 获得与此能力层数相等的屏障
-            await PowerCmd.Apply<BarrierPower>(Owner, Amount, Owner, null);
+            await PowerCmd.Apply<BarrierPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
         }
     }
 }

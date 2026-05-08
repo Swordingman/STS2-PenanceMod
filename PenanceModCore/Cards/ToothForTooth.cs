@@ -28,8 +28,10 @@ public class ToothForTooth : PenanceBaseCard
         new DynamicVar("Tooth-Draw", 1m)
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        WolfCurseHelper.GetWolfCurseHoverTips(IsUpgraded);
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves),
+        ..WolfCurseHelper.GetWolfCurseHoverTips(IsUpgraded)
+    ];
 
     protected override bool ShouldGlowGoldInternal
     {
@@ -57,16 +59,12 @@ public class ToothForTooth : PenanceBaseCard
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash_heavy")
+            .WithHitFx("vfx/vfx_attack_blunt")
             .Execute(choiceContext);
 
         // 3. 向弃牌堆洗入一张随机狼群诅咒
-        var randomCurse = WolfCurseHelper.GetRandomWolfCurse(player, false);
-        if (randomCurse != null)
-        {
-            randomCurse.Owner = player;
-            await CardPileCmd.Add(randomCurse, PileType.Discard, CardPilePosition.Random);
-        }
+        var randomCurse = WolfCurseHelper.GetRandomWolfCurse(player, CombatState, IsUpgraded);
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(randomCurse, PileType.Discard, Owner), 2.2f);
 
         // 4. 半血抽牌
         if (IsHalfHealth(creature))

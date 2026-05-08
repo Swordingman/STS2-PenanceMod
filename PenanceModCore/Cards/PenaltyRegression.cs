@@ -51,7 +51,7 @@ public class PenaltyRegression : PenanceBaseCard
 
             foreach (var debuff in debuffs)
             {
-                await PowerCmd.ModifyAmount(debuff, -1, creature, this);
+                await PowerCmd.ModifyAmount(choiceContext, debuff, -1, creature, this);
             }
         }
     }

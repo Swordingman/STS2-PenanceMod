@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -22,7 +23,7 @@ public class JustifiedDefensePower : CustomPowerModel
     // 核心一：回合开始时移除自身
     // ==========================================
     // 完美对应 StS1 里的 atStartOfTurn 
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         // 确保只有在能力拥有者自己的回合开始时才移除
         if (Owner != null && side == Owner.Side)
@@ -54,7 +55,7 @@ public class JustifiedDefensePower : CustomPowerModel
 
             // 2. 给予触发后的奖励能力 (JustifiedDefenseTriggeredPower)
             // 因为在 async 内部，直接 await 排队即可
-            await PowerCmd.Apply<JustifiedDefenseTriggeredPower>(Owner, 1, Owner, null);
+            await PowerCmd.Apply<JustifiedDefenseTriggeredPower>(choiceContext, Owner, 1, Owner, null);
         }
     }
 }

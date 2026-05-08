@@ -21,7 +21,7 @@ public class LawIsCanon : PenanceBaseCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 给自己挂上 1 层法为正典状态
-        await PowerCmd.Apply<LawIsCanonPower>(Owner.Creature, 1, Owner.Creature, this);
+        await PowerCmd.Apply<LawIsCanonPower>(choiceContext,Owner.Creature, 1, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

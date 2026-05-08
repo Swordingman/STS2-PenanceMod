@@ -33,7 +33,7 @@ public class CodeOfRevenge : PenanceBaseCard
         int barrierGain = vars.Count > 0 ? vars[0].IntValue : 3;
 
         // 施加复仇法典能力
-        await PowerCmd.Apply<CodeOfRevengePower>(Owner.Creature, barrierGain, Owner.Creature, this);
+        await PowerCmd.Apply<CodeOfRevengePower>(choiceContext,Owner.Creature, barrierGain, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

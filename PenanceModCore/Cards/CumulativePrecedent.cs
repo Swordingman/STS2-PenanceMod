@@ -17,13 +17,12 @@ namespace PenanceMod.Scripts.Cards;
 public class CumulativePrecedent : PenanceBaseCard
 {
     // 耗能 1，类型 Power，稀有度 Uncommon，目标 Self
-    public CumulativePrecedent() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, true)
+    public CumulativePrecedent() : base(1, CardType.Power, CardRarity.Ancient, TargetType.Self, true)
     {
     }
 
-    // 🌟 注册变量：标准难度下每次触发获得的屏障数值 (3)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Cumulative-Magic", 3m)
+        new DynamicVar("Cumulative-Magic", 4m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -32,7 +31,7 @@ public class CumulativePrecedent : PenanceBaseCard
         int barrierGain = vars.Count > 0 ? vars[0].IntValue : 3;
 
         // 挂载判例累积能力
-        await PowerCmd.Apply<CumulativePrecedentPower>(Owner.Creature, barrierGain, Owner.Creature, this);
+        await PowerCmd.Apply<CumulativePrecedentPower>(choiceContext,Owner.Creature, barrierGain, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

@@ -24,9 +24,9 @@ public class GoldenScales : CustomRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
 
-    public override string PackedIconPath => $"res://PenanceMod/images/relics/{Id.Entry.ToLowerInvariant()}.png";
-    protected override string PackedIconOutlinePath => $"res://PenanceMod/images/relics/{Id.Entry.ToLowerInvariant()}.png";
-    protected override string BigIconPath => $"res://PenanceMod/images/relics/large/{Id.Entry.ToLowerInvariant()}.png";
+    public override string PackedIconPath => $"res://PenanceMod/images/relics/large/{nameof(GoldenScales)}.png";
+    protected override string PackedIconOutlinePath => $"res://PenanceMod/images/relics/large/{nameof(GoldenScales)}.png";
+    protected override string BigIconPath => $"res://PenanceMod/images/relics/large/{nameof(GoldenScales)}.png";
 
     // 注册变量：正当防卫层数 (1)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
@@ -83,7 +83,7 @@ public class GoldenScales : CustomRelicModel
             int defAmt = DynamicVars["Scales-Def"].IntValue;
             
             // 给予正当防卫
-            await PowerCmd.Apply<JustifiedDefensePower>(player.Creature, defAmt, player.Creature, null);
+            await PowerCmd.Apply<JustifiedDefensePower>(choiceContext,player.Creature, defAmt, player.Creature, null);
         }
     }
 }

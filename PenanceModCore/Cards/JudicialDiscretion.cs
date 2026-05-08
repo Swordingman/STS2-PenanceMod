@@ -38,7 +38,7 @@ public class JudicialDiscretion : PenanceBaseCard
         if (barrierPower != null && barrierPower.Amount > 0)
         {
             int reduceAmount = Math.Min((int)barrierPower.Amount, 5);
-            await PowerCmd.Apply<BarrierPower>(creature, -reduceAmount, creature, this);
+            await PowerCmd.Apply<BarrierPower>(choiceContext,creature, -reduceAmount, creature, this);
         }
 
         // 2. 获得 1 点能量

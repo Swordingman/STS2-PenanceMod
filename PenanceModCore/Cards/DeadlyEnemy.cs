@@ -25,9 +25,9 @@ public class DeadlyEnemy : PenanceBaseCard
     }
 
     // 写全路径绑定“消耗”和“保留”词条
-    public override IEnumerable<MegaCrit.Sts2.Core.Entities.Cards.CardKeyword> CanonicalKeywords => [
-        MegaCrit.Sts2.Core.Entities.Cards.CardKeyword.Exhaust,
-        MegaCrit.Sts2.Core.Entities.Cards.CardKeyword.Retain
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [
+        CardKeyword.Exhaust,
+        CardKeyword.Retain
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

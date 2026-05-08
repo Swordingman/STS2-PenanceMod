@@ -29,7 +29,7 @@ public class Unwavering : PenanceBaseCard
         if (creature == null) return;
 
         int thornsAmt = DynamicVars["Unwavering-Thorns"].IntValue;
-        await PowerCmd.Apply<UnwaveringPower>(creature, thornsAmt, creature, this);
+        await PowerCmd.Apply<UnwaveringPower>(choiceContext,creature, thornsAmt, creature, this);
     }
 
     protected override void OnUpgrade()

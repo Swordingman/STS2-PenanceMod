@@ -33,7 +33,7 @@ public class PunishmentForTransgression : PenanceBaseCard
         int amount = vars.Count > 0 ? vars[0].IntValue : 1;
 
         // 挂载核心 Power
-        await PowerCmd.Apply<PunishmentForTransgressionPower>(Owner.Creature, amount, Owner.Creature, this);
+        await PowerCmd.Apply<PunishmentForTransgressionPower>(choiceContext,Owner.Creature, amount, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

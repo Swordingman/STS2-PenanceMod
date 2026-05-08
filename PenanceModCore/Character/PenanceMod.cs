@@ -13,9 +13,9 @@ namespace PenanceMod.PenanceModCode.Character;
 
 public class PenanceMod : PlaceholderCharacterModel
 {
-    public const string CharacterId = "Penance";
+    public const string CharacterId = "PenanceMod";
 
-    public static readonly Color Color = new(71, 63, 34);
+    public static readonly Color Color = new(144, 119, 22);
     public override Color NameColor => Color;
 
     // 能量图标轮廓颜色
@@ -25,7 +25,7 @@ public class PenanceMod : PlaceholderCharacterModel
     public override CharacterGender Gender => CharacterGender.Feminine;
 
     // 初始血量
-    public override int StartingHp => 80;
+    public override int StartingHp => 65;
 
     // 人物模型tscn路径。要自定义见下。
     public override string CustomVisualPath => "res://PenanceMod/scenes/Penance_anim.tscn";
@@ -34,7 +34,7 @@ public class PenanceMod : PlaceholderCharacterModel
     // 人物头像路径。
     public override string CustomIconTexturePath => "res://icon.svg";
     // 人物头像2号。
-    // public override string CustomIconPath => "res://scenes/ui/character_icons/ironclad_icon.tscn";
+    public override string CustomIconPath => "res://PenanceMod/scenes/Penance_Icon.tscn";
     // 能量表盘tscn路径。要自定义见下。
     public override string CustomEnergyCounterPath => "res://PenanceMod/scenes/Penance_eneg.tscn";
     // 篝火休息场景。
@@ -55,7 +55,7 @@ public class PenanceMod : PlaceholderCharacterModel
     // 人物选择图标。
     public override string CustomCharacterSelectIconPath => "res://PenanceMod/scenes/Penance_select.png";
     // 人物选择图标-锁定状态。
-    public override string CustomCharacterSelectLockedIconPath => "res://PenanceMod/images/charui/locked_Penance_select.png";
+    public override string CustomCharacterSelectLockedIconPath => "res://PenanceMod/scenes/locked_Penance_select.png";
     // 人物选择过渡动画。
     // public override string CustomCharacterSelectTransitionPath => "res://materials/transitions/ironclad_transition_mat.tres";
     // 地图上的角色标记图标、表情轮盘上的角色头像
@@ -67,7 +67,7 @@ public class PenanceMod : PlaceholderCharacterModel
     // 死亡音效
     // public override string CustomDeathSfx => null;
     // 角色选择音效
-    // public override string CharacterSelectSfx => null;
+    public override string CharacterSelectSfx => "res://PenanceMod/scenes/audio/cn.wav";
     // 过渡音效。这个不能删。
     public override string CharacterTransitionSfx => "event:/sfx/ui/wipe_ironclad";
 

@@ -55,7 +55,7 @@ public class Objection : PenanceBaseCard
         }
         else if (IsDefendingIntent(target))
         {
-            await PowerCmd.Apply<ThornAuraPower>(creature, smallAmt, creature, this);
+            await PowerCmd.Apply<ThornAuraPower>(choiceContext,creature, smallAmt, creature, this);
         }
         else
         {

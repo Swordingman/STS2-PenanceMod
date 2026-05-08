@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Hooks;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -21,7 +22,7 @@ public class TheTrial : PenanceBaseCard
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(10, ValueProp.Move)
+        new TrialDamageVar(10, ValueProp.Move)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -34,14 +35,18 @@ public class TheTrial : PenanceBaseCard
         var strPower = creature.GetPower<StrengthPower>();
         int strAmt = strPower != null ? strPower.Amount : 0;
 
-        // 还原原版的数学逻辑：力量 > 0 时乘算，力量 <= 0 时最终伤害为 0
-        int finalDamage = strAmt > 0 ? (realBaseDamage * strAmt) : 0;
+        // 1. 我们真正想要的基于力量乘算的基础伤害
+        int desiredBaseDamage = strAmt > 0 ? (realBaseDamage * strAmt) : 0;
 
-        await DamageCmd.Attack(finalDamage)
+        // 2. 【返璞归真】：既然系统必定会加上 strAmt 的力量，我们在这里提前减掉它！
+        // 剩下的不管什么活力、遗物，统统交给正常的 Attack 指令去处理。
+        int damageToPass = desiredBaseDamage - strAmt;
+
+        // 3. 正常打出（去掉 Unpowered）
+        await DamageCmd.Attack(damageToPass)
             .FromCard(this)
             .Targeting(cardPlay.Target)
-            .Unpowered() // 直接拦截底层的力量加成
-            .WithHitFx("vfx/vfx_attack_smash")
+            .WithHitFx(VfxCmd.heavyBluntPath)
             .Execute(choiceContext);
     }
 

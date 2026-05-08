@@ -36,7 +36,7 @@ public class Asceticism : PenanceBaseCard
         int buffAmount = magicVar.IntValue;
 
         // 施加苦行能力
-        await PowerCmd.Apply<AsceticismPower>(creature, buffAmount, creature, this);
+        await PowerCmd.Apply<AsceticismPower>(choiceContext,creature, buffAmount, creature, this);
     }
 
     protected override void OnUpgrade()

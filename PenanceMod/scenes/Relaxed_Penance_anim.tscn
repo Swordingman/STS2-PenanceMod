@@ -1,12 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbtkp2xyvacvj"]
+[gd_scene load_steps=5 format=3 uid="uid://cbtkp2xyvacvj"]
 
-[ext_resource type="SpineSkeletonDataResource" uid="uid://b5c5cpwj3lf7x" path="res://PenanceMod/scenes/Relaxed_penance_anim.tres" id="1_jcsve"]
+[ext_resource type="SpineAtlasResource" uid="uid://db70uwwy7888j" path="res://PenanceMod/scenes/resource/build_char_4065_judge.atlas" id="1_07ral"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Screens/Shops/NMerchantCharacter.cs" id="1_25v45"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://cvm5a3ecg80fg" path="res://PenanceMod/scenes/resource/build_char_4065_judge42.skel" id="2_25v45"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_hmwy2"]
+atlas_res = ExtResource("1_07ral")
+skeleton_file_res = ExtResource("2_25v45")
+
+[node name="PenanceMerchant" type="Node2D"]
+script = ExtResource("1_25v45")
 
 [node name="SpineSprite" type="SpineSprite" parent="."]
-skeleton_data_res = ExtResource("1_jcsve")
+skeleton_data_res = SubResource("SpineSkeletonDataResource_hmwy2")
 preview_skin = "default"
 preview_animation = "relaxed_loop"
 preview_frame = false
 preview_time = 0.0
+scale = Vector2(0.8, 0.8)

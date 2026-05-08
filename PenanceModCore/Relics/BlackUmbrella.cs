@@ -3,6 +3,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -21,9 +22,9 @@ public class BlackUmbrella : CustomRelicModel
     public override RelicRarity Rarity => RelicRarity.Common;
 
     // 沿用标准的 Id.Entry.ToLowerInvariant() 图片加载逻辑
-    public override string PackedIconPath => $"res://PenanceMod/images/relics/{Id.Entry.ToLowerInvariant()}.png";
-    protected override string PackedIconOutlinePath => $"res://PenanceMod/images/relics/{Id.Entry.ToLowerInvariant()}.png";
-    protected override string BigIconPath => $"res://PenanceMod/images/relics/large/{Id.Entry.ToLowerInvariant()}.png";
+    public override string PackedIconPath => $"res://PenanceMod/images/relics/large/{nameof(BlackUmbrella)}.png";
+    protected override string PackedIconOutlinePath => $"res://PenanceMod/images/relics/large/{nameof(BlackUmbrella)}.png";
+    protected override string BigIconPath => $"res://PenanceMod/images/relics/large/{nameof(BlackUmbrella)}.png";
 
     // 注册变量：[0] 易伤层数 (1)，[1] 力量层数 (1)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
@@ -43,7 +44,7 @@ public class BlackUmbrella : CustomRelicModel
         return Task.CompletedTask;
     }
 
-    public async Task TriggerOnBlockBroken(Creature attacker)
+    public async Task TriggerOnBlockBroken(PlayerChoiceContext choiceContext, Creature attacker)
     {
         if (TriggeredThisCombat) 
             return;
@@ -59,8 +60,8 @@ public class BlackUmbrella : CustomRelicModel
         int strAmt = DynamicVars["Umbrella-Str"].IntValue;
 
         if (attacker != null)
-            await PowerCmd.Apply<VulnerablePower>(attacker, vulnAmt, creature, null);
+            await PowerCmd.Apply<VulnerablePower>(choiceContext, attacker, vulnAmt, creature, null);
 
-        await PowerCmd.Apply<StrengthPower>(creature, strAmt, creature, null);
+        await PowerCmd.Apply<StrengthPower>(choiceContext, creature, strAmt, creature, null);
     }
 }

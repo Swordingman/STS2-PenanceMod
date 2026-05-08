@@ -12,6 +12,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -24,21 +28,36 @@ public class FinaleCatastrophe : PenanceBaseCard
     }
 
     // 绑定词条与后台标签
-    public override IEnumerable<MegaCrit.Sts2.Core.Entities.Cards.CardKeyword> CanonicalKeywords => 
-        [MegaCrit.Sts2.Core.Entities.Cards.CardKeyword.Exhaust, PenanceKeywords.CurseOfWolves];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, PenanceKeywords.CurseOfWolves];
     protected override HashSet<CardTag> CanonicalTags => [PenanceCardTags.CurseOfWolves];
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves)
+    ];
     // 🌟 注册总伤害次数 (30)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Finale-Hits", 30m)
     ];
+    
+    private bool _autoPlaying;
 
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
-        if (card == this)
+        if (card != this)
+            return;
+
+        if (_autoPlaying)
+            return;
+
+        _autoPlaying = true;
+
+        try
         {
-            await Cmd.Wait(0.25f);
-            await TriggerWolfAutoplay();
+            await TriggerWolfAutoplay(choiceContext, card);
+        }
+        finally
+        {
+            _autoPlaying = false;
         }
     }
 
@@ -92,11 +111,12 @@ public class FinaleCatastrophe : PenanceBaseCard
 
             if (target != null)
             {
-                // 造成 1 点不受力量加成的伤害 (完美还原一代的 1 点 Thorns 伤害)
                 await CreatureCmd.Damage(choiceContext, target, 1, ValueProp.Unpowered, this);
 
-                // 🌟 等待 0.05 秒，形成子弹连发倾泻的视觉效果！
-                // 二代的底层 Damage 会自带极其优秀的受击闪烁动画，不用像一代那样去手动生成 FlashAtkImgEffect。
+                VfxCmd.PlayOnCreatureCenter(target, VfxCmd.slashPath);
+
+                NGame.Instance?.ScreenShake(ShakeStrength.Weak, ShakeDuration.Short);
+
                 await Cmd.Wait(0.05f);
             }
         }

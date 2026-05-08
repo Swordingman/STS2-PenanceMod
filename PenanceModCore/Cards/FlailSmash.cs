@@ -23,8 +23,8 @@ public class FlailSmash : PenanceBaseCard
     }
 
     // 绑定消耗词条 (写全路径防报错)
-    public override IEnumerable<MegaCrit.Sts2.Core.Entities.Cards.CardKeyword> CanonicalKeywords => 
-        [MegaCrit.Sts2.Core.Entities.Cards.CardKeyword.Exhaust];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => 
+        [CardKeyword.Exhaust];
 
     // 🌟 注册变量：基础伤害 7
     protected override IEnumerable<DynamicVar> CanonicalVars => [
@@ -43,7 +43,7 @@ public class FlailSmash : PenanceBaseCard
             .Execute(choiceContext);
 
         // 2. 给予 1 层止戈
-        await PowerCmd.Apply<CeasefirePower>(target, 1, Owner.Creature, this);
+        await PowerCmd.Apply<CeasefirePower>(choiceContext,target, 1, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

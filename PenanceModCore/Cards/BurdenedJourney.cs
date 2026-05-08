@@ -35,8 +35,8 @@ public class BurdenedJourney : PenanceBaseCard
         int amount = magicVar.IntValue;
 
         // 依次施加两层能力
-        await PowerCmd.Apply<JudgementPower>(creature, amount, creature, this);
-        await PowerCmd.Apply<ThornAuraPower>(creature, amount, creature, this);
+        await PowerCmd.Apply<JudgementPower>(choiceContext,creature, amount, creature, this);
+        await PowerCmd.Apply<ThornAuraPower>(choiceContext,creature, amount, creature, this);
     }
 
     protected override void OnUpgrade()

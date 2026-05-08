@@ -30,8 +30,8 @@ public class HourOfReckoning : PenanceBaseCard
     }
 
     // 绑定“虚无”词条
-    public override IEnumerable<MegaCrit.Sts2.Core.Entities.Cards.CardKeyword> CanonicalKeywords => 
-        [MegaCrit.Sts2.Core.Entities.Cards.CardKeyword.Ethereal];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => 
+        [CardKeyword.Ethereal];
 
     // 注册变量：基础伤害 20
     protected override IEnumerable<DynamicVar> CanonicalVars => [

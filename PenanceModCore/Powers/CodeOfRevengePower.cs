@@ -2,6 +2,7 @@ using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -20,6 +21,6 @@ public class CodeOfRevengePower : CustomPowerModel
         
         // 核心：给予屏障
         // 弃用等待 (_ =) 让引擎在后台安全地排队执行，不阻塞当前的裁决伤害
-        _ = PowerCmd.Apply<BarrierPower>(Owner, Amount, Owner, null);
+        _ = PowerCmd.Apply<BarrierPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
     }
 }

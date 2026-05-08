@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -46,7 +47,7 @@ public class Purge : PenanceBaseCard
 
         // 2. 计算实际扣血量，也就是未被格挡的伤害
         int totalUnblockedDamage = attackCommand.Results
-            .Sum(r => r.UnblockedDamage);
+            .Sum(hitList => hitList.Sum(r => r.UnblockedDamage));
 
         // 3. 根据未格挡伤害获得屏障
         if (totalUnblockedDamage > 0)

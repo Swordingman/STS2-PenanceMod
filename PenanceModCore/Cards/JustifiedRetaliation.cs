@@ -34,13 +34,13 @@ public class JustifiedRetaliation : PenanceBaseCard
         var creature = Owner.Creature;
 
         // 1. 获得指定层数的屏障
-        await PowerCmd.Apply<BarrierPower>(creature, barrierAmount, creature, this);
+        await PowerCmd.Apply<BarrierPower>(choiceContext,creature, barrierAmount, creature, this);
 
         // 稍微停顿一下特效，让连招看起来更舒服（可选）
         await Cmd.Wait(0.1f);
 
         // 2. 获得 1 层“正当防卫”
-        await PowerCmd.Apply<JustifiedDefensePower>(creature, 1, creature, this);
+        await PowerCmd.Apply<JustifiedDefensePower>(choiceContext,creature, 1, creature, this);
     }
 
     protected override void OnUpgrade()

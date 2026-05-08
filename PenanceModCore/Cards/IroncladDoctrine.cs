@@ -32,7 +32,7 @@ public class IroncladDoctrine : PenanceBaseCard
         int costAmt = vars.Count > 0 ? vars[0].IntValue : 10;
 
         // 挂载铁律护体状态，层数即为“需要消耗的屏障数量”
-        await PowerCmd.Apply<IroncladDoctrinePower>(Owner.Creature, costAmt, Owner.Creature, this);
+        await PowerCmd.Apply<IroncladDoctrinePower>(choiceContext,Owner.Creature, costAmt, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

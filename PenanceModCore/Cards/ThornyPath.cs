@@ -20,7 +20,7 @@ public class ThornyPath : PenanceBaseCard
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("ThornyPath-Percent", 50m)
+        new DynamicVar("ThornyPath-Amt", 1m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -28,8 +28,8 @@ public class ThornyPath : PenanceBaseCard
         var creature = Owner.Creature;
         if (creature == null) return;
 
-        int percentAmt = DynamicVars["ThornyPath-Percent"].IntValue;
-        await PowerCmd.Apply<ThornyPathPower>(creature, percentAmt, creature, this);
+        int amt = DynamicVars["ThornyPath-Amt"].IntValue;
+        await PowerCmd.Apply<ThornyPathPower>(choiceContext,creature, amt, creature, this);
     }
 
     protected override void OnUpgrade()

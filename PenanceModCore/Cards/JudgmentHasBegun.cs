@@ -22,17 +22,16 @@ public class JudgmentHasBegun : PenanceBaseCard
     }
 
     // 🌟 注册基础关键词：消耗
-    public override IEnumerable<CardKeyword> CanonicalKeywords => IsUpgraded 
-        ? [CardKeyword.Exhaust, CardKeyword.Retain] // 升级后增加保留 (Retain)
-        : [CardKeyword.Exhaust];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 挂载核心 Power
-        await PowerCmd.Apply<JudgmentHasBegunPower>(Owner.Creature, 1, Owner.Creature, this);
+        await PowerCmd.Apply<JudgmentHasBegunPower>(choiceContext,Owner.Creature, 1, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
+        AddKeyword(CardKeyword.Retain);
     }
 }

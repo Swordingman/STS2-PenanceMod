@@ -32,7 +32,7 @@ public class EmergencyRepair : PenanceBaseCard
         int barrierGain = vars.Count > 0 ? vars[0].IntValue : 4;
 
         // 1. 获得屏障
-        await PowerCmd.Apply<BarrierPower>(Owner.Creature, barrierGain, Owner.Creature, this);
+        await PowerCmd.Apply<BarrierPower>(choiceContext,Owner.Creature, barrierGain, Owner.Creature, this);
 
         // 2. 抽 1 张牌 (复用之前在查阅卷宗学到的底层 API)
         await CardPileCmd.Draw(choiceContext, 1, Owner);
