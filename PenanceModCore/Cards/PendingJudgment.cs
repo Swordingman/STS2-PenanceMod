@@ -1,111 +1,61 @@
 using PenanceMod.PenanceModCode.Character;
-using BaseLib.Utils;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
-using PenanceMod.PenanceModCode.Powers;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace PenanceMod.Scripts.Cards;
 
 [Pool(typeof(PenanceModCardPool))]
 public class PendingJudgment : PenanceBaseCard
 {
-    // 耗能 1，类型 Skill，稀有度 Uncommon，目标 Self
-    public PendingJudgment() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
+    public PendingJudgment() : base(1, CardType.Skill, CardRarity.Common, TargetType.AllEnemies, true)
     {
     }
 
-    // 每个攻击意图敌人提供的屏障数：8
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Pending-Barrier", 8m)
+        new DynamicVar("Pending-Weak", 1m),
+        new DynamicVar("Pending-Barrier", 4m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var creature = Owner.Creature;
-        var combatState = creature.CombatState;
+        var combatState = Owner.Creature.CombatState;
+        if (combatState == null) return;
 
-        if (combatState == null)
-            return;
+        int weakAmt = DynamicVars["Pending-Weak"].IntValue;
+        int barrierPerWeak = DynamicVars["Pending-Barrier"].IntValue;
 
-        int baseBarrier = GetBaseBarrierAmount();
-        int attackIntentCount = GetAttackIntentEnemyCount();
-
-        if (attackIntentCount <= 0)
-            return;
-
-        int totalBarrier = baseBarrier * attackIntentCount;
-        await ApplyBarrier(creature, totalBarrier);
-    }
-
-    protected override void AddExtraArgsToDescription(LocString description)
-    {
-        base.AddExtraArgsToDescription(description);
-
-        string dynamicText = "";
-
-        if (IsInCombat)
+        // 1. 给予所有目标虚弱
+        foreach (var enemy in combatState.HittableEnemies)
         {
-            int baseBarrier = GetBaseBarrierAmount();
-            int attackIntentCount = GetAttackIntentEnemyCount();
-            int totalBarrier = baseBarrier * attackIntentCount;
-
-            if (totalBarrier > 0)
-            {
-                LocString extendedDesc = new LocString(
-                    "cards",
-                    "PENANCEMOD-PENDING_JUDGMENT.extended_description"
-                );
-
-                extendedDesc.Add("amount", totalBarrier);
-                dynamicText = extendedDesc.GetFormattedText() ?? "";
-            }
+            await PowerCmd.Apply<WeakPower>(choiceContext, enemy, weakAmt, Owner.Creature, this);
         }
 
-        description.Add("DynamicBarrierText", dynamicText);
+        // 稍微停顿一下，让虚弱特效飞完，否则引擎可能还没把状态挂上去就判定了
+        await Cmd.Wait(0.1f);
+
+        // 2. 统计当前带有虚弱的敌人数量
+        int weakEnemyCount = combatState.HittableEnemies.Count(e => e.GetPower<WeakPower>() != null);
+
+        // 3. 获得屏障
+        if (weakEnemyCount > 0)
+        {
+            await ApplyBarrier(Owner.Creature, weakEnemyCount * barrierPerWeak);
+        }
     }
 
     protected override void OnUpgrade()
     {
-        var vars = DynamicVars.Values.ToList();
-
-        if (vars.Count > 0)
-        {
-            vars[0].UpgradeValueBy(3);
-        }
-    }
-
-    private int GetBaseBarrierAmount()
-    {
-        var vars = DynamicVars.Values.ToList();
-        return vars.Count > 0 ? vars[0].IntValue : 8;
-    }
-
-    private int GetAttackIntentEnemyCount()
-    {
-        if (!IsInCombat)
-            return 0;
-
-        var creature = Owner.Creature;
-        var combatState = creature.CombatState;
-
-        if (combatState == null)
-            return 0;
-
-        return combatState.GetOpponentsOf(creature)
-            .Count(enemy => enemy.IsAlive && IsAttackingIntent(enemy));
-    }
-
-    private bool IsAttackingIntent(Creature enemy)
-    {
-        return enemy.Monster?.IntendsToAttack == true;
+        DynamicVars["Pending-Weak"].UpgradeValueBy(1);
+        DynamicVars["Pending-Barrier"].UpgradeValueBy(1);
     }
 }

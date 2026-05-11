@@ -19,10 +19,7 @@
 
   "PENANCEMOD-A_SIP.title": "小酌一杯",
   "PENANCEMOD-A_SIP.description": "失去{ASip-Penalty:diff()}点屏障。如果不足，则失去等量生命值。\n获得2点力量。\n在手牌中加入一张此牌的复制品。该复制品拥有虚无，且失去的数值增加2点。",
-
-  "PENANCEMOD-BAD_OPERA.title": "烂歌剧",
-  "PENANCEMOD-BAD_OPERA.description": "随机将{BadOpera-Magic:diff()}张攻击牌加入手牌。{IfUpgraded:show:\n[purple]生成的卡牌将被升级。[/purple]|}",
-
+ 
   "PENANCEMOD-BARBED_REBUKE.title": "你荆然敢!",
   "PENANCEMOD-BARBED_REBUKE.description": "造成{Damage:diff()}点伤害。\n使目标的虚弱层数与你的荆棘环身层数中较小的那一方增加至和另一方相等。",
 
@@ -53,14 +50,11 @@
   "PENANCEMOD-CITATION_OF_LAW.description": "获得{Citation-Base:diff()}点屏障。\n然后，获得等同于当前屏障{Citation-Percent:diff()}% 的屏障。{DynamicTotal}",
   "PENANCEMOD-CITATION_OF_LAW.extended_description": "\n[purple]（当前总计获得{amount}点。）[/purple]",
 
-  "PENANCEMOD-CLEAR_THE_SCENE.title": "肃清现场",
-  "PENANCEMOD-CLEAR_THE_SCENE.description": "失去3点生命值。\n对所有敌人造成{Damage:diff()}点伤害。",
-
   "PENANCEMOD-CODE_OF_REVENGE.title": "复仇法典",
   "PENANCEMOD-CODE_OF_REVENGE.description": "每当你触发裁决造成伤害时，获得{CodeOfRevenge-Magic:diff()}点屏障。",
 
   "PENANCEMOD-CODE_STRIKE.title": "法典打击",
-  "PENANCEMOD-CODE_STRIKE.description": "造成{Damage:diff()}点伤害。\n每造成7点未被格挡的伤害，便获得1点{energyPrefix:energyIcons(1)}。",
+  "PENANCEMOD-CODE_STRIKE.description": "造成{Damage:diff()}点伤害。\n每造成7点未被格挡的伤害，便获得{energyPrefix:energyIcons(1)}。",
 
   "PENANCEMOD-CONSULT_THE_DOSSIER.title": "查阅卷宗",
   "PENANCEMOD-CONSULT_THE_DOSSIER.description": "抽{Consult-Draw:diff()}张牌。\n每抽到一张技能牌，获得{Consult-Judge:diff()}层裁决。",
@@ -108,9 +102,6 @@
   "PENANCEMOD-GAVEL_BARRAGE.title": "法槌连击",
   "PENANCEMOD-GAVEL_BARRAGE.description": "对敌人造成{Damage:diff()}点伤害{IfUpgraded:show:X+1|X}次。\n每次造成伤害，获得1点裁决和1层荆棘环身。",
 
-  "PENANCEMOD-GAVEL_STRIKE.title": "判决打击",
-  "PENANCEMOD-GAVEL_STRIKE.description": "造成{Damage:diff()}点伤害。\n若屏障高于目标生命值且其非精英或首领，则直接将其击杀。",
-
   "PENANCEMOD-GLOW_OF_SUFFERING.title": "苦难辉光",
   "PENANCEMOD-GLOW_OF_SUFFERING.description": "每当你通过卡牌效果失去生命值时，获得失去值{Glow-Mult:diff()}倍的屏障，和{Glow-Mult:diff()}倍的荆棘环身。",
 
@@ -118,7 +109,7 @@
   "PENANCEMOD-GUARDIAN_OF_THE_LAW.description": "每当你的屏障受到伤害时，获得{Guardian-Magic:diff()}点裁决。",
 
   "PENANCEMOD-GUILTY_AS_CHARGED.title": "有罪！",
-  "PENANCEMOD-GUILTY_AS_CHARGED.description": "移除目标的所有格挡。\n造成{Damage:diff()}点伤害。\n基于你的层数是否大于等于 10 追加效果：\n裁决：造成等量伤害。\n荆棘环身：给予1层止戈。\n力量：上述效果触发两次。",
+  "PENANCEMOD-GUILTY_AS_CHARGED.description": "移除目标的所有格挡。\n造成{Damage:diff()}点伤害。\n你的所有牌堆中每有一张[gold]诅咒[/gold]牌，额外造成{Guilty-CurseDmg:diff()}点伤害。",
 
   "PENANCEMOD-HOUR_OF_RECKONING.title": "清算时刻",
   "PENANCEMOD-HOUR_OF_RECKONING.description": "造成{Damage:diff()}点伤害。{DynamicHpLostText}\n本场战斗你每失去1点生命值，伤害增加1点。",
@@ -161,10 +152,7 @@
 
   "PENANCEMOD-LAW_MODIFICATION.title": "法则修正",
   "PENANCEMOD-LAW_MODIFICATION.description": "将你的格挡转换为屏障。",
-
-  "PENANCEMOD-MALICIOUS_COMPETITION.title": "恶意竞争",
-  "PENANCEMOD-MALICIOUS_COMPETITION.description": "造成{Damage:diff()}点伤害。\n若目标生命值高于你{IfUpgraded:show:的一半|}，获得{Malicious-Barrier:diff()}点屏障。",
-
+ 
   "PENANCEMOD-NO_SENTENCE_NEEDED.title": "无需宣判",
   "PENANCEMOD-NO_SENTENCE_NEEDED.description": "如果你的屏障为0且当前生命值不足一半，此牌可以打出。\n造成{Damage:diff()}点伤害。",
   "PENANCEMOD-NO_SENTENCE_NEEDED.cant_use_message": "我必须在屏障归零且生命值不足一半时才能打出这张牌。",
@@ -175,18 +163,14 @@
   "PENANCEMOD-PENALTY_REGRESSION.title": "刑责回溯",
   "PENANCEMOD-PENALTY_REGRESSION.description": "造成{Damage:diff()}点伤害。\n使你身上的所有减益效果层数减少 1。",
 
-  "PENANCEMOD-PENDING_JUDGMENT.title": "待命裁定",
-  "PENANCEMOD-PENDING_JUDGMENT.description": "每有一个意图为攻击的敌人，便获得{Pending-Barrier:diff()}点屏障。{DynamicBarrierText}",
-  "PENANCEMOD-PENDING_JUDGMENT.extended_description": "\n[purple]（当前提供{amount}点屏障。）[/purple]",
-
   "PENANCEMOD-PERJURY.title": "伪证",
-  "PENANCEMOD-PERJURY.description": "将一张悔恨置入你的手牌。获得2点{energyPrefix:energyIcons(1)}。",
+  "PENANCEMOD-PERJURY.description": "将一张悔恨置入你的手牌。获得{energyPrefix:energyIcons(2)}。",
 
   "PENANCEMOD-PRE_EXECUTION_PREP.title": "执行前准备",
-  "PENANCEMOD-PRE_EXECUTION_PREP.description": "抽牌直到手牌上限。根据抽到的类型获得：\n攻击牌 -> 获得1点裁决；\n技能牌 -> 获得1层荆棘环身；\n能力牌 -> 获得1点力量；\n诅咒牌 -> 获得1点{energyPrefix:energyIcons(1)}。",
+  "PENANCEMOD-PRE_EXECUTION_PREP.description": "抽牌直到手牌上限。每抽到一张：\n攻击牌，获得1点裁决；\n技能牌，获得1层荆棘环身；\n能力牌，获得1点力量；\n诅咒牌，获得{energyPrefix:energyIcons(1)}。",
 
   "PENANCEMOD-PROCEDURAL_JUSTICE.title": "程序正义",
-  "PENANCEMOD-PROCEDURAL_JUSTICE.description": "每当你获得格挡时，获得等量的屏障。",
+  "PENANCEMOD-PROCEDURAL_JUSTICE.description": "每当你消耗一张牌，获得{Justice-Barrier:diff()}点屏障。",
 
   "PENANCEMOD-PUNISHMENT_FOR_TRANSGRESSION.title": "越界必罚",
   "PENANCEMOD-PUNISHMENT_FOR_TRANSGRESSION.description": "如果你本回合没有使用过攻击牌，回合结束时，获得{Transgression-Amt:diff()}层正当防卫。",
@@ -256,17 +240,11 @@
   "PENANCEMOD-UNWRITTEN_LAW.title": "不成文的法律",
   "PENANCEMOD-UNWRITTEN_LAW.description": "从抽牌堆随机抽一张能力牌。\n如果你在本回合打出了它，额外打出一次。",
 
-  "PENANCEMOD-OBJECTION.title": "异议！",
-  "PENANCEMOD-OBJECTION.description": "造成{Damage:diff()}点伤害。\n目标意图为：\n攻击时，获得{Obj-Small:diff()}点裁决；\n格挡时，获得{Obj-Small:diff()}层荆棘环身；\n否则，获得{Obj-Large:diff()}点屏障。",
-
   "PENANCEMOD-PURGE.title": "肃清",
   "PENANCEMOD-PURGE.description": "对所有敌人造成{Damage:diff()}点伤害。\n获得等同于未被格挡伤害总量的屏障。",
 
-  "PENANCEMOD-INESCAPABLE_NET.title": "法网恢恢",
-  "PENANCEMOD-INESCAPABLE_NET.description": "下回合开始时，获得{Net-Barrier:diff()}点屏障，并抽1张牌。",
-
   "PENANCEMOD-WEAK_AND_WEEP.title": "拟以棘枯",
-  "PENANCEMOD-WEAK_AND_WEEP.description": "{IfUpgraded:show:|[gold]消耗[/gold]。\n}对目标造成等同于其虚弱层数次的荆棘环身伤害。",
+  "PENANCEMOD-WEAK_AND_WEEP.description": "目标每拥有一层虚弱，就对其造成一次荆棘环身伤害。",
 
   "PENANCEMOD-SETTLING_OLD_SCORES.title": "清算",
   "PENANCEMOD-SETTLING_OLD_SCORES.description": "抽{Settling-Draw:diff()}张牌，自动打出其中的攻击牌并将其[gold]消耗[/gold]。重复此过程，直到抽出2张非攻击牌。",
@@ -278,5 +256,36 @@
   "PENANCEMOD-UNYIELD.description": "获得{IfUpgraded:show:9X+11|8X+6}点屏障。\n获得{IfUpgraded:show:6X+8|5X+3}点裁决和荆棘环身。",
 
   "PENANCEMOD-DESTRUCTION_BEFORE_CREATION.title": "不破不立",
-  "PENANCEMOD-DESTRUCTION_BEFORE_CREATION.description": "每当你[gold]消耗[/gold]一张诅咒牌，获得1点能量。\n每个回合开始时，向弃牌堆洗入1张随机狼群诅咒。"
+  "PENANCEMOD-DESTRUCTION_BEFORE_CREATION.description": "每当你[gold]消耗[/gold]一张诅咒牌，获得1点能量，并抽1张牌。\n每个回合开始时，向弃牌堆洗入1张随机狼群诅咒。",
+
+  "PENANCEMOD-COURT_MAJESTY.title": "法庭之威",
+  "PENANCEMOD-COURT_MAJESTY.description": "拥有[gold]虚弱[/gold]的敌人对你的[gold]屏障[/gold]造成的伤害额外减少25%",
+
+  "PENANCEMOD-GUILT_BOUND_AURA.title": "罪责环绕",
+  "PENANCEMOD-GUILT_BOUND_AURA.description": "获得{Aura-Barrier:diff()}点[gold]屏障[/gold]。获得{Aura-Thorns:diff()}层[gold]荆棘环身[/gold]。",
+
+  "PENANCEMOD-BAD_OPERA.title": "烂歌剧",
+  "PENANCEMOD-BAD_OPERA.description": "随机[gold]消耗[/gold]抽牌堆中最多{Opera-CurseCount:diff()}张[gold]诅咒[/gold]牌。\n每[gold]消耗[/gold]一张，获得[blue]1[/blue]点[gold]力量[/gold]和[blue]2[/blue]点[gold]裁决[/gold]。",
+
+  "PENANCEMOD-GAVEL_STRIKE.title": "判决打击",
+  "PENANCEMOD-GAVEL_STRIKE.description": "造成{Damage:diff()}点伤害。\n获得等同于目标拥有的[gold]虚弱[/gold]层数的[gold]屏障[/gold]。",
+
+  "PENANCEMOD-PENDING_JUDGMENT.title": "待命裁定",
+  "PENANCEMOD-PENDING_JUDGMENT.description": "给予所有敌人{Pending-Weak:diff()}层[gold]虚弱[/gold]。每有一个拥有[gold]虚弱[/gold]的敌人，获得{Pending-Barrier:diff()}点[gold]屏障[/gold]。",
+
+  "PENANCEMOD-INESCAPABLE_NET.title": "法网恢恢",
+  "PENANCEMOD-INESCAPABLE_NET.description": "给予所有敌人1层[gold]虚弱[/gold]。下个回合开始时，每有一个敌人处于[gold]虚弱[/gold]状态，就额外抽1张牌并获得{energyPrefix:energyIcons(1)}。",
+
+  "PENANCEMOD-MALICIOUS_COMPETITION.title": "恶意竞争",
+  "PENANCEMOD-MALICIOUS_COMPETITION.description": "{IfUpgraded:show:|随机}[gold]消耗[/gold]一张手牌。\n获得{Malicious-Barrier:diff()}点[gold]屏障[/gold]和{Malicious-Judge:diff()}层[gold]裁决[/gold]。",
+  "PENANCEMOD-MALICIOUS_COMPETITION.upgradeDescription": "选择并[gold]消耗[/gold]一张手牌。\n获得{Malicious-Barrier:diff()}点[gold]屏障[/gold]和{Malicious-Judge:diff()}层[gold]裁决[/gold]。",
+
+  "PENANCEMOD-OBJECTION.title": "异议！",
+  "PENANCEMOD-OBJECTION.description": "造成{Damage:diff()}点伤害。如果你拥有至少{Objection-Cost:diff()}层[gold]裁决[/gold]，则消耗{Objection-Cost:diff()}层[gold]裁决[/gold]，给予目标1层[gold]止戈[/gold]。",
+
+  "PENANCEMOD-JURY_ENTRY.title": "陪审入场",
+  "PENANCEMOD-JURY_ENTRY.description": "从3张随机[gold]狼群诅咒[/gold]中选择1张洗入抽牌堆。\n获得{Jury-Barrier:diff()}点[gold]屏障[/gold]。",
+
+  "PENANCEMOD-EXHIBIT_A.title": "证据",
+  "EXHIBIT_A.description": "将一张[red]疑惑[/red]置入你的手牌。\n抽3张牌。"
 }

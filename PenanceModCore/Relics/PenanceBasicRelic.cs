@@ -25,6 +25,8 @@ public class PenanceBasicRelic : CustomRelicModel
     protected override string PackedIconOutlinePath => $"res://PenanceMod/images/relics/large/{nameof(PenanceBasicRelic)}.png";
     protected override string BigIconPath => $"res://PenanceMod/images/relics/large/{nameof(PenanceBasicRelic)}.png";
 
+    public override RelicModel? GetUpgradeReplacement() => ModelDb.Relic<ThornyRoad>();
+
     // 完美保留你药水检测的逻辑
     public static bool IsPotionActive = false;
 
@@ -128,16 +130,21 @@ public static class PotionHealPatch
         // 排除非玩家和无意义的数值
         if (!__instance.IsPlayer || amount <= 0) return true;
 
+        // 🌟 核心修正：濒死抢救豁免！
+        // 如果玩家血量已经归零或更低，说明这是复活类道具（如瓶装精灵）在救命。
+        // 绝对不能把救命血转成屏障，直接放行原版回血！
+        if (__instance.CurrentHp <= 0) return true;
+
         var relic = __instance.Player.GetRelic<PenanceBasicRelic>();
         if (relic != null)
         {
-            // 条件 1：药水是否正在生效（你原本写好的完美机制）
+            // 条件 1：药水是否正在生效
             bool isPotion = PenanceBasicRelic.IsPotionActive;
 
-            // 条件 2：玩家当前是否在篝火房间（完美替代对 RestSite 的拦截）
+            // 条件 2：玩家当前是否在篝火房间
             bool isAtCampfire = __instance.Player.RunState.CurrentRoom is RestSiteRoom;
 
-            // 严格遵循你的要求：只拦截药水和休息处！其他的放行！
+            // 只拦截药水和休息处
             if (isPotion || isAtCampfire)
             {
                 relic.TriggerHealingConversion((int)amount);

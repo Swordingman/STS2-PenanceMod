@@ -8,6 +8,9 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Relics;
 using PenanceMod.Scripts.Cards;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Animation;
+using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 
 namespace PenanceMod.PenanceModCode.Character;
 
@@ -95,11 +98,26 @@ public class PenanceMod : PlaceholderCharacterModel
     ];
 
     // 攻击建筑师的攻击特效列表
-    public override List<string> GetArchitectAttackVfx() => [
-        "vfx/vfx_attack_blunt",
-        "vfx/vfx_heavy_blunt",
-        "vfx/vfx_attack_slash",
-        "vfx/vfx_bloody_impact",
-        "vfx/vfx_rock_shatter"
-    ];
+    public override List<string> GetArchitectAttackVfx()
+    {
+        return base.GetArchitectAttackVfx();
+    }
+
+    public override CreatureAnimator? SetupCustomAnimationStates(MegaSprite controller)
+    {
+        return CustomCharacterModel.SetupAnimationState(
+            controller, 
+            idleName: "idle_loop",       // 替换为你Godot里的待机动画名
+            deadName: "die",         // 替换为死亡动画名
+            deadLoop: false, 
+            hitName: "hurt",         // 替换为受伤动画名（没有就写 null）
+            hitLoop: false, 
+            attackName: "attack",   // 【最关键！】替换为你Godot里的攻击/敲锤子动画名
+            attackLoop: false, 
+            castName: "cast",       // 替换为施放能力牌的动画名（没有就写 null）
+            castLoop: false, 
+            relaxedName: "idle_loop", // 替换为在商店里的待机动画名
+            relaxedLoop: true
+        );
+    }
 }

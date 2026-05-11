@@ -52,8 +52,8 @@
   "PENANCEMOD-CROWN_OF_THORNS_POWER.smartDescription": "回合开始时，失去[red]2[/red]点生命，获得[blue]{Amount}[/blue]层[gold]荆棘环身[/gold]，并给予所有敌人[blue]{Amount}[/blue]层[gold]虚弱[/gold]。",
 
   "PENANCEMOD-SCENE_INVESTIGATION_POWER.title": "调查现场",
-  "PENANCEMOD-SCENE_INVESTIGATION_POWER.description": "你的回合中：\n连续使用[blue]2[/blue]张攻击牌，获得[blue]{Amount}[/blue]张{IsUpgraded:show:升级后的|}随机技能牌；\n连续使用[blue]2[/blue]张技能牌，获得[blue]{Amount}[/blue]张{IsUpgraded:show:[gold]升级后的[/gold]|}随机攻击牌；\n连续使用[blue]2[/blue]张能力牌，获得{EnergyTotal:energyIcons()}。\n(生成的卡牌具有 消耗 和 虚无 )",
-  "PENANCEMOD-SCENE_INVESTIGATION_POWER.smartDescription": "你的回合中：\n连续使用[blue]2[/blue]张攻击牌，获得[blue]{Amount}[/blue]张{IsUpgraded:show:升级后的|}随机技能牌；\n连续使用[blue]2[/blue]张技能牌，获得[blue]{Amount}[/blue]张{IsUpgraded:show:[gold]升级后的[/gold]|}随机攻击牌；\n连续使用[blue]2[/blue]张能力牌，获得{EnergyTotal:energyIcons()}。\n(生成的卡牌具有 消耗 和 虚无 )",
+  "PENANCEMOD-SCENE_INVESTIGATION_POWER.description": "你的回合中：\n连续使用[blue]2[/blue]张攻击牌，获得[blue]{Amount}[/blue]张{IfUpgraded:show:升级后的|}随机技能牌；\n连续使用[blue]2[/blue]张技能牌，获得[blue]{Amount}[/blue]张{IfUpgraded:show:[gold]升级后的[/gold]|}随机攻击牌；\n连续使用[blue]2[/blue]张能力牌，获得{EnergyTotal:energyIcons()}。\n(生成的卡牌具有 消耗 和 虚无 )",
+  "PENANCEMOD-SCENE_INVESTIGATION_POWER.smartDescription": "你的回合中：\n连续使用[blue]2[/blue]张攻击牌，获得[blue]{Amount}[/blue]张{IfUpgraded:show:升级后的|}随机技能牌；\n连续使用[blue]2[/blue]张技能牌，获得[blue]{Amount}[/blue]张{IfUpgraded:show:[gold]升级后的[/gold]|}随机攻击牌；\n连续使用[blue]2[/blue]张能力牌，获得{EnergyTotal:energyIcons()}。\n(生成的卡牌具有 消耗 和 虚无 )",
 
   "PENANCEMOD-PLAYER_FACING_POWER.title": "被包围",
   "PENANCEMOD-PLAYER_FACING_POWER.description": "你正处于包围之中。打出[blue]攻击牌[/blue]会改变你的朝向。\n当你[red]背对[/red]敌人时，敌人会优先攻击平民。",
@@ -63,13 +63,9 @@
   "PENANCEMOD-CUMULATIVE_PRECEDENT_POWER.description": "每打出一张技能牌，获得[blue]{Amount}[/blue]层[gold]屏障[/gold]。",
   "PENANCEMOD-CUMULATIVE_PRECEDENT_POWER.smartDescription": "每打出一张技能牌，获得[blue]{Amount}[/blue]层[gold]屏障[/gold]。",
 
-  "PENANCEMOD-INESCAPABLE_NET_POWER.title": "法网恢恢",
-  "PENANCEMOD-INESCAPABLE_NET_POWER.description": "下个回合开始时，获得[blue]{Amount}[/blue]层[gold]屏障[/gold]并抽{draw}张牌。",
-  "PENANCEMOD-INESCAPABLE_NET_POWER.smartDescription": "下个回合开始时，获得[blue]{Amount}[/blue]层[gold]屏障[/gold]并抽 {draw} 张牌。",
-
   "PENANCEMOD-PROCEDURAL_JUSTICE_POWER.title": "程序正义",
-  "PENANCEMOD-PROCEDURAL_JUSTICE_POWER.description": "每当你获得格挡时，获得等同于格挡值[blue]{Amount}[/blue]倍的[gold]屏障[/gold]。",
-  "PENANCEMOD-PROCEDURAL_JUSTICE_POWER.smartDescription": "每当你获得格挡时，获得等同于格挡值[blue]{Amount}[/blue]倍的[gold]屏障[/gold]。",
+  "PENANCEMOD-PROCEDURAL_JUSTICE_POWER.description": "每当你[gold]消耗[/gold]一张牌，获得[blue]{Amount}[/blue]点[gold]屏障[/gold]。",
+  "PENANCEMOD-PROCEDURAL_JUSTICE_POWER.smartDescription": "每当你[gold]消耗[/gold]一张牌，获得[blue]{Amount}[/blue]点[gold]屏障[/gold]。",
 
   "PENANCEMOD-IRONCLAD_DOCTRINE_POWER.title": "铁律护体",
   "PENANCEMOD-IRONCLAD_DOCTRINE_POWER.description": "回合开始时，如果你拥有至少[blue]{Amount}[/blue]层[gold]屏障[/gold]，则失去它们并恢复 {HealAmount} 点生命。",
@@ -105,5 +101,9 @@
 
   "PENANCEMOD-DESTRUCTION_BEFORE_CREATION_POWER.title": "不破不立",
   "PENANCEMOD-DESTRUCTION_BEFORE_CREATION_POWER.description": "每当你[gold]消耗[/gold]一张诅咒牌，获得[blue]{Amount}[/blue]点能量，并抽[blue]{Amount}[/blue]张牌。\n每个回合开始时，向弃牌堆洗入[blue]{Amount}[/blue]张随机[gold]狼群诅咒[/gold]。",
-  "PENANCEMOD-DESTRUCTION_BEFORE_CREATION_POWER.smartDescription": "每当你[gold]消耗[/gold]一张诅咒牌，获得[blue]{Amount}[/blue]点能量，并抽[blue]{Amount}[/blue]张牌。\n每个回合开始时，向弃牌堆洗入[blue]{Amount}[/blue]张随机[gold]狼群诅咒[/gold]。"
+  "PENANCEMOD-DESTRUCTION_BEFORE_CREATION_POWER.smartDescription": "每当你[gold]消耗[/gold]一张诅咒牌，获得[blue]{Amount}[/blue]点能量，并抽[blue]{Amount}[/blue]张牌。\n每个回合开始时，向弃牌堆洗入[blue]{Amount}[/blue]张随机[gold]狼群诅咒[/gold]。",
+
+  "PENANCEMOD-COURT_MAJESTY_POWER.title": "法庭之威",
+  "PENANCEMOD-COURT_MAJESTY_POWER.description": "当你拥有[gold]屏障[/gold]且攻击者拥有[gold]虚弱[/gold]时，你受到的伤害减少25%。",
+  "PENANCEMOD-COURT_MAJESTY_POWER.smartDescription": "当你拥有[gold]屏障[/gold]且攻击者拥有[gold]虚弱[/gold]时，你受到的伤害减少25%。"
 }

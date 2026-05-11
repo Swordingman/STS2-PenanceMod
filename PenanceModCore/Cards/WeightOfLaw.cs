@@ -15,7 +15,7 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(PenanceModCardPool))]
 public class WeightOfLaw : PenanceBaseCard
 {
-    public WeightOfLaw() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
+    public WeightOfLaw() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self, true)
     {
     }
 

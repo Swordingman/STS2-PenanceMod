@@ -107,7 +107,6 @@ public static class WolfCurseHelper
     private static List<IHoverTip>? _cachedUpgradedTips;
     public static IEnumerable<IHoverTip> GetWolfCurseHoverTips(bool upgradedPreview)
     {
-        // 1. 获取对应的缓存列表（懒加载：只有第一次悬浮时才会生成所有卡牌模型）
         var tipsList = upgradedPreview ? GetOrGenerateUpgradedTips() : GetOrGenerateNormalTips();
 
         if (tipsList.Count == 0)
@@ -115,11 +114,11 @@ public static class WolfCurseHelper
             yield break;
         }
 
-        // 2. 基于当前系统时间计算索引，每 1.5 秒切换一次
-        int currentIndex = (int)(DateTime.Now.TimeOfDay.TotalSeconds / 1.5) % tipsList.Count;
-
-        // 3. 始终只返回当前时间对应的那 1 张卡
-        yield return tipsList[currentIndex];
+        // 每次鼠标移入时，纯随机抽选一张展示。
+        // 反复摸这张牌，预览的诅咒就会不断变化！
+        int randomIndex = new System.Random().Next(tipsList.Count);
+        
+        yield return tipsList[randomIndex];
     }
 
     // --- 内部缓存生成逻辑 ---

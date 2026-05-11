@@ -1,46 +1,44 @@
 using PenanceMod.PenanceModCode.Character;
-using BaseLib.Utils;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
-using PenanceMod.PenanceModCode.Powers; 
+using MegaCrit.Sts2.Core.Entities.Powers;
+using PenanceMod.PenanceModCode.Powers;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Models.Powers;
+using BaseLib.Utils;
 
 namespace PenanceMod.Scripts.Cards;
 
 [Pool(typeof(PenanceModCardPool))]
 public class InescapableNet : PenanceBaseCard
 {
-    public InescapableNet() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
+    public InescapableNet() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies, true)
     {
     }
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Net-Barrier", 12m),
-        new DynamicVar("Net-Draw", 1m) 
-    ];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        int barrierGain = DynamicVars["Net-Barrier"].IntValue;
-        int drawGain = DynamicVars["Net-Draw"].IntValue;
+        var combatState = Owner.Creature.CombatState;
+        if (combatState == null) return;
 
-        await PowerCmd.Apply<InescapableNetPower>(choiceContext, Owner.Creature, barrierGain, Owner.Creature, this);
-
-        var power = Owner.Creature.GetPower<InescapableNetPower>();
-        if (power != null)
+        // 1. 给予所有敌人 1 层虚弱
+        foreach (var enemy in combatState.HittableEnemies)
         {
-            power.DynamicVars["draw"].UpgradeValueBy(drawGain);
+            await PowerCmd.Apply<WeakPower>(choiceContext, enemy, 1, Owner.Creature, this);
         }
+
+        // 2. 给自己挂上“法网恢恢”能力，用于下回合触发
+        await PowerCmd.Apply<InescapableNetPower>(choiceContext, Owner.Creature, 1, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["Net-Barrier"].UpgradeValueBy(3);
+        EnergyCost.UpgradeBy(-1);
     }
 }

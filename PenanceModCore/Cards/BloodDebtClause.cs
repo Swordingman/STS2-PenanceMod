@@ -9,6 +9,8 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using PenanceMod.PenanceModCode.Character;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -32,28 +34,31 @@ public class BloodDebtClause : PenanceBaseCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 获取当前存活的所有敌人
-        var aliveEnemies = CombatState.Enemies.Where(e => e.IsAlive).ToList();
+        var combatState = Owner.Creature.CombatState;
+        if (combatState == null) return;
 
-        // 1. 造成全体伤害
-        // 塔 2 的命令系统支持针对每个敌人逐一派发伤害请求，引擎会自动把它们合并成 AOE 的视觉效果
-        foreach (var enemy in aliveEnemies)
+        // 1. 抛弃傻乎乎的 for 循环！直接把所有存活敌人作为一个集合喂给 Targeting。
+        // 引擎会自动把它渲染成一次极其爽快的、同时跳字的 AoE 攻击！
+        var attackCmd = await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .FromCard(this)
+            .WithHitFx(VfxCmd.giantHorizontalSlashPath)
+            .TargetingAllOpponents(combatState)
+            .Execute(choiceContext);
+
+        // 2. 统计实际命中了多少个敌人
+        // 利用老熟人“嵌套列表”，直接数一数里面一共生成了几个受击结果
+        int hitCount = attackCmd.Results.Sum(hitList => hitList.Count);
+
+        // 3. 每击中一个敌人，就生成一张狼群诅咒放入弃牌堆
+        for (int i = 0; i < hitCount; i++)
         {
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this)
-                .Targeting(enemy)
-                .Execute(choiceContext);
-        }
-
-        // 2. 结算诅咒 (还原一代中“伤害结算后存活”的判定)
-        // 再次过滤一遍，找出被刚才的 AOE 刮完之后依然存活的敌人
-        var survivingEnemies = aliveEnemies.Where(e => e.IsAlive).ToList();
-
-        foreach (var enemy in survivingEnemies)
-        {
-            var randomCurse = WolfCurseHelper.GetRandomWolfCurse(Owner, CombatState, IsUpgraded);
-
-            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(randomCurse, PileType.Discard, Owner), 2.2f);
+            var randomCurse = WolfCurseHelper.GetRandomWolfCurse(Owner, combatState, IsUpgraded);
+            
+            // 使用官方指令添加卡牌，完美触发联动
+            var addedCard = await CardPileCmd.AddGeneratedCardToCombat(randomCurse, PileType.Discard, Owner);
+            
+            // 完美保留你写的华丽预览特效
+            CardCmd.PreviewCardPileAdd(addedCard, 2.2f);
         }
     }
 

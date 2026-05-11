@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace PenanceMod.Scripts.Cards;
 
-[Pool(typeof(PenanceModCardPool))]
+[Pool(typeof(CurseCardPool))]
 public class WandAntigravity : PenanceBaseCard
 {
     public WandAntigravity() : base(1, CardType.Curse, CardRarity.Curse, TargetType.Self, true)

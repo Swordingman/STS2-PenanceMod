@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cbtkp2xyvacvj"]
 
 [ext_resource type="SpineAtlasResource" uid="uid://db70uwwy7888j" path="res://PenanceMod/scenes/resource/build_char_4065_judge.atlas" id="1_07ral"]
-[ext_resource type="Script" path="res://src/Core/Nodes/Screens/Shops/NMerchantCharacter.cs" id="1_25v45"]
+[ext_resource type="Script" uid="uid://cmu8q5xnj844g" path="res://PenanceModCore/Character/PenanceMerchantCharacter.cs" id="1_25v45"]
 [ext_resource type="SpineSkeletonFileResource" uid="uid://cvm5a3ecg80fg" path="res://PenanceMod/scenes/resource/build_char_4065_judge42.skel" id="2_25v45"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_hmwy2"]

@@ -51,7 +51,6 @@ public class WeakAndWeep : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        // 升级去掉消耗
         RemoveKeyword(CardKeyword.Exhaust);
     }
 }

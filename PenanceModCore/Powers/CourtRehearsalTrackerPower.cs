@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.Saves.Runs;
+using PenanceMod.PenanceModCode.Character;
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -72,6 +73,7 @@ public class CourtRehearsalTrackerPower : CustomPowerModel
     private CardModel GenerateRandomCard(Player player, string currentCardEntryId)
     {
         var candidates = ModelDb.AllCardPools
+            .OfType<PenanceModCardPool>() 
             .SelectMany(pool => pool.AllCardIds)
             .Select(id => ModelDb.GetById<CardModel>(id))
             .Where(card => card != null && card.Type != CardType.Curse && card.Type != CardType.Status && card.Id.Entry != currentCardEntryId)

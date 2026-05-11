@@ -32,6 +32,7 @@ public class CourtRehearsal : PenanceBaseCard
 
         // 1. 获取随机牌
         var candidates = ModelDb.AllCardPools
+            .OfType<PenanceModCardPool>()
             .SelectMany(pool => pool.AllCardIds)
             .Select(id => ModelDb.GetById<CardModel>(id))
             .Where(c => c != null && c.Type != CardType.Curse && c.Type != CardType.Status && c.Id.Entry != this.Id.Entry)

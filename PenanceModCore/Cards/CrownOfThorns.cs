@@ -21,15 +21,14 @@ public class CrownOfThorns : PenanceBaseCard
     {
     }
 
-    // 🌟 注册变量：获得荆棘的数量 (3)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Crown-Magic", 3m)
+        new DynamicVar("Crown-Magic", 2m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var vars = DynamicVars.Values.ToList();
-        int thornsGain = vars.Count > 0 ? vars[0].IntValue : 3;
+        int thornsGain = vars.Count > 0 ? vars[0].IntValue : 2;
 
         // 挂载荆棘冠冕能力
         await PowerCmd.Apply<CrownOfThornsPower>(choiceContext,Owner.Creature, thornsGain, Owner.Creature, this);

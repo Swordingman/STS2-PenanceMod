@@ -41,8 +41,8 @@ public class ExhibitA : PenanceBaseCard
             await CardPileCmd.AddGeneratedCardToCombat(doubtCopy, PileType.Hand, Owner);
         }
 
-        // 2. 抽 2 张牌
-        await CardPileCmd.Draw(choiceContext, 2, Owner);
+        // 2. 抽 3 张牌
+        await CardPileCmd.Draw(choiceContext, 3, Owner);
     }
 
     protected override void OnUpgrade()
