@@ -26,8 +26,8 @@ public class LastStand : PenanceBaseCard
 
     // 🌟 注册变量：[0] 屏障值(30)，[1] 止戈层数(3)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("LastStand-Barrier", 30m),
-        new DynamicVar("LastStand-Ceasefire", 3m)
+        new DynamicVar("LastStand-Barrier", 20m),
+        new DynamicVar("LastStand-Ceasefire", 2m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -50,11 +50,6 @@ public class LastStand : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        // 升级逻辑：屏障不变，止戈层数 -1 (3 -> 2)
-        var vars = DynamicVars.Values.ToList();
-        if (vars.Count > 1)
-        {
-            vars[1].UpgradeValueBy(-1);
-        }
+        DynamicVars["LastStand-Barrier"].UpgradeValueBy(10);
     }
 }

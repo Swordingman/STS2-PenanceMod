@@ -36,7 +36,7 @@ public class PenanceBasicRelic : CustomRelicModel
     public override bool ShowCounter => StoredHeal > 0;
     public override int DisplayAmount => StoredHeal;
 
-    private void AddStoredHeal(int amount)
+    public void AddStoredHeal(int amount)
     {
         if (amount <= 0) return;
         StoredHeal += amount;

@@ -287,5 +287,27 @@
   "PENANCEMOD-JURY_ENTRY.description": "从3张随机[gold]狼群诅咒[/gold]中选择1张洗入抽牌堆。\n获得{Jury-Barrier:diff()}点[gold]屏障[/gold]。",
 
   "PENANCEMOD-EXHIBIT_A.title": "证据",
-  "EXHIBIT_A.description": "将一张[red]疑惑[/red]置入你的手牌。\n抽3张牌。"
+  "EXHIBIT_A.description": "将一张[red]疑惑[/red]置入你的手牌。\n抽3张牌。",
+
+  "PENANCEMOD-BIDE_TIME.title": "厚积薄发",
+  "PENANCEMOD-BIDE_TIME.description": "每当你有一个回合不打出[gold]攻击[/gold]牌，就获得{Bide-Vigor:diff()}点[gold]活力[/gold]。",
+
+  "PENANCEMOD-EXCOMMUNICATION.title": "绝罚",
+  "PENANCEMOD-EXCOMMUNICATION.description": "[gold]消耗[/gold]你抽牌堆、手牌和弃牌堆中的所有[gold]诅咒[/gold]牌。\n每[gold]消耗[/gold]一张，获得{Excom-Barrier:diff()}点[gold]屏障[/gold]和{Excom-Str:diff()}点[gold]力量[/gold]。",
+
+  "PENANCEMOD-INVIOLABLE.title": "不可侵犯",
+  "PENANCEMOD-INVIOLABLE.description": "获得{Inv-Barrier:diff()}点[gold]屏障[/gold]。",
+
+  "PENANCEMOD-DRINK_POISON.title": "饮鸩止渴",
+  "PENANCEMOD-DRINK_POISON.description": "失去{Drink-Loss:diff()}点生命。获得{energyPrefix:energyIcons(1)}。抽1张牌。\n在手牌中加入一张此牌的复制品。该复制品拥有[gold]虚无[/gold]，且失去的生命值增加2点。",
+
+  "PENANCEMOD-WOLF_FEAST.title": "群狼的盛宴",
+  "PENANCEMOD-WOLF_FEAST.description": "从所有{IfUpgraded:show:已升级的}[gold]狼群诅咒[/gold]中选择至多3张并打出。",
+  "PENANCEMOD-WOLF_FEAST.selectionScreenPrompt": "选择至多3张狼群诅咒打出",
+
+  "PENANCEMOD-TEST_THE_LAW.title": "以身试法",
+  "PENANCEMOD-TEST_THE_LAW.description": "将你的生命值变为10（若不足则治疗）。若生命值因此减少，获得减少量3倍的[gold]屏障[/gold]。\n在本场对战剩余时间内，每当你通过卡牌效果失去生命时，获得等量治疗与伤害量3倍的[gold]屏障[/gold]，将等量[gold]屏障[/gold]存入遗物，并获得3层[gold]裁决[/gold]与[gold]荆棘环身[/gold]。",
+
+  "PENANCEMOD-PREEMPTIVE_STRIKE.title": "先手打击",
+  "PENANCEMOD-PREEMPTIVE_STRIKE.description": "造成{Damage:diff()}点伤害。在接下来的{Strike-Turns:diff()}个回合中，回合开始时获得3层[gold]正当防卫[/gold]。"
 }

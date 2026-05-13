@@ -21,6 +21,8 @@ public class GavelStrike : PenanceBaseCard
     public GavelStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, true)
     {
     }
+    
+    protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(8, ValueProp.Move)
