@@ -98,10 +98,13 @@ public class PenanceMod : PlaceholderCharacterModel
     ];
 
     // 攻击建筑师的攻击特效列表
-    public override List<string> GetArchitectAttackVfx()
-    {
-        return base.GetArchitectAttackVfx();
-    }
+    public override List<string> GetArchitectAttackVfx() => [
+        VfxCmd.heavyBluntPath,
+        VfxCmd.bluntPath,
+        VfxCmd.bluntPath,
+        VfxCmd.slashPath,
+        VfxCmd.heavyBluntPath
+    ];
 
     public override CreatureAnimator? SetupCustomAnimationStates(MegaSprite controller)
     {

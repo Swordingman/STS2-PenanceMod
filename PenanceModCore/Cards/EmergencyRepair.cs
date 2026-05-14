@@ -23,7 +23,7 @@ public class EmergencyRepair : PenanceBaseCard
 
     // 🌟 注册变量：屏障获取量 (初始 4)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Repair-Barrier", 4m)
+        new DynamicVar("Repair-Barrier", 6m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -40,7 +40,7 @@ public class EmergencyRepair : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        // 升级屏障获取量 (4 -> 7)
+        // 升级屏障获取量 (6 -> 9)
         var vars = DynamicVars.Values.ToList();
         if (vars.Count > 0)
         {

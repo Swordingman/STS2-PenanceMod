@@ -43,6 +43,6 @@ public class BurdenedJourney : PenanceBaseCard
     {
         // 升级提升 2 点 (3 -> 5)
         var magicVar = DynamicVars.Values.First();
-        magicVar.UpgradeValueBy(2);
+        magicVar.UpgradeValueBy(1);
     }
 }

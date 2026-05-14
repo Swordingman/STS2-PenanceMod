@@ -68,8 +68,8 @@
   "PENANCEMOD-PROCEDURAL_JUSTICE_POWER.smartDescription": "每当你[gold]消耗[/gold]一张牌，获得[blue]{Amount}[/blue]点[gold]屏障[/gold]。",
 
   "PENANCEMOD-IRONCLAD_DOCTRINE_POWER.title": "铁律护体",
-  "PENANCEMOD-IRONCLAD_DOCTRINE_POWER.description": "回合开始时，如果你拥有至少[blue]{Amount}[/blue]层[gold]屏障[/gold]，则失去它们并恢复 {HealAmount} 点生命。",
-  "PENANCEMOD-IRONCLAD_DOCTRINE_POWER.smartDescription": "回合开始时，如果你拥有至少[blue]{Amount}[/blue]层[gold]屏障[/gold]，则失去它们并恢复 {HealAmount} 点生命。",
+  "PENANCEMOD-IRONCLAD_DOCTRINE_POWER.description": "回合开始时，如果你拥有至少[blue]{Amount}[/blue]层[gold]屏障[/gold]，则失去它们并恢复{HealAmount}点生命。",
+  "PENANCEMOD-IRONCLAD_DOCTRINE_POWER.smartDescription": "回合开始时，如果你拥有至少[blue]{Amount}[/blue]层[gold]屏障[/gold]，则失去它们并恢复{HealAmount}点生命。",
 
   "PENANCEMOD-JUSTIFIED_DEFENSE_POWER.title": "正当防卫",
   "PENANCEMOD-JUSTIFIED_DEFENSE_POWER.description": "每当你受到攻击时，获得[blue]1[/blue]层[gold]正当防卫(触发)[/gold]。\n在此卡牌触发[blue]{Amount}[/blue]次或下个回合开始时移除。",
@@ -112,8 +112,8 @@
   "PENANCEMOD-BIDE_TIME_POWER.smartDescription": "在回合结束时，如果你本回合未打出过[gold]攻击[/gold]牌，获得[blue]{Amount}[/blue]点[gold]活力[/gold]。",
 
   "PENANCEMOD-TEST_THE_LAW_POWER.title": "以身试法",
-  "PENANCEMOD-TEST_THE_LAW_POWER.description": "每当你通过卡牌效果失去生命时，获得等量治疗与伤害量3倍的[gold]屏障[/gold]并存入遗物，同时获得3层[gold]裁决[/gold]与[gold]荆棘环身[/gold]。",
-  "PENANCEMOD-TEST_THE_LAW_POWER.smartDescription": "每当你通过卡牌效果失去生命时，获得等量治疗与伤害量3倍的[gold]屏障[/gold]并存入遗物，同时获得3层[gold]裁决[/gold]与[gold]荆棘环身[/gold]。",
+  "PENANCEMOD-TEST_THE_LAW_POWER.description": "每当你因卡牌效果失去生命时，恢复等量生命并获得失去值3倍的[gold]屏障[/gold]（同时存入遗物），再获得3层[gold]裁决[/gold]与[gold]荆棘环身[/gold]。",
+  "PENANCEMOD-TEST_THE_LAW_POWER.smartDescription": "每当你因卡牌效果失去生命时，恢复等量生命并获得失去值3倍的[gold]屏障[/gold]（同时存入遗物），再获得3层[gold]裁决[/gold]与[gold]荆棘环身[/gold]。",
 
   "PENANCEMOD-PREEMPTIVE_STRIKE_POWER.title": "主动出击",
   "PENANCEMOD-PREEMPTIVE_STRIKE_POWER.description": "在接下来的[blue]{Amount}[/blue]个回合中，回合开始时获得3层[gold]正当防卫[/gold]。",

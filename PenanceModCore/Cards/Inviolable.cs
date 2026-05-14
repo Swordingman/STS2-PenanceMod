@@ -22,7 +22,7 @@ public class Inviolable : PenanceBaseCard
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Inv-Barrier", 30m)
+        new DynamicVar("Inv-Barrier", 28m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -33,6 +33,6 @@ public class Inviolable : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        DynamicVars["Inv-Barrier"].UpgradeValueBy(10);
+        DynamicVars["Inv-Barrier"].UpgradeValueBy(7);
     }
 }

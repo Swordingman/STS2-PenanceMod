@@ -20,7 +20,7 @@ public class BideTime : PenanceBaseCard
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Bide-Vigor", 16m)
+        new DynamicVar("Bide-Vigor", 14m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

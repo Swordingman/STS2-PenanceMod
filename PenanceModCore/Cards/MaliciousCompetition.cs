@@ -22,7 +22,7 @@ public class MaliciousCompetition : PenanceBaseCard
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Malicious-Barrier", 4m),
+        new DynamicVar("Malicious-Barrier", 7m),
         new DynamicVar("Malicious-Judge", 2m)
     ];
 

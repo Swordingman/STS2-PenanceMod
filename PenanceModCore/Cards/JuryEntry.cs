@@ -22,7 +22,7 @@ public class JuryEntry : PenanceBaseCard
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Jury-Barrier", 12m)
+        new DynamicVar("Jury-Barrier", 14m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -48,7 +48,6 @@ public class JuryEntry : PenanceBaseCard
         if (chosenCard != null)
         {
             await CardPileCmd.AddGeneratedCardToCombat(chosenCard, PileType.Draw, player);
-            await CardPileCmd.Shuffle(choiceContext, player);
         }
 
         // 5. 获得巨额防御

@@ -17,7 +17,7 @@ namespace PenanceMod.Scripts.Cards;
 public class SyracusanWolves : PenanceBaseCard
 {
     // 耗能 1，类型 Skill，稀有度 Rare，目标 Self
-    public SyracusanWolves() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self, true)
+    public SyracusanWolves() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
     {
     }
 

@@ -25,7 +25,7 @@ public class JudicialDiscretion : PenanceBaseCard
 
     // 🌟 注册变量：抽牌数 (初始 1)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Judicial-Draw", 1m)
+        new DynamicVar("Judicial-Draw", 5m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -37,7 +37,9 @@ public class JudicialDiscretion : PenanceBaseCard
         var barrierPower = creature.GetPower<BarrierPower>();
         if (barrierPower != null && barrierPower.Amount > 0)
         {
-            int reduceAmount = Math.Min((int)barrierPower.Amount, 5);
+            var vars = DynamicVars.Values.ToList();
+            int lostAmount = vars.Count > 0 ? vars[0].IntValue : 1;
+            int reduceAmount = Math.Min((int)barrierPower.Amount, lostAmount);
             await PowerCmd.Apply<BarrierPower>(choiceContext,creature, -reduceAmount, creature, this);
         }
 
@@ -45,9 +47,7 @@ public class JudicialDiscretion : PenanceBaseCard
         await PlayerCmd.GainEnergy(1, player);
 
         // 3. 抽牌
-        var vars = DynamicVars.Values.ToList();
-        int drawAmount = vars.Count > 0 ? vars[0].IntValue : 1;
-        await CardPileCmd.Draw(choiceContext, drawAmount, player);
+        await CardPileCmd.Draw(choiceContext, 1, player);
     }
 
     protected override void OnUpgrade()
@@ -56,7 +56,7 @@ public class JudicialDiscretion : PenanceBaseCard
         var vars = DynamicVars.Values.ToList();
         if (vars.Count > 0)
         {
-            vars[0].UpgradeValueBy(1);
+            vars[0].UpgradeValueBy(-2);
         }
     }
 }

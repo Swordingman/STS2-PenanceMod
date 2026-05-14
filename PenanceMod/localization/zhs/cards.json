@@ -6,13 +6,13 @@
   "PENANCEMOD-DEFEND_PENANCE.description": "获得{Block:diff()}点格挡。",
 
   "PENANCEMOD-ADJOURN.title": "休庭",
-  "PENANCEMOD-ADJOURN.description": "结束你的回合。\n本回合每打出一张牌，获得{Magic:diff()}点屏障。\n（若生命值低于 50%，改为恢复{Magic:diff()}点生命）",
+  "PENANCEMOD-ADJOURN.description": "结束你的回合。\n本回合每打出一张牌，获得{Magic:diff()}点屏障。\n（若你的生命值低于 50%，改为恢复{Magic:diff()}点生命）",
 
   "PENANCEMOD-AMBUSH_SHADOW.title": "伏击之影",
   "PENANCEMOD-AMBUSH_SHADOW.description": "随机丢弃{Ambush-Magic:diff()}张手牌。\n获得1层无实体。",
 
   "PENANCEMOD-ART_OF_THE_HIDING_FOX.title": "隐狐之艺",
-  "PENANCEMOD-ART_OF_THE_HIDING_FOX.description": "跳过你的回合。获得{Fox-Magic:diff()}点力量、裁决和荆棘。获得{Fox-Barrier:diff()}点屏障。{IfUpgraded:show:\n[purple]本回合保留手牌。[/purple]|}",
+  "PENANCEMOD-ART_OF_THE_HIDING_FOX.description": "跳过你的回合。获得{Fox-Magic:diff()}点力量、裁决和荆棘环身。获得{Fox-Barrier:diff()}点屏障。{IfUpgraded:show:\n[purple]本回合保留手牌。[/purple]|}",
 
   "PENANCEMOD-ASCETICISM.title": "苦行",
   "PENANCEMOD-ASCETICISM.description": "每当你的屏障受到伤害时，获得{Asceticism-Magic:diff()}层荆棘环身。",
@@ -21,7 +21,7 @@
   "PENANCEMOD-A_SIP.description": "失去{ASip-Penalty:diff()}点屏障。如果不足，则失去等量生命值。\n获得2点力量。\n在手牌中加入一张此牌的复制品。该复制品拥有虚无，且失去的数值增加2点。",
  
   "PENANCEMOD-BARBED_REBUKE.title": "你荆然敢!",
-  "PENANCEMOD-BARBED_REBUKE.description": "造成{Damage:diff()}点伤害。\n使目标的虚弱层数与你的荆棘环身层数中较小的那一方增加至和另一方相等。",
+  "PENANCEMOD-BARBED_REBUKE.description": "造成{Damage:diff()}点伤害。\n比较目标的[gold]虚弱[/gold]与你的[gold]荆棘环身[/gold]层数，将较低者的层数提升至与较高者相等。",
 
   "PENANCEMOD-BLOOD_DEBT_CLAUSE.title": "血债条款",
   "PENANCEMOD-BLOOD_DEBT_CLAUSE.description": "对所有敌人造成{Damage:diff()}点伤害。\n场上每有一名存活的敌人，将一张随机的狼群诅咒放入弃牌堆。",
@@ -154,7 +154,7 @@
   "PENANCEMOD-LAW_MODIFICATION.description": "将你的格挡转换为屏障。",
  
   "PENANCEMOD-NO_SENTENCE_NEEDED.title": "无需宣判",
-  "PENANCEMOD-NO_SENTENCE_NEEDED.description": "如果你的屏障为0且当前生命值不足一半，此牌可以打出。\n造成{Damage:diff()}点伤害。",
+  "PENANCEMOD-NO_SENTENCE_NEEDED.description": "只能在你的屏障为0且生命值低于50%时打出。\n造成{Damage:diff()}点伤害。",
   "PENANCEMOD-NO_SENTENCE_NEEDED.cant_use_message": "我必须在屏障归零且生命值不足一半时才能打出这张牌。",
 
   "PENANCEMOD-OVERRULE.title": "驳回",
@@ -189,7 +189,7 @@
   "PENANCEMOD-SELF_INCRIMINATION.select_message": "选择一张诅咒牌消耗",
 
   "PENANCEMOD-SILENCE.title": "缄默",
-  "PENANCEMOD-SILENCE.description": "获得{Silence-Barrier:diff()}点屏障。\n如果当前生命值低于 50% ，额外获得3点裁决。",
+  "PENANCEMOD-SILENCE.description": "获得{Silence-Barrier:diff()}点屏障。\n如果你的生命值低于50%，额外获得3点裁决。",
 
   "PENANCEMOD-SILENCE_WRATH.title": "沉默之怒",
   "PENANCEMOD-SILENCE_WRATH.description": "每当[gold]屏障[/gold]受到攻击时，给予攻击者{SilenceWrath-Amt:diff()}层[gold]虚弱[/gold]。\n当[gold]屏障[/gold]破碎时，获得{SilenceWrath-Amt:diff()}点[gold]力量[/gold]。",
@@ -244,7 +244,7 @@
   "PENANCEMOD-PURGE.description": "对所有敌人造成{Damage:diff()}点伤害。\n获得等同于未被格挡伤害总量的屏障。",
 
   "PENANCEMOD-WEAK_AND_WEEP.title": "拟以棘枯",
-  "PENANCEMOD-WEAK_AND_WEEP.description": "目标每拥有一层虚弱，就对其造成一次荆棘环身伤害。",
+  "PENANCEMOD-WEAK_AND_WEEP.description": "目标每有1层[gold]虚弱[/gold]，对其触发1次[gold]荆棘环身[/gold]的伤害。",
 
   "PENANCEMOD-SETTLING_OLD_SCORES.title": "清算",
   "PENANCEMOD-SETTLING_OLD_SCORES.description": "抽{Settling-Draw:diff()}张牌，自动打出其中的攻击牌并将其[gold]消耗[/gold]。重复此过程，直到抽出2张非攻击牌。",
@@ -265,7 +265,7 @@
   "PENANCEMOD-GUILT_BOUND_AURA.description": "获得{Aura-Barrier:diff()}点[gold]屏障[/gold]。获得{Aura-Thorns:diff()}层[gold]荆棘环身[/gold]。",
 
   "PENANCEMOD-BAD_OPERA.title": "烂歌剧",
-  "PENANCEMOD-BAD_OPERA.description": "随机[gold]消耗[/gold]抽牌堆中最多{Opera-CurseCount:diff()}张[gold]诅咒[/gold]牌。\n每[gold]消耗[/gold]一张，获得[blue]1[/blue]点[gold]力量[/gold]和[blue]2[/blue]点[gold]裁决[/gold]。",
+  "PENANCEMOD-BAD_OPERA.description": "随机[gold]消耗[/gold]抽牌堆中最多{Opera-CurseCount:diff()}张[gold]诅咒[/gold]牌。\n每[gold]消耗[/gold]一张，获得1点[gold]力量[/gold]和2点[gold]裁决[/gold]。",
 
   "PENANCEMOD-GAVEL_STRIKE.title": "判决打击",
   "PENANCEMOD-GAVEL_STRIKE.description": "造成{Damage:diff()}点伤害。\n获得等同于目标拥有的[gold]虚弱[/gold]层数的[gold]屏障[/gold]。",
@@ -306,8 +306,8 @@
   "PENANCEMOD-WOLF_FEAST.selectionScreenPrompt": "选择至多3张狼群诅咒打出",
 
   "PENANCEMOD-TEST_THE_LAW.title": "以身试法",
-  "PENANCEMOD-TEST_THE_LAW.description": "将你的生命值变为10（若不足则治疗）。若生命值因此减少，获得减少量3倍的[gold]屏障[/gold]。\n在本场对战剩余时间内，每当你通过卡牌效果失去生命时，获得等量治疗与伤害量3倍的[gold]屏障[/gold]，将等量[gold]屏障[/gold]存入遗物，并获得3层[gold]裁决[/gold]与[gold]荆棘环身[/gold]。",
+  "PENANCEMOD-TEST_THE_LAW.description": "将你的生命值变为10（不足则恢复至10）。若生命值因此降低，获得降低量3倍的[gold]屏障[/gold]。\n本场战斗中，每当你因卡牌效果失去生命时，恢复等量生命并获得失去值3倍的[gold]屏障[/gold]（并同时存入遗物），再获得3层[gold]裁决[/gold]与[gold]荆棘环身[/gold]。",
 
   "PENANCEMOD-PREEMPTIVE_STRIKE.title": "先手打击",
-  "PENANCEMOD-PREEMPTIVE_STRIKE.description": "造成{Damage:diff()}点伤害。在接下来的{Strike-Turns:diff()}个回合中，回合开始时获得3层[gold]正当防卫[/gold]。"
+  "PENANCEMOD-PREEMPTIVE_STRIKE.description": "造成{Damage:diff()}点伤害。\n在接下来的{Strike-Turns:diff()}个回合中，回合开始时获得3层[gold]正当防卫[/gold]。"
 }

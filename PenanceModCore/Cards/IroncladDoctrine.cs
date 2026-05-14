@@ -23,13 +23,13 @@ public class IroncladDoctrine : PenanceBaseCard
 
     // 🌟 注册变量：需要消耗的屏障值 (初始 10)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Doctrine-Cost", 10m)
+        new DynamicVar("Doctrine-Cost", 8m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var vars = DynamicVars.Values.ToList();
-        int costAmt = vars.Count > 0 ? vars[0].IntValue : 10;
+        int costAmt = vars.Count > 0 ? vars[0].IntValue : 8;
 
         // 挂载铁律护体状态，层数即为“需要消耗的屏障数量”
         await PowerCmd.Apply<IroncladDoctrinePower>(choiceContext,Owner.Creature, costAmt, Owner.Creature, this);
@@ -37,11 +37,6 @@ public class IroncladDoctrine : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        // 升级逻辑：需要消耗的屏障减少 2 (10 -> 8)
-        var vars = DynamicVars.Values.ToList();
-        if (vars.Count > 0)
-        {
-            vars[0].UpgradeValueBy(-2);
-        }
+        AddKeyword(CardKeyword.Retain);
     }
 }

@@ -19,7 +19,7 @@ public class PreemptiveStrikePower : CustomPowerModel
     public override string? CustomBigIconPath => $"res://PenanceMod/images/powers/large/{nameof(PreemptiveStrikePower)}.png";
 
     // 🌟 在玩家回合开始时触发
-    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+    public override async Task AfterPlayerTurnStartLate(PlayerChoiceContext choiceContext, Player player)
     {
         if (player.Creature == Owner && Amount > 0)
         {

@@ -43,6 +43,6 @@ public class TestTheLaw : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        EnergyCost.UpgradeBy(-1); // 3 -> 2 费
+        AddKeyword(CardKeyword.Innate);
     }
 }

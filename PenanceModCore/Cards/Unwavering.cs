@@ -19,6 +19,8 @@ public class Unwavering : PenanceBaseCard
     {
     }
 
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];
+
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Unwavering-Thorns", 3m)
     ];
@@ -34,6 +36,6 @@ public class Unwavering : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        DynamicVars["Unwavering-Thorns"].UpgradeValueBy(1);
+        RemoveKeyword(CardKeyword.Ethereal);
     }
 }

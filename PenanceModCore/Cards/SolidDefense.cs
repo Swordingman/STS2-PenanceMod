@@ -26,7 +26,7 @@ public class SolidDefense : PenanceBaseCard
     public override bool GainsBlock => true;
 
     // 注册变量：
-    // [Block]：格挡数值，初始 4
+    // [Block]：格挡数值，初始 6
     // [Solid-Barrier]：屏障数值，初始 4
     //
     // BlockVar 的作用：
@@ -34,7 +34,7 @@ public class SolidDefense : PenanceBaseCard
     // 2. 支持升级前后数值差异显示；
     // 3. 逻辑里可以用 DynamicVars.Block.BaseValue 读取当前格挡值。
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new BlockVar(4, ValueProp.Move),
+        new BlockVar(6, ValueProp.Move),
         new DynamicVar("Solid-Barrier", 4m)
     ];
 
@@ -78,10 +78,10 @@ public class SolidDefense : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        // 格挡提升 2：4 -> 6
+        // 格挡提升 2：6 -> 8
         DynamicVars.Block.UpgradeValueBy(2);
 
         // 屏障提升 2：4 -> 6
-        DynamicVars["Solid-Barrier"].UpgradeValueBy(2);
+        DynamicVars["Solid-Barrier"].UpgradeValueBy(1);
     }
 }

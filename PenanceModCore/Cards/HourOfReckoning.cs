@@ -33,9 +33,8 @@ public class HourOfReckoning : PenanceBaseCard
     public override IEnumerable<CardKeyword> CanonicalKeywords => 
         [CardKeyword.Ethereal];
 
-    // 注册变量：基础伤害 20
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(20, ValueProp.Move)
+        new DamageVar(15, ValueProp.Move)
     ];
 
     // ==========================================

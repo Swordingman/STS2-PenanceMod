@@ -22,7 +22,7 @@ public class WallBreakerSmash : PenanceBaseCard
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(25, ValueProp.Move),
+        new DamageVar(24, ValueProp.Move),
         new DynamicVar("WallBreaker-Cost", 10m)
     ];
 
@@ -79,6 +79,6 @@ public class WallBreakerSmash : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(7);
+        DynamicVars.Damage.UpgradeValueBy(8);
     }
 }
