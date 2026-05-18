@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://c86ktswttmuh8"
+path="res://.godot/imported/enemy_3004_speople42.skel-ebd4dc983a604a8f6be39947a16819ff.spskel"
+
+[deps]
+
+source_file="res://PenanceMod/scenes/resource/enemy_3004_speople42.skel"
+dest_files=["res://.godot/imported/enemy_3004_speople42.skel-ebd4dc983a604a8f6be39947a16819ff.spskel"]
+
+[params]
+

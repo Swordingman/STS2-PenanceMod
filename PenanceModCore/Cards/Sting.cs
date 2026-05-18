@@ -53,7 +53,7 @@ public class Sting : PenanceBaseCard
     protected override void OnUpgrade()
     {
         // 荆棘提升 3 (3 -> 6)
-        DynamicVars["Sting-Thorns"].UpgradeValueBy(3);
+        DynamicVars["Sting-Thorns"].UpgradeValueBy(2);
 
         // 裁决提升 2 (2 -> 4)
         DynamicVars["Sting-Judge"].UpgradeValueBy(2);

@@ -135,7 +135,7 @@
   "PENANCEMOD-JUDGMENT_HAS_BEGUN.description": "本回合每使用1张攻击牌，获得5点屏障、1 点力量和1点裁决。累积使用3张后，获得{energyPrefix:energyIcons(2)}。",
 
   "PENANCEMOD-JUDICIAL_DISCRETION.title": "司法斟酌",
-  "PENANCEMOD-JUDICIAL_DISCRETION.description": "失去5点屏障。\n获得1点{energyPrefix:energyIcons(1)}。抽{Judicial-Draw:diff()}张牌。",
+  "PENANCEMOD-JUDICIAL_DISCRETION.description": "失去{Judicial-Loss:diff()}点屏障。\n获得{energyPrefix:energyIcons(1)}。抽1张牌。",
 
   "PENANCEMOD-JUSTIFIED_RETALIATION.title": "你先动手的",
   "PENANCEMOD-JUSTIFIED_RETALIATION.description": "获得{Justified-Barrier:diff()}点屏障。\n获得1层正当防卫。",

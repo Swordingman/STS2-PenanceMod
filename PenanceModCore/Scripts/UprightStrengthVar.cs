@@ -8,30 +8,41 @@ namespace PenanceMod.Scripts.Cards;
 
 public class UprightStrengthVar : DynamicVar
 {
-    public UprightStrengthVar(string key, decimal baseValue) : base(key, baseValue) 
-    { 
+    public UprightStrengthVar(string key, decimal baseValue) : base(key, baseValue)
+    {
     }
 
-    public override void UpdateCardPreview(CardModel card, CardPreviewMode previewMode, Creature? target, bool runGlobalHooks)
+    public override void UpdateCardPreview(
+        CardModel card,
+        CardPreviewMode previewMode,
+        Creature? target,
+        bool runGlobalHooks)
     {
         base.UpdateCardPreview(card, previewMode, target, runGlobalHooks);
 
-        if (card.Owner != null)
-        {
-            var player = card.Owner;
-            int curseCount = 0;
-            
-            // 安全获取各个牌堆的诅咒数量
-            curseCount += PileType.Hand.GetPile(player)?.Cards.Count(c => c.Type == CardType.Curse) ?? 0;
-            curseCount += PileType.Draw.GetPile(player)?.Cards.Count(c => c.Type == CardType.Curse) ?? 0;
-            curseCount += PileType.Discard.GetPile(player)?.Cards.Count(c => c.Type == CardType.Curse) ?? 0;
+        PreviewValue = BaseValue;
 
-            // 【关键】：将动态结果赋值给 PreviewValue，让 UI 渲染器去读取它并变绿！
-            this.PreviewValue = this.BaseValue + curseCount; 
-        }
-        else
+        if (card.Owner == null)
         {
-            this.PreviewValue = this.BaseValue;
+            return;
+        }
+
+        var player = card.Owner;
+
+        try
+        {
+            int curseCount = 0;
+
+            curseCount += PileType.Hand.GetPile(player).Cards.Count(c => c.Type == CardType.Curse);
+            curseCount += PileType.Draw.GetPile(player).Cards.Count(c => c.Type == CardType.Curse);
+            curseCount += PileType.Discard.GetPile(player).Cards.Count(c => c.Type == CardType.Curse);
+            curseCount += PileType.Exhaust.GetPile(player).Cards.Count(c => c.Type == CardType.Curse);
+
+            PreviewValue = BaseValue + curseCount;
+        }
+        catch (InvalidOperationException)
+        {
+            PreviewValue = BaseValue;
         }
     }
 }

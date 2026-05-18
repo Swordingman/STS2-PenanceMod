@@ -27,28 +27,40 @@ public class Upright : PenanceBaseCard
 
     private int GetTotalStrengthGain()
     {
+        int baseValue = (int)DynamicVars["Upright-Str"].BaseValue;
+
         var player = Owner;
-        if (player == null) 
-            return (int)DynamicVars["Upright-Str"].BaseValue;
+        if (player == null)
+        {
+            return baseValue;
+        }
 
-        int curseCount = 0;
-        
-        curseCount += PileType.Hand.GetPile(player).Cards.Count(c => c.Type == CardType.Curse);
-        curseCount += PileType.Draw.GetPile(player).Cards.Count(c => c.Type == CardType.Curse);
-        curseCount += PileType.Discard.GetPile(player).Cards.Count(c => c.Type == CardType.Curse);
-        curseCount += PileType.Exhaust.GetPile(player).Cards.Count(c => c.Type == CardType.Curse);
+        try
+        {
+            int curseCount = 0;
 
-        return (int)DynamicVars["Upright-Str"].BaseValue + curseCount;
+            curseCount += PileType.Hand.GetPile(player).Cards.Count(c => c.Type == CardType.Curse);
+            curseCount += PileType.Draw.GetPile(player).Cards.Count(c => c.Type == CardType.Curse);
+            curseCount += PileType.Discard.GetPile(player).Cards.Count(c => c.Type == CardType.Curse);
+            curseCount += PileType.Exhaust.GetPile(player).Cards.Count(c => c.Type == CardType.Curse);
+
+            return baseValue + curseCount;
+        }
+        catch (InvalidOperationException)
+        {
+            return baseValue;
+        }
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var creature = Owner?.Creature;
-        if (creature == null) 
+        if (creature == null)
+        {
             return;
+        }
 
-        // 读取 PreviewValue，并强转为 int
-        int totalStr = (int)DynamicVars["Upright-Str"].PreviewValue;
+        int totalStr = GetTotalStrengthGain();
 
         if (totalStr > 0)
         {

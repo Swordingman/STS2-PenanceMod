@@ -22,7 +22,7 @@ public class SilenceWrath : PenanceBaseCard
 
     // 只有一个通用变量
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("SilenceWrath-Amt", 1m)
+        new DynamicVar("SilenceWrath-Amt", 2m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

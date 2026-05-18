@@ -36,9 +36,13 @@ public class ASip : PenanceBaseCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var creature = Owner.Creature;
-        
-        var penaltyVar = DynamicVars.Values.First();
+        var creature = Owner?.Creature;
+        if (creature == null)
+        {
+            return;
+        }
+
+        var penaltyVar = DynamicVars[PenaltyKey];
         int penalty = penaltyVar.IntValue;
 
         var barrierPower = creature.GetPower<BarrierPower>();
@@ -49,28 +53,40 @@ public class ASip : PenanceBaseCard
 
         if (barrierToLose > 0)
         {
-            await PowerCmd.Apply<BarrierPower>(choiceContext, creature, -barrierToLose, creature, this);
+            await PowerCmd.Apply<BarrierPower>(
+                choiceContext,
+                creature,
+                -barrierToLose,
+                creature,
+                this
+            );
         }
 
         if (hpToLose > 0)
         {
-            await CreatureCmd.Damage(choiceContext, creature, hpToLose, ValueProp.Unblockable, this);
+            await CreatureCmd.Damage(
+                choiceContext,
+                creature,
+                hpToLose,
+                ValueProp.Unblockable,
+                this
+            );
         }
 
-        await PowerCmd.Apply<StrengthPower>(choiceContext, creature, 2, creature, this);
+        await PowerCmd.Apply<StrengthPower>(
+            choiceContext,
+            creature,
+            2,
+            creature,
+            this
+        );
 
-        var copy = (ASip)this.CreateClone();
-        
-        copy.CopyCount = this.CopyCount + 1;
+        var copy = (ASip)CreateClone();
 
-        if (this.IsUpgraded)
-        {
-            copy.UpgradeInternal();
-            copy.FinalizeUpgradeInternal();
-        }
-        
-        var copyPenaltyVar = copy.DynamicVars.Values.First();
-        copyPenaltyVar.UpgradeValueBy(copy.CopyCount + 2);
+        copy.CopyCount = CopyCount + 1;
+
+        // 关键：复制品在“当前数值”的基础上 +2
+        copy.DynamicVars[PenaltyKey].UpgradeValueBy(2);
 
         copy.AddKeyword(CardKeyword.Ethereal);
 
@@ -79,8 +95,7 @@ public class ASip : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        var penaltyVar = DynamicVars.Values.First();
-        penaltyVar.UpgradeValueBy(-1); 
+        DynamicVars[PenaltyKey].UpgradeValueBy(-1);
     }
 
     protected override void DeepCloneFields()

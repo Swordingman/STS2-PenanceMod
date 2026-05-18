@@ -19,6 +19,8 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(CurseCardPool))]
 public class DeadlyEnemy : PenanceBaseCard
 {
+    public override int MaxUpgradeLevel => 0;
+    
     // 耗能 1，诅咒，特殊稀有度，目标 None (因为不需要指向打出)
     public DeadlyEnemy() : base(1, CardType.Curse, CardRarity.Curse, TargetType.None, true)
     {

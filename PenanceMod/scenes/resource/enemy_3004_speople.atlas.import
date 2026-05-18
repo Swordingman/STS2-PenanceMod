@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://b7ejo80xo7hhp"
+path="res://.godot/imported/enemy_3004_speople.atlas-fb7f431e9dea50c5f67667387629c809.spatlas"
+
+[deps]
+
+source_file="res://PenanceMod/scenes/resource/enemy_3004_speople.atlas"
+dest_files=["res://.godot/imported/enemy_3004_speople.atlas-fb7f431e9dea50c5f67667387629c809.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

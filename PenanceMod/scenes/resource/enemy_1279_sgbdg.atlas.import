@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://qevcd1q5a38m"
+path="res://.godot/imported/enemy_1279_sgbdg.atlas-9fcc1bf4996b064765a4a044a9652de8.spatlas"
+
+[deps]
+
+source_file="res://PenanceMod/scenes/resource/enemy_1279_sgbdg.atlas"
+dest_files=["res://.godot/imported/enemy_1279_sgbdg.atlas-9fcc1bf4996b064765a4a044a9652de8.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://bl6barwp1pvc3"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://b7ejo80xo7hhp" path="res://PenanceMod/scenes/resource/enemy_3004_speople.atlas" id="1_fur5n"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://c86ktswttmuh8" path="res://PenanceMod/scenes/resource/enemy_3004_speople42.skel" id="2_4m2eh"]
+
+[resource]
+atlas_res = ExtResource("1_fur5n")
+skeleton_file_res = ExtResource("2_4m2eh")

@@ -25,7 +25,7 @@ public class JudicialDiscretion : PenanceBaseCard
 
     // 🌟 注册变量：抽牌数 (初始 1)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Judicial-Draw", 5m)
+        new DynamicVar("Judicial-Loss", 5m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -52,11 +52,6 @@ public class JudicialDiscretion : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        // 抽牌数 +1 (1 -> 2)
-        var vars = DynamicVars.Values.ToList();
-        if (vars.Count > 0)
-        {
-            vars[0].UpgradeValueBy(-2);
-        }
+        DynamicVars["Judicial-Loss"].UpgradeValueBy(-2);
     }
 }

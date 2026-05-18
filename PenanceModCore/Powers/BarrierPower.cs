@@ -91,4 +91,6 @@ public class BarrierPower : CustomPowerModel
         // 4. 返回处理后的最终伤害值给游戏引擎去结算
         return amount;
     }
+
+    
 }

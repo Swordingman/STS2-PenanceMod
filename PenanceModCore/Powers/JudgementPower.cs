@@ -81,7 +81,7 @@ public class JudgementPower : CustomPowerModel
             choiceContext: new BlockingPlayerChoiceContext(),
             targets: new[] { target },
             amount: finalDamage,
-            props: ValueProp.Move,
+            props: ValueProp.Unpowered,
             dealer: ownerCreature,
             cardSource: null
         );
