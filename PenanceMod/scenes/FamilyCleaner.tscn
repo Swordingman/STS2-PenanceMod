@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://edtjsw5sqtjq"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://c72ftikpmyw3p" path="res://PenanceMod/scenes/FamilyCleaner.tres" id="1_nppo2"]
+
+[node name="FamilyCleaner" type="Node2D"]
+
+[node name="Visuals" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("1_nppo2")
+preview_skin = "Default"
+preview_animation = "Default"
+preview_frame = false
+preview_time = 0.0
+unique_name_in_owner = true
+scale = Vector2(-0.75, 0.75)
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -117.0
+offset_top = -333.0
+offset_right = 147.0
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-7, -365)
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-2, -148)

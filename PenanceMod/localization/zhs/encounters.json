@@ -1,4 +1,7 @@
 {
   "PENANCEMOD-VOLSINII_COURT_ENCOUNTER.title": "救救他！",
-  "PENANCEMOD-VOLSINII_COURT_ENCOUNTER.loss": "{character}没能救下市民，还把自己搭进去了。"
+  "PENANCEMOD-VOLSINII_COURT_ENCOUNTER.loss": "{character}没能救下市民，还把自己搭进去了。",
+
+  "PENANCEMOD-CASE_FILE1184_ENCOUNTER.title": "第1184号卷宗",
+  "PENANCEMOD-CASE_FILE1184_ENCOUNTER.loss": "正义没能降临于邪恶之人。"
 }

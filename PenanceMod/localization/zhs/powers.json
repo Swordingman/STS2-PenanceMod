@@ -95,10 +95,6 @@
   "PENANCEMOD-GLOW_OF_SUFFERING_POWER.description": "每当你因卡牌效果失去生命时，获得失去生命值[blue]{Amount}%[/blue]的[gold]屏障[/gold]与[gold]荆棘环身[/gold]。",
   "PENANCEMOD-GLOW_OF_SUFFERING_POWER.smartDescription": "每当你因卡牌效果失去生命时，获得失去生命值[blue]{Amount}%[/blue]的[gold]屏障[/gold]与[gold]荆棘环身[/gold]。",
 
-  "PENANCEMOD-LOSE_SLOW_POWER.title": "临时缓慢",
-  "PENANCEMOD-LOSE_SLOW_POWER.description": "回合开始时，移除[red]缓慢[/red] 。",
-  "PENANCEMOD-LOSE_SLOW_POWER.smartDescription": "回合开始时，移除[red]缓慢[/red] 。",
-
   "PENANCEMOD-DESTRUCTION_BEFORE_CREATION_POWER.title": "不破不立",
   "PENANCEMOD-DESTRUCTION_BEFORE_CREATION_POWER.description": "每当你[gold]消耗[/gold]一张诅咒牌，获得[blue]{Amount}[/blue]点能量，并抽[blue]{Amount}[/blue]张牌。\n每个回合开始时，向弃牌堆洗入[blue]{Amount}[/blue]张随机[gold]狼群诅咒[/gold]。",
   "PENANCEMOD-DESTRUCTION_BEFORE_CREATION_POWER.smartDescription": "每当你[gold]消耗[/gold]一张诅咒牌，获得[blue]{Amount}[/blue]点能量，并抽[blue]{Amount}[/blue]张牌。\n每个回合开始时，向弃牌堆洗入[blue]{Amount}[/blue]张随机[gold]狼群诅咒[/gold]。",
@@ -117,5 +113,9 @@
 
   "PENANCEMOD-PREEMPTIVE_STRIKE_POWER.title": "主动出击",
   "PENANCEMOD-PREEMPTIVE_STRIKE_POWER.description": "在接下来的[blue]{Amount}[/blue]个回合中，回合开始时获得3层[gold]正当防卫[/gold]。",
-  "PENANCEMOD-PREEMPTIVE_STRIKE_POWER.smartDescription": "在接下来的[blue]{Amount}[/blue]个回合中，回合开始时获得3层[gold]正当防卫[/gold]。"
+  "PENANCEMOD-PREEMPTIVE_STRIKE_POWER.smartDescription": "在接下来的[blue]{Amount}[/blue]个回合中，回合开始时获得3层[gold]正当防卫[/gold]。",
+
+  "PENANCEMOD-INESCAPABLE_NET_POWER.title": "法网恢恢",
+  "PENANCEMOD-INESCAPABLE_NET_POWER.description": "在你失去生命值后，如果你拥有总计不低于该数值的[gold]荆棘环身[/gold]或[gold]裁决[/gold]，则消耗等量并恢复等量生命值。剩余{Amount}次。",
+  "PENANCEMOD-INESCAPABLE_NET_POWER.smartDescription": "在你失去生命值后，如果你拥有总计不低于该数值的[gold]荆棘环身[/gold]或[gold]裁决[/gold]，则消耗等量并恢复等量生命值。剩余{Amount}次。"
 }

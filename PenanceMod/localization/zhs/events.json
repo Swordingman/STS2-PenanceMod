@@ -54,5 +54,19 @@
   "PENANCEMOD-VOLSINII_COURT_EVENT.pages.CIVILIAN_DIED.options.PICK_UP_CLOTH.description": "获得[gold]染血的布料[/gold]。",
   "PENANCEMOD-VOLSINII_COURT_EVENT.pages.WALK_AWAY_END.description": "巷道渐渐远去，叙拉古的雨水冲刷不掉你的记忆。",
   "PENANCEMOD-VOLSINII_COURT_EVENT.pages.LETTER_READ_END.description": "你捡起了信件，感觉手中一股温暖。",
-  "PENANCEMOD-VOLSINII_COURT_EVENT.pages.CLOTH_PICKED_END.description": "你握紧了布料，继续前行。"
+  "PENANCEMOD-VOLSINII_COURT_EVENT.pages.CLOTH_PICKED_END.description": "你握紧了布料，继续前行。",
+
+  "PENANCEMOD-CASE_FILE1184_EVENT.title": "第1184号卷宗",
+  "PENANCEMOD-CASE_FILE1184_EVENT.pages.INITIAL.description": "法槌悬在半空，整个法庭鸦雀无声。\n被告席上的教父正带着嘲弄的微笑看着你。你知道他明天就会走出这里，继续制造杀戮。\n你的袖口里藏着一份伪造的账目，那是唯一能将他送上绞刑架的[gold]“证据”[/gold]。\n如果你呈上它：你将亲手践踏你毕生守护的程序正义。\n如果你通过它：法律的尊严得以保全，但无辜者将继续流血。\n法槌，该落在哪里？",
+  "PENANCEMOD-CASE_FILE1184_EVENT.pages.INITIAL.options.SUBMIT_FALSE_EVIDENCE.title": "提交伪证",
+  "PENANCEMOD-CASE_FILE1184_EVENT.pages.INITIAL.options.SUBMIT_FALSE_EVIDENCE.description": "获得[gold]{Gold}[/gold]金币。升级[gold]{CaseFile-Upgrades}[/gold]张随机攻击牌。获得 1 张[red]疑惑[/red]。",
+  "PENANCEMOD-CASE_FILE1184_EVENT.pages.INITIAL.options.RELEASE_IN_COURT.title": "当庭释放",
+  "PENANCEMOD-CASE_FILE1184_EVENT.pages.INITIAL.options.RELEASE_IN_COURT.description": "[green]恢复所有生命[/green]。[green]获得{CaseFile-MaxHp}点最大生命[/green]。获得 1 张[red]苦恼[/red]。",
+  "PENANCEMOD-CASE_FILE1184_EVENT.pages.INITIAL.options.PRIVATE_VERDICT.title": "私下裁决",
+  "PENANCEMOD-CASE_FILE1184_EVENT.pages.INITIAL.options.PRIVATE_VERDICT.description": "进入战斗。奖励：[gold]稀有遗物[/gold]。",
+  "PENANCEMOD-CASE_FILE1184_EVENT.pages.SUBMITTED_FALSE_EVIDENCE.description": "你呈上了那份假账目。教父的笑容凝固了。\n你赢了，叙拉古少了一个恶棍，多了一个撒谎的法官。",
+  "PENANCEMOD-CASE_FILE1184_EVENT.pages.RELEASED_IN_COURT.description": "“证据不足，当庭释放。”\n法槌落下，声音空洞。你守住了法律的底线，但当你走出法院时，民众的唾沫和那个教父的背影让你感到无比苦恼。",
+  "PENANCEMOD-CASE_FILE1184_EVENT.pages.CLEANED_UP.description": "清理完毕。",
+  "PENANCEMOD-CASE_FILE1184_EVENT.pages.CLEANED_UP.options.LEAVE.title": "离开",
+  "PENANCEMOD-CASE_FILE1184_EVENT.pages.CLEANED_UP.options.LEAVE.description": "离开"
 }

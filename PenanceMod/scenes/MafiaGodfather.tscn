@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://bom2csid5c4fi"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://c3otgmuom0wwx" path="res://PenanceMod/scenes/MafiaGodfather.tres" id="1_7r1aw"]
+
+[node name="MafiaGodfather" type="Node2D"]
+
+[node name="Visuals" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("1_7r1aw")
+preview_skin = "Default"
+preview_animation = "Default"
+preview_frame = false
+preview_time = 0.0
+unique_name_in_owner = true
+scale = Vector2(-0.75, 0.75)
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -117.0
+offset_top = -294.0
+offset_right = 108.0
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1, -318)
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-2, -148)

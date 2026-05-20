@@ -10,45 +10,89 @@ using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models;
 using System.Drawing;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Localization;
 
 namespace PenanceMod.Scripts.Cards;
 
 [Pool(typeof(TokenCardPool))]
 public class Perjury : PenanceBaseCard
 {
-    public Perjury() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self, false)
+    public Perjury() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self, true)
     {
     }
 
-    // 🌟 注册基础关键词：消耗
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [
+        CardKeyword.Ethereal
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var player = Owner;
-        if (player == null) return;
+        if (player == null)
+            return;
 
-        var regretId = ModelDb.AllCardPools
-            .SelectMany(p => p.AllCardIds)
-            .FirstOrDefault(id => id.Entry.ToLowerInvariant() == "regret");
+        var hand = PileType.Hand.GetPile(player);
+        int count = Math.Min(2, hand.Cards.Count);
 
-        if (regretId != null) // 确保找到了对应的 ID
+        if (count <= 0)
+            return;
+
+        List<CardModel> cardsToDiscard;
+
+        if (IsUpgraded)
         {
-            // 使用正确的 ModelId 获取卡牌数据模型
-            var regretModel = ModelDb.GetById<CardModel>(regretId);
-            var regretCopy = regretModel.ToMutable();
-            
-            // 将生成的卡牌加入手牌
-            await CardPileCmd.AddGeneratedCardToCombat(regretCopy, PileType.Hand, Owner);
+            var prefs = new CardSelectorPrefs(
+                new LocString("cards", "PENANCEMOD-PERJURY.select_message"),
+                count
+            )
+            {
+                RequireManualConfirmation = true
+            };
+
+            cardsToDiscard = (await CardSelectCmd.FromHand(
+                choiceContext,
+                player,
+                prefs,
+                null,
+                this
+            )).ToList();
+        }
+        else
+        {
+            cardsToDiscard = PickRandomCardsFromHand(player, count);
         }
 
-        // 稍微等待，让卡牌入手的音效和加能量的特效错开
-        await Cmd.Wait(0.1f);
+        if (cardsToDiscard.Count == 0)
+            return;
 
-        await PlayerCmd.GainEnergy(2, player);
+        await CardCmd.DiscardAndDraw(
+            choiceContext,
+            cardsToDiscard,
+            2
+        );
+    }
+
+    private static List<CardModel> PickRandomCardsFromHand(Player player, int count)
+    {
+        var candidates = PileType.Hand.GetPile(player).Cards.ToList();
+        var result = new List<CardModel>();
+
+        for (int i = 0; i < count && candidates.Count > 0; i++)
+        {
+            var picked = player.RunState.Rng.CombatCardSelection.NextItem(candidates);
+            if (picked == null)
+                break;
+
+            candidates.Remove(picked);
+            result.Add(picked);
+        }
+
+        return result;
     }
 
     protected override void OnUpgrade()
     {
+        // 升级效果由 IsUpgraded 控制：随机 -> 手选
     }
 }

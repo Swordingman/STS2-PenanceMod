@@ -164,7 +164,8 @@
   "PENANCEMOD-PENALTY_REGRESSION.description": "造成{Damage:diff()}点伤害。\n使你身上的所有减益效果层数减少 1。",
 
   "PENANCEMOD-PERJURY.title": "伪证",
-  "PENANCEMOD-PERJURY.description": "将一张悔恨置入你的手牌。获得{energyPrefix:energyIcons(2)}。",
+  "PENANCEMOD-PERJURY.description": "{IfUpgraded:show:选择|随机}弃掉2张手牌。\n抽2张牌。",
+  "PENANCEMOD-PERJURY.select_message": "选择2张手牌弃掉。",
 
   "PENANCEMOD-PRE_EXECUTION_PREP.title": "执行前准备",
   "PENANCEMOD-PRE_EXECUTION_PREP.description": "抽牌直到手牌上限。每抽到一张：\n攻击牌，获得1点裁决；\n技能牌，获得1层荆棘环身；\n能力牌，获得1点力量；\n诅咒牌，获得{energyPrefix:energyIcons(1)}。",
@@ -185,8 +186,7 @@
   "PENANCEMOD-SCENE_INVESTIGATION.description": "连续打出2张同类牌时获得奖励：\n攻击牌->随机{IfUpgraded:show:升级后的|}技能牌；\n技能牌-> 随机{IfUpgraded:show:升级后的|}攻击牌；\n能力牌->{energyPrefix:energyIcons(2)}。\n（生成的牌消耗且虚无）",
 
   "PENANCEMOD-SELF_INCRIMINATION.title": "自证其罪",
-  "PENANCEMOD-SELF_INCRIMINATION.description": "必须消耗手牌中一张诅咒牌才能打出。\n将一张[gold]证据[/gold]和[gold]伪证[/gold]置入你的手牌。",
-  "PENANCEMOD-SELF_INCRIMINATION.select_message": "选择一张诅咒牌消耗",
+  "PENANCEMOD-SELF_INCRIMINATION.description": "从你的抽牌堆中抽出一张诅咒牌。\n将一张{IfUpgraded:show:升级后的|}[gold]证据[/gold]和一张{IfUpgraded:show:升级后的|}[gold]伪证[/gold]置入你的手牌。",
 
   "PENANCEMOD-SILENCE.title": "缄默",
   "PENANCEMOD-SILENCE.description": "获得{Silence-Barrier:diff()}点屏障。\n如果你的生命值低于50%，额外获得3点裁决。",
@@ -274,11 +274,10 @@
   "PENANCEMOD-PENDING_JUDGMENT.description": "给予所有敌人{Pending-Weak:diff()}层[gold]虚弱[/gold]。每有一个拥有[gold]虚弱[/gold]的敌人，获得{Pending-Barrier:diff()}点[gold]屏障[/gold]。",
 
   "PENANCEMOD-INESCAPABLE_NET.title": "法网恢恢",
-  "PENANCEMOD-INESCAPABLE_NET.description": "给予所有敌人1层[gold]虚弱[/gold]。下个回合开始时，每有一个敌人处于[gold]虚弱[/gold]状态，就额外抽1张牌并获得{energyPrefix:energyIcons(1)}。",
+  "PENANCEMOD-INESCAPABLE_NET.description": "在你下{InescapableNet-Triggers:diff()}次失去生命值后，如果你拥有总计不低于该数值的[gold]荆棘环身[/gold]或[gold]裁决[/gold]，则消耗等量的[gold]荆棘环身[/gold]或[gold]裁决[/gold]，并恢复等量生命值。",
 
   "PENANCEMOD-MALICIOUS_COMPETITION.title": "恶意竞争",
-  "PENANCEMOD-MALICIOUS_COMPETITION.description": "{IfUpgraded:show:|随机}[gold]消耗[/gold]一张手牌。\n获得{Malicious-Barrier:diff()}点[gold]屏障[/gold]和{Malicious-Judge:diff()}层[gold]裁决[/gold]。",
-  "PENANCEMOD-MALICIOUS_COMPETITION.upgradeDescription": "选择并[gold]消耗[/gold]一张手牌。\n获得{Malicious-Barrier:diff()}点[gold]屏障[/gold]和{Malicious-Judge:diff()}层[gold]裁决[/gold]。",
+  "PENANCEMOD-MALICIOUS_COMPETITION.description": "[gold]消耗[/gold]抽牌库最顶部的一张{IfUpgraded:show:[gold]诅咒[/gold]|}牌并获得{Malicious-Barrier:diff()}点[gold]屏障[/gold]和{Malicious-Judge:diff()}层[gold]裁决[/gold]。",
 
   "PENANCEMOD-OBJECTION.title": "异议！",
   "PENANCEMOD-OBJECTION.description": "造成{Damage:diff()}点伤害。如果你拥有至少{Objection-Cost:diff()}层[gold]裁决[/gold]，则消耗{Objection-Cost:diff()}层[gold]裁决[/gold]，给予目标1层[gold]止戈[/gold]。",
@@ -287,7 +286,8 @@
   "PENANCEMOD-JURY_ENTRY.description": "从3张随机[gold]狼群诅咒[/gold]中选择1张洗入抽牌堆。\n获得{Jury-Barrier:diff()}点[gold]屏障[/gold]。",
 
   "PENANCEMOD-EXHIBIT_A.title": "证据",
-  "EXHIBIT_A.description": "将一张[red]疑惑[/red]置入你的手牌。\n抽3张牌。",
+  "PENANCEMOD-EXHIBIT_A.description": "{IfUpgraded:show:选择|随机}消耗2张手牌。\n获得{energyPrefix:energyIcons(2)}。",
+  "PENANCEMOD-EXHIBIT_A.select_message": "选择2张手牌消耗。",
 
   "PENANCEMOD-BIDE_TIME.title": "厚积薄发",
   "PENANCEMOD-BIDE_TIME.description": "每当你有一个回合不打出[gold]攻击[/gold]牌，就获得{Bide-Vigor:diff()}点[gold]活力[/gold]。",

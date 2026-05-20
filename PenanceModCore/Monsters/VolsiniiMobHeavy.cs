@@ -25,6 +25,7 @@ public sealed class VolsiniiMobHeavy : CustomMonsterModel
 
     private int NormalAttackDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 14, 12);
     private int HeavyAttackDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 35, 30);
+    
     private const int BlockAmount = 12;
     private const int BlockStrBlock = 8;
     private const int BlockStrStr = 1;

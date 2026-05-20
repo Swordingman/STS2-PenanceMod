@@ -9,44 +9,91 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace PenanceMod.Scripts.Cards;
 
 [Pool(typeof(TokenCardPool))]
 public class ExhibitA : PenanceBaseCard
 {
-    // 耗能 0，类型 Skill，稀有度 Special，目标 Self
     public ExhibitA() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self, true)
     {
     }
 
-    // 绑定消耗词条 (写全路径防报错)
-    public override IEnumerable<CardKeyword> CanonicalKeywords => 
-        [CardKeyword.Exhaust];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [
+        CardKeyword.Ethereal
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 1. 遍历所有卡池，精准抓取“疑惑(Doubt)”的 ModelId
-        var doubtId = ModelDb.AllCardPools
-            .SelectMany(p => p.AllCardIds)
-            .FirstOrDefault(id => id.Entry.ToLowerInvariant() == "doubt");
+        var player = Owner;
+        if (player == null)
+            return;
 
-        if (doubtId != null) // 确保找到了对应的 ID
+        var hand = PileType.Hand.GetPile(player);
+        int count = Math.Min(2, hand.Cards.Count);
+
+        if (count <= 0)
+            return;
+
+        List<CardModel> cardsToExhaust;
+
+        if (IsUpgraded)
         {
-            // 使用正确的 ModelId 获取卡牌数据模型
-            var doubtModel = ModelDb.GetById<CardModel>(doubtId);
-            var doubtCopy = doubtModel.ToMutable();
-            
-            // 将生成的卡牌加入手牌
-            await CardPileCmd.AddGeneratedCardToCombat(doubtCopy, PileType.Hand, Owner);
+            var prefs = new CardSelectorPrefs(
+                new LocString("cards", "PENANCEMOD-EXHIBIT_A.select_message"),
+                count
+            )
+            {
+                RequireManualConfirmation = true
+            };
+
+            cardsToExhaust = (await CardSelectCmd.FromHand(
+                choiceContext,
+                player,
+                prefs,
+                null,
+                this
+            )).ToList();
+        }
+        else
+        {
+            cardsToExhaust = PickRandomCardsFromHand(player, count);
         }
 
-        // 2. 抽 3 张牌
-        await CardPileCmd.Draw(choiceContext, 3, Owner);
+        if (cardsToExhaust.Count == 0)
+            return;
+
+        foreach (var card in cardsToExhaust)
+        {
+            await CardCmd.Exhaust(choiceContext, card);
+        }
+
+        await PlayerCmd.GainEnergy(2, player);
+    }
+
+    private static List<CardModel> PickRandomCardsFromHand(Player player, int count)
+    {
+        var candidates = PileType.Hand.GetPile(player).Cards.ToList();
+        var result = new List<CardModel>();
+
+        for (int i = 0; i < count && candidates.Count > 0; i++)
+        {
+            var picked = player.RunState.Rng.CombatCardSelection.NextItem(candidates);
+            if (picked == null)
+                break;
+
+            candidates.Remove(picked);
+            result.Add(picked);
+        }
+
+        return result;
     }
 
     protected override void OnUpgrade()
     {
-        // 衍生牌且无升级逻辑，留空即可
+        // 升级效果由 IsUpgraded 控制：随机 -> 手选
     }
 }

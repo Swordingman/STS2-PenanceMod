@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://dr1dfo6mnttch"
+path="res://.godot/imported/enemy_1282_sgelder.atlas-91a44b8eab50ede11e9ba40a917be36c.spatlas"
+
+[deps]
+
+source_file="res://PenanceMod/scenes/resource/enemy_1282_sgelder.atlas"
+dest_files=["res://.godot/imported/enemy_1282_sgelder.atlas-91a44b8eab50ede11e9ba40a917be36c.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

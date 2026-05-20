@@ -1,4 +1,3 @@
-// VolsiniiCivilian.cs
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -48,6 +47,22 @@ public sealed class VolsiniiCivilian : CustomPetModel
             controller,
             idleName: "Idle",
             attackName: "Attack"
+        );
+    }
+
+    public override async Task AfterAddedToRoom()
+    {
+        await base.AfterAddedToRoom();
+
+        await Cmd.Wait(0.2f);
+
+        TalkCmd.Play(
+            new LocString(
+                "monsters",
+                "PENANCEMOD-VOLSINII_CIVILIAN.dialogs.START"
+            ),
+            Creature,
+            VfxColor.White
         );
     }
 

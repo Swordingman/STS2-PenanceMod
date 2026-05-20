@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://tulyi62f5kjq"
+path="res://.godot/imported/enemy_1283_sgkill.atlas-e7cd4d1827737d5ea39bf1dc492f983c.spatlas"
+
+[deps]
+
+source_file="res://PenanceMod/scenes/resource/enemy_1283_sgkill.atlas"
+dest_files=["res://.godot/imported/enemy_1283_sgkill.atlas-e7cd4d1827737d5ea39bf1dc492f983c.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

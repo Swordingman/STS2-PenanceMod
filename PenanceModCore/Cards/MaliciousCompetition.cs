@@ -29,42 +29,39 @@ public class MaliciousCompetition : PenanceBaseCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var player = Owner;
-
-        // 1. 先结算增益：获得屏障和裁决
-        await ApplyBarrier(player.Creature, DynamicVars["Malicious-Barrier"].IntValue);
-        await ApplyJudgement(player.Creature, DynamicVars["Malicious-Judge"].IntValue);
-
-        // 2. 处理消耗手牌逻辑 (完美复刻官方《坚毅》的写法)
-        CardPile handPile = PileType.Hand.GetPile(player);
-        if (handPile.Cards.Count > 0)
+        if (player == null)
         {
-            if (IsUpgraded)
-            {
-                // 升级后：调用官方手动选牌界面
-                var selectedCards = await CardSelectCmd.FromHand(
-                    prefs: new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1),
-                    context: choiceContext,
-                    player: player,
-                    filter: null,
-                    source: this
-                );
-
-                var cardToExhaust = selectedCards.FirstOrDefault();
-                if (cardToExhaust != null)
-                {
-                    await CardCmd.Exhaust(choiceContext, cardToExhaust);
-                }
-            }
-            else
-            {
-                // 未升级：调用官方战斗 RNG 随机选牌
-                var cardToExhaust = player.RunState.Rng.CombatCardSelection.NextItem(handPile.Cards);
-                if (cardToExhaust != null)
-                {
-                    await CardCmd.Exhaust(choiceContext, cardToExhaust);
-                }
-            }
+            return;
         }
+
+        var creature = player.Creature;
+        CardPile drawPile = PileType.Draw.GetPile(player);
+
+        CardModel? cardToExhaust;
+
+        if (IsUpgraded)
+        {
+            // 升级后：从抽牌堆顶部开始，找第一张诅咒牌
+            cardToExhaust = drawPile.Cards.FirstOrDefault(c => c.Type == CardType.Curse);
+        }
+        else
+        {
+            // 未升级：消耗抽牌堆顶部牌
+            cardToExhaust = drawPile.Cards.FirstOrDefault();
+        }
+
+        // 没有可消耗的牌，就不给增益
+        if (cardToExhaust == null)
+        {
+            return;
+        }
+
+        // 先消耗
+        await CardCmd.Exhaust(choiceContext, cardToExhaust);
+
+        // 消耗成功后再给增益
+        await ApplyBarrier(creature, DynamicVars["Malicious-Barrier"].IntValue);
+        await ApplyJudgement(creature, DynamicVars["Malicious-Judge"].IntValue);
     }
 
     protected override void OnUpgrade()

@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://igykuyuvuynm"
+path="res://.godot/imported/enemy_1282_sgelder42.skel-8e51671344ef7bb2b970bf03a39ecff0.spskel"
+
+[deps]
+
+source_file="res://PenanceMod/scenes/resource/enemy_1282_sgelder42.skel"
+dest_files=["res://.godot/imported/enemy_1282_sgelder42.skel-8e51671344ef7bb2b970bf03a39ecff0.spskel"]
+
+[params]
+

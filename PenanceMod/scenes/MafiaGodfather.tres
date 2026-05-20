@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://c3otgmuom0wwx"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://dr1dfo6mnttch" path="res://PenanceMod/scenes/resource/enemy_1282_sgelder.atlas" id="1_c7mt3"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://igykuyuvuynm" path="res://PenanceMod/scenes/resource/enemy_1282_sgelder42.skel" id="2_ejqxr"]
+
+[resource]
+atlas_res = ExtResource("1_c7mt3")
+skeleton_file_res = ExtResource("2_ejqxr")
