@@ -1,5 +1,6 @@
 using PenanceMod.PenanceModCode.Character;
 using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -25,7 +26,9 @@ public class Objection : PenanceBaseCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(6, ValueProp.Move),
-        new DynamicVar("Objection-Cost", 5m) // 裁决需求量
+        new DynamicVar("Objection-Cost", 5m)
+            .WithTooltip("PENANCEMOD-JUDGEMENT")
+            .WithTooltip("PENANCEMOD-CEASE_FIRE") // 裁决需求量
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -52,7 +55,7 @@ public class Objection : PenanceBaseCard
             // 扣除裁决层数
             await PowerCmd.Apply<JudgementPower>(choiceContext, creature, -requiredJudge, creature, this);
 
-            // 给予 1 层止戈
+            // 给予 1 层止�?
             await PowerCmd.Apply<CeasefirePower>(choiceContext, target, 1, creature, this);
         }
     }

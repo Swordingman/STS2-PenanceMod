@@ -1,6 +1,7 @@
 using PenanceMod.PenanceModCode.Character;
 using BaseLib.Utils;
 using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -17,15 +18,15 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(PenanceModCardPool))]
 public class Censure : PenanceBaseCard
 {
-    // 耗能 1，类型 Attack，稀有度 Basic，目标 AnyEnemy
+    // 耗能 1，类�?Attack，稀有度 Basic，目�?AnyEnemy
     public Censure() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy, true)
     {
     }
 
-    // 🌟 按顺序注册：索引 0 为伤害 (6)，索引 1 为裁决数值 (2)
+    // 🌟 按顺序注册：索引 0 为伤�?(6)，索�?1 为裁决数�?(2)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(6, ValueProp.Move),
-        new DynamicVar("Censure-Judgement", 2m)
+        new DynamicVar("Censure-Judgement", 2m).WithTooltip("PENANCEMOD-JUDGEMENT")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -39,7 +40,7 @@ public class Censure : PenanceBaseCard
             .Targeting(target)
             .Execute(choiceContext);
 
-        // 2. 获得裁决 (抓取索引 1 的变量)
+        // 2. 获得裁决 (抓取索引 1 的变�?
         var vars = DynamicVars.Values.ToList();
         int judgementAmount = vars.Count > 1 ? vars[1].IntValue : 2;
 

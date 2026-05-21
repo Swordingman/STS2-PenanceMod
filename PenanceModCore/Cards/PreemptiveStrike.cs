@@ -1,5 +1,6 @@
 using PenanceMod.PenanceModCode.Character;
 using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -24,8 +25,8 @@ public class PreemptiveStrike : PenanceBaseCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(16, ValueProp.Move),
-        new DynamicVar("Strike-Turns", 3m) // 记录持续回合数
-    ];
+        new DynamicVar("Strike-Turns", 3m).WithTooltip("PENANCEMOD-JUSTIFIED_DEFENSE") // 记录持续回合�?    
+        ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -38,7 +39,7 @@ public class PreemptiveStrike : PenanceBaseCard
             .Targeting(target)
             .Execute(choiceContext);
 
-        // 2. 给玩家挂上“主动出击”倒计时能力
+        // 2. 给玩家挂上“主动出击”倒计时能�?        
         int duration = DynamicVars["Strike-Turns"].IntValue;
         await PowerCmd.Apply<PreemptiveStrikePower>(choiceContext, Owner.Creature, duration, Owner.Creature, this);
     }

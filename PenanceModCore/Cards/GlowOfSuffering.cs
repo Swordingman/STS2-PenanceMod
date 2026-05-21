@@ -1,6 +1,7 @@
 using PenanceMod.PenanceModCode.Character;
 using BaseLib.Utils;
 using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,7 +21,11 @@ public class GlowOfSuffering : PenanceBaseCard
     {
     }
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Glow-Mult", 1m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [
+        new DynamicVar("Glow-Mult", 1m)
+            .WithTooltip("PENANCEMOD-BARRIER")
+            .WithTooltip("PENANCEMOD-THORN_AURA")
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

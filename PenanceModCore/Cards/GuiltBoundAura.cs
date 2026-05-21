@@ -1,5 +1,6 @@
 using PenanceMod.PenanceModCode.Character;
 using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,8 +21,8 @@ public class GuiltBoundAura : PenanceBaseCard
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Aura-Barrier", 6m),
-        new DynamicVar("Aura-Thorns", 2m)
+        new DynamicVar("Aura-Barrier", 6m).WithTooltip("PENANCEMOD-BARRIER"),
+        new DynamicVar("Aura-Thorns", 2m).WithTooltip("PENANCEMOD-THORN_AURA")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

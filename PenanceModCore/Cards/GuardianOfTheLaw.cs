@@ -1,6 +1,7 @@
 using PenanceMod.PenanceModCode.Character;
 using BaseLib.Utils;
 using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,14 +17,14 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(PenanceModCardPool))]
 public class GuardianOfTheLaw : PenanceBaseCard
 {
-    // 耗能 2，类型 Power，稀有度 Rare，目标 Self
+    // 耗能 2，类�?Power，稀有度 Rare，目�?Self
     public GuardianOfTheLaw() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self, true)
     {
     }
 
     // 🌟 注册变量：获得的裁决点数 (3)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Guardian-Magic", 3m)
+        new DynamicVar("Guardian-Magic", 3m).WithTooltip("PENANCEMOD-JUDGEMENT")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

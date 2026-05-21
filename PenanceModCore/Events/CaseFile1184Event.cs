@@ -23,7 +23,7 @@ public sealed class CaseFile1184Event : CustomEventModel
     private const int MaxHpReward = 5;
     private const int AttackUpgradeCount = 2;
 
-    public override string? CustomInitialPortraitPath => "res://PenanceMod/images/events/VolsiniiCourtEvent.png";
+    public override string? CustomInitialPortraitPath => "res://PenanceMod/images/events/CaseFile1184Event.png";
 
     public override bool IsShared => true;
 

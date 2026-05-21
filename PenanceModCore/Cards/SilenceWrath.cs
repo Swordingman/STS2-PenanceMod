@@ -1,6 +1,7 @@
 using PenanceMod.PenanceModCode.Character;
 using BaseLib.Utils;
 using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -22,7 +23,7 @@ public class SilenceWrath : PenanceBaseCard
 
     // 只有一个通用变量
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("SilenceWrath-Amt", 2m)
+        new DynamicVar("SilenceWrath-Amt", 2m).WithTooltip("PENANCEMOD-BARRIER")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

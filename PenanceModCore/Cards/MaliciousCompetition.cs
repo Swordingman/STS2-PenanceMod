@@ -1,5 +1,6 @@
 using PenanceMod.PenanceModCode.Character;
 using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -22,8 +23,8 @@ public class MaliciousCompetition : PenanceBaseCard
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Malicious-Barrier", 7m),
-        new DynamicVar("Malicious-Judge", 2m)
+        new DynamicVar("Malicious-Barrier", 7m).WithTooltip("PENANCEMOD-BARRIER"),
+        new DynamicVar("Malicious-Judge", 2m).WithTooltip("PENANCEMOD-JUDGEMENT")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -46,17 +47,17 @@ public class MaliciousCompetition : PenanceBaseCard
         }
         else
         {
-            // 未升级：消耗抽牌堆顶部牌
+            // 未升级：消耗抽牌堆顶部�?
             cardToExhaust = drawPile.Cards.FirstOrDefault();
         }
 
-        // 没有可消耗的牌，就不给增益
+        // 没有可消耗的牌，就不给增�?
         if (cardToExhaust == null)
         {
             return;
         }
 
-        // 先消耗
+        // 先消�?
         await CardCmd.Exhaust(choiceContext, cardToExhaust);
 
         // 消耗成功后再给增益

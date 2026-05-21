@@ -1,6 +1,7 @@
 using PenanceMod.PenanceModCode.Character;
 using BaseLib.Utils;
 using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,8 +24,10 @@ public class Unyield : PenanceBaseCard
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Unyield-XB", 8m),
+        new DynamicVar("Unyield-XB", 8m).WithTooltip("PENANCEMOD-BARRIER"),
         new DynamicVar("Unyield-XM", 5m)
+            .WithTooltip("PENANCEMOD-JUDGEMENT")
+            .WithTooltip("PENANCEMOD-THORN_AURA")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

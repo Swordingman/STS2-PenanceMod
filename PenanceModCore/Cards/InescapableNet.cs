@@ -1,4 +1,5 @@
 using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -28,6 +29,8 @@ public class InescapableNet : PenanceBaseCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar(TriggerKey, 2m)
+            .WithTooltip("PENANCEMOD-JUDGEMENT")
+            .WithTooltip("PENANCEMOD-THORN_AURA")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

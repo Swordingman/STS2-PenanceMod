@@ -1,6 +1,7 @@
 using PenanceMod.PenanceModCode.Character;
 using BaseLib.Utils;
 using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,17 +17,17 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(PenanceModCardPool))]
 public class Sting : PenanceBaseCard
 {
-    // 耗能 0，类型 Skill，稀有度 Common，目标 Self
+    // 耗能 0，类�?Skill，稀有度 Common，目�?Self
     public Sting() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self, true)
     {
     }
 
-    // 🌟 注册变量：
+    // 🌟 注册变量�?
     // [Sting-Thorns]：荆棘层数，初始 3
     // [Sting-Judge]：裁决数值，初始 2
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Sting-Thorns", 3m),
-        new DynamicVar("Sting-Judge", 2m)
+        new DynamicVar("Sting-Thorns", 3m).WithTooltip("PENANCEMOD-THORN_AURA"),
+        new DynamicVar("Sting-Judge", 2m).WithTooltip("PENANCEMOD-JUDGEMENT")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -34,11 +35,11 @@ public class Sting : PenanceBaseCard
         var creature = Owner.Creature;
         if (creature == null) return;
 
-        // 1. 失去生命值
+        // 1. 失去生命�?
         var selfDamageVar = new DamageVar(3, ValueProp.Unblockable);
         await CreatureCmd.Damage(choiceContext, creature, selfDamageVar, this);
 
-        // 稍微停顿，让扣血的红字和后面加 Buff 的特效错开，打击感更好
+        // 稍微停顿，让扣血的红字和后面�?Buff 的特效错开，打击感更好
         await Cmd.Wait(0.1f);
 
         // 2. 获得荆棘环身 (使用字典式安全读取！)

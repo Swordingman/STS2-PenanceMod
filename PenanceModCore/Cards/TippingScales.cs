@@ -1,6 +1,7 @@
 using PenanceMod.PenanceModCode.Character;
 using BaseLib.Utils;
 using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,7 +22,7 @@ public class TippingScales : PenanceBaseCard
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Tipping-JudgeCost", 2m),
+        new DynamicVar("Tipping-JudgeCost", 2m).WithTooltip("PENANCEMOD-JUDGEMENT"),
         new DynamicVar("Tipping-Str", 1m)
     ];
 

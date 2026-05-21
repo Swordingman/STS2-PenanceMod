@@ -1,6 +1,7 @@
 using PenanceMod.PenanceModCode.Character;
 using BaseLib.Utils;
 using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,18 +17,18 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(PenanceModCardPool))]
 public class LastStand : PenanceBaseCard
 {
-    // 耗能 2，类型 Skill，稀有度 Uncommon，目标 Self
+    // 耗能 2，类�?Skill，稀有度 Uncommon，目�?Self
     public LastStand() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
     {
     }
 
-    // 🌟 注册基础关键词：消耗
+    // 🌟 注册基础关键词：消�?
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
-    // 🌟 注册变量：[0] 屏障值(30)，[1] 止戈层数(3)
+    // 🌟 注册变量：[0] 屏障�?30)，[1] 止戈层数(3)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("LastStand-Barrier", 24m),
-        new DynamicVar("LastStand-Ceasefire", 2m)
+        new DynamicVar("LastStand-Barrier", 24m).WithTooltip("PENANCEMOD-BARRIER"),
+        new DynamicVar("LastStand-Ceasefire", 2m).WithTooltip("PENANCEMOD-CEASE_FIRE")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -44,7 +45,7 @@ public class LastStand : PenanceBaseCard
         // 停顿一下，让两股强大的力量视觉上分离开
         await Cmd.Wait(0.15f);
 
-        // 2. 获得止戈副作用
+        // 2. 获得止戈副作�?
         await PowerCmd.Apply<CeasefirePower>(choiceContext,creature, ceasefireAmount, creature, this);
     }
 
