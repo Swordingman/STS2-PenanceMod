@@ -44,8 +44,8 @@ public abstract class PenanceBaseCard : CustomCardModel
 
         return CombatManager.Instance.History.CardPlaysStarted
             .Count(entry => 
-                entry.RoundNumber == CombatState.RoundNumber && 
-                entry.CardPlay.Card.Owner == Owner);
+                entry.HappenedThisTurn(CombatState) &&
+                entry.CardPlay.Card.Owner == Owner); 
     }
 
     /// <summary>

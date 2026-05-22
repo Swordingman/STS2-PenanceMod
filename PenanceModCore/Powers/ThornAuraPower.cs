@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -19,8 +20,7 @@ public class ThornAuraPower : CustomPowerModel
     
     public override string? CustomPackedIconPath => $"res://PenanceMod/images/powers/{nameof(ThornAuraPower)}.png";
     public override string? CustomBigIconPath => $"res://PenanceMod/images/powers/large/{nameof(ThornAuraPower)}.png";
-
-    public override async Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (Owner != null && side == Owner.Side && Amount > 0)
         {

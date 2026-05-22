@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models;
 using BaseLib.Utils;
+using BaseLib.Extensions;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -26,6 +27,7 @@ public class BadOpera : PenanceBaseCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Opera-CurseCount", 1m)
+        .WithTooltip("PENANCEMOD-JUDGEMENT")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

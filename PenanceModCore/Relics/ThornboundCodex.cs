@@ -11,6 +11,7 @@ using PenanceMod.Scripts;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace PenanceMod.PenanceModCode.Relics;
 
@@ -50,10 +51,7 @@ public class ThornboundCodex : CustomRelicModel
         }
     }
 
-    public override async Task BeforeTurnEnd(
-        PlayerChoiceContext choiceContext,
-        CombatSide side
-    )
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         var player = Owner;
 

@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Powers; // 活力(VigorPower) 所在命名空�
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -41,12 +42,11 @@ public class BideTimePower : CustomPowerModel
     }
 
     // 在回合结束时结算
-    public override async Task BeforeTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side == Owner.Side && !_attackPlayedThisTurn && Amount > 0)
         {
-            Flash(); // 闪烁能力图标
-            // 获得活力 (VigorPower)
+            Flash();
             await PowerCmd.Apply<VigorPower>(choiceContext, Owner, Amount, Owner, null);
         }
     }

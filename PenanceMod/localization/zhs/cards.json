@@ -216,7 +216,7 @@
   "PENANCEMOD-THE_TRIAL.description": "造成{Damage:diff()}点伤害。\n力量对此牌的加成效果改为乘算。",
 
   "PENANCEMOD-THORNY_PATH.title": "披荆斩棘",
-  "PENANCEMOD-THORNY_PATH.description": "回合开始时，获得等同于所有敌人拥有的虚弱总和的荆棘环身",
+  "PENANCEMOD-THORNY_PATH.description": "回合结束时，若敌人拥有虚弱，则获得{ThornyPath-Amt:diff()}层[gold]荆棘环身[/gold]。",
 
   "PENANCEMOD-TIPPING_SCALES.title": "倾斜天平",
   "PENANCEMOD-TIPPING_SCALES.description": "每拥有{Tipping-JudgeCost:diff()}层裁决，便获得{Tipping-Str:diff()}点力量。",

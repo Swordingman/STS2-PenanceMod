@@ -16,8 +16,8 @@
   "PENANCEMOD-CODE_OF_REVENGE_POWER.smartDescription": "每当你触发[gold]裁决[/gold]造成伤害时，获得[blue]{Amount}[/blue]层[gold]屏障[/gold]。",
 
   "PENANCEMOD-THORNY_PATH_POWER.title": "披荆斩棘",
-  "PENANCEMOD-THORNY_PATH_POWER.description": "回合开始时，获得等同于所有敌人拥有的[gold]虚弱[/gold]总和[blue]{Amount}[/blue]倍的[gold]荆棘环身[/gold]。",
-  "PENANCEMOD-THORNY_PATH_POWER.smartDescription": "回合开始时，获得等同于所有敌人拥有的[gold]虚弱[/gold]总和[blue]{Amount}[/blue]倍的[gold]荆棘环身[/gold]。",
+  "PENANCEMOD-THORNY_PATH_POWER.description": "回合结束时，若敌人拥有虚弱，则获得{Amount}层[gold]荆棘环身[/gold]。",
+  "PENANCEMOD-THORNY_PATH_POWER.smartDescription": "回合结束时，若敌人拥有虚弱，则获得{Amount}[gold]层荆棘环身[/gold]。",
 
   "PENANCEMOD-SILENCE_WRATH_POWER.title": "沉默之怒",
   "PENANCEMOD-SILENCE_WRATH_POWER.description": "每当你的[gold]屏障[/gold]受到攻击时，给予攻击者[blue]{Amount}[/blue]层[gold]虚弱[/gold]。\n当[gold]屏障[/gold]破碎时，获得[blue]{Amount}[/blue]点[gold]力量[/gold]。",

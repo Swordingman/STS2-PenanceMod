@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -62,7 +63,7 @@ public class JudgmentHasBegunPower : CustomPowerModel
     // ==========================================
     // 核心二：回合结束时自动移除（使用你提供的指令）
     // ==========================================
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         // 确保是自己的回合结束
         if (side == Owner.Side)

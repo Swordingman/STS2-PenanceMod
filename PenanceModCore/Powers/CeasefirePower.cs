@@ -6,7 +6,8 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Commands.Builders; // 用于判断 CardType
+using MegaCrit.Sts2.Core.Commands.Builders;
+using MegaCrit.Sts2.Core.Entities.Creatures; // 用于判断 CardType
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -49,7 +50,7 @@ public class CeasefirePower : CustomPowerModel
     // ==========================================
     // 回合结束：层数自动衰减
     // ==========================================
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         // 确保只在能力拥有者自己的回合结束时衰减
         if (side == Owner.Side)

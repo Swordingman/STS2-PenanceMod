@@ -47,17 +47,17 @@ public class MaliciousCompetition : PenanceBaseCard
         }
         else
         {
-            // 未升级：消耗抽牌堆顶部�?
+            // 未升级：消耗抽牌堆顶部�?
             cardToExhaust = drawPile.Cards.FirstOrDefault();
         }
 
-        // 没有可消耗的牌，就不给增�?
+        // 没有可消耗的牌，就不给增�?
         if (cardToExhaust == null)
         {
             return;
         }
 
-        // 先消�?
+        // 先消�?
         await CardCmd.Exhaust(choiceContext, cardToExhaust);
 
         // 消耗成功后再给增益
@@ -67,7 +67,5 @@ public class MaliciousCompetition : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        DynamicVars["Malicious-Barrier"].UpgradeValueBy(1);
-        DynamicVars["Malicious-Judge"].UpgradeValueBy(1);
     }
 }

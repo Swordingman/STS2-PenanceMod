@@ -105,7 +105,7 @@ public class UnwrittenLawPower : CustomPowerModel
     //
     // 用法说明：
     // 这个效果只持续到本回合结束。
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (Owner != null && side == Owner.Side)
         {

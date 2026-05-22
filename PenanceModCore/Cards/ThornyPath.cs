@@ -21,7 +21,7 @@ public class ThornyPath : PenanceBaseCard
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("ThornyPath-Amt", 1m).WithTooltip("PENANCEMOD-THORN_AURA")
+        new DynamicVar("ThornyPath-Amt", 2m).WithTooltip("PENANCEMOD-THORN_AURA")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -35,6 +35,6 @@ public class ThornyPath : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars["ThornyPath-Amt"].UpgradeValueBy(1);
     }
 }

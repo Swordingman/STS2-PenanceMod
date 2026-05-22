@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -17,7 +18,7 @@ public class LawIsCanonPower : CustomPowerModel
     public override string? CustomPackedIconPath => $"res://PenanceMod/images/powers/{nameof(LawIsCanonPower)}.png";
     public override string? CustomBigIconPath => $"res://PenanceMod/images/powers/large/{nameof(LawIsCanonPower)}.png";
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (Owner != null && side == Owner.Side && Amount > 0)
         {

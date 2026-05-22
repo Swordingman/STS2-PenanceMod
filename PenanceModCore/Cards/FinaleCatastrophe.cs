@@ -67,40 +67,23 @@ public class FinaleCatastrophe : PenanceBaseCard
         int totalHits = vars.Count > 0 ? vars[0].IntValue : 30;
 
         var creature = Owner.Creature;
-        // 获取一个用于战斗的随机数生成器
         var rng = Owner.RunState.Rng.CombatTargets; 
         
-        // 判断升级情况，决定打玩家的概率
         float hitPlayerChance = IsUpgraded ? 0.3f : 0.5f;
 
-        // ==========================================
-        // 直接用一个 for 循环秒杀一代的 Action 类！
-        // ==========================================
         for (int i = 0; i < totalHits; i++)
         {
             var aliveEnemies = CombatState.Enemies.Where(e => e.IsAlive).ToList();
             bool hasPlayer = !creature.IsDead;
             bool hasMonsters = aliveEnemies.Count > 0;
 
-            // 如果场上全空，直接结束循环
-            if (!hasPlayer && !hasMonsters) break;
+            // 【修改点】只要怪物死光了，或者玩家死了，直接跳出循环，结束卡牌结算
+            if (!hasMonsters || !hasPlayer) break;
 
             Creature target = null;
 
-            // 核心概率判定
-            if (hasPlayer && hasMonsters)
-            {
-                // rng.NextFloat() 返回 0.0 到 1.0 的随机数
-                if (rng.NextFloat() < hitPlayerChance)
-                {
-                    target = creature;
-                }
-                else
-                {
-                    target = rng.NextItem(aliveEnemies);
-                }
-            }
-            else if (hasPlayer)
+            // 因为上面的 break 已经保证了玩家和怪物都活着，所以可以直接进行概率判定
+            if (rng.NextFloat() < hitPlayerChance)
             {
                 target = creature;
             }
@@ -112,11 +95,8 @@ public class FinaleCatastrophe : PenanceBaseCard
             if (target != null)
             {
                 await CreatureCmd.Damage(choiceContext, target, 1, ValueProp.Unpowered, this);
-
                 VfxCmd.PlayOnCreatureCenter(target, VfxCmd.slashPath);
-
                 NGame.Instance?.ScreenShake(ShakeStrength.Weak, ShakeDuration.Short);
-
                 await Cmd.Wait(0.05f);
             }
         }

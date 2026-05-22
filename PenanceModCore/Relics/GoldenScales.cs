@@ -16,6 +16,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models.RelicPools;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace PenanceMod.PenanceModCode.Relics;
 
@@ -55,7 +56,7 @@ public class GoldenScales : CustomRelicModel
     }
 
     // 🌟 核心修正：使用 BeforeTurnEnd，参数为 PlayerChoiceContext 和 CombatSide
-    public override async Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         var player = Owner;
         // 判定：仅在己方（玩家侧）回合结束时触发
