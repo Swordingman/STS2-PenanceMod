@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using BaseLib.Extensions;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -26,6 +27,7 @@ public class Purge : PenanceBaseCard
 	// 🌟 注册变量：基础伤害 6 (升级 +3)
 	protected override IEnumerable<DynamicVar> CanonicalVars => [
 		new DamageVar(6, ValueProp.Move)
+		.WithTooltip("PENANCEMOD-BARRIER")
 	];
 
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

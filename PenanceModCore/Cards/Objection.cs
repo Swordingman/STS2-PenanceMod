@@ -28,7 +28,7 @@ public class Objection : PenanceBaseCard
         new DamageVar(6, ValueProp.Move),
         new DynamicVar("Objection-Cost", 5m)
             .WithTooltip("PENANCEMOD-JUDGEMENT")
-            .WithTooltip("PENANCEMOD-CEASE_FIRE") // 裁决需求量
+            .WithTooltip("PENANCEMOD-CEASE_FIRE")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -55,7 +55,7 @@ public class Objection : PenanceBaseCard
             // 扣除裁决层数
             await PowerCmd.Apply<JudgementPower>(choiceContext, creature, -requiredJudge, creature, this);
 
-            // 给予 1 层止�?
+            // 给予 1 层止�?
             await PowerCmd.Apply<CeasefirePower>(choiceContext, target, 1, creature, this);
         }
     }

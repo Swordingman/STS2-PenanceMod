@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System;
 using MegaCrit.Sts2.Core.Models.Powers;
 using BaseLib.Utils;
+using BaseLib.Extensions;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -25,6 +26,7 @@ public class BarbedRebuke : PenanceBaseCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(6, ValueProp.Move)
+        .WithTooltip("PENANCEMOD-THORN_AURA")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

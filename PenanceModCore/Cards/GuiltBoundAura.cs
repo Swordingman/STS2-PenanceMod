@@ -21,7 +21,7 @@ public class GuiltBoundAura : PenanceBaseCard
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Aura-Barrier", 6m).WithTooltip("PENANCEMOD-BARRIER"),
+        new DynamicVar("Aura-Barrier", 5m).WithTooltip("PENANCEMOD-BARRIER"),
         new DynamicVar("Aura-Thorns", 2m).WithTooltip("PENANCEMOD-THORN_AURA")
     ];
 
