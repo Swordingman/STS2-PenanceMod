@@ -14,6 +14,7 @@ using MegaCrit.Sts2.Core.Entities.Gold;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.HoverTips;
+using Godot;
 
 namespace PenanceMod.Scripts.Events;
 
@@ -70,18 +71,34 @@ public sealed class OpeningMomentEvent : CustomEventModel
     // 🌟 选项 2：保持警惕 (使用官方高级 API 升级和删牌)
     private async Task StayAlert()
     {
-        // 1. 升级卡牌 (系统会自动过滤可升级的卡牌，并自带“选择要升级的牌”文本)
-        CardModel cardToUpgrade = (await CardSelectCmd.FromDeckForUpgrade(Owner!, new CardSelectorPrefs(CardSelectorPrefs.UpgradeSelectionPrompt, 1))).FirstOrDefault();
+        var player = Owner;
+        if (player == null)
+        {
+            GD.PushWarning($"[PenanceMod]斥罪Mod报错： {nameof(StayAlert)} 方法中 Owner 为 null，无法继续执行。");
+            SetEventFinished(PageDescription("STAYED_ALERT"));
+            return;
+        }
+
+        // 1. 升级卡牌
+        var cardsToUpgrade = await CardSelectCmd.FromDeckForUpgrade(
+            player,
+            new CardSelectorPrefs(CardSelectorPrefs.UpgradeSelectionPrompt, 1)
+        );
+
+        CardModel? cardToUpgrade = cardsToUpgrade.FirstOrDefault();
         if (cardToUpgrade != null)
         {
             CardCmd.Upgrade(cardToUpgrade);
         }
 
-        // 2. 移除卡牌 (自带“选择要移除的牌”文本)
-        List<CardModel> cardsToRemove = (await CardSelectCmd.FromDeckForRemoval(Owner!, new CardSelectorPrefs(CardSelectorPrefs.RemoveSelectionPrompt, 1))).ToList();
+        // 2. 移除卡牌
+        var cardsToRemove = (await CardSelectCmd.FromDeckForRemoval(
+            player,
+            new CardSelectorPrefs(CardSelectorPrefs.RemoveSelectionPrompt, 1)
+        )).ToList();
+
         if (cardsToRemove.Count > 0)
         {
-            // 使用标准的 PileCmd 移除，兼容各种遗物触发器
             await CardPileCmd.RemoveFromDeck(cardsToRemove);
         }
 

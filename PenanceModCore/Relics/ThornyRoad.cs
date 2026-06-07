@@ -29,22 +29,22 @@ public class ThornyRoad : CustomRelicModel
     public static bool IsPotionActive = false;
 
     [SavedProperty(SerializationCondition.SaveIfNotTypeDefault)]
-    public int StoredHeal { get; set; }
+    public int PenanceMod_StoredHeal { get; set; }
 
-    public override bool ShowCounter => StoredHeal > 0;
-    public override int DisplayAmount => StoredHeal;
+    public override bool ShowCounter => PenanceMod_StoredHeal > 0;
+    public override int DisplayAmount => PenanceMod_StoredHeal;
 
     public void AddStoredHeal(int amount)
     {
         if (amount <= 0) return;
-        StoredHeal += amount;
+        PenanceMod_StoredHeal += amount;
         InvokeDisplayAmountChanged();
     }
 
     private void ClearStoredHeal()
     {
-        if (StoredHeal == 0) return;
-        StoredHeal = 0;
+        if (PenanceMod_StoredHeal == 0) return;
+        PenanceMod_StoredHeal = 0;
         InvokeDisplayAmountChanged();
     }
 
@@ -66,9 +66,9 @@ public class ThornyRoad : CustomRelicModel
         await PowerCmd.Apply<JudgementPower>(new ThrowingPlayerChoiceContext(), creature, 3, creature, null);
 
         // 释放存储的屏障
-        if (StoredHeal > 0)
+        if (PenanceMod_StoredHeal > 0)
         {
-            await PowerCmd.Apply<BarrierPower>(new ThrowingPlayerChoiceContext(), creature, StoredHeal, creature, null);
+            await PowerCmd.Apply<BarrierPower>(new ThrowingPlayerChoiceContext(), creature, PenanceMod_StoredHeal, creature, null);
             ClearStoredHeal();
         }
     }

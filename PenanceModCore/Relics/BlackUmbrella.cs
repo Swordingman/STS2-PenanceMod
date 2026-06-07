@@ -34,22 +34,22 @@ public class BlackUmbrella : CustomRelicModel
 
     // 🌟 核心：使用 SavedProperty 确保战斗中 S/L 状态不会被重置
     [SavedProperty]
-    public bool TriggeredThisCombat { get; set; }
+    public bool PenanceMod_TriggeredThisCombat { get; set; }
 
     public override Task BeforeCombatStart()
     {
         // 每次战斗开始时重置触发状态和 UI 状态
-        TriggeredThisCombat = false;
+        PenanceMod_TriggeredThisCombat = false;
         Status = RelicStatus.Normal; 
         return Task.CompletedTask;
     }
 
     public async Task TriggerOnBlockBroken(PlayerChoiceContext choiceContext, Creature attacker)
     {
-        if (TriggeredThisCombat) 
+        if (PenanceMod_TriggeredThisCombat) 
             return;
 
-        TriggeredThisCombat = true;
+        PenanceMod_TriggeredThisCombat = true;
         
         Status = RelicStatus.Disabled; 
         

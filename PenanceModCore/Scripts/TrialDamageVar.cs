@@ -18,6 +18,9 @@ public class TrialDamageVar : DamageVar
 
     public override void UpdateCardPreview(CardModel card, CardPreviewMode previewMode, Creature? target, bool runGlobalHooks)
     {
+        if (card.Enchantment == null)
+            return;
+            
         decimal num = this.BaseValue;
         EnchantmentModel enchantment = card.Enchantment;
 

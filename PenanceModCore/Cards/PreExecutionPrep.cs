@@ -38,7 +38,7 @@ public class PreExecutionPrep : PenanceBaseCard
         if (hand == null)
             return;
 
-        int maxHandSize = MaxHandSizePatch.GetMaxHandSize(player);
+        int maxHandSize = MaxHandSizePatch.GetMaxHandSize(player, CardPile.MaxCardsInHand);
         int drawAmount = maxHandSize - hand.Cards.Count;
 
         if (drawAmount <= 0)

@@ -36,12 +36,12 @@ public class GoldenScales : CustomRelicModel
 
     // 加上存档修饰，防止玩家在此回合 S/L 后丢弃记录丢失
     [SavedProperty]
-    public bool DiscardedAttackThisTurn { get; set; }
+    public bool PenanceMod_DiscardedAttackThisTurn { get; set; }
 
     public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         // 回合开始时：重置判定变量，并将遗物状态恢复为正常（关闭脉冲发光）
-        DiscardedAttackThisTurn = false;
+        PenanceMod_DiscardedAttackThisTurn = false;
         Status = RelicStatus.Normal;
         return Task.CompletedTask;
     }
@@ -49,7 +49,7 @@ public class GoldenScales : CustomRelicModel
     // 供你的 Patch 调用的方法（用于“自证其罪”等手动弃牌的监听）
     public void OnAttackDiscarded()
     {
-        DiscardedAttackThisTurn = true;
+        PenanceMod_DiscardedAttackThisTurn = true;
         
         // 修改状态为 Active，引擎底层会自动播放高亮脉冲特效
         Status = RelicStatus.Active; 
@@ -63,7 +63,7 @@ public class GoldenScales : CustomRelicModel
         if (player == null || side != player.Creature.Side) 
             return;
 
-        bool trigger = DiscardedAttackThisTurn;
+        bool trigger = PenanceMod_DiscardedAttackThisTurn;
 
         // 如果本回合还没有手动弃置过攻击牌，检查手牌中是否有即将被回合结束机制自动丢弃的攻击牌
         if (!trigger)

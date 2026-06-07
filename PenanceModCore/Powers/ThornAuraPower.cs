@@ -24,6 +24,9 @@ public class ThornAuraPower : CustomPowerModel
     {
         if (Owner != null && side == Owner.Side && Amount > 0)
         {
+            if (Owner.CombatState == null)
+                return;
+                
             Flash();
 
             var enemies = Owner.CombatState.GetOpponentsOf(Owner).ToList();

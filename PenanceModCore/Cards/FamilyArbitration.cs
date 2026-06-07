@@ -34,6 +34,9 @@ public class FamilyArbitration : PenanceBaseCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (Owner == null || Owner.Creature == null || cardPlay.Target == null || CombatState == null)
+            return;
+            
         var target = cardPlay.Target;
         if (target == null)
             return;

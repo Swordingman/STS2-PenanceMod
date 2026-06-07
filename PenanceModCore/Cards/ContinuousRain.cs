@@ -66,6 +66,9 @@ public class ContinuousRain : PenanceBaseCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null || Owner == null || Owner.Creature == null)
+            return;
+            
         var allCreatures = CombatState.Creatures;
         var player = Owner.Creature;
         int selfDebuff = DynamicVars.ContainsKey("Rain-SelfDebuff") ? DynamicVars["Rain-SelfDebuff"].IntValue : 2;

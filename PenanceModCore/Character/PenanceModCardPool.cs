@@ -15,21 +15,21 @@ public class PenanceModCardPool : CustomCardPoolModel
     public override string? BigEnergyIconPath => "res://PenanceMod/images/charui/energy_orb_p.png";
 
 
-    // 卡池的主题色。
-    public override Color DeckEntryCardColor => new(144, 119, 22);
+    // // 卡池的主题色。
+    // public override Color DeckEntryCardColor => new(144, 119, 22);
 
-    /*
-    public override Texture2D CustomFrame(CustomCardModel card)
-    {
-        return card.Type switch
-        {
-            CardType.Attack => PreloadManager.Cache.GetTexture2D("res://PenanceMod/images/charui/bg_attack.png"),
-            CardType.Power => PreloadManager.Cache.GetTexture2D("res://PenanceMod/images/charui/bg_power.png"),
-            _ => PreloadManager.Cache.GetTexture2D("res://PenanceMod/images/charui/bg_skill.png"),
-        };
-    }
-    */
+    // public override Texture2D CustomFrame(CustomCardModel card)
+    // {
+    //     return card.Type switch
+    //     {
+    //         CardType.Attack => PreloadManager.Cache.GetTexture2D("res://PenanceMod/images/charui/bg_attack.png"),
+    //         CardType.Power => PreloadManager.Cache.GetTexture2D("res://PenanceMod/images/charui/bg_power.png"),
+    //         _ => PreloadManager.Cache.GetTexture2D("res://PenanceMod/images/charui/bg_skill.png"),
+    //     };
+    // }
 
     // 卡池是否是无色。例如事件、状态等卡池就是无色的。
     public override bool IsColorless => false;
+
+    public override Color DeckEntryCardColor => new Color(144, 119, 22);
 }

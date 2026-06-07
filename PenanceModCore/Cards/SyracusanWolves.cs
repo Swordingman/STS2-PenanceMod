@@ -47,6 +47,8 @@ public class SyracusanWolves : PenanceBaseCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var player = Owner;
+        if (player == null || CombatState == null)
+            return;
 
         // 原版逻辑：随机 5 张狼群诅咒洗入抽牌堆。
         const int amount = 5;

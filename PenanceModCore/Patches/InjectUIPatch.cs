@@ -8,7 +8,7 @@ namespace PenanceMod.PenanceModCode.Patches;
 [HarmonyPatch(typeof(NCreature), nameof(NCreature._Ready))]
 public static class InjectBarrierUIPatch
 {
-    private static PackedScene _barSceneCache;
+    private static PackedScene? _barSceneCache;
 
     private const string PenanceModelId = "CHARACTER.PENANCEMOD-PENANCE_MOD";
     private const string BarrierBarScenePath = "res://PenanceMod/scenes/BarrierBar.tscn";
@@ -51,9 +51,9 @@ public static class InjectBarrierUIPatch
         }
 
         barInstance.Name = BarrierBarNodeName;
-        barInstance.TargetCreature = creature;
+        barInstance.TargetCreature = creature!;
 
-        Node parent = FindHealthBarNode(__instance);
+        Node? parent = FindHealthBarNode(__instance);
 
         if (parent == null)
             parent = __instance.Visuals;
@@ -73,7 +73,7 @@ public static class InjectBarrierUIPatch
         GD.Print("[PenanceMod] BarrierBar injected. ModelId=", modelId, ", Parent=", parent.Name);
     }
 
-    private static Node FindHealthBarNode(Node root)
+    private static Node? FindHealthBarNode(Node root)
     {
         if (root == null)
             return null;
@@ -92,7 +92,7 @@ public static class InjectBarrierUIPatch
 
         foreach (string keyword in keywords)
         {
-            Node found = FindNodeRecursive(root, node =>
+            Node? found = FindNodeRecursive(root, node =>
             {
                 string name = node.Name.ToString();
                 return name.Contains(keyword, System.StringComparison.OrdinalIgnoreCase)
@@ -106,7 +106,7 @@ public static class InjectBarrierUIPatch
         return null;
     }
 
-    private static Node FindNodeRecursive(Node root, System.Func<Node, bool> predicate)
+    private static Node? FindNodeRecursive(Node root, System.Func<Node, bool> predicate)
     {
         if (root == null)
             return null;
@@ -116,7 +116,7 @@ public static class InjectBarrierUIPatch
 
         foreach (Node child in root.GetChildren())
         {
-            Node found = FindNodeRecursive(child, predicate);
+            Node? found = FindNodeRecursive(child, predicate);
             if (found != null)
                 return found;
         }

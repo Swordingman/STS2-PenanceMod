@@ -1,6 +1,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands; // 可能需要用到相关指令
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -32,16 +32,16 @@ public class PlasticMole : CustomRelicModel
     ];
 
     [SavedProperty]
-    public int AttackCounter { get; set; }
+    public int PenanceMod_AttackCounter { get; set; }
 
-    public override bool ShowCounter => AttackCounter > 0;
-    public override int DisplayAmount => AttackCounter;
+    public override bool ShowCounter => PenanceMod_AttackCounter > 0;
+    public override int DisplayAmount => PenanceMod_AttackCounter;
 
     public override Task BeforeCombatStart()
     {
-        if (AttackCounter != 0)
+        if (PenanceMod_AttackCounter != 0)
         {
-            AttackCounter = 0;
+            PenanceMod_AttackCounter = 0;
             InvokeDisplayAmountChanged(); 
         }
         return Task.CompletedTask;
@@ -67,16 +67,16 @@ public class PlasticMole : CustomRelicModel
 
         if (attackIntents > 0)
         {
-            AttackCounter += attackIntents;
+            PenanceMod_AttackCounter += attackIntents;
             Flash();
 
             int threshold = DynamicVars["Mole-Threshold"].IntValue;
             int energyGain = DynamicVars["Mole-Energy"].IntValue;
 
-            if (AttackCounter >= threshold)
+            if (PenanceMod_AttackCounter >= threshold)
             {
-                int timesTriggered = AttackCounter / threshold;
-                AttackCounter %= threshold; // 保留余数
+                int timesTriggered = PenanceMod_AttackCounter / threshold;
+                PenanceMod_AttackCounter %= threshold; // 保留余数
 
                 // 给予玩家能量。同样，如果引擎改用 Cmd 方式给费，可以直接用 EnergyCmd.Gain(...)
                 player.PlayerCombatState?.GainEnergy(timesTriggered * energyGain);

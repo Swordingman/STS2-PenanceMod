@@ -31,12 +31,12 @@ public class SiracusanWine : CustomRelicModel
 
     // 存档属性，确保单场战斗中 S/L 也只触发一次
     [SavedProperty]
-    public bool TriggeredThisCombat { get; set; }
+    public bool PenanceMod_TriggeredThisCombat { get; set; }
 
     public override Task BeforeCombatStart()
     {
         // 战斗开始时重置状态和 UI（取消变灰）
-        TriggeredThisCombat = false;
+        PenanceMod_TriggeredThisCombat = false;
         Status = RelicStatus.Normal;
         return Task.CompletedTask;
     }
@@ -46,9 +46,9 @@ public class SiracusanWine : CustomRelicModel
     {
         int triggerDmg = DynamicVars["Wine-TriggerDmg"].IntValue;
 
-        if (!TriggeredThisCombat && damageAmount >= triggerDmg)
+        if (!PenanceMod_TriggeredThisCombat && damageAmount >= triggerDmg)
         {
-            TriggeredThisCombat = true;
+            PenanceMod_TriggeredThisCombat = true;
             
             // 🌟 触发后直接设为 Disabled，引擎会自动将其变灰
             Status = RelicStatus.Disabled;

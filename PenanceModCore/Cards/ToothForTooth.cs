@@ -46,9 +46,9 @@ public class ToothForTooth : PenanceBaseCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var player = Owner as Player;
+        var player = Owner;
         var creature = player?.Creature;
-        if (creature == null || cardPlay.Target == null) return;
+        if (creature == null || cardPlay.Target == null || player == null || CombatState == null) return;
 
         // 1. 失去 2 点生命值
         var selfDamageVar = new DamageVar(2, ValueProp.Unblockable);

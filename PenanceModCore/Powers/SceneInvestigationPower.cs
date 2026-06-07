@@ -28,12 +28,9 @@ public class SceneInvestigationPower : CustomPowerModel
 
     private CardType? _lastCardType = null;
 
-    // --- 内部持久化数据 ---
-    [SavedProperty]
-    public int EnergyPerTrigger { get; set; } = 2;
+    public int PenanceMod_EnergyPerTrigger { get; set; } = 2;
     
-    [SavedProperty]
-    public bool CardsShouldUpgrade { get; set; } = false;
+    public bool PenanceMod_CardsShouldUpgrade { get; set; } = false;
 
     // ==========================================
     // 1. 注册动态变量（这会让 JSON 里的 {EnergyTotal} 和 {IsUpgraded} 生效）
@@ -50,9 +47,9 @@ public class SceneInvestigationPower : CustomPowerModel
         if (DynamicVars == null) return;
 
         // 更新数值到变量中
-        DynamicVars["EnergyTotal"].BaseValue = Amount * EnergyPerTrigger;
+        DynamicVars["EnergyTotal"].BaseValue = Amount * PenanceMod_EnergyPerTrigger;
         // 0 代表 false，1 代表 true，SmartFormat 会自动识别
-        DynamicVars["IsUpgraded"].BaseValue = CardsShouldUpgrade ? 1m : 0m;
+        DynamicVars["IsUpgraded"].BaseValue = PenanceMod_CardsShouldUpgrade ? 1m : 0m;
     }
 
     // ==========================================
@@ -64,11 +61,11 @@ public class SceneInvestigationPower : CustomPowerModel
     {
         if (cardSource != null)
         {
-            CardsShouldUpgrade = CardsShouldUpgrade || cardSource.IsUpgraded;
+            PenanceMod_CardsShouldUpgrade = PenanceMod_CardsShouldUpgrade || cardSource.IsUpgraded;
             
             if (cardSource.DynamicVars.TryGetValue("Scene-Energy", out var energyVar))
             {
-                EnergyPerTrigger = Math.Max(EnergyPerTrigger, energyVar.IntValue);
+                PenanceMod_EnergyPerTrigger = Math.Max(PenanceMod_EnergyPerTrigger, energyVar.IntValue);
             }
         }
         
@@ -111,8 +108,9 @@ public class SceneInvestigationPower : CustomPowerModel
 
     private async Task TriggerEffect(CardType type, PlayerChoiceContext context)
     {
-        var player = Owner.Player;
-        // 直接读变量里算好的值，或者读属性，都没问题
+        var player = Owner?.Player;
+        if (player == null) return;
+
         int energyToGain = (int)DynamicVars["EnergyTotal"].BaseValue;
 
         switch (type)
@@ -146,7 +144,7 @@ public class SceneInvestigationPower : CustomPowerModel
 
         foreach (var randomCard in generatedCards)
         {
-            if (CardsShouldUpgrade && randomCard.IsUpgradable) 
+            if (PenanceMod_CardsShouldUpgrade && randomCard.IsUpgradable) 
             {
                 randomCard.UpgradeInternal(); 
                 randomCard.FinalizeUpgradeInternal(); 

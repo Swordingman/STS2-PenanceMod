@@ -38,6 +38,9 @@ public class JudgmentHasBegunPower : CustomPowerModel
     // ==========================================
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
+        if (Owner.Player == null)
+            return;
+            
         // 判定：打出者是自己，且卡牌类型是攻击牌
         if (Owner != null && cardPlay.Card.Owner?.Creature == Owner && cardPlay.Card.Type == CardType.Attack)
         {

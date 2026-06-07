@@ -63,11 +63,11 @@ public class CourtRehearsal : PenanceBaseCard
 
             // 找到刚才挂上的那个追踪器，把这张新牌交给它照看
             // 因为允许实例化(Instanced)，我们找 TrackedCard 还是 null 的那个
-            var tracker = player.Creature.Powers.OfType<CourtRehearsalTrackerPower>().LastOrDefault(p => p.TrackedCard == null);
+            var tracker = player.Creature.Powers.OfType<CourtRehearsalTrackerPower>().LastOrDefault(p => p.PenanceMod_TrackedCard == null);
             if (tracker != null)
             {
-                tracker.TrackedCard = randomCard;
-                tracker.IsUpgradedMode = this.IsUpgraded;
+                tracker.PenanceMod_TrackedCard = randomCard;
+                tracker.PenanceMod_IsUpgradedMode = this.IsUpgraded;
             }
         }
     }

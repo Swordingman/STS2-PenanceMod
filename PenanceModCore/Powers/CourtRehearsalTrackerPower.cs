@@ -23,11 +23,9 @@ public class CourtRehearsalTrackerPower : CustomPowerModel
 
     protected override bool IsVisibleInternal => false;
 
-    [SavedProperty]
-    public CardModel TrackedCard { get; set; }
+    public CardModel? PenanceMod_TrackedCard { get; set; }
 
-    [SavedProperty]
-    public bool IsUpgradedMode { get; set; }
+    public bool PenanceMod_IsUpgradedMode { get; set; }
 
     public override async Task BeforeFlush(PlayerChoiceContext choiceContext, Player player)
     {
@@ -37,9 +35,9 @@ public class CourtRehearsalTrackerPower : CustomPowerModel
         var handPile = PileType.Hand.GetPile(player);
 
         // 检查被追踪的卡是否还在手牌里（说明这回合玩家把这张牌憋在手里没打）
-        if (TrackedCard != null && handPile.Cards.Contains(TrackedCard))
+        if (PenanceMod_TrackedCard != null && handPile.Cards.Contains(PenanceMod_TrackedCard))
         {
-            var newCard = GenerateRandomCard(player, TrackedCard.Id.Entry);
+            var newCard = GenerateRandomCard(player, PenanceMod_TrackedCard.Id.Entry);
             if (newCard != null)
             {
                 // 给新牌加上保留(Retain)和消耗(Exhaust)
@@ -47,10 +45,10 @@ public class CourtRehearsalTrackerPower : CustomPowerModel
                 newCard.AddKeyword(CardKeyword.Exhaust);
 
                 // 变身为下一张牌
-                await CardCmd.Transform(TrackedCard, newCard);
+                await CardCmd.Transform(PenanceMod_TrackedCard, newCard);
 
                 // 更新追踪目标
-                TrackedCard = newCard;
+                PenanceMod_TrackedCard = newCard;
             }
         }
         else
@@ -62,7 +60,7 @@ public class CourtRehearsalTrackerPower : CustomPowerModel
 
     public override Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
-        if (cardPlay.Card == TrackedCard)
+        if (cardPlay.Card == PenanceMod_TrackedCard)
         {
             // 如果打出了追踪的卡，使用弃用等待安全销毁追踪器
             _ = PowerCmd.Remove(this);
@@ -70,7 +68,7 @@ public class CourtRehearsalTrackerPower : CustomPowerModel
         return Task.CompletedTask;
     }
 
-    private CardModel GenerateRandomCard(Player player, string currentCardEntryId)
+    private CardModel? GenerateRandomCard(Player player, string currentCardEntryId)
     {
         var candidates = ModelDb.AllCardPools
             .OfType<PenanceModCardPool>() 
@@ -85,7 +83,7 @@ public class CourtRehearsalTrackerPower : CustomPowerModel
             player, candidates, 1, player.RunState.Rng.CombatCardGeneration
         ).FirstOrDefault();
 
-        if (randomCard != null && IsUpgradedMode && randomCard.IsUpgradable && !randomCard.IsUpgraded)
+        if (randomCard != null && PenanceMod_IsUpgradedMode && randomCard.IsUpgradable && !randomCard.IsUpgraded)
         {
             randomCard.UpgradeInternal();
             randomCard.FinalizeUpgradeInternal();

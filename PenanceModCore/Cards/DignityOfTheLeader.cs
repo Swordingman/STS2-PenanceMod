@@ -60,6 +60,9 @@ public class DignityOfTheLeader : PenanceBaseCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (Owner == null || Owner.Creature == null || CombatState == null)
+            return;
+            
         var creature = Owner.Creature;
         var vars = DynamicVars.Values.ToList();
         int energyGain = vars.Count > 0 ? vars[0].IntValue : 2;

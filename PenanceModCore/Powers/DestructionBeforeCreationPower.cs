@@ -23,6 +23,9 @@ public class DestructionBeforeCreationPower : CustomPowerModel
     // 🌟 核心 1：每当消耗诅咒牌时回能
     public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool carsedByEthereal)
     {
+        if (Owner.Player == null)
+            return;
+
         // 判定：如果是诅咒牌且拥有者是自己
         if (card.Type == CardType.Curse && Owner != null)
         {
@@ -36,6 +39,9 @@ public class DestructionBeforeCreationPower : CustomPowerModel
     // 🌟 核心 2：回合开始时洗入随机狼群诅咒
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
+        if (Owner.CombatState == null)
+            return;
+            
         if (Owner != null && player.Creature == Owner && Amount > 0)
         {
             Flash();

@@ -1,3 +1,4 @@
+using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -9,7 +10,10 @@ public static class NFakeMerchant_StartCharacterAnimation_Patch
 {
     static bool Prefix(NCreatureVisuals visuals)
     {
-        MegaTrackEntry entry = TrySetAnimation(visuals, "relaxed_loop");
+        if (visuals == null)
+            return true;
+
+        MegaTrackEntry? entry = TrySetAnimation(visuals, "relaxed_loop");
 
         if (entry == null)
             entry = TrySetAnimation(visuals, "idle_loop");
@@ -27,14 +31,15 @@ public static class NFakeMerchant_StartCharacterAnimation_Patch
         return false;
     }
 
-    private static MegaTrackEntry TrySetAnimation(NCreatureVisuals visuals, string animationName)
+    private static MegaTrackEntry? TrySetAnimation(NCreatureVisuals visuals, string animationName)
     {
         try
         {
             return visuals.SpineAnimation.SetAnimation(animationName);
         }
-        catch
+        catch (Exception e)
         {
+            GD.PushWarning($"[PenanceMod]斥罪Mod报错： 设置动画失败： '{animationName}': {e.Message}");
             return null;
         }
     }

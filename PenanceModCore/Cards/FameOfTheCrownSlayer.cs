@@ -60,6 +60,9 @@ public class FameOfTheCrownSlayer : PenanceBaseCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (Owner == null || Owner.Creature == null || CombatState == null)
+            return;
+            
         var vars = DynamicVars.Values.ToList();
         int drawAmt = vars.Count > 0 ? vars[0].IntValue : 2;
         int tempStr = vars.Count > 1 ? vars[1].IntValue : 3;

@@ -13,6 +13,9 @@ public static class LetterOfGratitude_Barrier_Patch
     [HarmonyPrefix]
     public static void Prefix(PowerModel __instance, ref int __0)
     {
+        if (__instance.Owner.Player == null)
+            return;
+
         // 1. 确保当前正在修改的是“屏障”，且拥有者是玩家
         if (__instance is BarrierPower && __instance.Owner != null && __instance.Owner.IsPlayer)
         {

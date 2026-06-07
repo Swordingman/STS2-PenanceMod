@@ -49,12 +49,12 @@ public sealed class VolsiniiCourtEncounter : CustomEncounterModel
 
     public override Dictionary<string, string> SaveCustomState() => new()
     {
-        ["CivilianDied"] = CivilianDied.ToString()
+        ["CivilianDied"] = CivilianDied ? "true" : "false"
     };
 
     public override void LoadCustomState(Dictionary<string, string> state)
     {
-        if (state.TryGetValue("CivilianDied", out string val))
+        if (state.TryGetValue("CivilianDied", out string? val))
         {
             CivilianDied = bool.Parse(val);
         }

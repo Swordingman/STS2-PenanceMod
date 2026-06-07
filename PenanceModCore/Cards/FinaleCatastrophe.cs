@@ -63,6 +63,9 @@ public class FinaleCatastrophe : PenanceBaseCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (Owner == null || Owner.Creature == null || CombatState == null)
+            return;
+            
         var vars = DynamicVars.Values.ToList();
         int totalHits = vars.Count > 0 ? vars[0].IntValue : 30;
 
@@ -80,7 +83,7 @@ public class FinaleCatastrophe : PenanceBaseCard
             // 【修改点】只要怪物死光了，或者玩家死了，直接跳出循环，结束卡牌结算
             if (!hasMonsters || !hasPlayer) break;
 
-            Creature target = null;
+            Creature? target = null;
 
             // 因为上面的 break 已经保证了玩家和怪物都活着，所以可以直接进行概率判定
             if (rng.NextFloat() < hitPlayerChance)

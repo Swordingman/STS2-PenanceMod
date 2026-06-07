@@ -105,22 +105,4 @@ public class PenanceMod : PlaceholderCharacterModel
         VfxCmd.slashPath,
         VfxCmd.heavyBluntPath
     ];
-
-    public override CreatureAnimator? SetupCustomAnimationStates(MegaSprite controller)
-    {
-        return CustomCharacterModel.SetupAnimationState(
-            controller, 
-            idleName: "idle_loop",       // 替换为你Godot里的待机动画名
-            deadName: "die",         // 替换为死亡动画名
-            deadLoop: false, 
-            hitName: "hurt",         // 替换为受伤动画名（没有就写 null）
-            hitLoop: false, 
-            attackName: "attack",   // 【最关键！】替换为你Godot里的攻击/敲锤子动画名
-            attackLoop: false, 
-            castName: "cast",       // 替换为施放能力牌的动画名（没有就写 null）
-            castLoop: false, 
-            relaxedName: "idle_loop", // 替换为在商店里的待机动画名
-            relaxedLoop: true
-        );
-    }
 }

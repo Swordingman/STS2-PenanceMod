@@ -31,22 +31,22 @@ public class PenanceBasicRelic : CustomRelicModel
     public static bool IsPotionActive = false;
 
     [SavedProperty(SerializationCondition.SaveIfNotTypeDefault)]
-    public int StoredHeal { get; set; }
+    public int PenanceMod_StoredHeal { get; set; }
 
-    public override bool ShowCounter => StoredHeal > 0;
-    public override int DisplayAmount => StoredHeal;
+    public override bool ShowCounter => PenanceMod_StoredHeal > 0;
+    public override int DisplayAmount => PenanceMod_StoredHeal;
 
     public void AddStoredHeal(int amount)
     {
         if (amount <= 0) return;
-        StoredHeal += amount;
+        PenanceMod_StoredHeal += amount;
         InvokeDisplayAmountChanged();
     }
 
     private void ClearStoredHeal()
     {
-        if (StoredHeal == 0) return;
-        StoredHeal = 0;
+        if (PenanceMod_StoredHeal == 0) return;
+        PenanceMod_StoredHeal = 0;
         InvokeDisplayAmountChanged();
     }
 
@@ -65,9 +65,9 @@ public class PenanceBasicRelic : CustomRelicModel
 
         await PowerCmd.Apply<JudgementPower>(new ThrowingPlayerChoiceContext(), creature, 1, creature, null);
 
-        if (StoredHeal > 0)
+        if (PenanceMod_StoredHeal > 0)
         {
-            await PowerCmd.Apply<BarrierPower>(new ThrowingPlayerChoiceContext(), creature, StoredHeal, creature, null);
+            await PowerCmd.Apply<BarrierPower>(new ThrowingPlayerChoiceContext(), creature, PenanceMod_StoredHeal, creature, null);
             ClearStoredHeal();
         }
     }
@@ -128,7 +128,7 @@ public static class PotionHealPatch
     public static bool Prefix(Creature __instance, decimal amount)
     {
         // 排除非玩家和无意义的数值
-        if (!__instance.IsPlayer || amount <= 0) return true;
+        if (!__instance.IsPlayer || amount <= 0 || __instance.Player == null) return true;
 
         // 🌟 核心修正：濒死抢救豁免！
         // 如果玩家血量已经归零或更低，说明这是复活类道具（如瓶装精灵）在救命。

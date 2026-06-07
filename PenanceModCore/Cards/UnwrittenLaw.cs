@@ -62,7 +62,7 @@ public class UnwrittenLaw : PenanceBaseCard
         // MaxHandSizePatch.GetMaxHandSize(player) 会读取当前真实手牌上限，
         // 包括其他 mod 或效果对手牌上限的修改。
         var hand = PileType.Hand.GetPile(player);
-        int maxHandSize = MaxHandSizePatch.GetMaxHandSize(player);
+        int maxHandSize = MaxHandSizePatch.GetMaxHandSize(player, CardPile.MaxCardsInHand);
 
         if (hand.Cards.Count < maxHandSize)
         {

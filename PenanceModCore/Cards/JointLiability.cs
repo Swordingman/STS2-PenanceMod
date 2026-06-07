@@ -31,6 +31,9 @@ public class JointLiability : PenanceBaseCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (Owner == null || CombatState == null)
+            return;
+            
         var creature = Owner.Creature;
 
         // 1. 获取当前裁决层数

@@ -20,44 +20,50 @@ public class LawIsCanonPower : CustomPowerModel
 
     public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
-        if (Owner != null && side == Owner.Side && Amount > 0)
+        var owner = Owner;
+        if (owner == null || side != owner.Side || Amount <= 0)
+            return;
+
+        var combatState = owner.CombatState;
+        if (combatState == null)
+            return;
+
+        var barrier = owner.GetPower<BarrierPower>();
+        if (barrier == null || barrier.Amount <= 0)
+            return;
+
+        var judgement = owner.GetPower<JudgementPower>();
+        if (judgement == null || judgement.Amount <= 0)
+            return;
+
+        var aliveEnemies = combatState
+            .GetOpponentsOf(owner)
+            .Where(e => e != null && !e.IsDead)
+            .ToList();
+
+        if (aliveEnemies.Count == 0)
+            return;
+
+        Flash();
+
+        var rng = owner.Player?.RunState.Rng.CombatTargets;
+
+        for (int i = 0; i < Amount; i++)
         {
-            // 1. 检查屏障
-            var barrier = Owner.GetPower<BarrierPower>();
-            if (barrier != null && barrier.Amount > 0)
-            {
-                // 2. 检查玩家身上是否有裁决，如果没有裁决就没必要触发
-                var judgement = Owner.GetPower<JudgementPower>();
-                if (judgement != null && judgement.Amount > 0)
-                {
-                    // 3. 获取所有存活的敌人
-                    var aliveEnemies = Owner.CombatState.GetOpponentsOf(Owner).Where(e => !e.IsDead).ToList();
-                    
-                    if (aliveEnemies.Count > 0)
-                    {
-                        Flash(); // 闪烁本能力图标
+            var currentAlive = combatState.GetOpponentsOf(owner)
+            .Where(e => e != null && !e.IsDead)
+            .ToList();
 
-                        // 获取战斗随机数生成器
-                        var rng = Owner.Player?.RunState.Rng.CombatTargets;
+            if (currentAlive.Count == 0)
+                break;
 
-                        // 4. 根据能力层数，决定触发几次
-                        for (int i = 0; i < Amount; i++)
-                        {
-                            var currentAlive = Owner.CombatState.GetOpponentsOf(Owner).Where(e => !e.IsDead).ToList();
-                            if (currentAlive.Count == 0) break;
+            var target = rng != null? rng.NextItem(currentAlive) : currentAlive[0];
 
-                            // 随机挑选一个幸运儿
-                            var target = rng != null ? rng.NextItem(currentAlive) : currentAlive[0];
+            if (target == null)
+                continue;
 
-                            // 🌟 直接调用刚刚公开的异步裁决方法！
-                            await judgement.TriggerJudgementDamageAsync(target); 
-                            
-                            // 延迟 0.15 秒，机枪式裁决！
-                            await Cmd.Wait(0.15f);
-                        }
-                    }
-                }
-            }
+            await judgement.TriggerJudgementDamageAsync(target);
+            await Cmd.Wait(0.15f);
         }
     }
 }

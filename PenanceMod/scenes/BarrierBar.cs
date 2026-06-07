@@ -6,11 +6,11 @@ namespace PenanceMod.PenanceModCode.UI;
 
 public partial class BarrierBar : Control
 {
-    public Creature TargetCreature;
+    public Creature? TargetCreature;
 
-    private Control _barContainer;
-    private Label _label;
-    private TextureRect _icon;
+    private Control? _barContainer;
+    private Label? _label;
+    private TextureRect? _icon;
 
     private int _lastAmount = -1;
     private bool _lastVisible;

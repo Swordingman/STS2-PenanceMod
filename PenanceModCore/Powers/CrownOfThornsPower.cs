@@ -26,9 +26,11 @@ public class CrownOfThornsPower : CustomPowerModel
     // 完美替代 atStartOfTurnPostDraw 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        // 确保只有当拥有者是当前回合的玩家时才触发
         if (Owner == player.Creature)
         {
+            if (Owner.CombatState == null)
+                return;
+
             Flash(); // 闪烁图标
 
             await CreatureCmd.Damage(

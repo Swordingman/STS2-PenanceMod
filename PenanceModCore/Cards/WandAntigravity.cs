@@ -55,6 +55,9 @@ public class WandAntigravity : PenanceBaseCard
     {
         var player = Owner;
 
+        if (player == null || CombatState == null)
+            return;
+
         // 1. 消耗所有不在消耗堆中的诅咒（手牌、抽牌堆、弃牌堆）
         var otherPiles = new[] { PileType.Hand, PileType.Draw, PileType.Discard };
         foreach (var pileType in otherPiles)

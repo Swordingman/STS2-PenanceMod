@@ -60,6 +60,9 @@ public class AmbushShadow : PenanceBaseCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (Owner == null || Owner.Creature == null || Owner.PlayerCombatState == null)
+            return;
+
         var creature = Owner.Creature;
         
         // ⭐ 破局神技：直接抓取第一个变量，调用官方源码验证过的 IntValue

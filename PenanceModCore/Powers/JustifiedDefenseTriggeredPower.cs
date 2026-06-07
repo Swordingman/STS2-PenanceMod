@@ -24,6 +24,9 @@ public class JustifiedDefenseTriggeredPower : CustomPowerModel
     // ==========================================
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
+        if (Owner.Player == null)
+            return;
+            
         // 确保只有当拥有者是当前玩家且层数大于 0 时才触发
         if (Owner == player.Creature && Amount > 0)
         {
