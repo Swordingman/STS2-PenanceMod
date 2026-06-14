@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://kdl1pyivjayd"
+path="res://.godot/imported/build_char_4065_judge_epoque_3342.skel-ddfe09178d81856b92b1ad117ceb94c9.spskel"
+
+[deps]
+
+source_file="res://PenanceMod/scenes/resource/build_char_4065_judge_epoque_3342.skel"
+dest_files=["res://.godot/imported/build_char_4065_judge_epoque_3342.skel-ddfe09178d81856b92b1ad117ceb94c9.spskel"]
+
+[params]
+

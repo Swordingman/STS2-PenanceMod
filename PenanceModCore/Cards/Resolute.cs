@@ -37,6 +37,7 @@ public class Resolute : PenanceBaseCard, ITranscendenceCard
         if (creature == null) return;
 
         // 1. 获得固定�?3 点屏�?
+        await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);
         await ApplyBarrier(creature, 3);
         await Cmd.Wait(0.1f);
 

@@ -27,6 +27,7 @@ public class JudgmentHasBegun : PenanceBaseCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 挂载核心 Power
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
         await PowerCmd.Apply<JudgmentHasBegunPower>(choiceContext,Owner.Creature, 1, Owner.Creature, this);
     }
 

@@ -13,8 +13,8 @@ public static class LetterOfGratitude_Barrier_Patch
     [HarmonyPrefix]
     public static void Prefix(PowerModel __instance, ref int __0)
     {
-        if (__instance.Owner.Player == null)
-            return;
+        if (__instance == null || __instance.Owner == null || __instance.Owner.CombatState == null)
+            return; 
 
         // 1. 确保当前正在修改的是“屏障”，且拥有者是玩家
         if (__instance is BarrierPower && __instance.Owner != null && __instance.Owner.IsPlayer)
@@ -23,7 +23,7 @@ public static class LetterOfGratitude_Barrier_Patch
             // （如果是挨打扣除屏障，新数值会变小，绝对不能触发加成）
             if (__0 > __instance.Amount) 
             {
-                var relic = __instance.Owner.Player.GetRelic<LetterOfGratitude>();
+                var relic = __instance.Owner.Player?.GetRelic<LetterOfGratitude>();
                 if (relic != null)
                 {
                     // 3. 计算这次具体获得了多少层屏障

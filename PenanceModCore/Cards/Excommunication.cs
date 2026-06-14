@@ -49,7 +49,8 @@ public class Excommunication : PenanceBaseCard
                 await CardCmd.Exhaust(choiceContext, curse, causedByEthereal: false);
             }
 
-            // 让消耗特效飞一会儿，演出效果更�?            
+            await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
+
             await Cmd.Wait(0.2f);
 
             // 3. 计算并获得收�?            

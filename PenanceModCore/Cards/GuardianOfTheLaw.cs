@@ -17,7 +17,7 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(PenanceModCardPool))]
 public class GuardianOfTheLaw : PenanceBaseCard
 {
-    // 耗能 2，类�?Power，稀有度 Rare，目�?Self
+    // 耗能 2，类�?Power，稀有度 Rare，目�?Self
     public GuardianOfTheLaw() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self, true)
     {
     }
@@ -33,6 +33,7 @@ public class GuardianOfTheLaw : PenanceBaseCard
         int magicGain = vars.Count > 0 ? vars[0].IntValue : 3;
 
         // 挂载律法卫士能力
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
         await PowerCmd.Apply<GuardianOfTheLawPower>(choiceContext,Owner.Creature, magicGain, Owner.Creature, this);
     }
 

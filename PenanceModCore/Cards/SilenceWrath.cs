@@ -32,6 +32,8 @@ public class SilenceWrath : PenanceBaseCard
         if (creature == null) return;
 
         int amount = DynamicVars["SilenceWrath-Amt"].IntValue;
+
+        await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);
         await PowerCmd.Apply<SilenceWrathPower>(choiceContext, creature, amount, creature, this);
     }
 

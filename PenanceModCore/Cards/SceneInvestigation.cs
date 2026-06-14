@@ -26,6 +26,7 @@ public class SceneInvestigation : PenanceBaseCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
         await PowerCmd.Apply<SceneInvestigationPower>(choiceContext,Owner.Creature, 1, Owner.Creature, this);
     }
 

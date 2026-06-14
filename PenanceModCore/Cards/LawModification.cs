@@ -32,6 +32,8 @@ public class LawModification : PenanceBaseCard
 
         if (currentBlock > 0)
         {
+            await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);
+
             // 1. 失去所有格挡
             await CreatureCmd.LoseBlock(creature, currentBlock);
 

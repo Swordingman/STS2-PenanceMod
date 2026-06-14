@@ -62,7 +62,7 @@ public class LawIsCanonPower : CustomPowerModel
             if (target == null)
                 continue;
 
-            await judgement.TriggerJudgementDamageAsync(target);
+            await judgement.TriggerJudgementDamageAsync(target, choiceContext);
             await Cmd.Wait(0.15f);
         }
     }

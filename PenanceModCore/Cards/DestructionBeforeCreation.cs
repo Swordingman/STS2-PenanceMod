@@ -27,6 +27,7 @@ public class DestructionBeforeCreation : PenanceBaseCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 挂载核心能力
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
         await PowerCmd.Apply<DestructionBeforeCreationPower>(choiceContext, Owner.Creature, 1, Owner.Creature, this);
     }
 

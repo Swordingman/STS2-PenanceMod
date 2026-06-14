@@ -64,6 +64,7 @@ public class Upright : PenanceBaseCard
 
         if (totalStr > 0)
         {
+            await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);
             await PowerCmd.Apply<StrengthPower>(choiceContext, creature, totalStr, creature, this);
         }
     }

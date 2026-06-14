@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://carpof5wqia2b"
+path="res://.godot/imported/char_4065_judge_snow_6.atlas-ebfe57315a162688c8267ca48d084530.spatlas"
+
+[deps]
+
+source_file="res://PenanceMod/scenes/resource/char_4065_judge_snow_6.atlas"
+dest_files=["res://.godot/imported/char_4065_judge_snow_6.atlas-ebfe57315a162688c8267ca48d084530.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

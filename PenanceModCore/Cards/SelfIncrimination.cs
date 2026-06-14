@@ -65,6 +65,8 @@ public class SelfIncrimination : PenanceBaseCard
         if (curse == null)
             return;
 
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);    
+
         // 把这张诅咒从抽牌堆“抽出”到手牌
         await CardPileCmd.Add(
             curse,

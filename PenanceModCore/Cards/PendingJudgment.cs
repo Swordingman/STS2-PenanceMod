@@ -35,7 +35,9 @@ public class PendingJudgment : PenanceBaseCard
         int weakAmt = DynamicVars["Pending-Weak"].IntValue;
         int barrierPerWeak = DynamicVars["Pending-Barrier"].IntValue;
 
-        // 1. 给予所有目标虚�?
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
+
+        // 1. 给予所有目标虚弱
         foreach (var enemy in combatState.HittableEnemies)
         {
             await PowerCmd.Apply<WeakPower>(choiceContext, enemy, weakAmt, Owner.Creature, this);
@@ -44,7 +46,7 @@ public class PendingJudgment : PenanceBaseCard
         // 稍微停顿一下，让虚弱特效飞完，否则引擎可能还没把状态挂上去就判定了
         await Cmd.Wait(0.1f);
 
-        // 2. 统计当前带有虚弱的敌人数�?
+        // 2. 统计当前带有虚弱的敌人数�?
         int weakEnemyCount = combatState.HittableEnemies.Count(e => e.GetPower<WeakPower>() != null);
 
         // 3. 获得屏障

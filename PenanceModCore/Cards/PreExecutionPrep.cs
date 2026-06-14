@@ -33,6 +33,7 @@ public class PreExecutionPrep : PenanceBaseCard
     {
         var player = Owner;
         var creature = player.Creature;
+        await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);
 
         var hand = player.Piles.FirstOrDefault(p => p.Type == PileType.Hand);
         if (hand == null)

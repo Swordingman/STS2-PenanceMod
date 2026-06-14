@@ -20,6 +20,7 @@ public class LawIsCanon : PenanceBaseCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
         // 给自己挂上 1 层法为正典状态
         await PowerCmd.Apply<LawIsCanonPower>(choiceContext,Owner.Creature, 1, Owner.Creature, this);
     }

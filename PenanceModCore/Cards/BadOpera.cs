@@ -41,6 +41,8 @@ public class BadOpera : PenanceBaseCard
 
         if (cursesInDraw.Count > 0)
         {
+            await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);
+
             // 2. 随机决定消耗哪些诅咒 (使用战斗随机数)
             int maxToExhaust = DynamicVars["Opera-CurseCount"].IntValue;
             var cursesToExhaust = cursesInDraw

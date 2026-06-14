@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwyexulmlrsrv"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://cyeycypv7gw6q" path="res://PenanceMod/scenes/Relaxed_penance_anim_skin2.tres" id="1_pnxw5"]
+
+[node name="SpineSprite" type="SpineSprite"]
+skeleton_data_res = ExtResource("1_pnxw5")
+preview_skin = "default"
+preview_animation = "relax_loop"
+preview_frame = false
+preview_time = 0.0
+scale = Vector2(0.8, 0.8)
+
+[node name="PenanceMerchant" type="Node2D" parent="."]
+show_behind_parent = true

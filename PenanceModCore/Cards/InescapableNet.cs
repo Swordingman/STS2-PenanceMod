@@ -41,6 +41,8 @@ public class InescapableNet : PenanceBaseCard
             return;
         }
 
+        await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);
+
         await PowerCmd.Apply<InescapableNetPower>(
             choiceContext,
             creature,

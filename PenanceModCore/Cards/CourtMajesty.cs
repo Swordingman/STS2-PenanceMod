@@ -21,6 +21,7 @@ public class CourtMajesty : PenanceBaseCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 挂载法庭之威能力
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
         await PowerCmd.Apply<CourtMajestyPower>(choiceContext, Owner.Creature, 1, Owner.Creature, this);
     }
 

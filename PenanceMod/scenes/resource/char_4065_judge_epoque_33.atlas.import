@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://b2h8mbnkfmpoe"
+path="res://.godot/imported/char_4065_judge_epoque_33.atlas-431b59a92dfc4bcfdf4823dc837521e5.spatlas"
+
+[deps]
+
+source_file="res://PenanceMod/scenes/resource/char_4065_judge_epoque_33.atlas"
+dest_files=["res://.godot/imported/char_4065_judge_epoque_33.atlas-431b59a92dfc4bcfdf4823dc837521e5.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

@@ -37,6 +37,8 @@ public class DrinkPoison : PenanceBaseCard
         
         int hpToLose = DynamicVars[PenaltyKey].IntValue;
 
+        await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);
+
         // 1. 失去生命值 (采用 Unblockable 直接扣血)
         if (hpToLose > 0)
         {

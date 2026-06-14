@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://5ktj27omyea1"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://bhl7dqkkmdl32" path="res://PenanceMod/scenes/resource/build_char_4065_judge_snow_6.atlas" id="1_voq6s"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://dathowqbp25q0" path="res://PenanceMod/scenes/resource/build_char_4065_judge_snow_642.skel" id="2_47mi1"]
+
+[resource]
+atlas_res = ExtResource("1_voq6s")
+skeleton_file_res = ExtResource("2_47mi1")

@@ -15,10 +15,10 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(PenanceModCardPool))]
 public class Asceticism : PenanceBaseCard
 {
-    // 定义动态变量键�?
+    // 定义动态变量键�?
     private const string MagicKey = "Asceticism-Magic";
 
-    // 耗能 1，类型为 Power，稀有度 Rare，目�?Self
+    // 耗能 1，类型为 Power，稀有度 Rare，目�?Self
     public Asceticism() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self, true)
     {
     }
@@ -32,11 +32,12 @@ public class Asceticism : PenanceBaseCard
     {
         var creature = Owner.Creature;
         
-        // 抓取第一个动态变�?
+        // 抓取第一个动态变�?
         var magicVar = DynamicVars.Values.First();
         int buffAmount = magicVar.IntValue;
 
         // 施加苦行能力
+        await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);
         await PowerCmd.Apply<AsceticismPower>(choiceContext,creature, buffAmount, creature, this);
     }
 

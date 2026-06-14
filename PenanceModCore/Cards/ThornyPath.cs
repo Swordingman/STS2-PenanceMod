@@ -30,6 +30,7 @@ public class ThornyPath : PenanceBaseCard
         if (creature == null) return;
 
         int amt = DynamicVars["ThornyPath-Amt"].IntValue;
+        await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);
         await PowerCmd.Apply<ThornyPathPower>(choiceContext,creature, amt, creature, this);
     }
 

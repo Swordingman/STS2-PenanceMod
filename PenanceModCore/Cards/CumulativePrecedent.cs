@@ -31,6 +31,7 @@ public class CumulativePrecedent : PenanceBaseCard
         int barrierGain = vars.Count > 0 ? vars[0].IntValue : 3;
 
         // 挂载判例累积能力
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
         await PowerCmd.Apply<CumulativePrecedentPower>(choiceContext,Owner.Creature, barrierGain, Owner.Creature, this);
     }
 

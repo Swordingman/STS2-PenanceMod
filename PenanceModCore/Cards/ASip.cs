@@ -43,6 +43,8 @@ public class ASip : PenanceBaseCard
             return;
         }
 
+        await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);
+
         var penaltyVar = DynamicVars[PenaltyKey];
         int penalty = penaltyVar.IntValue;
 

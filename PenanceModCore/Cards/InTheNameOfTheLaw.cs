@@ -28,6 +28,7 @@ public class InTheNameOfTheLaw : PenanceBaseCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         int weakAmount = DynamicVars["Law-Weak"].IntValue;
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
         await PowerCmd.Apply<InTheNameOfTheLawPower>(choiceContext, Owner.Creature, weakAmount, Owner.Creature, this);
     }
 

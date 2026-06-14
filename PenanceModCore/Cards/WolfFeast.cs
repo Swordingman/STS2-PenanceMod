@@ -28,6 +28,8 @@ public class WolfFeast : PenanceBaseCard
         var combatState = player.Creature.CombatState;
         if (combatState == null) return;
 
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
+
         // 1. 获取所有狼群诅咒原型
         var allCurses = WolfCurseHelper.GetAllWolfCurses();
         

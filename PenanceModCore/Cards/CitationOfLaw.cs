@@ -23,10 +23,10 @@ public class CitationOfLaw : PenanceBaseCard
     {
     }
 
-    // 绑定消耗词�?
+    // 绑定消耗词�?
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
-    // 🌟 按顺序注册：索引 0 是基础屏障 (5)，索�?1 是百分比 (50)
+    // 🌟 按顺序注册：索引 0 是基础屏障 (5)，索�?1 是百分比 (50)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Citation-Base", 5m).WithTooltip("PENANCEMOD-BARRIER"),
         new DynamicVar("Citation-Percent", 50m).WithTooltip("PENANCEMOD-BARRIER")
@@ -39,11 +39,13 @@ public class CitationOfLaw : PenanceBaseCard
         int baseBarrier = vars[0].IntValue;
         int percent = vars[1].IntValue;
 
+        await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);   
+
         // 1. 获得基础屏障 (await 确保此处结算完毕)
         await PowerCmd.Apply<BarrierPower>(choiceContext,creature, baseBarrier, creature, this);
 
         // 2. 获得当前屏障百分比的屏障
-        // 此时获取�?Amount 已经是加上基础值之后的结果
+        // 此时获取�?Amount 已经是加上基础值之后的结果
         var barrierPower = creature.GetPower<BarrierPower>();
         if (barrierPower != null)
         {
@@ -71,7 +73,7 @@ public class CitationOfLaw : PenanceBaseCard
             var barrierPower = Owner.Creature.GetPower<BarrierPower>();
             int current = barrierPower?.Amount ?? 0;
             
-            // 计算逻辑还原�?当前 + 基础) * 百分�?+ 基础
+            // 计算逻辑还原�?当前 + 基础) * 百分�?+ 基础
             int bonus = (int)((current + baseB) * (pct / 100f));
             int total = baseB + bonus;
 
@@ -88,7 +90,7 @@ public class CitationOfLaw : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        // 升级提升百分�?(50% -> 70%)
+        // 升级提升百分�?(50% -> 70%)
         var vars = DynamicVars.Values.ToList();
         if (vars.Count > 1)
         {

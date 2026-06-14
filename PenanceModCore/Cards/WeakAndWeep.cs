@@ -26,6 +26,8 @@ public class WeakAndWeep : PenanceBaseCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
+
         var target = cardPlay.Target;
         if (target == null) return;
 

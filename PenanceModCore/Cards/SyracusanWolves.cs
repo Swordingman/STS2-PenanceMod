@@ -50,6 +50,8 @@ public class SyracusanWolves : PenanceBaseCard
         if (player == null || CombatState == null)
             return;
 
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
+
         // 原版逻辑：随机 5 张狼群诅咒洗入抽牌堆。
         const int amount = 5;
 

@@ -27,6 +27,7 @@ public class BideTime : PenanceBaseCard
     {
         // 挂载厚积薄发能力，层数即为给的活力数值
         int vigorAmount = DynamicVars["Bide-Vigor"].IntValue;
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
         await PowerCmd.Apply<BideTimePower>(choiceContext, Owner.Creature, vigorAmount, Owner.Creature, this);
     }
 

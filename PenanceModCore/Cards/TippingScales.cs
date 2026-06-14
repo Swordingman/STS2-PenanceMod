@@ -46,6 +46,7 @@ public class TippingScales : PenanceBaseCard
 
             if (multiplier > 0)
             {
+                await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);
                 int totalStr = multiplier * strPerUnit;
                 await PowerCmd.Apply<StrengthPower>(choiceContext,creature, totalStr, creature, this);
                 await Cmd.Wait(0.1f);

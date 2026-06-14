@@ -24,6 +24,8 @@ public class TestTheLaw : PenanceBaseCard
         int currentHp = creature.CurrentHp;
         int diff = currentHp - 10;
 
+        await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);
+
         // 1. 生命值结算
         if (diff > 0)
         {

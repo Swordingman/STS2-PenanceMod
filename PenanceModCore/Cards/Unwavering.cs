@@ -32,6 +32,7 @@ public class Unwavering : PenanceBaseCard
         if (creature == null) return;
 
         int thornsAmt = DynamicVars["Unwavering-Thorns"].IntValue;
+        await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);
         await PowerCmd.Apply<UnwaveringPower>(choiceContext,creature, thornsAmt, creature, this);
     }
 

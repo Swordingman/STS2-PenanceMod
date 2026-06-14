@@ -32,6 +32,7 @@ public class CrownOfThorns : PenanceBaseCard
         int thornsGain = vars.Count > 0 ? vars[0].IntValue : 2;
 
         // 挂载荆棘冠冕能力
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
         await PowerCmd.Apply<CrownOfThornsPower>(choiceContext,Owner.Creature, thornsGain, Owner.Creature, this);
     }
 

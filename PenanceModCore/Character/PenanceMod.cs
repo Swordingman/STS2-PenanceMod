@@ -11,6 +11,8 @@ using PenanceMod.Scripts.Cards;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
+using MegaCrit.Sts2.Core.Saves.Runs;
+using PenanceMod.Scripts.Utils;
 
 namespace PenanceMod.PenanceModCode.Character;
 
@@ -31,7 +33,19 @@ public class PenanceMod : PlaceholderCharacterModel
     public override int StartingHp => 65;
 
     // 人物模型tscn路径。要自定义见下。
-    public override string CustomVisualPath => "res://PenanceMod/scenes/Penance_anim.tscn";
+    public override string CustomVisualPath 
+    {
+        get 
+        {
+            return PenanceConfig.CurrentSkinIndex switch
+            {
+                1 => "res://PenanceMod/scenes/Penance_anim_skin1.tscn", // 偶尔醉陶
+                2 => "res://PenanceMod/scenes/Penance_anim_skin2.tscn", // 记叙
+                _ => "res://PenanceMod/scenes/Penance_anim_skin0.tscn", // 默认皮肤 (Index 0)
+            };
+        }
+    }
+
     // 卡牌拖尾场景。
     // public override string CustomTrailPath => "res://scenes/vfx/card_trail_ironclad.tscn";
     // 人物头像路径。
@@ -40,10 +54,24 @@ public class PenanceMod : PlaceholderCharacterModel
     public override string CustomIconPath => "res://PenanceMod/scenes/Penance_Icon.tscn";
     // 能量表盘tscn路径。要自定义见下。
     public override string CustomEnergyCounterPath => "res://PenanceMod/scenes/Penance_eneg.tscn";
+
     // 篝火休息场景。
     public override string CustomRestSiteAnimPath => "res://PenanceMod/scenes/Penance_rest_site.tscn";
+
     // 商店人物场景。
-    public override string CustomMerchantAnimPath => "res://PenanceMod/scenes/Relaxed_Penance_anim.tscn";
+    public override string CustomMerchantAnimPath
+    {
+        get
+        {
+            return PenanceConfig.CurrentSkinIndex switch
+            {
+                1 => "res://PenanceMod/scenes/Relaxed_Penance_anim_skin1.tscn", // 偶尔醉陶
+                2 => "res://PenanceMod/scenes/Relaxed_Penance_anim_skin2.tscn", // 记叙
+                _ => "res://PenanceMod/scenes/Relaxed_Penance_anim_skin0.tscn", // 默认皮肤
+            };
+        }
+    }
+
     // 多人模式-手指。
     // public override string CustomArmPointingTexturePath => null;
     // 多人模式剪刀石头布-石头。

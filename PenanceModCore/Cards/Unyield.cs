@@ -35,6 +35,8 @@ public class Unyield : PenanceBaseCard
         var creature = Owner.Creature;
         if (creature == null) return;
 
+        await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);
+
         int xValue = ResolveEnergyXValue();
 
         int barrierMultiplier = DynamicVars["Unyield-XB"].IntValue;

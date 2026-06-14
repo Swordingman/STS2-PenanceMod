@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[sub_resource type="Shader" id="1"]
+code = "shader_type canvas_item;
+
+// 乖乖接收官方强制传入的参数，防止引擎报错
+uniform float h = 0.0;
+uniform float s = 0.0;
+uniform float v = 1.0;
+
+void fragment() {
+    // 核心破局点：不进行任何色彩计算，直接把图片原本的颜色和透明度输出！
+    COLOR = texture(TEXTURE, UV);
+}
+"
+
+[resource]
+shader = SubResource("1")
+shader_parameter/h = 0.0
+shader_parameter/s = 0.0
+shader_parameter/v = 1.0

@@ -31,6 +31,7 @@ public class GlowOfSuffering : PenanceBaseCard
     {
         int displayMultiplier = DynamicVars["Glow-Mult"].IntValue;
         int powerStacksToApply = displayMultiplier * 100;
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
         await PowerCmd.Apply<GlowOfSufferingPower>(choiceContext, Owner.Creature, powerStacksToApply, Owner.Creature, this);
     }
 
