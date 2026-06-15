@@ -34,11 +34,11 @@ public class TestTheLawPower : CustomPowerModel
                 // 1. 获得等量治疗
                 await CreatureCmd.Heal(Owner, dmg);
 
-                // 2. 获得 3 倍屏障
-                int barrierAmt = dmg * 3;
+                // 2. 获得等量屏障
+                int barrierAmt = dmg;
                 await PowerCmd.Apply<BarrierPower>(choiceContext, Owner, barrierAmt, Owner, null);
 
-                // 3. 将等量 (3倍) 屏障存入遗物 (双重检测兼容升级版)
+                // 3. 将等量屏障存入遗物 (双重检测兼容升级版)
                 var bossRelic = Owner.Player.GetRelic<ThornyRoad>();
                 if (bossRelic != null) 
                 {
@@ -50,9 +50,9 @@ public class TestTheLawPower : CustomPowerModel
                     if (basicRelic != null) basicRelic.AddStoredHeal(barrierAmt);
                 }
 
-                // 4. 获得 3 裁决和 3 荆棘环身
-                await PowerCmd.Apply<JudgementPower>(choiceContext, Owner, 3, Owner, null);
-                await PowerCmd.Apply<ThornAuraPower>(choiceContext, Owner, 3, Owner, null);
+                // 4. 获得 2 裁决和 2 荆棘环身
+                await PowerCmd.Apply<JudgementPower>(choiceContext, Owner, 2, Owner, null);
+                await PowerCmd.Apply<ThornAuraPower>(choiceContext, Owner, 2, Owner, null);
             }
         }
     }

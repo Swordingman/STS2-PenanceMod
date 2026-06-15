@@ -28,7 +28,7 @@ public sealed class GreyDealEvent : CustomEventModel
 
     public override bool IsAllowed(IRunState runState)
     {
-        return runState.CurrentActIndex >= 1;
+        return runState.CurrentActIndex == 2;
     }
 
     protected override IReadOnlyList<EventOption> GenerateInitialOptions() 

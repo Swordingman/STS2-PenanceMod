@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Rewards;
+using MegaCrit.Sts2.Core.Runs;
 using PenanceMod.PenanceModCode.Encounters;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,11 @@ public sealed class CaseFile1184Event : CustomEventModel
     private const int AttackUpgradeCount = 2;
 
     public override string? CustomInitialPortraitPath => "res://PenanceMod/images/events/CaseFile1184Event.png";
+
+    public override bool IsAllowed(IRunState runState)
+    {
+        return runState.CurrentActIndex == 3;
+    }
 
     public override bool IsShared => true;
 

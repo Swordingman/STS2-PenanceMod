@@ -24,8 +24,8 @@ public class Unyield : PenanceBaseCard
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Unyield-XB", 8m).WithTooltip("PENANCEMOD-BARRIER"),
-        new DynamicVar("Unyield-XM", 5m)
+        new DynamicVar("Unyield-XB", 4m).WithTooltip("PENANCEMOD-BARRIER"),
+        new DynamicVar("Unyield-XM", 2m)
             .WithTooltip("PENANCEMOD-JUDGEMENT")
             .WithTooltip("PENANCEMOD-THORN_AURA")
     ];
@@ -47,14 +47,14 @@ public class Unyield : PenanceBaseCard
 
         if (totalXBarrier > 0)
         {
-            int finalBarrier = IsUpgraded ? totalXBarrier + 11 : totalXBarrier + 6;
+            int finalBarrier = IsUpgraded ? totalXBarrier + 5 : totalXBarrier + 4;
             await ApplyBarrier(creature, finalBarrier);
             await Cmd.Wait(0.1f);
         }
 
         if (totalXMagic > 0)
         {
-            int finalMagic = IsUpgraded ? totalXMagic + 8 : totalXMagic + 3;
+            int finalMagic = IsUpgraded ? totalXMagic + 3 : totalXMagic + 2;
             await ApplyJudgement(creature, finalMagic);
             await ApplyThornAura(creature, finalMagic);
             await Cmd.Wait(0.1f);

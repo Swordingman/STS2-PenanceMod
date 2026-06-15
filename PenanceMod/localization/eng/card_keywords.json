@@ -1,4 +1,19 @@
 {
   "PENANCEMOD-CURSE_OF_WOLVES.description": "一种特殊的诅咒牌。在抽到后会自动打出。",
-  "PENANCEMOD-CURSE_OF_WOLVES.title": "狼群诅咒"
+  "PENANCEMOD-CURSE_OF_WOLVES.title": "狼群诅咒",
+
+  "PENANCEMOD-BARRIER.description": "一种特殊的防御数值。当格挡耗尽后，屏障会抵挡剩余的伤害。屏障不会在回合结束时消失。",
+  "PENANCEMOD-BARRIER.title": "屏障",
+
+  "PENANCEMOD-JUDGEMENT.description": "当屏障受到来自敌人的伤害时，对攻击者造成等同于裁决层数的伤害。",
+  "PENANCEMOD-JUDGEMENT.title": "裁决",
+
+  "PENANCEMOD-THORN_AURA.description": "回合结束时，对所有敌人造成等同于荆棘环身层数的伤害。",
+  "PENANCEMOD-THORN_AURA.title": "荆棘环身",
+
+  "PENANCEMOD-CEASE_FIRE.description": "处于止戈 状态的玩家无法打出攻击牌。处于止戈状态的敌人如果意图攻击，将跳过该回合。",
+  "PENANCEMOD-CEASE_FIRE.title": "止戈",
+
+  "PENANCEMOD-JUSTIFIED_DEFENSE.description": "能力存在时，受击会获得额外能量和抽卡。",
+  "PENANCEMOD-JUSTIFIED_DEFENSE.title": "正当防卫"
 }

@@ -11,7 +11,8 @@ using PenanceMod.PenanceModCode.Relics;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Localization; // 引入本地化
-using MegaCrit.Sts2.Core.HoverTips;    // 引入悬浮提示
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Runs;    // 引入悬浮提示
 
 namespace PenanceMod.PenanceModCode.Events;
 
@@ -20,6 +21,12 @@ public sealed class VolsiniiCourtEvent : CustomEventModel
     public override string? CustomInitialPortraitPath => "res://PenanceMod/images/events/VolsiniiCourtEvent.png";
 
     public override bool IsShared => true;
+
+    public override bool IsAllowed(IRunState runState)
+    {
+        return runState.CurrentActIndex >= 2 &&
+               runState.Players.All(player => player.Character is PenanceModCode.Character.PenanceMod);
+    }
 
     protected override IReadOnlyList<EventOption> GenerateInitialOptions() =>
     [

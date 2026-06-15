@@ -26,6 +26,12 @@ public sealed class OpeningMomentEvent : CustomEventModel
         new GoldVar(150)
     ];
 
+    public override bool IsAllowed(IRunState runState)
+    {
+        return runState.CurrentActIndex >= 2 &&
+               runState.Players.All(player => player.Character is PenanceModCode.Character.PenanceMod);
+    }
+
     protected override IReadOnlyList<EventOption> GenerateInitialOptions()
     {
         var options = new List<EventOption>();

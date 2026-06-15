@@ -101,8 +101,6 @@ public class PenanceBasicRelic : CustomRelicModel
         return Task.CompletedTask;
     }
 
-    // ❌ 删除了 ModifyRestSiteHealAmount 方法！这彻底杜绝了 UI 预览引发的无限触发 Bug。
-
     public void TriggerHealingConversion(int originalHealAmount)
     {
         var creature = Owner.Creature;

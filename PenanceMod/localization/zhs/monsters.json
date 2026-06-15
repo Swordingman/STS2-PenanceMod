@@ -1,7 +1,7 @@
 {
   "PENANCEMOD-VOLSINII_CIVILIAN.name": "沃尔西尼市民",
   "PENANCEMOD-VOLSINII_CIVILIAN.moves.NOTHING_MOVE.title": "抱头蹲防",
-  "PENANCEMOD-VOLSINII_CIVILIAN.dialogs.START": "面对正在攻击的敌人，来为我阻挡伤害！",
+  "PENANCEMOD-VOLSINII_CIVILIAN.dialogs.START": "法官大人，请您朝向正在攻击的敌人，来为我阻挡伤害！",
   "PENANCEMOD-VOLSINII_CIVILIAN.dialogs.HURT": "救救我！",
   "PENANCEMOD-VOLSINII_CIVILIAN.dialogs.DIE": "呃啊...",
   "PENANCEMOD-VOLSINII_CIVILIAN.dialogs.ESCAPE": "谢谢你！我得赶紧走了！",

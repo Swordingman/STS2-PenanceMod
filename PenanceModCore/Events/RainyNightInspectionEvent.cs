@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Runs;
 
 namespace PenanceMod.Scripts.Events;
 
@@ -22,6 +23,11 @@ public sealed class RainyNightInspectionEvent : CustomEventModel
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new GoldVar(50)
     ];
+
+    public override bool IsAllowed(IRunState runState)
+    {
+        return runState.CurrentActIndex == 1;
+    }
 
     protected override IReadOnlyList<EventOption> GenerateInitialOptions()
     {

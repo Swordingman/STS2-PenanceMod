@@ -17,14 +17,14 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(PenanceModCardPool))]
 public class BurdenedJourney : PenanceBaseCard
 {
-    // 耗能 1，类�?Skill，稀有度 Common，目�?Self
+    // 耗能 1，类�?Skill，稀有度 Common，目�?Self
     public BurdenedJourney() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, true)
     {
     }
 
     // 基础数值为 3
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Burden-Magic", 3m)
+        new DynamicVar("Burden-Magic", 2m)
             .WithTooltip("PENANCEMOD-JUDGEMENT")
             .WithTooltip("PENANCEMOD-THORN_AURA")
     ];
@@ -33,7 +33,7 @@ public class BurdenedJourney : PenanceBaseCard
     {
         var creature = Owner.Creature;
         
-        // 安全获取第一个动态变�?
+        // 安全获取第一个动态变�?
         var magicVar = DynamicVars.Values.First();
         int amount = magicVar.IntValue;
 
@@ -44,7 +44,6 @@ public class BurdenedJourney : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        // 升级提升 2 �?(3 -> 5)
         var magicVar = DynamicVars.Values.First();
         magicVar.UpgradeValueBy(1);
     }

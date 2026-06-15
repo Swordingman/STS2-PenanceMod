@@ -52,12 +52,6 @@ public class DrinkPoison : PenanceBaseCard
         // 3. 生成复制品
         var copy = (DrinkPoison)this.CreateClone();
         copy.CopyCount = this.CopyCount + 1;
-
-        if (this.IsUpgraded)
-        {
-            copy.UpgradeInternal();
-            copy.FinalizeUpgradeInternal();
-        }
         
         // 修改复制品的扣血量：直接增加基础值
         var copyPenaltyVar = copy.DynamicVars.Values.First();

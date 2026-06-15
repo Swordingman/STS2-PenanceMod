@@ -108,8 +108,8 @@
   "PENANCEMOD-BIDE_TIME_POWER.smartDescription": "在回合结束时，如果你本回合未打出过[gold]攻击[/gold]牌，获得[blue]{Amount}[/blue]点[gold]活力[/gold]。",
 
   "PENANCEMOD-TEST_THE_LAW_POWER.title": "以身试法",
-  "PENANCEMOD-TEST_THE_LAW_POWER.description": "每当你因卡牌效果失去生命时，恢复等量生命并获得失去值3倍的[gold]屏障[/gold]（同时存入遗物），再获得3层[gold]裁决[/gold]与[gold]荆棘环身[/gold]。",
-  "PENANCEMOD-TEST_THE_LAW_POWER.smartDescription": "每当你因卡牌效果失去生命时，恢复等量生命并获得失去值3倍的[gold]屏障[/gold]（同时存入遗物），再获得3层[gold]裁决[/gold]与[gold]荆棘环身[/gold]。",
+  "PENANCEMOD-TEST_THE_LAW_POWER.description": "每当你因卡牌效果失去生命时，恢复等量生命并获得等量[gold]屏障[/gold]（并同时存入遗物），再获得2层[gold]裁决[/gold]与[gold]荆棘环身[/gold]。",
+  "PENANCEMOD-TEST_THE_LAW_POWER.smartDescription": "每当你因卡牌效果失去生命时，恢复等量生命并获得等量[gold]屏障[/gold]（并同时存入遗物），再获得2层[gold]裁决[/gold]与[gold]荆棘环身[/gold]。",
 
   "PENANCEMOD-PREEMPTIVE_STRIKE_POWER.title": "主动出击",
   "PENANCEMOD-PREEMPTIVE_STRIKE_POWER.description": "在接下来的[blue]{Amount}[/blue]个回合中，回合开始时获得3层[gold]正当防卫[/gold]。",

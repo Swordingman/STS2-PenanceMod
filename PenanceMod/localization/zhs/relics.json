@@ -1,6 +1,6 @@
 {
   "PENANCEMOD-PENANCE_BASIC_RELIC.title": "斥罪证章",
-  "PENANCEMOD-PENANCE_BASIC_RELIC.description": "战斗开始时，获得[blue]10%[/blue]最大生命值的屏障和[blue]1[/blue]点裁决，并获得所有已储存的屏障。\n来自药物、事件与休息的治疗效果将转化为等量的屏障（非战斗时会储存）。\n战斗结束时，将剩余屏障的[blue]10%[/blue]转化为生命回复。",
+  "PENANCEMOD-PENANCE_BASIC_RELIC.description": "战斗开始时，获得[blue]10%[/blue]最大生命值的屏障和[blue]1[/blue]点裁决，并获得所有已储存的屏障。\n来自药物与休息的治疗效果将转化为等量的屏障（非战斗时会储存）。\n战斗结束时，将剩余屏障的[blue]10%[/blue]转化为生命回复。",
   "PENANCEMOD-PENANCE_BASIC_RELIC.flavor": "在荆棘之上前行，开辟以前未有之路。",
 
   "PENANCEMOD-BLACK_UMBRELLA.title": "黑雨伞",
