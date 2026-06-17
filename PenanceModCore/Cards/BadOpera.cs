@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
-using MegaCrit.Sts2.Core.Models.Powers; // 力量 Power
+using MegaCrit.Sts2.Core.Models.Powers;
 using PenanceMod.PenanceModCode.Powers; 
 using System.Collections.Generic;
 using System.Linq;
@@ -35,27 +35,37 @@ public class BadOpera : PenanceBaseCard
         var player = Owner;
         var creature = player.Creature;
         
-        // 1. 寻找抽牌堆中的所有诅咒
+        // 1. 获取抽牌堆中的诅咒
         var drawPile = PileType.Draw.GetPile(player);
-        var cursesInDraw = drawPile.Cards.Where(c => c.Type == CardType.Curse).ToList();
+        var availableCurses = drawPile.Cards.Where(c => c.Type == CardType.Curse).ToList();
 
-        if (cursesInDraw.Count > 0)
+        // 2. 如果升级了，将弃牌堆的诅咒也加入到可用池中
+        if (this.IsUpgraded)
+        {
+            var discardPile = PileType.Discard.GetPile(player);
+            var cursesInDis = discardPile.Cards.Where(c => c.Type == CardType.Curse).ToList();
+            availableCurses.AddRange(cursesInDis); 
+        }
+
+        // 3. 检查可用池中是否有诅咒
+        if (availableCurses.Count > 0)
         {
             await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);
 
-            // 2. 随机决定消耗哪些诅咒 (使用战斗随机数)
             int maxToExhaust = DynamicVars["Opera-CurseCount"].IntValue;
-            var cursesToExhaust = cursesInDraw
+
+            // 4. 将整个可用池打乱，并取出指定数量（1张）的诅咒
+            var cursesToExhaust = availableCurses
                 .OrderBy(_ => player.RunState.Rng.Shuffle.NextInt()) 
                 .Take(maxToExhaust)
                 .ToList();
 
             foreach (var curse in cursesToExhaust)
             {
-                // 3. 消耗诅咒
+                // 5. 消耗诅咒
                 await CardCmd.Exhaust(choiceContext, curse, false);
                 
-                // 4. 获得奖励：1 力量 和 2 裁决
+                // 6. 获得奖励：1 力量 和 2 裁决
                 await PowerCmd.Apply<StrengthPower>(choiceContext, creature, 1, creature, this);
                 await ApplyJudgement(creature, 2);
                 
@@ -64,8 +74,5 @@ public class BadOpera : PenanceBaseCard
         }
     }
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars["Opera-CurseCount"].UpgradeValueBy(1);
-    }
+    protected override void OnUpgrade(){}
 }

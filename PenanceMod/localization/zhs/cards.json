@@ -40,8 +40,7 @@
   "PENANCEMOD-CASE_RECONSTRUCTION.description": "[gold]预见[/gold]{CaseRecon-Scry:diff()}。\n抽{CaseRecon-Draw:diff()}张牌。",
 
   "PENANCEMOD-CASTIGATION.title": "责罚",
-  "PENANCEMOD-CASTIGATION.description": "造成{Damage:diff()}点伤害。\n获得{Castigation-Barrier:diff()}点[gold]屏障[/gold]（受[gold]力量[/gold]加成）。{DynamicBarrierText}",
-  "PENANCEMOD-CASTIGATION.extended_description": "\n[purple]（当前获得{amount}点。）[/purple]",
+  "PENANCEMOD-CASTIGATION.description": "造成{Damage:diff()}点伤害。\n获得{DynamicBarrierText}点[gold]屏障[/gold]（受[gold]力量[/gold]加成）。",
 
   "PENANCEMOD-CENSURE.title": "斥责",
   "PENANCEMOD-CENSURE.description": "造成{Damage:diff()}点伤害。\n获得{Censure-Judgement:diff()}层[gold]裁决[/gold]。",
@@ -265,7 +264,7 @@
   "PENANCEMOD-GUILT_BOUND_AURA.description": "获得{Aura-Barrier:diff()}点[gold]屏障[/gold]。获得{Aura-Thorns:diff()}层[gold]荆棘环身[/gold]。",
 
   "PENANCEMOD-BAD_OPERA.title": "烂歌剧",
-  "PENANCEMOD-BAD_OPERA.description": "随机[gold]消耗[/gold]抽牌堆中最多{Opera-CurseCount:diff()}张[gold]诅咒[/gold]牌。\n每[gold]消耗[/gold]一张，获得1点[gold]力量[/gold]和2点[gold]裁决[/gold]。",
+  "PENANCEMOD-BAD_OPERA.description": "随机[gold]消耗[/gold]抽牌堆{IfUpgraded:show:以及弃牌堆|}中的1张[gold]诅咒[/gold]牌，并获得1点[gold]力量[/gold]和2点[gold]裁决[/gold]。",
 
   "PENANCEMOD-GAVEL_STRIKE.title": "判决打击",
   "PENANCEMOD-GAVEL_STRIKE.description": "造成{Damage:diff()}点伤害。\n获得等同于目标拥有的[gold]虚弱[/gold]层数的[gold]屏障[/gold]。",
@@ -290,7 +289,7 @@
   "PENANCEMOD-EXHIBIT_A.select_message": "选择2张手牌消耗。",
 
   "PENANCEMOD-BIDE_TIME.title": "厚积薄发",
-  "PENANCEMOD-BIDE_TIME.description": "每当你有一个回合不打出[gold]攻击[/gold]牌，就获得{Bide-Vigor:diff()}点[gold]活力[/gold]。",
+  "PENANCEMOD-BIDE_TIME.description": "每当你不打出[gold]攻击[/gold]牌就结束回合时，获得{Bide-Vigor:diff()}点[gold]活力[/gold]。",
 
   "PENANCEMOD-EXCOMMUNICATION.title": "绝罚",
   "PENANCEMOD-EXCOMMUNICATION.description": "[gold]消耗[/gold]你抽牌堆、手牌和弃牌堆中的所有[gold]诅咒[/gold]牌。\n每[gold]消耗[/gold]一张，获得{Excom-Barrier:diff()}点[gold]屏障[/gold]和{Excom-Str:diff()}点[gold]力量[/gold]。",

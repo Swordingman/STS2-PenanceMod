@@ -20,9 +20,8 @@ public class Adjourn : PenanceBaseCard // 🌟 继承你自己的基类，享受
     {
     }
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain, CardKeyword.Exhaust];
 
-    // 🌟 核心修复：注册名�?"Magic" 的动态变量，初始值为 2
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Magic", 2m).WithTooltip("PENANCEMOD-BARRIER") 
     ];
@@ -32,13 +31,13 @@ public class Adjourn : PenanceBaseCard // 🌟 继承你自己的基类，享受
         var player = Owner;
         var creature = player.Creature;
         
-        // 1. 安全读取注册�?Magic 变量�?
+        // 1. 安全读取注册�?Magic 变量�?
         int magicValue = DynamicVars.ContainsKey("Magic") ? DynamicVars["Magic"].IntValue : 2;
 
-        // 2. 直接调用基类的方法，取代原本冗长�?LINQ 查询
+        // 2. 直接调用基类的方法，取代原本冗长�?LINQ 查询
         int cardsPlayedCount = GetCardsPlayedThisTurn();
         
-        // 3. 计算最终数�?
+        // 3. 计算最终数�?
         int effectValue = cardsPlayedCount * magicValue;
 
         // 4. 调用基类的半血判定方法
@@ -48,7 +47,7 @@ public class Adjourn : PenanceBaseCard // 🌟 继承你自己的基类，享受
         }
         else
         {
-            // 调用基类的施加屏障方�?
+            // 调用基类的施加屏障方�?
             await ApplyBarrier(creature, effectValue);
         }
 

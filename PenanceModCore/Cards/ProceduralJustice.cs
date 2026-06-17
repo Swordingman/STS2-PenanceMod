@@ -21,9 +21,8 @@ public class ProceduralJustice : PenanceBaseCard
     {
     }
 
-    // 🌟 注册动态变量：基础�?3 屏障
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Justice-Barrier", 3m).WithTooltip("PENANCEMOD-BARRIER")
+        new DynamicVar("Justice-Barrier", 2m).WithTooltip("PENANCEMOD-BARRIER")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

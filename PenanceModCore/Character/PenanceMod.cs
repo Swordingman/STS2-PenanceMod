@@ -96,7 +96,7 @@ public class PenanceMod : PlaceholderCharacterModel
     // 施法音效
     // public override string CustomCastSfx => null;
     // 死亡音效
-    // public override string CustomDeathSfx => null;
+    public override string CustomDeathSfx => "res://PenanceMod/scenes/audio/die.wav";
     // 角色选择音效
     public override string CharacterSelectSfx => "res://PenanceMod/scenes/audio/cn.wav";
     // 过渡音效。这个不能删。

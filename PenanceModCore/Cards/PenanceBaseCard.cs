@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using PenanceMod.PenanceModCode.Extensions;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -16,6 +17,8 @@ public abstract class PenanceBaseCard : CustomCardModel
 {
     // 自动获取卡图路径
     public override string PortraitPath => $"res://PenanceMod/images/cards/{GetType().Name}.png";
+
+    public string WolfCurseSfx => "res://PenanceMod/scenes/audio/trigger_wolfcurse.wav";
 
     public PenanceBaseCard(int energyCost, CardType type, CardRarity rarity, TargetType targetType, bool shouldShowInCardLibrary) 
         : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
@@ -80,17 +83,18 @@ public abstract class PenanceBaseCard : CustomCardModel
     /// </summary>
     protected async Task TriggerWolfAutoplay(PlayerChoiceContext choiceContext, CardModel card, Creature? target = null)
     {
-        if (card == null)
-            return;
+        if (card == null || card.Owner == null || card.Owner.Creature == null) return;
+        if (CombatManager.Instance.IsOverOrEnding || card.Owner.Creature.IsDead) return;
 
-        if (card.Owner == null || card.Owner.Creature == null)
-            return;
+        await CreatureCmd.TriggerAnim(card.Owner.Creature, "Cast", 0.2f);
 
-        if (CombatManager.Instance.IsOverOrEnding)
-            return;
-
-        if (card.Owner.Creature.IsDead)
-            return;
+        // 获取角色节点
+        var creatureNode = card.Owner.Creature.GetCreatureNode();
+        
+        if (creatureNode != null)
+        {
+            await AudioManager.PlayCustomSfx(WolfCurseSfx, creatureNode);
+        }
 
         await CardCmd.AutoPlay(
             choiceContext,

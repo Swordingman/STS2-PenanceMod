@@ -18,6 +18,9 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(PenanceModCardPool))]
 public class UnwrittenLaw : PenanceBaseCard
 {
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+
     // 耗能 1，类型 Skill，稀有度 Uncommon，目标 Self
     public UnwrittenLaw() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
     {

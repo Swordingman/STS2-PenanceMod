@@ -24,7 +24,6 @@ public class Castigation : PenanceBaseCard
     {
     }
 
-    // 🌟 按顺序注册：索引 0 是伤害，索引 1 是屏�?
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(5, ValueProp.Move),
         new DynamicVar("Castigation-Barrier", 4m).WithTooltip("PENANCEMOD-BARRIER")
@@ -35,13 +34,11 @@ public class Castigation : PenanceBaseCard
     // ==========================================
     private int CalculateBarrier()
     {
-        // 拿到我们�?CanonicalVars 里定义的第二个数 (索引 1)
-        var vars = DynamicVars.Values.ToList();
-        int baseBarrier = vars.Count > 1 ? vars[1].IntValue : 4;
+        // ✅ 解决报错 1：使用 (int) 进行显式强制转换
+        int baseBarrier = (int)DynamicVars["Castigation-Barrier"].BaseValue;
 
         if (CombatState != null && Owner != null && Owner.Creature != null)
         {
-            // 假设官方的力量能力叫 StrengthPower
             var strength = Owner.Creature.GetPower<StrengthPower>();
             if (strength != null && strength.Amount > 0)
             {
@@ -52,26 +49,31 @@ public class Castigation : PenanceBaseCard
     }
 
     // ==========================================
-    // 动态文本注�?
+    // 动态文本注入 / 完美伪装 diff() 变色效果
     // ==========================================
     protected override void AddExtraArgsToDescription(LocString description)
     {
         base.AddExtraArgsToDescription(description);
 
-        if (IsInCombat)
+        // 获取基础值和当前战斗中的实际值
+        int baseBarrier = (int)DynamicVars["Castigation-Barrier"].BaseValue;
+        int currentBarrier = IsInCombat ? CalculateBarrier() : baseBarrier;
+
+        // 默认显示白色数字
+        string barrierText = currentBarrier.ToString();
+
+        // ✅ 解决报错 2：自己写变色逻辑，绕开底层 API 限制
+        if (currentBarrier > baseBarrier)
         {
-            int totalBarrier = CalculateBarrier();
-            
-            LocString extendedDesc = new LocString("cards", "PENANCEMOD-CASTIGATION.extended_description");
-            extendedDesc.Add("amount", totalBarrier); // 把数值传�?JSON 里的变量
-            
-            // 将格式化后的本地化文本注�?
-            description.Add("DynamicBarrierText", extendedDesc.GetFormattedText());
+            barrierText = $"[green]{currentBarrier}[/green]"; // 增益变绿 (使用 Godot 的富文本标签)
         }
-        else
+        else if (currentBarrier < baseBarrier)
         {
-            description.Add("DynamicBarrierText", "");
+            barrierText = $"[red]{currentBarrier}[/red]"; // 减益变红
         }
+
+        // 将这段带颜色的字符串注入到 JSON 里的 {DynamicBarrierText} 中
+        description.Add("DynamicBarrierText", barrierText);
     }
 
     // ==========================================
@@ -82,15 +84,15 @@ public class Castigation : PenanceBaseCard
         var target = cardPlay.Target;
         if (target == null) return;
 
-        // 1. 造成伤害 (引擎会自动把力量加成算在 DynamicVars.Damage.BaseValue �?
+        // 1. 造成伤害
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(target)
             .Execute(choiceContext);
 
-        // 2. 获得屏障 (使用我们计算过力量加成的最终数�?
+        // 2. 获得屏障（每次打出时实时计算一次即可）
         int barrierAmount = CalculateBarrier();
-        await PowerCmd.Apply<BarrierPower>(choiceContext,Owner.Creature, barrierAmount, Owner.Creature, this);
+        await PowerCmd.Apply<BarrierPower>(choiceContext, Owner.Creature, barrierAmount, Owner.Creature, this);
     }
 
     // ==========================================
@@ -101,11 +103,7 @@ public class Castigation : PenanceBaseCard
         // 伤害提升 (5 -> 7)
         DynamicVars.Damage.UpgradeValueBy(2);
 
-        // 屏障提升 (4 -> 6)
-        var vars = DynamicVars.Values.ToList();
-        if (vars.Count > 1)
-        {
-            vars[1].UpgradeValueBy(2);
-        }
+        // 屏障提升 (4 -> 6)，直接通过 Key 获取更稳妥
+        DynamicVars["Castigation-Barrier"].UpgradeValueBy(2);
     }
 }
