@@ -1,0 +1,10 @@
+{
+  "PENANCEMOD-BARRIER_POTION.title": "屏障药水",
+  "PENANCEMOD-BARRIER_POTION.description": "获得 [blue]{BarrierPower:diff()}[/blue] 层[gold]屏障[/gold]。",
+    
+  "PENANCEMOD-JUDGEMENT_POTION.title": "裁决药水",
+  "PENANCEMOD-JUDGEMENT_POTION.description": "获得 [blue]{JudgementPower:diff()}[/blue] 层[gold]裁决[/gold]。",
+
+  "PENANCEMOD-BOTTLE_OF_WOLF_BLOOD.title": "瓶装狼血",
+  "PENANCEMOD-BOTTLE_OF_WOLF_BLOOD.description": "从 [blue]{Cards}[/blue] 张随机[gold]狼群诅咒[/gold]中选择一张加入你的[gold]手牌[/gold]。"
+}

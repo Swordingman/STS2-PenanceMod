@@ -68,5 +68,21 @@
   "PENANCEMOD-CASE_FILE1184_EVENT.pages.RELEASED_IN_COURT.description": "“证据不足，当庭释放。”\n法槌落下，声音空洞。你守住了法律的底线，但当你走出法院时，民众的唾沫和那个教父的背影让你感到无比苦恼。",
   "PENANCEMOD-CASE_FILE1184_EVENT.pages.CLEANED_UP.description": "清理完毕。",
   "PENANCEMOD-CASE_FILE1184_EVENT.pages.CLEANED_UP.options.LEAVE.title": "离开",
-  "PENANCEMOD-CASE_FILE1184_EVENT.pages.CLEANED_UP.options.LEAVE.description": "离开"
+  "PENANCEMOD-CASE_FILE1184_EVENT.pages.CLEANED_UP.options.LEAVE.description": "离开",
+
+  "PENANCEMOD.TRIAL.options.MERCHANT_FAIR.title": "判决：公正执法",
+  "PENANCEMOD.TRIAL.options.MERCHANT_FAIR.desc": "获得[blue]1[/blue]件随机遗物。[gold]升级[/gold][blue]1[/blue]张牌。",
+  "PENANCEMOD.TRIAL.pages.MERCHANT_FAIR.desc": "谋杀指控纯属[red]诬陷[/red]，但你在交叉比对物证时，抓住了这名商人[gold]偷税漏税[/gold]的[red]马脚[/red]。\n你依法没收了他走私的[gold]赃款[/gold]。",
+
+  "PENANCEMOD.TRIAL.options.NOBLE_FAIR.title": "判决：公正执法",
+  "PENANCEMOD.TRIAL.options.NOBLE_FAIR.desc": "[green]回复[/green][blue]5[/blue]点生命。获得[blue]150[/blue][gold]金币[/gold]。",
+  "PENANCEMOD.TRIAL.pages.NOBLE_FAIR.desc": "看着那张得意的脸，你将写着[gold]贿赂金额[/gold]的字条作为[red]罪加一等[/red]的铁证当庭展示。\n你无视了贵族的[red][jitter]狂怒[/jitter][/red]，判处其极度高昂的[gold]罚金[/gold]。",
+
+  "PENANCEMOD.TRIAL.options.NONDESCRIPT_FAIR.title": "判决：公正执法",
+  "PENANCEMOD.TRIAL.options.NONDESCRIPT_FAIR.desc": "获得[blue]1[/blue]次卡牌奖励。[gold]变化[/gold][blue]1[/blue]张牌。",
+  "PENANCEMOD.TRIAL.pages.NONDESCRIPT_FAIR.desc": "你敏锐地察觉到了证词中的[red]矛盾[/red]。经过一番条分缕析的盘问，你不仅还原了这起[red]盗窃[/red]与[red]诈骗[/red]案的真相，还揪出了隐藏在幕后的连环套。",
+
+  "PENANCEMOD.TRIAL.reactions.CHEER": "审判庭内鸦雀无声。\n几秒后，人群中爆发出了[jitter]如雷鸣般的欢呼[/jitter]。他们[gold][jitter]高呼[/jitter][/gold]着你的名字，[gold]夸赞[/gold]着你精彩绝伦的推理技巧，[gold]审判之椅[/gold]被[jitter]彩带[/jitter]与[jitter]礼炮[/jitter]笼罩。[gold]恭喜你[/gold]，你用你的智慧折服了所有人！",
+  "PENANCEMOD.TRIAL.reactions.BORED": "审判庭内鸦雀无声。\n你听到人群中传来了[blue][thinky_dots]此起彼伏的打呼噜声[/thinky_dots][/blue]。看起来他们对这种[gold]严谨[/gold]且[red]无聊[/red]的[gold]程序正义[/gold]并不是很感兴趣。",
+  "PENANCEMOD.TRIAL.reactions.ANGRY": "审判庭内鸦雀无声。\n几秒后，人群中爆发出了[sine][red]震耳欲聋的痛骂声[/red][/sine]： [red][jitter]“我花钱买票进来不是看这个的！”[/jitter][/red] [red][jitter]“无聊！我们要看到血流成河！”[/jitter][/red] [red][jitter]“滚下去！滚下去！”[/jitter][/red]\n[red]臭鸡蛋[/red]和[red]烂西红柿[/red]从人群中朝着你[jitter]飞[/jitter]了过来。这群人到底有什么毛病？"
 }

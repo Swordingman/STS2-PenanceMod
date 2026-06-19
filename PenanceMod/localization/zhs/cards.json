@@ -203,7 +203,7 @@
   "PENANCEMOD-SYRACUSAN_WOLVES.description": "将随机5张{IfUpgraded:show:升级后的|}[gold]狼群诅咒[/gold]洗入你的抽牌堆。",
 
   "PENANCEMOD-RESOLUTE.title": "坚决",
-  "PENANCEMOD-RESOLUTE.description": "获得3点[gold]屏障[/gold]。\n获得{Resolute-BarrierX:diff()}点[gold]屏障[/gold] X 次，获得{IfUpgraded:show:X+1|X}点[gold]裁决[/gold]。",
+  "PENANCEMOD-RESOLUTE.description": "获得3点[gold]屏障[/gold]。\n获得{Resolute-BarrierX:diff()}点[gold]屏障[/gold]X次，获得{IfUpgraded:show:X+1|X}点[gold]裁决[/gold]。",
 
   "PENANCEMOD-TANGLED_THREADS.title": "缝线缠身",
   "PENANCEMOD-TANGLED_THREADS.description": "随机[gold]消耗[/gold]手牌中3张牌。\n随机造成{IfUpgraded:show:X+X|X}次伤害，伤害值等于被[gold]消耗[/gold]牌的总耗能。\n然后抽5张牌。",

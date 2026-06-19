@@ -1,0 +1,10 @@
+{
+  "PENANCEMOD-BARRIER_POTION.title": "Barrier Potion",
+  "PENANCEMOD-BARRIER_POTION.description": "Gain [blue]{BarrierPower:diff()}[/blue] [gold]Barrier[/gold].",
+    
+  "PENANCEMOD-JUDGEMENT_POTION.title": "Judgment Potion",
+  "PENANCEMOD-JUDGEMENT_POTION.description": "Gain [blue]{JudgementPower:diff()}[/blue] [gold]Judgment[/gold].",
+
+  "PENANCEMOD-BOTTLE_OF_WOLF_BLOOD.title": "Bottled Wolf Blood",
+  "PENANCEMOD-BOTTLE_OF_WOLF_BLOOD.description": "Choose 1 of [blue]{Cards}[/blue] random [gold]Wolfpack Curses[/gold] to add to your [gold]hand[/gold]."
+}
