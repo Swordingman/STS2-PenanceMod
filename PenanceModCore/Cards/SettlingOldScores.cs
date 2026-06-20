@@ -59,9 +59,10 @@ public class SettlingOldScores : PenanceBaseCard
     {
         int drawBatchSize = DynamicVars["Settling-Draw"].IntValue;
         int nonAttackCount = 0;
+        int totalDrawnCount = 0; // 新增：记录总共抽出的牌数
 
-        // 🌟 核心逻辑：重复抽牌，直到累计抽出两张非攻击牌
-        while (nonAttackCount < 2)
+        // 🌟 核心逻辑：重复抽牌，直到累计抽出两张非攻击牌，或总抽牌数达到 10 张
+        while (nonAttackCount < 2 && totalDrawnCount < 10)
         {
             var drawnCards = await CardPileCmd.Draw(choiceContext, drawBatchSize, Owner);
             
@@ -70,10 +71,11 @@ public class SettlingOldScores : PenanceBaseCard
 
             foreach (var card in drawnCards)
             {
+                totalDrawnCount++; // 每次遍历到一张抽出的牌，计数器 +1
+
                 if (card.Type == CardType.Attack)
                 {
-                    // 🌟 使用你提供的官方 API 进行自动打出
-                    // target 传 null，让 AutoPlay 根据卡牌自身的 TargetType 自动找怪
+                    // 使用官方 API 进行自动打出
                     await CardCmd.AutoPlay(choiceContext, card, null);
                     
                     // 打完之后立刻消耗
@@ -88,6 +90,9 @@ public class SettlingOldScores : PenanceBaseCard
                     // 如果在当前批次中已经凑够两张非攻击牌，提前收工
                     if (nonAttackCount >= 2) break;
                 }
+
+                // 新增：如果刚好处理到第 10 张牌，立刻中止后续的自动打出和抽牌
+                if (totalDrawnCount >= 10) break;
             }
         }
     }

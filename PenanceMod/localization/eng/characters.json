@@ -16,5 +16,6 @@
   "PENANCEMOD-PENANCE_MOD.unlockText": "Play a run with [pink]{Prerequisite}[/pink] to unlock this character.",
   "PENANCEMOD-PENANCE_MOD.skin0": "Base",
   "PENANCEMOD-PENANCE_MOD.skin1": "Occasionally Flushed",
-  "PENANCEMOD-PENANCE_MOD.skin2": "Scribing"
+  "PENANCEMOD-PENANCE_MOD.skin2": "Scribing",
+  "PENANCEMOD-WOLF_CURSE_LIMITER": "Wolf Curses have reached the limit for this turn!"
 }

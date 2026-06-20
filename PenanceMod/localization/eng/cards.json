@@ -247,7 +247,7 @@
   "PENANCEMOD-WEAK_AND_WEEP.description": "For each [gold]Weak[/gold] the target has, trigger [gold]Thorn Aura[/gold] damage once on them.",
 
   "PENANCEMOD-SETTLING_OLD_SCORES.title": "Settling Old Scores",
-  "PENANCEMOD-SETTLING_OLD_SCORES.description": "Draw {Settling-Draw:diff()} cards, automatically play the [gold]Attack[/gold] cards among them and [gold]Exhaust[/gold] them. Repeat this until you draw 2 non-[gold]Attack[/gold] cards.",
+  "PENANCEMOD-SETTLING_OLD_SCORES.description": "Draw {Settling-Draw:diff()} cards, automatically play the [gold]Attack[/gold] cards among them and [gold]Exhaust[/gold] them. Repeat this until you draw 2 non-[gold]Attack[/gold] cards, or a total of drawing 10 cards.",
 
   "PENANCEMOD-WAND_ANTIGRAVITY.title": "Arcane Staff - Anti-Gravity Mode",
   "PENANCEMOD-WAND_ANTIGRAVITY.description": "[gold]Exhaust[/gold] all [gold]Curse[/gold] cards not in the exhaust pile.\nFor each {IfUpgraded:show:card|[gold]Curse[/gold] card} in the exhaust pile, add a random [gold]Wolfpack Curse[/gold] to your discard pile.",

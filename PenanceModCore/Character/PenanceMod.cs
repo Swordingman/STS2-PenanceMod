@@ -56,8 +56,18 @@ public class PenanceMod : PlaceholderCharacterModel
     public override string CustomEnergyCounterPath => "res://PenanceMod/scenes/Penance_eneg.tscn";
 
     // 篝火休息场景。
-    public override string CustomRestSiteAnimPath => "res://PenanceMod/scenes/Penance_rest_site.tscn";
-
+    public override string CustomRestSiteAnimPath
+    {
+        get
+        {
+            return PenanceConfig.CurrentSkinIndex switch
+            {
+                1 => "res://PenanceMod/scenes/Penance_rest_site_skin1.tscn", // 偶尔醉陶
+                2 => "res://PenanceMod/scenes/Penance_rest_site_skin2.tscn", // 记叙
+                _ => "res://PenanceMod/scenes/Penance_rest_site_skin0.tscn", // 默认皮肤
+            };
+        }
+    }
     // 商店人物场景。
     public override string CustomMerchantAnimPath
     {

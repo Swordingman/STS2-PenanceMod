@@ -246,7 +246,7 @@
   "PENANCEMOD-WEAK_AND_WEEP.description": "目标每有1层[gold]虚弱[/gold]，对其触发1次[gold]荆棘环身[/gold]的伤害。",
 
   "PENANCEMOD-SETTLING_OLD_SCORES.title": "清算",
-  "PENANCEMOD-SETTLING_OLD_SCORES.description": "抽{Settling-Draw:diff()}张牌，自动打出其中的[gold]攻击[/gold]牌并将其[gold]消耗[/gold]。重复此过程，直到抽出2张非[gold]攻击[/gold]牌。",
+  "PENANCEMOD-SETTLING_OLD_SCORES.description": "抽{Settling-Draw:diff()}张牌，自动打出其中的[gold]攻击[/gold]牌并将其[gold]消耗[/gold]。重复此过程，直到抽出2张非[gold]攻击[/gold]牌，或总共通过此法抽出10张牌。",
 
   "PENANCEMOD-WAND_ANTIGRAVITY.title": "秘杖：反重力模式",
   "PENANCEMOD-WAND_ANTIGRAVITY.description": "[gold]消耗[/gold]所有不在消耗堆中的[gold]诅咒[/gold]牌。\n消耗堆中每有一张{IfUpgraded:show:卡牌|[gold]诅咒[/gold]牌}，将一张随机的[gold]狼群诅咒[/gold]加入你的弃牌堆。",

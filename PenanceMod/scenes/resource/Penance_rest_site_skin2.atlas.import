@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://cbkq0cfuq7xq7"
+path="res://.godot/imported/Penance_rest_site_skin2.atlas-7764a113829e6db4474f78e20609c0a7.spatlas"
+
+[deps]
+
+source_file="res://PenanceMod/scenes/resource/Penance_rest_site_skin2.atlas"
+dest_files=["res://.godot/imported/Penance_rest_site_skin2.atlas-7764a113829e6db4474f78e20609c0a7.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

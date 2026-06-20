@@ -22,7 +22,7 @@ public class CourtMajestyPower : CustomPowerModel
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
     {
         // 确保受击者是玩家自己（挂载了这个能力的生物），且攻击者存在
-        if (target == Owner && dealer != null)
+        if (target == Owner && dealer != null && dealer != Owner)
         {
             // 判定条件 1：攻击者是否有虚弱 (WeakPower)
             bool hasWeak = dealer.GetPower<WeakPower>() != null;

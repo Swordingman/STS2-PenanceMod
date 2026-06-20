@@ -16,5 +16,6 @@
   "PENANCEMOD-PENANCE_MOD.unlockText": "用[pink]{Prerequisite}[/pink]进行一局游戏来解锁这个角色。",
   "PENANCEMOD-PENANCE_MOD.skin0": "默认",
   "PENANCEMOD-PENANCE_MOD.skin1": "偶尔醉陶",
-  "PENANCEMOD-PENANCE_MOD.skin2": "记叙"
+  "PENANCEMOD-PENANCE_MOD.skin2": "记叙",
+  "PENANCEMOD-WOLF_CURSE_LIMITER": "本回合狼群已达上限！"
 }

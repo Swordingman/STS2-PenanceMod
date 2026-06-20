@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://bnb5s4komlsw6"
+path="res://.godot/imported/Penance_rest_site_skin242.skel-82236b2a6df4fc553d667dcc347ec009.spskel"
+
+[deps]
+
+source_file="res://PenanceMod/scenes/resource/Penance_rest_site_skin242.skel"
+dest_files=["res://.godot/imported/Penance_rest_site_skin242.skel-82236b2a6df4fc553d667dcc347ec009.spskel"]
+
+[params]
+

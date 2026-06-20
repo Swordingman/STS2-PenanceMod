@@ -58,17 +58,34 @@ public class WandAntigravity : PenanceBaseCard
         if (player == null || CombatState == null)
             return;
 
-        // 1. 消耗所有不在消耗堆中的诅咒（手牌、抽牌堆、弃牌堆）
+        // 1. 收集所有需要消耗的诅咒
+        var allCursesToExhaust = new List<CardModel>();
         var otherPiles = new[] { PileType.Hand, PileType.Draw, PileType.Discard };
+        
         foreach (var pileType in otherPiles)
         {
             var pile = pileType.GetPile(player);
-            // 找出所有诅咒（排除掉正在打出的这张秘杖本身，防止自杀式报错）
-            var curses = pile.Cards.Where(c => c.Type == CardType.Curse && c != this).ToList();
-            foreach (var curse in curses)
+            // 找出所有诅咒并直接加入列表（排除自身）
+            allCursesToExhaust.AddRange(pile.Cards.Where(c => c.Type == CardType.Curse && c != this));
+        }
+
+        // 🌟 核心修改：错峰并发消耗（拉链式消耗）
+        if (allCursesToExhaust.Any())
+        {
+            var exhaustTasks = new List<Task>();
+            
+            foreach (var curse in allCursesToExhaust)
             {
-                await CardCmd.Exhaust(choiceContext, curse, causedByEthereal: false);
+                // 启动当前这张牌的消耗任务，并存入列表
+                exhaustTasks.Add(CardCmd.Exhaust(choiceContext, curse, causedByEthereal: false));
+                
+                // 极短的错峰延迟 (0.05 秒)
+                // 打破同帧叠加，将“一声巨响”变成“机关枪连射”
+                await Cmd.Wait(0.05f); 
             }
+
+            // 确保所有的消耗动作都彻底跑完，再往下进行计数和生成
+            await Task.WhenAll(exhaustTasks);
         }
 
         // 2. 统计消耗堆中的目标数量
@@ -91,12 +108,10 @@ public class WandAntigravity : PenanceBaseCard
         {
             for (int i = 0; i < targetCount; i++)
             {
-                // 使用你提供的模板生成随机狼群诅咒
                 var randomCurse = WolfCurseHelper.GetRandomWolfCurse(player, CombatState, IsUpgraded);
                 
-                // 将生成的牌加入弃牌堆，并添加一个预览动画
                 var cardNode = await CardPileCmd.AddGeneratedCardToCombat(randomCurse, PileType.Discard, Owner);
-                CardCmd.PreviewCardPileAdd(cardNode, 1.5f); 
+                CardCmd.PreviewCardPileAdd(cardNode, 0.5f); 
             }
         }
     }

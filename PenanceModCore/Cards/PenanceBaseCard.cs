@@ -10,6 +10,9 @@ using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using PenanceMod.PenanceModCode.Extensions;
+using MegaCrit.Sts2.Core.Models.Relics;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.Localization;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -78,13 +81,45 @@ public abstract class PenanceBaseCard : CustomCardModel
         await PowerCmd.Apply<ThornAuraPower>(new ThrowingPlayerChoiceContext(), target, amount, Owner.Creature, this);
     }
 
+    // ==========================================
+    // 狼群诅咒相关逻辑 (Wolf Curse Logic)
+    // ==========================================
+
     /// <summary>
-    /// 触发狼群自动打出逻辑
+    /// 定义每回合狼群诅咒的自动触发上限
+    /// 可以将其设为 virtual，以便部分特殊卡牌或遗物在未来可以修改这个上限
+    /// </summary>
+    protected virtual int MaxWolfCursesPerTurn => 20;
+
+    /// <summary>
+    /// 获取本回合已经打出的狼群诅咒数量
+    /// </summary>
+    protected int GetWolfCursesTriggeredThisTurn()
+    {
+        if (Owner == null || CombatState == null) return 0;
+
+        return CombatManager.Instance.History.CardPlaysStarted
+            .Count(entry => 
+                entry.HappenedThisTurn(CombatState) &&
+                entry.CardPlay.Card.Owner == Owner &&
+                entry.CardPlay.Card.Tags.Contains(PenanceCardTags.CurseOfWolves));
+    }
+
+    /// <summary>
+    /// 触发狼群自动打出逻辑 (附带上限检测)
     /// </summary>
     protected async Task TriggerWolfAutoplay(PlayerChoiceContext choiceContext, CardModel card, Creature? target = null)
     {
         if (card == null || card.Owner == null || card.Owner.Creature == null) return;
         if (CombatManager.Instance.IsOverOrEnding || card.Owner.Creature.IsDead) return;
+
+        // --- 核心修改：上限拦截 ---
+        int triggeredCount = GetWolfCursesTriggeredThisTurn();
+        if (triggeredCount >= MaxWolfCursesPerTurn)
+        {
+            TalkCmd.Play(new LocString("characters", "PENANCEMOD-WOLF_CURSE_LIMITER"), card.Owner.Creature, VfxColor.White);
+            return; 
+        }
 
         await CreatureCmd.TriggerAnim(card.Owner.Creature, "Cast", 0.2f);
 
