@@ -108,7 +108,7 @@
   "PENANCEMOD-GUARDIAN_OF_THE_LAW.description": "每当你的[gold]屏障[/gold]受到伤害时，获得{Guardian-Magic:diff()}点[gold]裁决[/gold]。",
 
   "PENANCEMOD-GUILTY_AS_CHARGED.title": "有罪！",
-  "PENANCEMOD-GUILTY_AS_CHARGED.description": "移除目标的所有[gold]格挡[/gold]。\n造成{Damage:diff()}点伤害。\n你的所有牌堆中每有一张[gold]诅咒[/gold]牌，额外造成{Guilty-CurseDmg:diff()}点伤害。",
+  "PENANCEMOD-GUILTY_AS_CHARGED.description": "移除目标的所有[gold]格挡[/gold]。\n造成{CalculatedDamage:diff()}点伤害。\n(你的所有牌堆中每有一张[gold]诅咒[/gold]牌，此牌伤害额外+{ExtraDamage:diff()})",
 
   "PENANCEMOD-HOUR_OF_RECKONING.title": "清算时刻",
   "PENANCEMOD-HOUR_OF_RECKONING.description": "造成{Damage:diff()}点伤害。{DynamicHpLostText}\n本场战斗你每失去1点生命值，伤害增加1点。",
@@ -212,7 +212,7 @@
   "PENANCEMOD-TEMPERING.description": "失去3点生命值。\n获得{Tempering-Barrier:diff()}点[gold]屏障[/gold]。",
 
   "PENANCEMOD-THE_TRIAL.title": "审判",
-  "PENANCEMOD-THE_TRIAL.description": "造成{Damage:diff()}点伤害。\n[gold]力量[/gold]对此牌的加成效果改为乘算。",
+  "PENANCEMOD-THE_TRIAL.description": "造成{CalculatedDamage:diff()}点伤害。\n[gold]力量[/gold]对此牌的加成效果改为乘算。",
 
   "PENANCEMOD-THORNY_PATH.title": "披荆斩棘",
   "PENANCEMOD-THORNY_PATH.description": "回合结束时，若敌人拥有[gold]虚弱[/gold]，则获得{ThornyPath-Amt:diff()}层[gold]荆棘环身[/gold]。",

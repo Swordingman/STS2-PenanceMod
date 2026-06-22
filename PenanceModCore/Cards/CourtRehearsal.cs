@@ -11,6 +11,9 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Factories;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Multiplayer;
+using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -23,14 +26,17 @@ public class CourtRehearsal : PenanceBaseCard
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain, CardKeyword.Exhaust];
 
-    public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
+    // 1. 把变身逻辑提取成一个独立的安全检查方法
+    private async Task CheckAndTransform()
     {
-        if (card != this) return;
+        // 如果它现在不在手牌里，直接退出，什么都不做
+        if (this.Pile == null || this.Pile.Type != PileType.Hand) return;
 
         var player = Owner;
-        if (player == null) return;
+        var combatState = CombatState ?? player?.Creature.CombatState;
+        if (player == null || combatState == null) return;
 
-        // 1. 获取随机牌
+        // 获取随机牌
         var candidates = ModelDb.AllCardPools
             .OfType<PenanceModCardPool>()
             .SelectMany(pool => pool.AllCardIds)
@@ -44,25 +50,25 @@ public class CourtRehearsal : PenanceBaseCard
 
         if (randomCard != null)
         {
-            // 2. 继承升级状态
             if (this.IsUpgraded && randomCard.IsUpgradable && !randomCard.IsUpgraded)
             {
                 randomCard.UpgradeInternal();
                 randomCard.FinalizeUpgradeInternal();
             }
 
-            // 3. ✅ 强行注入灵魂属性
             randomCard.AddKeyword(CardKeyword.Retain);
             randomCard.AddKeyword(CardKeyword.Exhaust);
 
-            // 4. 变身！（这句代码执行后，this 将彻底从手牌中消失）
+            // 变身！
+            await Cmd.Wait(0.1f);
             await CardCmd.Transform(this, randomCard);
 
-            // 5. ✅ 召唤幕后追踪器接管
-            await PowerCmd.Apply<CourtRehearsalTrackerPower>(choiceContext, player.Creature, 1, player.Creature, null);
+            ulong? netId = LocalContext.NetId;
+            if (!netId.HasValue) return;
 
-            // 找到刚才挂上的那个追踪器，把这张新牌交给它照看
-            // 因为允许实例化(Instanced)，我们找 TrackedCard 还是 null 的那个
+            PlayerChoiceContext syntheticContext = new HookPlayerChoiceContext(this, netId.Value, combatState, GameActionType.Combat);
+            await PowerCmd.Apply<CourtRehearsalTrackerPower>(syntheticContext, player.Creature, 1, player.Creature, null);
+
             var tracker = player.Creature.Powers.OfType<CourtRehearsalTrackerPower>().LastOrDefault(p => p.PenanceMod_TrackedCard == null);
             if (tracker != null)
             {
@@ -72,7 +78,20 @@ public class CourtRehearsal : PenanceBaseCard
         }
     }
 
-    // 这些不需要了，因为在打出或回合开始时它早就不是它自己了
+    // 2. 占领所有可能的入口钩子，全部指向这个检查方法！
+
+    // 入口 A：正常的卡牌堆移动 (抽牌、从弃牌堆捞回等)
+    public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? clonedBy)
+    {
+        if (card == this) await CheckAndTransform();
+    }
+
+    // 入口 B：凭空印卡专门的钩子！(针对你说的“凭空刷出来”的情况)
+    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
+    {
+        if (card == this) await CheckAndTransform();
+    }
+
     protected override Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay) => Task.CompletedTask;
     protected override void OnUpgrade() {}
 }

@@ -17,5 +17,8 @@
   "PENANCEMOD-PENANCE_MOD.skin0": "默认",
   "PENANCEMOD-PENANCE_MOD.skin1": "偶尔醉陶",
   "PENANCEMOD-PENANCE_MOD.skin2": "记叙",
-  "PENANCEMOD-WOLF_CURSE_LIMITER": "本回合狼群已达上限！"
+  "PENANCEMOD-WOLF_CURSE_LIMITER": "本回合狼群已达上限！",
+  "PENANCEMOD-CharacterVoice": "语音语言配置",
+  "PENANCEMOD-Voice_Settings": "语音设置",
+  "PENANCEMOD-CharacterVoice_HoverTip": "Switch the operator's voice lines triggered by in-game card interactions.\nNote: Some operators currently lack specific voice recordings in certain minor languages (e.g., Italian). If no audio is available for the selected language, the default Chinese voice recording will be played automatically"
 }

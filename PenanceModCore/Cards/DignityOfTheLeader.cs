@@ -12,6 +12,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.HoverTips;
+using PenanceMod.Scripts.Utils;
+using PenanceMod.PenanceModCode.Extensions;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -64,6 +66,18 @@ public class DignityOfTheLeader : PenanceBaseCard
             return;
             
         var creature = Owner.Creature;
+
+        string audioPath = PenanceConfig.CharacterVoice switch
+        {
+            VoiceLanguage.EN => "res://PenanceMod/scenes/audio/dignityoftheleader_en.wav",
+            VoiceLanguage.JP => "res://PenanceMod/scenes/audio/dignityoftheleader_jp.wav",
+            VoiceLanguage.KR => "res://PenanceMod/scenes/audio/dignityoftheleader_kr.wav",
+            VoiceLanguage.IT => "res://PenanceMod/scenes/audio/dignityoftheleader_it.wav",
+            _ => "res://PenanceMod/scenes/audio/dignityoftheleader_cn.wav",
+        };
+        await AudioManager.PlayCustomSfx(WolfCurseSfx);
+        await AudioManager.PlayCustomSfx(audioPath);
+
         var vars = DynamicVars.Values.ToList();
         int energyGain = vars.Count > 0 ? vars[0].IntValue : 2;
 

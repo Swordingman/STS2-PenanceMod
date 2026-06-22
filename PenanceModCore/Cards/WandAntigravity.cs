@@ -8,6 +8,8 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.GameInfo.Objects;
 using PenanceMod.PenanceModCode.Character;
+using PenanceMod.PenanceModCode.Extensions;
+using PenanceMod.Scripts.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -57,6 +59,17 @@ public class WandAntigravity : PenanceBaseCard
 
         if (player == null || CombatState == null)
             return;
+
+        string audioPath = PenanceConfig.CharacterVoice switch
+        {
+            VoiceLanguage.EN => "res://PenanceMod/scenes/audio/wandantigravity_en.wav",
+            VoiceLanguage.JP => "res://PenanceMod/scenes/audio/wandantigravity_jp.wav",
+            VoiceLanguage.KR => "res://PenanceMod/scenes/audio/wandantigravity_kr.wav",
+            VoiceLanguage.IT => "res://PenanceMod/scenes/audio/wandantigravity_cn.wav",
+            _ => "res://PenanceMod/scenes/audio/wandantigravity_cn.wav",
+        };
+        await AudioManager.PlayCustomSfx(WolfCurseSfx);
+        await AudioManager.PlayCustomSfx(audioPath);
 
         // 1. 收集所有需要消耗的诅咒
         var allCursesToExhaust = new List<CardModel>();

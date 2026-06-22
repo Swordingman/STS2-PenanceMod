@@ -8,6 +8,8 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using PenanceMod.PenanceModCode.Character;
+using PenanceMod.PenanceModCode.Extensions;
+using PenanceMod.Scripts.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -58,6 +60,17 @@ public class TangledThreads : PenanceBaseCard
 
         if (combatState == null)
             return;
+
+        string audioPath = PenanceConfig.CharacterVoice switch
+        {
+            VoiceLanguage.EN => "res://PenanceMod/scenes/audio/tangledthreads_en.wav",
+            VoiceLanguage.JP => "res://PenanceMod/scenes/audio/tangledthreads_jp.wav",
+            VoiceLanguage.KR => "res://PenanceMod/scenes/audio/tangledthreads_kr.wav",
+            VoiceLanguage.IT => "res://PenanceMod/scenes/audio/tangledthreads_it.wav",
+            _ => "res://PenanceMod/scenes/audio/tangledthreads_cn.wav",
+        };
+        await AudioManager.PlayCustomSfx(WolfCurseSfx);
+        await AudioManager.PlayCustomSfx(audioPath);
 
         var hand = PileType.Hand.GetPile(player);
 

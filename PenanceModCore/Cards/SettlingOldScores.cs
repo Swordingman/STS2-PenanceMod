@@ -8,7 +8,9 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using PenanceMod.PenanceModCode.Character;
-using PenanceMod.PenanceModCode.Powers; 
+using PenanceMod.PenanceModCode.Extensions;
+using PenanceMod.PenanceModCode.Powers;
+using PenanceMod.Scripts.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -57,6 +59,17 @@ public class SettlingOldScores : PenanceBaseCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        string audioPath = PenanceConfig.CharacterVoice switch
+        {
+            VoiceLanguage.EN => "res://PenanceMod/scenes/audio/settingoldscores_en.wav",
+            VoiceLanguage.JP => "res://PenanceMod/scenes/audio/settingoldscores_jp.wav",
+            VoiceLanguage.KR => "res://PenanceMod/scenes/audio/settingoldscores_cn.wav",
+            VoiceLanguage.IT => "res://PenanceMod/scenes/audio/settingoldscores_cn.wav",
+            _ => "res://PenanceMod/scenes/audio/settingoldscores_cn.wav",
+        };
+        await AudioManager.PlayCustomSfx(WolfCurseSfx);
+        await AudioManager.PlayCustomSfx(audioPath);
+
         int drawBatchSize = DynamicVars["Settling-Draw"].IntValue;
         int nonAttackCount = 0;
         int totalDrawnCount = 0; // 新增：记录总共抽出的牌数

@@ -107,8 +107,17 @@ public class PenanceMod : PlaceholderCharacterModel
     // public override string CustomCastSfx => null;
     // 死亡音效
     public override string CustomDeathSfx => "res://PenanceMod/scenes/audio/die.wav";
+
     // 角色选择音效
-    public override string CharacterSelectSfx => "res://PenanceMod/scenes/audio/cn.wav";
+    public override string CharacterSelectSfx => PenanceConfig.CharacterVoice switch
+    {
+        VoiceLanguage.EN => "res://PenanceMod/scenes/audio/select_en.wav",
+        VoiceLanguage.JP => "res://PenanceMod/scenes/audio/select_jp.wav",
+        VoiceLanguage.KR => "res://PenanceMod/scenes/audio/select_kr.wav",
+        VoiceLanguage.IT => "res://PenanceMod/scenes/audio/select_it.wav",
+        _ => "res://PenanceMod/scenes/audio/select_cn.wav"
+    };
+
     // 过渡音效。这个不能删。
     public override string CharacterTransitionSfx => "event:/sfx/ui/wipe_ironclad";
 

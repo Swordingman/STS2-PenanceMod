@@ -73,7 +73,7 @@
   "TANX.talk.PENANCEMOD-PENANCE_MOD.1-0r.ancient": "[b]Heavy Hammer Judge!! Do you want to tie a sword to your \"gavel\"!?[/b]",
   "TANX.talk.PENANCEMOD-PENANCE_MOD.2-0.ancient": "[b]Judge, fight me!![/b]",
   "TANX.talk.PENANCEMOD-PENANCE_MOD.2-0.next": "Defend",
-  "TANX.talk.PENANCEMOD-PENANCE_MOD.2-1.char": "[i][font_size=22]Tanx throws a powerful punch, smashing heavily into Penance's magical Barrier.[/font_size][/i]",
+  "TANX.talk.PENANCEMOD-PENANCE_MOD.2-1.ancient": "[i][font_size=22]Tanx throws a powerful punch, smashing heavily into Penance's Barrier.[/font_size][/i]",
   "TANX.talk.PENANCEMOD-PENANCE_MOD.2-1.next": "Continue",
   "TANX.talk.PENANCEMOD-PENANCE_MOD.2-2.ancient": "[b][jitter][font_size=22]Wham![/font_size][/jitter] Yaaaagh! It's spiky! My hand hurts!!![/b]",
   "TANX.talk.PENANCEMOD-PENANCE_MOD.2-2.next": "Respond",

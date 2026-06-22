@@ -29,8 +29,9 @@ public class SelfIncrimination : PenanceBaseCard
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromCard<ExhibitA>(),
-        HoverTipFactory.FromCard<Perjury>()
+        // 传入当前卡牌的升级状态，使预览随之改变
+        HoverTipFactory.FromCard<ExhibitA>(IsUpgraded),
+        HoverTipFactory.FromCard<Perjury>(IsUpgraded)
     ];
 
     protected override bool IsPlayable
@@ -60,20 +61,27 @@ public class SelfIncrimination : PenanceBaseCard
 
         var drawPile = PileType.Draw.GetPile(player);
 
-        // 从抽牌堆顶部往下找第一张诅咒
+        // 从抽牌堆往下找第一张诅咒
         var curse = drawPile.Cards.FirstOrDefault(card => card.Type == CardType.Curse);
         if (curse == null)
             return;
 
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);    
 
-        // 把这张诅咒从抽牌堆“抽出”到手牌
+        // ==========================================
+        // 🌟 定向抽牌法：完美触发所有“抽牌时”效果
+        // ==========================================
+        
+        // 1. 先把这张诅咒牌，从它现在的位置移动到抽牌堆的【最顶部】
         await CardPileCmd.Add(
-            curse,
-            PileType.Hand,
-            CardPilePosition.Bottom,
-            this
+            curse, 
+            PileType.Draw, 
+            CardPilePosition.Top, // 强制置顶
+            this,
+            skipVisuals: true // 隐藏置顶的动画，让玩家感觉是直接抽上来的
         );
+
+        await CardPileCmd.Draw(choiceContext, 1m, player);
 
         await Cmd.Wait(0.1f);
 

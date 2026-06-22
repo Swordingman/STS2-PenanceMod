@@ -123,14 +123,6 @@ public abstract class PenanceBaseCard : CustomCardModel
 
         await CreatureCmd.TriggerAnim(card.Owner.Creature, "Cast", 0.2f);
 
-        // 获取角色节点
-        var creatureNode = card.Owner.Creature.GetCreatureNode();
-        
-        if (creatureNode != null)
-        {
-            await AudioManager.PlayCustomSfx(WolfCurseSfx, creatureNode);
-        }
-
         await CardCmd.AutoPlay(
             choiceContext,
             card,

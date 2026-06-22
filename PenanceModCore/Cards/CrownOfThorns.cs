@@ -42,7 +42,7 @@ public class CrownOfThorns : PenanceBaseCard
         var vars = DynamicVars.Values.ToList();
         if (vars.Count > 0)
         {
-            vars[0].UpgradeValueBy(2);
+            vars[0].UpgradeValueBy(1);
         }
     }
 }

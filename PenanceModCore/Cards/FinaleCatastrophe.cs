@@ -16,6 +16,8 @@ using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.HoverTips;
+using PenanceMod.Scripts.Utils;
+using PenanceMod.PenanceModCode.Extensions;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -70,6 +72,18 @@ public class FinaleCatastrophe : PenanceBaseCard
         int totalHits = vars.Count > 0 ? vars[0].IntValue : 30;
 
         var creature = Owner.Creature;
+
+        string audioPath = PenanceConfig.CharacterVoice switch
+        {
+            VoiceLanguage.EN => "res://PenanceMod/scenes/audio/finalecatastrophe_en.wav",
+            VoiceLanguage.JP => "res://PenanceMod/scenes/audio/finalecatastrophe_jp.wav",
+            VoiceLanguage.KR => "res://PenanceMod/scenes/audio/finalecatastrophe_kr.wav",
+            VoiceLanguage.IT => "res://PenanceMod/scenes/audio/finalecatastrophe_it.wav",
+            _ => "res://PenanceMod/scenes/audio/finalecatastrophe_cn.wav",
+        };
+        await AudioManager.PlayCustomSfx(WolfCurseSfx);
+        await AudioManager.PlayCustomSfx(audioPath);
+
         var rng = Owner.RunState.Rng.CombatTargets; 
         
         float hitPlayerChance = IsUpgraded ? 0.3f : 0.5f;

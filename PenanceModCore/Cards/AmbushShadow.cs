@@ -12,6 +12,8 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
+using PenanceMod.Scripts.Utils;
+using PenanceMod.PenanceModCode.Extensions;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -64,6 +66,17 @@ public class AmbushShadow : PenanceBaseCard
             return;
 
         var creature = Owner.Creature;
+
+        string audioPath = PenanceConfig.CharacterVoice switch
+        {
+            VoiceLanguage.EN => "res://PenanceMod/scenes/audio/ambushshadow_en.wav",
+            VoiceLanguage.JP => "res://PenanceMod/scenes/audio/ambushshadow_jp.wav",
+            VoiceLanguage.KR => "res://PenanceMod/scenes/audio/ambushshadow_kr.wav",
+            VoiceLanguage.IT => "res://PenanceMod/scenes/audio/ambushshadow_cn.wav",
+            _ => "res://PenanceMod/scenes/audio/ambushshadow_cn.wav",
+        };
+        await AudioManager.PlayCustomSfx(WolfCurseSfx);
+        await AudioManager.PlayCustomSfx(audioPath);
         
         // ⭐ 破局神技：直接抓取第一个变量，调用官方源码验证过的 IntValue
         var magicVar = DynamicVars.Values.First();

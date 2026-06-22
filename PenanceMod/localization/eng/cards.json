@@ -109,7 +109,7 @@
   "PENANCEMOD-GUARDIAN_OF_THE_LAW.description": "Whenever your [gold]Barrier[/gold] takes damage, gain {Guardian-Magic:diff()} [gold]Judgment[/gold].",
 
   "PENANCEMOD-GUILTY_AS_CHARGED.title": "Guilty as Charged!",
-  "PENANCEMOD-GUILTY_AS_CHARGED.description": "Remove the target's [gold]Block[/gold].\nDeal {Damage:diff()} damage.\nFor each [gold]Curse[/gold] card in all your piles, deal {Guilty-CurseDmg:diff()} additional damage.",
+  "PENANCEMOD-GUILTY_AS_CHARGED.description": "Remove the target's [gold]Block[/gold].\nDeal {CalculatedDamage:diff()} damage.\nFor each [gold]Curse[/gold] card in all your piles, deal {ExtraDamage:diff()} additional damage.",
 
   "PENANCEMOD-HOUR_OF_RECKONING.title": "Hour of Reckoning",
   "PENANCEMOD-HOUR_OF_RECKONING.description": "Deal {Damage:diff()} damage.{DynamicHpLostText}\nDamage is increased by 1 for each HP you have lost this combat.",
@@ -213,7 +213,7 @@
   "PENANCEMOD-TEMPERING.description": "Lose 3 HP.\nGain {Tempering-Barrier:diff()} [gold]Barrier[/gold].",
 
   "PENANCEMOD-THE_TRIAL.title": "The Trial",
-  "PENANCEMOD-THE_TRIAL.description": "Deal {Damage:diff()} damage.\n[gold]Strength[/gold] affects this card multiplicatively.",
+  "PENANCEMOD-THE_TRIAL.description": "Deal {CalculatedDamage:diff()} damage.\n[gold]Strength[/gold] affects this card multiplicatively.",
 
   "PENANCEMOD-THORNY_PATH.title": "Trial of Thorns",
   "PENANCEMOD-THORNY_PATH.description": "At the end of your turn, if the enemy has [gold]Weak[/gold], gain {ThornyPath-Amt:diff()} [gold]Thorn Aura[/gold].",

@@ -5,11 +5,12 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using BaseLib.Utils;
 
 namespace PenanceMod.Scripts.Cards;
@@ -21,45 +22,49 @@ public class GuiltyAsCharged : PenanceBaseCard
     {
     }
 
-    // 🌟 注册双变量：基础伤害 15，诅咒额外加成 2
+    // 🌟 完美挂载官方动态伤害三件套
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(15, ValueProp.Move),
-        new DynamicVar("Guilty-CurseDmg", 2m)
+        new CalculationBaseVar(15m), 
+        new ExtraDamageVar(2m),      
+        new CalculatedDamageVar(ValueProp.Move).WithMultiplier(CalculateCurseCountMultiplier)
     ];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    // 🌟 静态诅咒计数器
+    private static decimal CalculateCurseCountMultiplier(CardModel card, Creature? target)
     {
-        var target = cardPlay.Target;
-        if (target == null) return;
+        var player = card.Owner;
+        if (player == null) return 0m;
 
-        var player = Owner;
-
-        // 1. 击碎护甲 (移除所有格挡)
-        if (target.Block > 0)
-        {
-            await CreatureCmd.LoseBlock(target, target.Block);
-            await Cmd.Wait(0.1f); // 碎甲稍作停顿，增加打击感
-        }
-
-        // 2. 统计所有位置的诅咒牌数量（手牌、抽牌堆、弃牌堆、消耗堆）
         var pilesToSearch = new[] { PileType.Hand, PileType.Draw, PileType.Discard, PileType.Exhaust };
-        int curseCount = 0;
+        int count = 0;
         
         foreach (var pileType in pilesToSearch)
         {
             var pile = pileType.GetPile(player);
             if (pile != null)
             {
-                curseCount += pile.Cards.Count(c => c.Type == CardType.Curse);
+                count += pile.Cards.Count(c => c.Type == CardType.Curse);
             }
         }
+        
+        return count; 
+    }
 
-        // 3. 计算最终的基础总伤：原面板伤害 + (诅咒数量 * 单张额外伤害)
-        int extraDmgPerCurse = DynamicVars["Guilty-CurseDmg"].IntValue;
-        int totalBaseDamage = (int)(DynamicVars.Damage.BaseValue + (curseCount * extraDmgPerCurse));
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        var target = cardPlay.Target;
+        if (target == null) return;
 
-        // 4. 造成伤害 (引擎会拿着这个计算好的 totalBaseDamage 去自动结算力量等增伤 Buff)
-        await DamageCmd.Attack(totalBaseDamage)
+        if (target.Block > 0)
+        {
+            await CreatureCmd.LoseBlock(target, target.Block);
+            await Cmd.Wait(0.1f); 
+        }
+
+        // 🌟 抓取引擎算好的最终伤害
+        int finalDamage = DynamicVars["CalculatedDamage"].IntValue;
+
+        await DamageCmd.Attack(finalDamage)
             .FromCard(this)
             .Targeting(target)
             .WithHitFx(VfxCmd.heavyBluntPath)
@@ -68,9 +73,8 @@ public class GuiltyAsCharged : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        // 基础伤害提升 5 (15 -> 20)
-        DynamicVars.Damage.UpgradeValueBy(5);
-        // 诅咒带来的额外伤害提升 1 (2 -> 3)
-        DynamicVars["Guilty-CurseDmg"].UpgradeValueBy(1);
+        // 升级基础伤害 (15 -> 20) 和 单张诅咒加成 (2 -> 3)
+        DynamicVars.CalculationBase.UpgradeValueBy(5);
+        DynamicVars.ExtraDamage.UpgradeValueBy(1);
     }
 }

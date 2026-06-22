@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.HoverTips;
+using PenanceMod.Scripts.Utils;
+using PenanceMod.PenanceModCode.Extensions;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -62,6 +64,17 @@ public class FameOfTheCrownSlayer : PenanceBaseCard
     {
         if (Owner == null || Owner.Creature == null || CombatState == null)
             return;
+
+        string audioPath = PenanceConfig.CharacterVoice switch
+        {
+            VoiceLanguage.EN => "res://PenanceMod/scenes/audio/fameofthecrownslayer_en.wav",
+            VoiceLanguage.JP => "res://PenanceMod/scenes/audio/fameofthecrownslayer_jp.wav",
+            VoiceLanguage.KR => "res://PenanceMod/scenes/audio/fameofthecrownslayer_kr.wav",
+            VoiceLanguage.IT => "res://PenanceMod/scenes/audio/fameofthecrownslayer_ru.wav",
+            _ => "res://PenanceMod/scenes/audio/fameofthecrownslayer_cn.wav",
+        };
+        await AudioManager.PlayCustomSfx(WolfCurseSfx);
+        await AudioManager.PlayCustomSfx(audioPath);
             
         var vars = DynamicVars.Values.ToList();
         int drawAmt = vars.Count > 0 ? vars[0].IntValue : 2;

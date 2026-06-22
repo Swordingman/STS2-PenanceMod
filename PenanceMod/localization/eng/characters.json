@@ -17,5 +17,7 @@
   "PENANCEMOD-PENANCE_MOD.skin0": "Base",
   "PENANCEMOD-PENANCE_MOD.skin1": "Occasionally Flushed",
   "PENANCEMOD-PENANCE_MOD.skin2": "Scribing",
-  "PENANCEMOD-WOLF_CURSE_LIMITER": "Wolf Curses have reached the limit for this turn!"
+  "PENANCEMOD-WOLF_CURSE_LIMITER": "Wolf Curses have reached the limit for this turn!",
+  "PENANCEMOD-CharacterVoice": "Voice Language Configuration",
+  "PENANCEMOD-Voice_Settings": "Voice Settings"
 }
