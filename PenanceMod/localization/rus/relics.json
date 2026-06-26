@@ -1,0 +1,57 @@
+{
+  "PENANCEMOD-PENANCE_BASIC_RELIC.title": "Знак Покаяния",
+  "PENANCEMOD-PENANCE_BASIC_RELIC.description": "В начале боя получаете [gold]Барьер[/gold], равный [blue]10%[/blue] от вашего макс. HP, и [blue]1[/blue] [gold]Правосудия[/gold], а также получаете весь накопленный [gold]Барьер[/gold].\nВосстановление от Зелий и Отдыха конвертируется в равное количество [gold]Барьера[/gold] (сохраняется вне боя).\nВ конце боя [blue]10%[/blue] оставшегося [gold]Барьера[/gold] конвертируется в восстановление HP.",
+  "PENANCEMOD-PENANCE_BASIC_RELIC.flavor": "Иди вперёд по терниям, прокладывая путь там, где его раньше не было.",
+
+  "PENANCEMOD-BLACK_UMBRELLA.title": "Чёрный Зонт",
+  "PENANCEMOD-BLACK_UMBRELLA.description": "Один раз за бой, когда ваша [gold]Защита[/gold] впервые пробита, накладывает на атакующего [blue]{Umbrella-Vuln}[/blue] [gold]Уязвимости[/gold] и даёт вам [blue]{Umbrella-Str}[/blue] [gold]Силы[/gold].",
+  "PENANCEMOD-BLACK_UMBRELLA.flavor": "Какая неудача, ты решила прийти в Сиракузы именно сейчас?",
+
+  "PENANCEMOD-BLOODSTAINED_CLOTH.title": "Окровавленная Ткань",
+  "PENANCEMOD-BLOODSTAINED_CLOTH.description": "В начале боя получаете [blue]{Cloth-Str}[/blue] [gold]Силы[/gold] и [blue]{Cloth-Thorns}[/blue] [gold]Тернистой Ауры[/gold].",
+  "PENANCEMOD-BLOODSTAINED_CLOTH.flavor": "Ты не можешь защитить всех...",
+
+  "PENANCEMOD-CARNIVAL_MOMENT.title": "Время Ликования",
+  "PENANCEMOD-CARNIVAL_MOMENT.description": "Все [gold]Проклятия Стаи[/gold], которые у вас есть и будут получены в будущем, [gold]Улучшены[/gold].",
+  "PENANCEMOD-CARNIVAL_MOMENT.flavor": "Взгляни, это Сиракузы — Повелитель Ликований приглашает тебя насладиться представлением!",
+
+  "PENANCEMOD-GOLDEN_SCALES.title": "Золотые Весы",
+  "PENANCEMOD-GOLDEN_SCALES.description": "В конце вашего хода, если вы сбросили [gold]Атаку[/gold] в этом ходу, получаете [blue]{Scales-Def}[/blue] [gold]Самообороны[/gold].",
+  "PENANCEMOD-GOLDEN_SCALES.flavor": "Можно ли наказывать преступления методами вне закона?",
+
+  "PENANCEMOD-INNOCENT.title": "\"Невиновен\"",
+  "PENANCEMOD-INNOCENT.description": "Ваше [gold]Правосудие[/gold] наносит на [blue]{Innocent-DmgUp}%[/blue] больше урона.",
+  "PENANCEMOD-INNOCENT.flavor": "Перед рассветом есть два способа сосуществовать с ночью: либо позволить ей пропитать тебя насквозь, пока ты больше не чувствуешь её; либо искать в ночи всё, что не должно было быть поглощено ею, и бережно хранить.",
+
+  "PENANCEMOD-LETTER_OF_GRATITUDE.title": "Письмо Благодарности",
+  "PENANCEMOD-LETTER_OF_GRATITUDE.description": "Каждый раз, когда вы получаете [gold]Барьер[/gold], получаете дополнительно [blue]{Gratitude-Pct}%[/blue] (минимум [blue]{Gratitude-Min}[/blue]).",
+  "PENANCEMOD-LETTER_OF_GRATITUDE.flavor": "......Но по крайней мере всё, что ты сделала, стоило того.",
+
+  "PENANCEMOD-MEDAL_OF_PERSEVERANCE.title": "Медаль Стойкости",
+  "PENANCEMOD-MEDAL_OF_PERSEVERANCE.description": "Поздравляем, ты доказала свою стойкость, накапливая Барьер!",
+  "PENANCEMOD-MEDAL_OF_PERSEVERANCE.flavor": "Кто-то думает, что это ошибка в дизайне, другие считают, что цифры сломаны. Но ты, мой друг, доказала, что, если готов тратить время на накопление Барьера, ничто не является неубиваемым. Это твоя награда, не презирай её, в конце концов, ты достаточно помучила того беднягу. Не волнуйся, этот переполненный текст тоже учтён.",
+
+  "PENANCEMOD-SHOP_VOUCHER.title": "Магазинный Ваучер",
+  "PENANCEMOD-SHOP_VOUCHER.description": "Каждый раз, когда ваше [gold]Правосудие[/gold] наносит урон, наносит дополнительно [blue]{Voucher-Dmg}[/blue] урона.",
+  "PENANCEMOD-SHOP_VOUCHER.flavor": "Если ты пришла сюда в сезон дождей в Сиракузах, почему бы не найти маленький магазинчик на улице и не посидеть немного.",
+
+  "PENANCEMOD-SIRACUSAN_WINE.title": "Сиракузское Вино",
+  "PENANCEMOD-SIRACUSAN_WINE.description": "В каждом бою, когда вы впервые теряете [blue]{Wine-TriggerDmg}[/blue] или больше HP, получаете [blue]{Wine-MaxHp}[/blue] макс. HP и восстанавливаете [blue]{Wine-Heal}[/blue] HP.",
+  "PENANCEMOD-SIRACUSAN_WINE.flavor": "Дорогой товар из Сиракуз. Будь то эффект снятия усталости или облегчения боли — в тот момент, когда видишь цену, всё превращается в стресс.",
+
+  "PENANCEMOD-PLASTIC_MOLE.title": "Пластиковый Крот",
+  "PENANCEMOD-PLASTIC_MOLE.description": "Когда враги собираются атаковать в сумме [blue]{Mole-Threshold}[/blue] раз, получаете [blue]{Mole-Energy}[/blue] энергии.",
+  "PENANCEMOD-PLASTIC_MOLE.flavor": "По крайней мере в игре молоток судьи приземлится прямо на головы этих пластиковых кротов.",
+
+  "PENANCEMOD-THORNBOUND_CODEX.title": "Кодекс Терний",
+  "PENANCEMOD-THORNBOUND_CODEX.description": "В начале вашего хода получаете [energy].\nВ конце вашего хода перемешивает случайное [gold]Проклятие Стаи[/gold] в вашу колоду.",
+  "PENANCEMOD-THORNBOUND_CODEX.flavor": "Что не указано в законе, я раскрою через практику.",
+
+  "PENANCEMOD-LITTLE_GAVEL.title": "Маленький Молоток",
+  "PENANCEMOD-LITTLE_GAVEL.description": "Когда ваша [gold]Защита[/gold] пробита, получаете [gold]Барьер[/gold], равный урону, поглощённому этой Защитой.",
+  "PENANCEMOD-LITTLE_GAVEL.flavor": "Даже величайшее правосудие должно начинаться с малого.",
+
+  "PENANCEMOD-THORNY_ROAD.title": "Дорога Терний, Что Продолжается",
+  "PENANCEMOD-THORNY_ROAD.flavor": "Она постоянно колет тебя, напоминая о тяжести правосудия.",
+  "PENANCEMOD-THORNY_ROAD.description": "В начале боя получаете [gold]Барьер[/gold], равный [blue]30%[/blue] от вашего макс. HP, и [blue]3[/blue] [gold]Правосудия[/gold], а также получаете весь накопленный [gold]Барьер[/gold].\nКаждый раз, когда вы убиваете врага в бою, сохраняете в реликвии [gold]Барьер[/gold], равный [blue]10%[/blue] от вашего макс. HP.\nВосстановление от [gold]Отдыха[/gold] и [gold]Зелий[/gold] конвертируется в равное количество [gold]Барьера[/gold] (сохраняется в реликвии вне боя).\nВ конце боя [blue]10%[/blue] оставшегося [gold]Барьера[/gold] конвертируется в восстановление HP."
+}

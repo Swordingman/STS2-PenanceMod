@@ -1,0 +1,10 @@
+{
+  "PENANCEMOD-BARRIER_POTION.title": "Зелье Барьера",
+  "PENANCEMOD-BARRIER_POTION.description": "Даёт [blue]{BarrierPower:diff()}[/blue] [gold]Барьера[/gold].",
+
+  "PENANCEMOD-JUDGEMENT_POTION.title": "Зелье Правосудия",
+  "PENANCEMOD-JUDGEMENT_POTION.description": "Даёт [blue]{JudgementPower:diff()}[/blue] [gold]Правосудия[/gold].",
+
+  "PENANCEMOD-BOTTLE_OF_WOLF_BLOOD.title": "Бутыль Волчьей Крови",
+  "PENANCEMOD-BOTTLE_OF_WOLF_BLOOD.description": "Выберите 1 из [blue]{Cards}[/blue] случайных [gold]Проклятий Стаи[/gold] для добавления в [gold]руку[/gold]."
+}

@@ -1,0 +1,121 @@
+{
+  "PENANCEMOD-JUDGEMENT_POWER.title": "Правосудие",
+  "PENANCEMOD-JUDGEMENT_POWER.description": "Когда ваш [gold]Барьер[/gold] атакован, наносит атакующему [blue]{Amount}[/blue] урона.",
+  "PENANCEMOD-JUDGEMENT_POWER.smartDescription": "Когда ваш [gold]Барьер[/gold] атакован, наносит атакующему [blue]{Amount}[/blue] урона.",
+
+  "PENANCEMOD-BARRIER_POWER.title": "Барьер",
+  "PENANCEMOD-BARRIER_POWER.description": "Поглощает [blue]{Amount}[/blue] урона.",
+  "PENANCEMOD-BARRIER_POWER.smartDescription": "Поглощает [blue]{Amount}[/blue] урона.",
+
+  "PENANCEMOD-THORN_AURA_POWER.title": "Тернистая Аура",
+  "PENANCEMOD-THORN_AURA_POWER.description": "В конце вашего хода наносит всем врагам [blue]{Amount}[/blue] урона.",
+  "PENANCEMOD-THORN_AURA_POWER.smartDescription": "В конце вашего хода наносит всем врагам [blue]{Amount}[/blue] урона.",
+
+  "PENANCEMOD-CODE_OF_REVENGE_POWER.title": "Кодекс Мести",
+  "PENANCEMOD-CODE_OF_REVENGE_POWER.description": "Когда ваше [gold]Правосудие[/gold] наносит урон, получаете [blue]{Amount}[/blue] [gold]Барьера[/gold].",
+  "PENANCEMOD-CODE_OF_REVENGE_POWER.smartDescription": "Когда ваше [gold]Правосудие[/gold] наносит урон, получаете [blue]{Amount}[/blue] [gold]Барьера[/gold].",
+
+  "PENANCEMOD-THORNY_PATH_POWER.title": "Тернистый Путь",
+  "PENANCEMOD-THORNY_PATH_POWER.description": "В конце вашего хода, если у врага есть Ослабление, получаете {Amount} [gold]Тернистой Ауры[/gold].",
+  "PENANCEMOD-THORNY_PATH_POWER.smartDescription": "В конце вашего хода, если у врага есть Ослабление, получаете {Amount} [gold]Тернистой Ауры[/gold].",
+
+  "PENANCEMOD-SILENCE_WRATH_POWER.title": "Молчаливый Гнев",
+  "PENANCEMOD-SILENCE_WRATH_POWER.description": "Когда ваш [gold]Барьер[/gold] атакован, накладывает на атакующего [blue]{Amount}[/blue] [gold]Ослабления[/gold].\nКогда ваш [gold]Барьер[/gold] разрушен, получаете [blue]{Amount}[/blue] [gold]Силы[/gold].",
+  "PENANCEMOD-SILENCE_WRATH_POWER.smartDescription": "Когда ваш [gold]Барьер[/gold] атакован, накладывает на атакующего [blue]{Amount}[/blue] [gold]Ослабления[/gold].\nКогда ваш [gold]Барьер[/gold] разрушен, получаете [blue]{Amount}[/blue] [gold]Силы[/gold].",
+
+  "PENANCEMOD-GUARDIAN_OF_THE_LAW_POWER.title": "Страж Закона",
+  "PENANCEMOD-GUARDIAN_OF_THE_LAW_POWER.description": "Когда ваш [gold]Барьер[/gold] получает урон, получаете [blue]{Amount}[/blue] [gold]Правосудия[/gold].",
+  "PENANCEMOD-GUARDIAN_OF_THE_LAW_POWER.smartDescription": "Когда ваш [gold]Барьер[/gold] получает урон, получаете [blue]{Amount}[/blue] [gold]Правосудия[/gold].",
+
+  "PENANCEMOD-LAW_IS_CANON_POWER.title": "Закон — Канон",
+  "PENANCEMOD-LAW_IS_CANON_POWER.description": "В конце вашего хода, если у вас есть [gold]Барьер[/gold], активирует урон [gold]Правосудия[/gold] [blue]{Amount}[/blue] раз на случайном враге.",
+  "PENANCEMOD-LAW_IS_CANON_POWER.smartDescription": "В конце вашего хода, если у вас есть [gold]Барьер[/gold], активирует урон [gold]Правосудия[/gold] [blue]{Amount}[/blue] раз на случайном враге.",
+
+  "PENANCEMOD-IN_THE_NAME_OF_THE_LAW_POWER.title": "Именем Закона",
+  "PENANCEMOD-IN_THE_NAME_OF_THE_LAW_POWER.description": "Когда [gold]Тернистая Аура[/gold] срабатывает, также накладывает на цель [blue]{Amount}[/blue] [gold]Ослабления[/gold].",
+  "PENANCEMOD-IN_THE_NAME_OF_THE_LAW_POWER.smartDescription": "Когда [gold]Тернистая Аура[/gold] срабатывает, также накладывает на цель [blue]{Amount}[/blue] [gold]Ослабления[/gold].",
+
+  "PENANCEMOD-UNWAVERING_POWER.title": "Стойкое Искупление",
+  "PENANCEMOD-UNWAVERING_POWER.description": "Каждый раз, когда вы разыгрываете карту Атаки, [gold]Сжигайте[/gold] её.\nПолучаемый от Атак урон снижен на [gold]30%[/gold].\nВ конце вашего хода получаете [blue]{Amount}[/blue] [gold]Тернистой Ауры[/gold].",
+  "PENANCEMOD-UNWAVERING_POWER.smartDescription": "Каждый раз, когда вы разыгрываете карту Атаки, [gold]Сжигайте[/gold] её.\nПолучаемый от Атак урон снижен на [gold]30%[/gold].\nВ конце вашего хода получаете [blue]{Amount}[/blue] [gold]Тернистой Ауры[/gold].",
+
+  "PENANCEMOD-ASCETICISM_POWER.title": "Аскетизм",
+  "PENANCEMOD-ASCETICISM_POWER.description": "Когда ваш [gold]Барьер[/gold] получает урон, получаете [blue]{Amount}[/blue] [gold]Тернистой Ауры[/gold].",
+  "PENANCEMOD-ASCETICISM_POWER.smartDescription": "Когда ваш [gold]Барьер[/gold] получает урон, получаете [blue]{Amount}[/blue] [gold]Тернистой Ауры[/gold].",
+
+  "PENANCEMOD-CEASEFIRE_POWER.title": "Перемирие",
+  "PENANCEMOD-CEASEFIRE_POWER.description": "{OnPlayer:Вы не можете разыгрывать Атаки.|Если этот враг собирается [red]Атаковать[/red] в этом ходу, он пропускает ход.}\nДлится [blue]{Amount}[/blue] ход(а).",
+  "PENANCEMOD-CEASEFIRE_POWER.smartDescription": "{OnPlayer:Вы не можете разыгрывать Атаки.|Если этот враг собирается [red]Атаковать[/red] в этом ходу, он пропускает ход.}\nДлится [blue]{Amount}[/blue] ход(а).",
+
+  "PENANCEMOD-CROWN_OF_THORNS_POWER.title": "Терновый Венец",
+  "PENANCEMOD-CROWN_OF_THORNS_POWER.description": "В начале вашего хода теряете [red]2[/red] HP, получаете [blue]{Amount}[/blue] [gold]Тернистой Ауры[/gold] и накладываете [blue]{Amount}[/blue] [gold]Ослабления[/gold] на всех врагов.",
+  "PENANCEMOD-CROWN_OF_THORNS_POWER.smartDescription": "В начале вашего хода теряете [red]2[/red] HP, получаете [blue]{Amount}[/blue] [gold]Тернистой Ауры[/gold] и накладываете [blue]{Amount}[/blue] [gold]Ослабления[/gold] на всех врагов.",
+
+  "PENANCEMOD-SCENE_INVESTIGATION_POWER.title": "Осмотр Места",
+  "PENANCEMOD-SCENE_INVESTIGATION_POWER.description": "Во время вашего хода:\nСыграйте [blue]2[/blue] Атаки подряд, чтобы получить [blue]{Amount}[/blue] случайных {IfUpgraded:show:Улучшенных |}карт Навыка;\nСыграйте [blue]2[/blue] Навыка подряд, чтобы получить [blue]{Amount}[/blue] случайных {IfUpgraded:show:[gold]Улучшенных[/gold] |}карт Атаки;\nСыграйте [blue]2[/blue] Силы подряд, чтобы получить {EnergyTotal:energyIcons()}.\n(Созданные карты имеют Сжигание и Неуловимость)",
+  "PENANCEMOD-SCENE_INVESTIGATION_POWER.smartDescription": "Во время вашего хода:\nСыграйте [blue]2[/blue] Атаки подряд, чтобы получить [blue]{Amount}[/blue] случайных {IfUpgraded:show:Улучшенных |}карт Навыка;\nСыграйте [blue]2[/blue] Навыка подряд, чтобы получить [blue]{Amount}[/blue] случайных {IfUpgraded:show:[gold]Улучшенных[/gold] |}карт Атаки;\nСыграйте [blue]2[/blue] Силы подряд, чтобы получить {EnergyTotal:energyIcons()}.\n(Созданные карты имеют Сжигание и Неуловимость)",
+
+  "PENANCEMOD-PLAYER_FACING_POWER.title": "Окружение",
+  "PENANCEMOD-PLAYER_FACING_POWER.description": "Вы окружены. Разыгрывание [blue]Атак[/blue] меняет ваше направление.\nКогда ваша [red]спина[/red] повёрнута к врагу, он атакует мирного жителя.",
+  "PENANCEMOD-PLAYER_FACING_POWER.smartDescription": "Вы окружены. Разыгрывание [blue]Атак[/blue] меняет ваше направление.\nКогда ваша [red]спина[/red] повёрнута к врагу, он атакует мирного жителя.",
+
+  "PENANCEMOD-CUMULATIVE_PRECEDENT_POWER.title": "Накопительный Прецедент",
+  "PENANCEMOD-CUMULATIVE_PRECEDENT_POWER.description": "Каждый раз, когда вы разыгрываете карту Навыка, получаете [blue]{Amount}[/blue] [gold]Барьера[/gold].",
+  "PENANCEMOD-CUMULATIVE_PRECEDENT_POWER.smartDescription": "Каждый раз, когда вы разыгрываете карту Навыка, получаете [blue]{Amount}[/blue] [gold]Барьера[/gold].",
+
+  "PENANCEMOD-PROCEDURAL_JUSTICE_POWER.title": "Процессуальная Справедливость",
+  "PENANCEMOD-PROCEDURAL_JUSTICE_POWER.description": "Каждый раз, когда вы [gold]Сжигаете[/gold] карту, получаете [blue]{Amount}[/blue] [gold]Барьера[/gold].",
+  "PENANCEMOD-PROCEDURAL_JUSTICE_POWER.smartDescription": "Каждый раз, когда вы [gold]Сжигаете[/gold] карту, получаете [blue]{Amount}[/blue] [gold]Барьера[/gold].",
+
+  "PENANCEMOD-IRONCLAD_DOCTRINE_POWER.title": "Железная Доктрина",
+  "PENANCEMOD-IRONCLAD_DOCTRINE_POWER.description": "В начале вашего хода, если у вас есть как минимум [blue]{Amount}[/blue] [gold]Барьера[/gold], потратьте их и восстановите {HealAmount} HP.",
+  "PENANCEMOD-IRONCLAD_DOCTRINE_POWER.smartDescription": "В начале вашего хода, если у вас есть как минимум [blue]{Amount}[/blue] [gold]Барьера[/gold], потратьте их и восстановите {HealAmount} HP.",
+
+  "PENANCEMOD-JUSTIFIED_DEFENSE_POWER.title": "Самооборона",
+  "PENANCEMOD-JUSTIFIED_DEFENSE_POWER.description": "Каждый раз, когда вас атакуют, получаете [blue]1[/blue] стак [gold]Самообороны (Активна)[/gold].\nСнимается после [blue]{Amount}[/blue] срабатываний или в начале вашего следующего хода.",
+  "PENANCEMOD-JUSTIFIED_DEFENSE_POWER.smartDescription": "Каждый раз, когда вас атакуют, получаете [blue]1[/blue] стак [gold]Самообороны (Активна)[/gold].\nСнимается после [blue]{Amount}[/blue] срабатываний или в начале вашего следующего хода.",
+
+  "PENANCEMOD-JUSTIFIED_DEFENSE_TRIGGERED_POWER.title": "Самооборона (Активна)",
+  "PENANCEMOD-JUSTIFIED_DEFENSE_TRIGGERED_POWER.description": "В начале вашего следующего хода получаете [blue]{Amount}[/blue] энергии и берёте [blue]{Amount}[/blue] карт(у).",
+  "PENANCEMOD-JUSTIFIED_DEFENSE_TRIGGERED_POWER.smartDescription": "В начале вашего следующего хода получаете [blue]{Amount}[/blue] энергии и берёте [blue]{Amount}[/blue] карт(у).",
+
+  "PENANCEMOD-PUNISHMENT_FOR_TRANSGRESSION_POWER.title": "Наказание за Преступление",
+  "PENANCEMOD-PUNISHMENT_FOR_TRANSGRESSION_POWER.description": "В конце вашего хода, если вы не разыграли Атаку в этом ходу, получаете [blue]{Amount}[/blue] [gold]Самообороны[/gold].",
+  "PENANCEMOD-PUNISHMENT_FOR_TRANSGRESSION_POWER.smartDescription": "В конце вашего хода, если вы не разыграли Атаку в этом ходу, получаете [blue]{Amount}[/blue] [gold]Самообороны[/gold].",
+
+  "PENANCEMOD-JUDGMENT_HAS_BEGUN_POWER.title": "Суд Начался",
+  "PENANCEMOD-JUDGMENT_HAS_BEGUN_POWER.description": "Каждый раз, когда вы разыгрываете Атаку, получаете [blue]5[/blue] [gold]Барьера[/gold], [blue]1[/blue] [gold]Силы[/gold] и [blue]1[/blue] [gold]Правосудия[/gold].\nПосле разыгрывания [blue]3[/blue] Атак суммарно получаете [blue]2[/blue] энергии.\nВам осталось сыграть [green]{AttacksRemaining}[/green] Атак в этом ходу для получения энергии.",
+  "PENANCEMOD-JUDGMENT_HAS_BEGUN_POWER.smartDescription": "Каждый раз, когда вы разыгрываете Атаку, получаете [blue]5[/blue] [gold]Барьера[/gold], [blue]1[/blue] [gold]Силы[/gold] и [blue]1[/blue] [gold]Правосудия[/gold].\nПосле разыгрывания [blue]3[/blue] Атак суммарно получаете [blue]2[/blue] энергии.\nВам осталось сыграть [green]{AttacksRemaining}[/green] Атак в этом ходу для получения энергии.",
+
+  "PENANCEMOD-UNWRITTEN_LAW_POWER.title": "Неписаный Закон",
+  "PENANCEMOD-UNWRITTEN_LAW_POWER.description": "В этом ходу выбранная карта сработает дополнительный раз.",
+  "PENANCEMOD-UNWRITTEN_LAW_POWER.smartDescription": "В этом ходу выбранная карта сработает дополнительный раз.",
+
+  "PENANCEMOD-GLOW_OF_SUFFERING_POWER.title": "Сияние Страдания",
+  "PENANCEMOD-GLOW_OF_SUFFERING_POWER.description": "Каждый раз, когда вы теряете HP от эффекта карты, получаете [gold]Барьер[/gold] и [gold]Тернистую Ауру[/gold] в размере [blue]{Amount}%[/blue] от потерянного HP.",
+  "PENANCEMOD-GLOW_OF_SUFFERING_POWER.smartDescription": "Каждый раз, когда вы теряете HP от эффекта карты, получаете [gold]Барьер[/gold] и [gold]Тернистую Ауру[/gold] в размере [blue]{Amount}%[/blue] от потерянного HP.",
+
+  "PENANCEMOD-DESTRUCTION_BEFORE_CREATION_POWER.title": "Разрушение Прежде Созидания",
+  "PENANCEMOD-DESTRUCTION_BEFORE_CREATION_POWER.description": "Каждый раз, когда вы [gold]Сжигаете[/gold] карту Проклятия, получаете [blue]{Amount}[/blue] энергии и берёте [blue]{Amount}[/blue] карт(у).\nВ начале каждого хода перемешивает [blue]{Amount}[/blue] случайных [gold]Проклятий Стаи[/gold] в ваш сброс.",
+  "PENANCEMOD-DESTRUCTION_BEFORE_CREATION_POWER.smartDescription": "Каждый раз, когда вы [gold]Сжигаете[/gold] карту Проклятия, получаете [blue]{Amount}[/blue] энергии и берёте [blue]{Amount}[/blue] карт(у).\nВ начале каждого хода перемешивает [blue]{Amount}[/blue] случайных [gold]Проклятий Стаи[/gold] в ваш сброс.",
+
+  "PENANCEMOD-COURT_MAJESTY_POWER.title": "Величество Суда",
+  "PENANCEMOD-COURT_MAJESTY_POWER.description": "Когда у вас есть [gold]Барьер[/gold] и у атакующего есть [gold]Ослабление[/gold], получаемый урон снижается на 25%.",
+  "PENANCEMOD-COURT_MAJESTY_POWER.smartDescription": "Когда у вас есть [gold]Барьер[/gold] и у атакующего есть [gold]Ослабление[/gold], получаемый урон снижается на 25%.",
+
+  "PENANCEMOD-BIDE_TIME_POWER.title": "Выжидание",
+  "PENANCEMOD-BIDE_TIME_POWER.description": "В конце вашего хода, если вы не разыграли [gold]Атаку[/gold] в этом ходу, получаете [blue]{Amount}[/blue] [gold]Ярости[/gold].",
+  "PENANCEMOD-BIDE_TIME_POWER.smartDescription": "В конце вашего хода, если вы не разыграли [gold]Атаку[/gold] в этом ходу, получаете [blue]{Amount}[/blue] [gold]Ярости[/gold].",
+
+  "PENANCEMOD-TEST_THE_LAW_POWER.title": "Испытание Закона",
+  "PENANCEMOD-TEST_THE_LAW_POWER.description": "Каждый раз, когда вы теряете HP от эффекта карты, восстанавливаете то же количество и получаете столько же [gold]Барьера[/gold] (также сохраняя его в реликвии), затем получаете 2 [gold]Правосудия[/gold] и [gold]Тернистой Ауры[/gold].",
+  "PENANCEMOD-TEST_THE_LAW_POWER.smartDescription": "Каждый раз, когда вы теряете HP от эффекта карты, восстанавливаете то же количество и получаете столько же [gold]Барьера[/gold] (также сохраняя его в реликвии), затем получаете 2 [gold]Правосудия[/gold] и [gold]Тернистой Ауры[/gold].",
+
+  "PENANCEMOD-PREEMPTIVE_STRIKE_POWER.title": "Упреждающий Удар",
+  "PENANCEMOD-PREEMPTIVE_STRIKE_POWER.description": "В течение следующих [blue]{Amount}[/blue] ходов в начале вашего хода получаете 3 [gold]Самообороны[/gold].",
+  "PENANCEMOD-PREEMPTIVE_STRIKE_POWER.smartDescription": "В течение следующих [blue]{Amount}[/blue] ходов в начале вашего хода получаете 3 [gold]Самообороны[/gold].",
+
+  "PENANCEMOD-INESCAPABLE_NET_POWER.title": "Неизбежная Сеть",
+  "PENANCEMOD-INESCAPABLE_NET_POWER.description": "После потери HP, если сумма [gold]Тернистой Ауры[/gold] или [gold]Правосудия[/gold] не меньше потерянного количества, потратьте равное количество и восстановите столько же HP. Осталось {Amount} срабатываний.",
+  "PENANCEMOD-INESCAPABLE_NET_POWER.smartDescription": "После потери HP, если сумма [gold]Тернистой Ауры[/gold] или [gold]Правосудия[/gold] не меньше потерянного количества, потратьте равное количество и восстановите столько же HP. Осталось {Amount} срабатываний."
+}

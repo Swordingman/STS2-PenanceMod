@@ -1,0 +1,31 @@
+{
+  "PENANCEMOD-VOLSINII_CIVILIAN.name": "Гражданин Вольсиния",
+  "PENANCEMOD-VOLSINII_CIVILIAN.moves.NOTHING_MOVE.title": "Съёжиться",
+  "PENANCEMOD-VOLSINII_CIVILIAN.dialogs.START": "Ваша Честь, пожалуйста, повернитесь лицом к атакующим врагам, чтобы заблокировать урон за меня!",
+  "PENANCEMOD-VOLSINII_CIVILIAN.dialogs.HURT": "Спасите меня!",
+  "PENANCEMOD-VOLSINII_CIVILIAN.dialogs.DIE": "А-ах...",
+  "PENANCEMOD-VOLSINII_CIVILIAN.dialogs.ESCAPE": "Спасибо! Мне нужно бежать!",
+
+  "PENANCEMOD-VOLSINII_MOB_AGILE.name": "Разведчик Вольсиния",
+  "PENANCEMOD-VOLSINII_MOB_AGILE.moves.MULTI_ATTACK.title": "Беглый Огонь",
+  "PENANCEMOD-VOLSINII_MOB_AGILE.moves.NORMAL_ATTACK.title": "Точный Выстрел",
+  "PENANCEMOD-VOLSINII_MOB_AGILE.moves.BLOCK_MOVE.title": "Защита",
+  "PENANCEMOD-VOLSINII_MOB_AGILE.moves.BUFF_MOVE.title": "Прицеливание",
+
+  "PENANCEMOD-VOLSINII_MOB_HEAVY.name": "Громила Вольсиния",
+  "PENANCEMOD-VOLSINII_MOB_HEAVY.moves.NORMAL_ATTACK.title": "Атака",
+  "PENANCEMOD-VOLSINII_MOB_HEAVY.moves.HEAVY_ATTACK.title": "Сокрушительный Удар",
+  "PENANCEMOD-VOLSINII_MOB_HEAVY.moves.BLOCK_MOVE.title": "Защита",
+  "PENANCEMOD-VOLSINII_MOB_HEAVY.moves.BLOCK_STR_MOVE.title": "Супер-Ярость",
+  "PENANCEMOD-VOLSINII_MOB_HEAVY.moves.BUFF_MOVE.title": "Ярость",
+
+  "PENANCEMOD-FAMILY_CLEANER.name": "Чистильщик Семьи",
+  "PENANCEMOD-FAMILY_CLEANER.moves.SINGLE_ATTACK.title": "Размах",
+  "PENANCEMOD-FAMILY_CLEANER.moves.MULTI_ATTACK.title": "Град Ударов",
+
+  "PENANCEMOD-MAFIA_GODFATHER.name": "Крёстный Отец Мафии",
+  "PENANCEMOD-MAFIA_GODFATHER.moves.SUMMON.title": "Призыв Семьи",
+  "PENANCEMOD-MAFIA_GODFATHER.moves.STRENGTHEN_FAMILY.title": "Семейный Завет",
+  "PENANCEMOD-MAFIA_GODFATHER.moves.DEFEND_FAMILY.title": "Семейная Защита",
+  "PENANCEMOD-MAFIA_GODFATHER.dialogs.START": "Уберите эту мелкую неприятность."
+}

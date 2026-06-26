@@ -45,14 +45,14 @@ public class Unyield : PenanceBaseCard
         int totalXBarrier = xValue * barrierMultiplier;
         int totalXMagic = xValue * magicMultiplier;
 
-        if (totalXBarrier > 0)
+        if (totalXBarrier >= 0)
         {
             int finalBarrier = IsUpgraded ? totalXBarrier + 5 : totalXBarrier + 4;
             await ApplyBarrier(creature, finalBarrier);
             await Cmd.Wait(0.1f);
         }
 
-        if (totalXMagic > 0)
+        if (totalXMagic >= 0)
         {
             int finalMagic = IsUpgraded ? totalXMagic + 3 : totalXMagic + 2;
             await ApplyJudgement(creature, finalMagic);

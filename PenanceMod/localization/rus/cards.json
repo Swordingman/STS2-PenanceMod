@@ -1,0 +1,313 @@
+{
+  "PENANCEMOD-STRIKE_PENANCE.title": "Удар",
+  "PENANCEMOD-STRIKE_PENANCE.description": "Наносит {Damage:diff()} урона.",
+
+  "PENANCEMOD-DEFEND_PENANCE.title": "Защита",
+  "PENANCEMOD-DEFEND_PENANCE.description": "Даёт {Block:diff()} [gold]Защиты[/gold].",
+
+  "PENANCEMOD-ADJOURN.title": "Отложение",
+  "PENANCEMOD-ADJOURN.description": "Заканчивает ваш ход.\nПолучает {Magic:diff()} [gold]Барьера[/gold] за каждую сыгранную в этом ходу карту.\n(Если ваше HP ниже 50%, вместо этого восстанавливает {Magic:diff()} HP.)",
+
+  "PENANCEMOD-AMBUSH_SHADOW.title": "Теневая Засада",
+  "PENANCEMOD-AMBUSH_SHADOW.description": "Случайно сбрасывает {Ambush-Magic:diff()} карт.\nДаёт 1 [gold]Непробиваемость[/gold].",
+
+  "PENANCEMOD-ART_OF_THE_HIDING_FOX.title": "Искусство Скрытой Лисы",
+  "PENANCEMOD-ART_OF_THE_HIDING_FOX.description": "Пропускает ваш ход. Получает {Fox-Magic:diff()} [gold]Силы[/gold], [gold]Правосудия[/gold] и [gold]Тернистой Ауры[/gold]. Получает {Fox-Barrier:diff()} [gold]Барьера[/gold].{IfUpgraded:show:\n[purple][gold]Задерживает[/gold] вашу руку в этом ходу.[/purple]|}",
+
+  "PENANCEMOD-ASCETICISM.title": "Аскетизм",
+  "PENANCEMOD-ASCETICISM.description": "Когда ваш [gold]Барьер[/gold] получает урон, получает {Asceticism-Magic:diff()} [gold]Тернистой Ауры[/gold].",
+
+  "PENANCEMOD-A_SIP.title": "Глоток",
+  "PENANCEMOD-A_SIP.description": "Теряет {ASip-Penalty:diff()} [gold]Барьера[/gold]. Если недостаточно, теряет HP вместо этого.\nПолучает 2 [gold]Силы[/gold].\nДобавляет копию этой карты в руку. Она [gold]Неуловима[/gold], а потеря увеличена на 2.",
+
+  "PENANCEMOD-BARBED_REBUKE.title": "Колючий Укор",
+  "PENANCEMOD-BARBED_REBUKE.description": "Наносит {Damage:diff()} урона.\nСравнивает [gold]Ослабление[/gold] цели и ваши стаки [gold]Тернистой Ауры[/gold] и повышает меньший стак до большего.",
+
+  "PENANCEMOD-BLOOD_DEBT_CLAUSE.title": "Статья Кровавого Долга",
+  "PENANCEMOD-BLOOD_DEBT_CLAUSE.description": "Наносит {Damage:diff()} урона всем врагам.\nЗа каждого живого врага помещает случайное [gold]Проклятие Стаи[/gold] в ваш сброс.",
+
+  "PENANCEMOD-BLOOD_FOR_BLOOD.title": "Кровь за Кровь",
+  "PENANCEMOD-BLOOD_FOR_BLOOD.description": "Наносит {Damage:diff()} урона.\nПолучает 1 [gold]Самооборону[/gold].",
+
+  "PENANCEMOD-BREAK_THE_SHACKLES.title": "Разбить Оковы",
+  "PENANCEMOD-BREAK_THE_SHACKLES.description": "Получает 3 [gold]Тернистой Ауры[/gold].\nПолучает дополнительную [gold]Тернистую Ауру[/gold], равную {Shackles-Percent:diff()}% от вашего текущего [gold]Правосудия[/gold].{DynamicTotalText}",
+  "PENANCEMOD-BREAK_THE_SHACKLES.extended_description": "\n[purple](Всего: {amount}.)[/purple]",
+
+  "PENANCEMOD-BURDENED_JOURNEY.title": "Обременённый Путь",
+  "PENANCEMOD-BURDENED_JOURNEY.description": "Получает {Burden-Magic:diff()} [gold]Правосудия[/gold].\nПолучает {Burden-Magic:diff()} [gold]Тернистой Ауры[/gold].",
+
+  "PENANCEMOD-CASE_RECONSTRUCTION.title": "Реконструкция Дела",
+  "PENANCEMOD-CASE_RECONSTRUCTION.description": "[gold]Провидение[/gold] {CaseRecon-Scry:diff()}.\nБерёт {CaseRecon-Draw:diff()} карт.",
+
+  "PENANCEMOD-CASTIGATION.title": "Наказание",
+  "PENANCEMOD-CASTIGATION.description": "Наносит {Damage:diff()} урона.\nПолучает {Castigation-Barrier:diff()} [gold]Барьера[/gold] (зависит от [gold]Силы[/gold]).{DynamicBarrierText}",
+  "PENANCEMOD-CASTIGATION.extended_description": "\n[purple](Сейчас получает {amount}.)[/purple]",
+
+  "PENANCEMOD-CENSURE.title": "Порицание",
+  "PENANCEMOD-CENSURE.description": "Наносит {Damage:diff()} урона.\nПолучает {Censure-Judgement:diff()} [gold]Правосудия[/gold].",
+
+  "PENANCEMOD-CITATION_OF_LAW.title": "Цитата Закона",
+  "PENANCEMOD-CITATION_OF_LAW.description": "Получает {Citation-Base:diff()} [gold]Барьера[/gold].\nЗатем получает [gold]Барьер[/gold], равный {Citation-Percent:diff()}% от вашего текущего [gold]Барьера[/gold].{DynamicTotal}",
+  "PENANCEMOD-CITATION_OF_LAW.extended_description": "\n[purple](Всего: {amount}.)[/purple]",
+
+  "PENANCEMOD-CODE_OF_REVENGE.title": "Кодекс Мести",
+  "PENANCEMOD-CODE_OF_REVENGE.description": "Когда ваше [gold]Правосудие[/gold] наносит урон, получает {CodeOfRevenge-Magic:diff()} [gold]Барьера[/gold].",
+
+  "PENANCEMOD-CODE_STRIKE.title": "Удар Кодекса",
+  "PENANCEMOD-CODE_STRIKE.description": "Наносит {Damage:diff()} урона.\nПолучает {energyPrefix:energyIcons(1)} за каждые 7 неблокированного урона.",
+
+  "PENANCEMOD-CONSULT_THE_DOSSIER.title": "Консультация Досье",
+  "PENANCEMOD-CONSULT_THE_DOSSIER.description": "Берёт {Consult-Draw:diff()} карт.\nКаждый раз, когда вы берёте [gold]Навык[/gold], получаете {Consult-Judge:diff()} [gold]Правосудия[/gold].",
+
+  "PENANCEMOD-CONTINUOUS_RAIN.title": "Непрекращающийся Ливень",
+  "PENANCEMOD-CONTINUOUS_RAIN.description": "Наносит {Damage:diff()} урона всем существам.\n{IfUpgraded:show:Накладывает {Rain-EnemyDebuff:diff()} [gold]Уязвимости[/gold] и [gold]Ослабления[/gold] на всех врагов и {Rain-SelfDebuff:diff()} на вас.|Накладывает {Rain-EnemyDebuff:diff()} [gold]Уязвимости[/gold] и [gold]Ослабления[/gold] на всех существ.}",
+
+  "PENANCEMOD-COURT_REHEARSAL.title": "Судебная Репетиция",
+  "PENANCEMOD-COURT_REHEARSAL.description": "Пока находится в руке, каждый ход превращается в случайную {IfUpgraded:show:[gold]Улучшенную[/gold] |}карту.",
+
+  "PENANCEMOD-CROWN_OF_THORNS.title": "Терновый Венец",
+  "PENANCEMOD-CROWN_OF_THORNS.description": "В начале вашего хода теряет 2 HP, получает {Crown-Magic:diff()} [gold]Тернистой Ауры[/gold] и накладывает {Crown-Magic:diff()} [gold]Ослабления[/gold] на всех врагов.",
+
+  "PENANCEMOD-CUMULATIVE_PRECEDENT.title": "Накопительный Прецедент",
+  "PENANCEMOD-CUMULATIVE_PRECEDENT.description": "Каждый раз, когда вы разыгрываете [gold]Навык[/gold], получаете {Cumulative-Magic:diff()} [gold]Барьера[/gold].",
+
+  "PENANCEMOD-DEADLY_ENEMY.title": "Смертельный Враг",
+  "PENANCEMOD-DEADLY_ENEMY.description": "Пока эта карта в вашей руке, вы получаете на 1 дополнительный урон от всех источников.",
+
+  "PENANCEMOD-DIGNITY_OF_THE_LEADER.title": "Достоинство Вожака",
+  "PENANCEMOD-DIGNITY_OF_THE_LEADER.description": "Накладывает 1 [gold]Перемирие[/gold] на всех существ.\nПолучает {Dignity-Energy:diff()} {energyPrefix:energyIcons(1)}.",
+
+  "PENANCEMOD-EMERGENCY_REPAIR.title": "Экстренный Ремонт",
+  "PENANCEMOD-EMERGENCY_REPAIR.description": "Получает {Repair-Barrier:diff()} [gold]Барьера[/gold].\nБерёт 1 карту.",
+
+  "PENANCEMOD-FAME_OF_THE_CROWN_SLAYER.title": "Слава Убийцы Корон",
+  "PENANCEMOD-FAME_OF_THE_CROWN_SLAYER.description": "Даёт всем врагам {Fame-TempStr:diff()} временной [gold]Силы[/gold].\nБерёт {Fame-Draw:diff()} карт.",
+
+  "PENANCEMOD-FAMILY_ARBITRATION.title": "Семейный Арбитраж",
+  "PENANCEMOD-FAMILY_ARBITRATION.description": "Наносит {Damage:diff()} урона.\nПомещает случайное [gold]Проклятие Стаи[/gold] в ваш сброс.",
+
+  "PENANCEMOD-FINALE_CATASTROPHE.title": "Финал: Катастрофа",
+  "PENANCEMOD-FINALE_CATASTROPHE.description": "Наносит {Finale-Hits:diff()} урона случайным образом среди всех существ (включая вас).{IfUpgraded:show: Теперь шанс попасть по врагам выше!|}",
+
+  "PENANCEMOD-FINAL_VERDICT.title": "Окончательный Приговор",
+  "PENANCEMOD-FINAL_VERDICT.description": "Наносит {Damage:diff()} урона (зависит от [gold]Правосудия[/gold]).{DynamicJudgeText}\nЕсли это убивает не-Миниона, получает {Verdict-MaxHp:diff()} макс. HP.",
+  "PENANCEMOD-FINAL_VERDICT.extended_description": "\n[purple](Сейчас получает {amount} дополнительного урона.)[/purple]",
+
+  "PENANCEMOD-FLAIL_SMASH.title": "Последнее Слово",
+  "PENANCEMOD-FLAIL_SMASH.description": "Наносит {Damage:diff()} урона и накладывает 1 [gold]Перемирие[/gold].",
+
+  "PENANCEMOD-FORCED_SUMMONS.title": "Принудительный Вызов",
+  "PENANCEMOD-FORCED_SUMMONS.description": "Наносит {Damage:diff()} урона.\nБерёт 1 карту. Если цель собирается [gold]Атаковать[/gold], вместо этого берёт 2 карты.",
+
+  "PENANCEMOD-GAVEL_BARRAGE.title": "Град Молотков",
+  "PENANCEMOD-GAVEL_BARRAGE.description": "Наносит {Damage:diff()} урона случайным врагам {IfUpgraded:show:X+1|X} раз.\nКаждый раз, когда вы наносите урон, получаете 1 [gold]Правосудия[/gold] и 1 [gold]Тернистой Ауры[/gold].",
+
+  "PENANCEMOD-GLOW_OF_SUFFERING.title": "Сияние Страдания",
+  "PENANCEMOD-GLOW_OF_SUFFERING.description": "Каждый раз, когда вы теряете HP от эффекта карты, получаете [gold]Барьер[/gold] и [gold]Тернистую Ауру[/gold], равные {Glow-Mult:diff()} от потерянного количества.",
+
+  "PENANCEMOD-GUARDIAN_OF_THE_LAW.title": "Страж Закона",
+  "PENANCEMOD-GUARDIAN_OF_THE_LAW.description": "Когда ваш [gold]Барьер[/gold] получает урон, получаете {Guardian-Magic:diff()} [gold]Правосудия[/gold].",
+
+  "PENANCEMOD-GUILTY_AS_CHARGED.title": "Признан Виновным!",
+  "PENANCEMOD-GUILTY_AS_CHARGED.description": "Снимает [gold]Защиту[/gold] с цели.\nНаносит {CalculatedDamage:diff()} урона.\nЗа каждую [gold]Проклятие[/gold] во всех ваших стопках наносит {ExtraDamage:diff()} дополнительного урона.",
+
+  "PENANCEMOD-HOUR_OF_RECKONING.title": "Час Расплаты",
+  "PENANCEMOD-HOUR_OF_RECKONING.description": "Наносит {Damage:diff()} урона.{DynamicHpLostText}\nУрон увеличивается на 1 за каждое потерянное HP в этом бою.",
+  "PENANCEMOD-HOUR_OF_RECKONING.extended_description": "\n[purple](Сейчас наносит {amount} дополнительного урона.)[/purple]",
+
+  "PENANCEMOD-IMMEDIATE_EXECUTION.title": "Немедленная Казнь",
+  "PENANCEMOD-IMMEDIATE_EXECUTION.description": "Получает {Execution-Judge:diff()} [gold]Правосудия[/gold].\nНаносит урон, равный вашему [gold]Правосудию[/gold].",
+
+  "PENANCEMOD-IN_THE_NAME_OF_THE_LAW.title": "Именем Закона",
+  "PENANCEMOD-IN_THE_NAME_OF_THE_LAW.description": "Когда [gold]Тернистая Аура[/gold] срабатывает, также накладывает {Law-Weak:diff()} [gold]Ослабления[/gold] на цель.",
+
+  "PENANCEMOD-IRONCLAD_DOCTRINE.title": "Железная Доктрина",
+  "PENANCEMOD-IRONCLAD_DOCTRINE.description": "В начале вашего хода [gold]тратит[/gold] {Doctrine-Cost:diff()} [gold]Барьера[/gold], чтобы восстановить 3 HP.",
+
+  "PENANCEMOD-JOINT_LIABILITY.title": "Совместная Ответственность",
+  "PENANCEMOD-JOINT_LIABILITY.description": "Наносит {Damage:diff()} урона всем врагам.{DynamicJudgeText}\nУрон увеличивается на 1 за каждое ваше [gold]Правосудие[/gold].",
+  "PENANCEMOD-JOINT_LIABILITY.extended_description": "\n[purple](Сейчас наносит {amount} дополнительного урона.)[/purple]",
+
+  "PENANCEMOD-JUDGEMENT_BACKLASH.title": "Обратный Удар Правосудия",
+  "PENANCEMOD-JUDGEMENT_BACKLASH.description": "Наносит {Damage:diff()} урона. Эффект повторяется за каждые 3 [gold]Правосудия[/gold].",
+
+  "PENANCEMOD-JUDGMENT_HAS_BEGUN.title": "Суд Начался",
+  "PENANCEMOD-JUDGMENT_HAS_BEGUN.description": "Каждый раз, когда вы разыгрываете [gold]Атаку[/gold] в этом ходу, получаете 5 [gold]Барьера[/gold], 1 [gold]Силы[/gold] и 1 [gold]Правосудия[/gold]. После 3 Атак получаете {energyPrefix:energyIcons(2)}.",
+
+  "PENANCEMOD-JUDICIAL_DISCRETION.title": "Судейское Усмотрение",
+  "PENANCEMOD-JUDICIAL_DISCRETION.description": "Теряет {Judicial-Loss:diff()} [gold]Барьера[/gold].\nПолучает {energyPrefix:energyIcons(1)}. Берёт 1 карту.",
+
+  "PENANCEMOD-JUSTIFIED_RETALIATION.title": "Оправданное Возмездие",
+  "PENANCEMOD-JUSTIFIED_RETALIATION.description": "Получает {Justified-Barrier:diff()} [gold]Барьера[/gold].\nПолучает 1 [gold]Самооборону[/gold].",
+
+  "PENANCEMOD-LAST_STAND.title": "Последний Рубеж",
+  "PENANCEMOD-LAST_STAND.description": "Получает {LastStand-Barrier:diff()} [gold]Барьера[/gold].\nПолучает {LastStand-Ceasefire:diff()} [gold]Перемирия[/gold].",
+
+  "PENANCEMOD-LAW_ENFORCEMENT.title": "Применение Закона",
+  "PENANCEMOD-LAW_ENFORCEMENT.description": "Наносит урон, равный {Law-Percent:diff()}% от вашего текущего [gold]Барьера[/gold].{DynamicDamageText}\nЕсли этот базовый урон меньше 10, получает [gold]Барьер[/gold], равный удвоенному урону.",
+  "PENANCEMOD-LAW_ENFORCEMENT.extended_description": "\n[purple](Текущий базовый урон: {amount})[/purple]",
+
+  "PENANCEMOD-LAW_IS_CANON.title": "Закон — Канон",
+  "PENANCEMOD-LAW_IS_CANON.description": "В конце вашего хода, если у вас есть [gold]Барьер[/gold], активирует [gold]Правосудие[/gold] 1 раз на случайном враге.",
+
+  "PENANCEMOD-LAW_MODIFICATION.title": "Поправка к Закону",
+  "PENANCEMOD-LAW_MODIFICATION.description": "Конвертирует вашу [gold]Защиту[/gold] в [gold]Барьер[/gold].",
+
+  "PENANCEMOD-NO_SENTENCE_NEEDED.title": "Приговор Не Требуется",
+  "PENANCEMOD-NO_SENTENCE_NEEDED.description": "Может быть разыграна только если ваш [gold]Барьер[/gold] равен 0 и ваше HP ниже 50%.\nНаносит {Damage:diff()} урона.",
+  "PENANCEMOD-NO_SENTENCE_NEEDED.cant_use_message": "Я могу разыграть эту карту только когда мой [gold]Барьер[/gold] равен 0 и HP ниже 50%.",
+
+  "PENANCEMOD-OVERRULE.title": "Отмена Решения",
+  "PENANCEMOD-OVERRULE.description": "Наносит {Damage:diff()} урона. Накладывает 1 [gold]Ослабление[/gold].\nЕсли у цели уже есть [gold]Ослабление[/gold], удваивает его стаки.",
+
+  "PENANCEMOD-PENALTY_REGRESSION.title": "Регресс Наказания",
+  "PENANCEMOD-PENALTY_REGRESSION.description": "Наносит {Damage:diff()} урона.\nСнижает все ваши стаки Ослаблений на 1.",
+
+  "PENANCEMOD-PERJURY.title": "Лжесвидетельство",
+  "PENANCEMOD-PERJURY.description": "{IfUpgraded:show:Выберите |Случайно }сбросьте 2 карты.\nВозьмите 2 карты.",
+  "PENANCEMOD-PERJURY.select_message": "Выберите 2 карты для сброса.",
+
+  "PENANCEMOD-PRE_EXECUTION_PREP.title": "Подготовка к Казни",
+  "PENANCEMOD-PRE_EXECUTION_PREP.description": "Берёт карты, пока рука не заполнится. За каждую взятую карту:\n[gold]Атака[/gold]: получает 1 [gold]Правосудия[/gold];\n[gold]Навык[/gold]: получает 1 [gold]Тернистой Ауры[/gold];\n[gold]Сила[/gold]: получает 1 [gold]Силы[/gold];\n[gold]Проклятие[/gold]: получает {energyPrefix:energyIcons(1)}.",
+
+  "PENANCEMOD-PROCEDURAL_JUSTICE.title": "Процессуальная Справедливость",
+  "PENANCEMOD-PROCEDURAL_JUSTICE.description": "Каждый раз, когда вы [gold]Сжигаете[/gold] карту, получаете {Justice-Barrier:diff()} [gold]Барьера[/gold].",
+
+  "PENANCEMOD-PUNISHMENT_FOR_TRANSGRESSION.title": "Наказание за Преступление",
+  "PENANCEMOD-PUNISHMENT_FOR_TRANSGRESSION.description": "Если вы не разыграли [gold]Атаку[/gold] в этом ходу, в конце хода получаете {Transgression-Amt:diff()} [gold]Самообороны[/gold].",
+
+  "PENANCEMOD-QUELL.title": "Подавление",
+  "PENANCEMOD-QUELL.description": "Наносит {Damage:diff()} урона.\nЕсли у вас есть [gold]Барьер[/gold], накладывает {Quell-Weak:diff()} [gold]Ослабления[/gold].",
+
+  "PENANCEMOD-READ_CHARGES.title": "Оглашение Обвинений",
+  "PENANCEMOD-READ_CHARGES.description": "Получает 3 [gold]Правосудия[/gold].\nБерёт {Read-Draw:diff()} карт.",
+
+  "PENANCEMOD-SCENE_INVESTIGATION.title": "Осмотр Места",
+  "PENANCEMOD-SCENE_INVESTIGATION.description": "Когда вы разыгрываете 2 карты одного типа подряд, получаете награду:\n[gold]Атака[/gold] → случайный {IfUpgraded:show:Улучшенный |}[gold]Навык[/gold];\n[gold]Навык[/gold] → случайная {IfUpgraded:show:Улучшенная |}[gold]Атака[/gold];\n[gold]Сила[/gold] → {energyPrefix:energyIcons(2)}.\n(Созданные карты [gold]Сжигаются[/gold] и [gold]Неуловимы[/gold])",
+
+  "PENANCEMOD-SELF_INCRIMINATION.title": "Самооговор",
+  "PENANCEMOD-SELF_INCRIMINATION.description": "Берёт [gold]Проклятие[/gold] из колоды.\nДобавляет {IfUpgraded:show:Улучшенное |}[gold]Вещественное Доказательство[/gold] и {IfUpgraded:show:Улучшенное |}[gold]Лжесвидетельство[/gold] в руку.",
+
+  "PENANCEMOD-SILENCE.title": "Молчание",
+  "PENANCEMOD-SILENCE.description": "Получает {Silence-Barrier:diff()} [gold]Барьера[/gold].\nЕсли ваше HP ниже 50%, получает 3 дополнительных [gold]Правосудия[/gold].",
+
+  "PENANCEMOD-SILENCE_WRATH.title": "Молчаливый Гнев",
+  "PENANCEMOD-SILENCE_WRATH.description": "Когда ваш [gold]Барьер[/gold] атакован, накладывает {SilenceWrath-Amt:diff()} [gold]Ослабления[/gold] на атакующего.\nКогда ваш [gold]Барьер[/gold] разрушен, получает {SilenceWrath-Amt:diff()} [gold]Силы[/gold].",
+
+  "PENANCEMOD-SOLID_DEFENSE.title": "Твёрдая Защита",
+  "PENANCEMOD-SOLID_DEFENSE.description": "Получает {Block:diff()} [gold]Защиты[/gold].\nПолучает {Solid-Barrier:diff()} [gold]Барьера[/gold].",
+
+  "PENANCEMOD-STING.title": "Укус",
+  "PENANCEMOD-STING.description": "Теряет 3 HP.\nПолучает {Sting-Thorns:diff()} [gold]Тернистой Ауры[/gold] и {Sting-Judge:diff()} [gold]Правосудия[/gold].",
+
+  "PENANCEMOD-SYRACUSAN_WOLVES.title": "Сиракузские Волки",
+  "PENANCEMOD-SYRACUSAN_WOLVES.description": "Перемешивает 5 случайных {IfUpgraded:show:Улучшенных |}[gold]Проклятий Стаи[/gold] в вашу колоду.",
+
+  "PENANCEMOD-RESOLUTE.title": "Решимость",
+  "PENANCEMOD-RESOLUTE.description": "Получает 3 [gold]Барьера[/gold].\nПолучает {Resolute-BarrierX:diff()} [gold]Барьера[/gold] X раз, получает {IfUpgraded:show:X+1|X} [gold]Правосудия[/gold].",
+
+  "PENANCEMOD-TANGLED_THREADS.title": "Запутанные Нити",
+  "PENANCEMOD-TANGLED_THREADS.description": "Случайно [gold]Сжигает[/gold] 3 карты из руки.\nНаносит урон {IfUpgraded:show:X+X|X} раз случайным врагам, равный суммарной стоимости сожжённых карт.\nЗатем берёт 5 карт.",
+
+  "PENANCEMOD-TEMPERING.title": "Закалка",
+  "PENANCEMOD-TEMPERING.description": "Теряет 3 HP.\nПолучает {Tempering-Barrier:diff()} [gold]Барьера[/gold].",
+
+  "PENANCEMOD-THE_TRIAL.title": "Суд",
+  "PENANCEMOD-THE_TRIAL.description": "Наносит {CalculatedDamage:diff()} урона.\n[gold]Сила[/gold] влияет на эту карту мультипликативно.",
+
+  "PENANCEMOD-THORNY_PATH.title": "Тернистый Путь",
+  "PENANCEMOD-THORNY_PATH.description": "В конце вашего хода, если у врага есть [gold]Ослабление[/gold], получает {ThornyPath-Amt:diff()} [gold]Тернистой Ауры[/gold].",
+
+  "PENANCEMOD-TIPPING_SCALES.title": "Чаши Весов",
+  "PENANCEMOD-TIPPING_SCALES.description": "За каждые {Tipping-JudgeCost:diff()} [gold]Правосудия[/gold] получает {Tipping-Str:diff()} [gold]Силы[/gold].",
+
+  "PENANCEMOD-TOOTH_FOR_TOOTH.title": "Зуб за Зуб",
+  "PENANCEMOD-TOOTH_FOR_TOOTH.description": "Теряет 2 HP.\nНаносит {Damage:diff()} урона.\nПеремешивает [gold]Проклятие Стаи[/gold] в ваш сброс.\nЕсли ваше HP ниже 50%, берёт {Tooth-Draw:diff()} карт.",
+
+  "PENANCEMOD-UNWAVERING.title": "Стойкое Искупление",
+  "PENANCEMOD-UNWAVERING.description": "Каждый раз, когда вы разыгрываете [gold]Атаку[/gold], [gold]Сжигайте[/gold] её.\nВы получаете на 30% меньше урона.\nВ конце вашего хода получает {Unwavering-Thorns:diff()} [gold]Тернистой Ауры[/gold].",
+
+  "PENANCEMOD-UPRIGHT.title": "Прямота",
+  "PENANCEMOD-UPRIGHT.description": "Получает {Upright-Str:diff()} [gold]Силы[/gold].\n(Основано на общем количестве [gold]Проклятий[/gold] во всех зонах)",
+
+  "PENANCEMOD-WALL_BREAKER_SMASH.title": "Сокрушающий Удар",
+  "PENANCEMOD-WALL_BREAKER_SMASH.description": "Теряет {WallBreaker-Cost:diff()} [gold]Барьера[/gold].\nНаносит {Damage:diff()} урона.",
+  "PENANCEMOD-WALL_BREAKER_SMASH.cantPlayMessage": "У меня недостаточно [gold]Барьера[/gold].",
+
+  "PENANCEMOD-WEIGHT_OF_LAW.title": "Тяжесть Закона",
+  "PENANCEMOD-WEIGHT_OF_LAW.description": "Теряет 6 HP.\nПолучает {WeightOfLaw-MaxHp:diff()} макс. HP.",
+
+  "PENANCEMOD-UNWRITTEN_LAW.title": "Неписаный Закон",
+  "PENANCEMOD-UNWRITTEN_LAW.description": "Берёт случайную [gold]Силу[/gold] из колоды.\nЕсли вы разыграете её в этом ходу, она сработает дважды.",
+
+  "PENANCEMOD-PURGE.title": "Очищение",
+  "PENANCEMOD-PURGE.description": "Наносит {Damage:diff()} урона всем врагам.\nПолучает [gold]Барьер[/gold], равный нанесённому неблокированному урону.",
+
+  "PENANCEMOD-WEAK_AND_WEEP.title": "Слабый и Плачущий",
+  "PENANCEMOD-WEAK_AND_WEEP.description": "За каждое [gold]Ослабление[/gold] цели активирует урон [gold]Тернистой Ауры[/gold] один раз.",
+
+  "PENANCEMOD-SETTLING_OLD_SCORES.title": "Сведение Старых Счётов",
+  "PENANCEMOD-SETTLING_OLD_SCORES.description": "Берёт {Settling-Draw:diff()} карт, автоматически разыгрывает среди них [gold]Атаки[/gold] и [gold]Сжигает[/gold] их. Повторяет, пока не возьмёт 2 не-Атаки или суммарно 10 карт.",
+
+  "PENANCEMOD-WAND_ANTIGRAVITY.title": "Посох — Режим Антигравитации",
+  "PENANCEMOD-WAND_ANTIGRAVITY.description": "[gold]Сжигает[/gold] все [gold]Проклятия[/gold], не находящиеся в стопке сожжённых.\nЗа каждую {IfUpgraded:show:карту|[gold]Проклятие[/gold]} в стопке сожжённых добавляет случайное [gold]Проклятие Стаи[/gold] в ваш сброс.",
+
+  "PENANCEMOD-UNYIELD.title": "Непреклонность",
+  "PENANCEMOD-UNYIELD.description": "Получает {IfUpgraded:show:5X+5|4X+4} [gold]Барьера[/gold].\nПолучает {IfUpgraded:show:2X+3|X+2} [gold]Правосудия[/gold] и [gold]Тернистой Ауры[/gold].",
+
+  "PENANCEMOD-DESTRUCTION_BEFORE_CREATION.title": "Разрушение Прежде Созидания",
+  "PENANCEMOD-DESTRUCTION_BEFORE_CREATION.description": "Каждый раз, когда вы [gold]Сжигаете[/gold] [gold]Проклятие[/gold], получаете 1 энергию и берёте 1 карту.\nВ начале каждого хода перемешивает случайное [gold]Проклятие Стаи[/gold] в ваш сброс.",
+
+  "PENANCEMOD-COURT_MAJESTY.title": "Величество Суда",
+  "PENANCEMOD-COURT_MAJESTY.description": "Враги с [gold]Ослаблением[/gold] наносят на 25% меньше урона вашему [gold]Барьеру[/gold].",
+
+  "PENANCEMOD-GUILT_BOUND_AURA.title": "Аура Вины",
+  "PENANCEMOD-GUILT_BOUND_AURA.description": "Получает {Aura-Barrier:diff()} [gold]Барьера[/gold]. Получает {Aura-Thorns:diff()} [gold]Тернистой Ауры[/gold].",
+
+  "PENANCEMOD-BAD_OPERA.title": "Плохая Опера",
+  "PENANCEMOD-BAD_OPERA.description": "Случайно [gold]Сжигает[/gold] до {Opera-CurseCount:diff()} [gold]Проклятий[/gold] из колоды.\nЗа каждую сожжённую карту получает 1 [gold]Силы[/gold] и 2 [gold]Правосудия[/gold].",
+
+  "PENANCEMOD-GAVEL_STRIKE.title": "Удар Молотка",
+  "PENANCEMOD-GAVEL_STRIKE.description": "Наносит {Damage:diff()} урона.\nПолучает [gold]Барьер[/gold], равный стакам [gold]Ослабления[/gold] цели.",
+
+  "PENANCEMOD-PENDING_JUDGMENT.title": "Ожидающий Приговор",
+  "PENANCEMOD-PENDING_JUDGMENT.description": "Накладывает {Pending-Weak:diff()} [gold]Ослабления[/gold] на всех врагов. За каждого врага с [gold]Ослаблением[/gold] получает {Pending-Barrier:diff()} [gold]Барьера[/gold].",
+
+  "PENANCEMOD-INESCAPABLE_NET.title": "Неизбежная Сеть",
+  "PENANCEMOD-INESCAPABLE_NET.description": "Следующие {InescapableNet-Triggers:diff()} раз, когда вы теряете HP, если сумма [gold]Тернистой Ауры[/gold] или [gold]Правосудия[/gold] не меньше потерянного количества, [gold]Сжигает[/gold] равное количество и восстанавливает столько же HP.",
+
+  "PENANCEMOD-MALICIOUS_COMPETITION.title": "Недобросовестная Конкуренция",
+  "PENANCEMOD-MALICIOUS_COMPETITION.description": "[gold]Сжигает[/gold] верхнюю {IfUpgraded:show:[gold]Проклятие[/gold] |}карту колоды и получает {Malicious-Barrier:diff()} [gold]Барьера[/gold] и {Malicious-Judge:diff()} [gold]Правосудия[/gold].",
+
+  "PENANCEMOD-OBJECTION.title": "Возражение!",
+  "PENANCEMOD-OBJECTION.description": "Наносит {Damage:diff()} урона. Если у вас есть как минимум {Objection-Cost:diff()} [gold]Правосудия[/gold], [gold]Сжигает[/gold] {Objection-Cost:diff()} [gold]Правосудия[/gold], чтобы наложить 1 [gold]Перемирие[/gold] на цель.",
+
+  "PENANCEMOD-JURY_ENTRY.title": "Вступление Присяжных",
+  "PENANCEMOD-JURY_ENTRY.description": "Выберите 1 из 3 случайных [gold]Проклятий Стаи[/gold] для перемешивания в колоду.\nПолучает {Jury-Barrier:diff()} [gold]Барьера[/gold].",
+
+  "PENANCEMOD-EXHIBIT_A.title": "Вещественное Доказательство",
+  "PENANCEMOD-EXHIBIT_A.description": "{IfUpgraded:show:Выберите |Случайно }[gold]Сжигает[/gold] 2 карты из руки.\nПолучает {energyPrefix:energyIcons(2)}.",
+  "PENANCEMOD-EXHIBIT_A.select_message": "Выберите 2 карты для Сжигания.",
+
+  "PENANCEMOD-BIDE_TIME.title": "Выжидание",
+  "PENANCEMOD-BIDE_TIME.description": "Каждый раз, когда вы не разыгрываете [gold]Атаку[/gold] в ходу, получаете {Bide-Vigor:diff()} [gold]Ярости[/gold].",
+
+  "PENANCEMOD-EXCOMMUNICATION.title": "Отлучение",
+  "PENANCEMOD-EXCOMMUNICATION.description": "[gold]Сжигает[/gold] все [gold]Проклятия[/gold] в вашей колоде, руке и сбросе.\nЗа каждую сожжённую карту получает {Excom-Barrier:diff()} [gold]Барьера[/gold] и {Excom-Str:diff()} [gold]Силы[/gold].",
+
+  "PENANCEMOD-INVIOLABLE.title": "Неприкосновенность",
+  "PENANCEMOD-INVIOLABLE.description": "Получает {Inv-Barrier:diff()} [gold]Барьера[/gold].",
+
+  "PENANCEMOD-DRINK_POISON.title": "Выпить Яд",
+  "PENANCEMOD-DRINK_POISON.description": "Теряет {Drink-Loss:diff()} HP. Получает {energyPrefix:energyIcons(1)}. Берёт 1 карту.\nДобавляет копию этой карты в руку. Она [gold]Неуловима[/gold], а потеря HP увеличена на 2.",
+
+  "PENANCEMOD-WOLF_FEAST.title": "Пир Волков",
+  "PENANCEMOD-WOLF_FEAST.description": "Выберите 3 {IfUpgraded:show:Улучшенных |}[gold]Проклятия Стаи[/gold] из всех вариантов и разыграйте их.",
+  "PENANCEMOD-WOLF_FEAST.selectionScreenPrompt": "Выберите 3 Проклятия Стаи для розыгрыша.",
+
+  "PENANCEMOD-TEST_THE_LAW.title": "Испытание Закона",
+  "PENANCEMOD-TEST_THE_LAW.description": "Устанавливает ваше HP на 10. Если ваше HP уменьшается, получает утроенное количество [gold]Барьера[/gold].\nВ этом бою каждый раз, когда вы теряете HP от эффекта карты, восстанавливаете то же количество и получаете столько же [gold]Барьера[/gold] (также сохраняя в реликвии), затем получаете 2 [gold]Правосудия[/gold] и [gold]Тернистой Ауры[/gold].",
+
+  "PENANCEMOD-PREEMPTIVE_STRIKE.title": "Упреждающий Удар",
+  "PENANCEMOD-PREEMPTIVE_STRIKE.description": "Наносит {Damage:diff()} урона.\nВ течение следующих {Strike-Turns:diff()} ходов в начале вашего хода получает 3 [gold]Самообороны[/gold]."
+}

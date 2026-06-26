@@ -67,16 +67,22 @@ public class AmbushShadow : PenanceBaseCard
 
         var creature = Owner.Creature;
 
-        string audioPath = PenanceConfig.CharacterVoice switch
-        {
-            VoiceLanguage.EN => "res://PenanceMod/scenes/audio/ambushshadow_en.wav",
-            VoiceLanguage.JP => "res://PenanceMod/scenes/audio/ambushshadow_jp.wav",
-            VoiceLanguage.KR => "res://PenanceMod/scenes/audio/ambushshadow_kr.wav",
-            VoiceLanguage.IT => "res://PenanceMod/scenes/audio/ambushshadow_cn.wav",
-            _ => "res://PenanceMod/scenes/audio/ambushshadow_cn.wav",
-        };
+        // 1. 优先播放基础的诅咒音效
         await AudioManager.PlayCustomSfx(WolfCurseSfx);
-        await AudioManager.PlayCustomSfx(audioPath);
+
+        // 2. 如果玩家开启了语音开关，才去匹配路径并播放干员语音
+        if (PenanceConfig.EnableWolfCurseSpeak)
+        {
+            string audioPath = PenanceConfig.CharacterVoice switch
+            {
+                VoiceLanguage.EN => "res://PenanceMod/scenes/audio/ambushshadow_en.wav",
+                VoiceLanguage.JP => "res://PenanceMod/scenes/audio/ambushshadow_jp.wav",
+                VoiceLanguage.KR => "res://PenanceMod/scenes/audio/ambushshadow_kr.wav",
+                VoiceLanguage.IT => "res://PenanceMod/scenes/audio/ambushshadow_cn.wav",
+                _ => "res://PenanceMod/scenes/audio/ambushshadow_cn.wav",
+            };
+            await AudioManager.PlayCustomSfx(audioPath);
+        }
         
         // ⭐ 破局神技：直接抓取第一个变量，调用官方源码验证过的 IntValue
         var magicVar = DynamicVars.Values.First();

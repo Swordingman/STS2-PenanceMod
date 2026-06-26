@@ -2,7 +2,6 @@ using BaseLib.Config;
 
 namespace PenanceMod.Scripts.Utils;
 
-// 定义语音选项的枚举
 public enum VoiceLanguage
 {
     CN,
@@ -12,16 +11,21 @@ public enum VoiceLanguage
     IT
 }
 
-[ConfigHoverTipsByDefault] // 开启默认悬浮提示（可选）
+[ConfigHoverTipsByDefault]
 public sealed class PenanceConfig : SimpleModConfig
 {
     [ConfigHideInUI]
     public static int CurrentSkinIndex { get; set; } = 0;
 
     // ===================================
-    // 下拉菜单配置：语音语言设置
+    // 语音设置 (Voice Settings)
     // ===================================
-    [ConfigSection("Voice Settings")] // 会在 UI 中生成一个带标题的折叠区域
-    [ConfigHoverTip] // 鼠标悬浮时会显示提示（需要在本地化文件里配置提示文本）
+    [ConfigSection("Voice Settings")] 
+    [ConfigHoverTip] 
     public static VoiceLanguage CharacterVoice { get; set; } = VoiceLanguage.CN; 
+
+    // 添加这一行：干员语音开关
+    // 因为在同一个 ConfigSection 下，UI 里它们会挨在一起
+    [ConfigHoverTip]
+    public static bool EnableWolfCurseSpeak { get; set; } = true; 
 }

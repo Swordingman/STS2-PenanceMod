@@ -67,16 +67,19 @@ public class DignityOfTheLeader : PenanceBaseCard
             
         var creature = Owner.Creature;
 
-        string audioPath = PenanceConfig.CharacterVoice switch
-        {
-            VoiceLanguage.EN => "res://PenanceMod/scenes/audio/dignityoftheleader_en.wav",
-            VoiceLanguage.JP => "res://PenanceMod/scenes/audio/dignityoftheleader_jp.wav",
-            VoiceLanguage.KR => "res://PenanceMod/scenes/audio/dignityoftheleader_kr.wav",
-            VoiceLanguage.IT => "res://PenanceMod/scenes/audio/dignityoftheleader_it.wav",
-            _ => "res://PenanceMod/scenes/audio/dignityoftheleader_cn.wav",
-        };
         await AudioManager.PlayCustomSfx(WolfCurseSfx);
-        await AudioManager.PlayCustomSfx(audioPath);
+        if (PenanceConfig.EnableWolfCurseSpeak)
+        {
+            string audioPath = PenanceConfig.CharacterVoice switch
+            {
+                VoiceLanguage.EN => "res://PenanceMod/scenes/audio/dignityoftheleader_en.wav",
+                VoiceLanguage.JP => "res://PenanceMod/scenes/audio/dignityoftheleader_jp.wav",
+                VoiceLanguage.KR => "res://PenanceMod/scenes/audio/dignityoftheleader_kr.wav",
+                VoiceLanguage.IT => "res://PenanceMod/scenes/audio/dignityoftheleader_it.wav",
+                _ => "res://PenanceMod/scenes/audio/dignityoftheleader_cn.wav",
+            };
+            await AudioManager.PlayCustomSfx(audioPath);
+        }
 
         var vars = DynamicVars.Values.ToList();
         int energyGain = vars.Count > 0 ? vars[0].IntValue : 2;

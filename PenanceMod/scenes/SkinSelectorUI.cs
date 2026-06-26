@@ -77,7 +77,6 @@ public partial class SkinSelectorUI : Control
         if (_currentCharacter != null && _nameLabel != null && _modelPlaceholder != null)
         {
             // --- 1. 读取本地化 JSON 里的皮肤名称 ---
-            // 🌟 重点：这里也要改成读取 PenanceConfig，并且别忘了加上 + 1 （避免找 skin0 报错）
             string currentSkinKey = $"PENANCEMOD-PENANCE_MOD.skin{PenanceConfig.CurrentSkinIndex}";
             
             // 假设你在游戏内注册的语言 Table 名字是 "characters"

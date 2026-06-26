@@ -60,16 +60,19 @@ public class WandAntigravity : PenanceBaseCard
         if (player == null || CombatState == null)
             return;
 
-        string audioPath = PenanceConfig.CharacterVoice switch
-        {
-            VoiceLanguage.EN => "res://PenanceMod/scenes/audio/wandantigravity_en.wav",
-            VoiceLanguage.JP => "res://PenanceMod/scenes/audio/wandantigravity_jp.wav",
-            VoiceLanguage.KR => "res://PenanceMod/scenes/audio/wandantigravity_kr.wav",
-            VoiceLanguage.IT => "res://PenanceMod/scenes/audio/wandantigravity_cn.wav",
-            _ => "res://PenanceMod/scenes/audio/wandantigravity_cn.wav",
-        };
         await AudioManager.PlayCustomSfx(WolfCurseSfx);
-        await AudioManager.PlayCustomSfx(audioPath);
+        if (PenanceConfig.EnableWolfCurseSpeak)
+        {
+            string audioPath = PenanceConfig.CharacterVoice switch
+            {
+                VoiceLanguage.EN => "res://PenanceMod/scenes/audio/wandantigravity_en.wav",
+                VoiceLanguage.JP => "res://PenanceMod/scenes/audio/wandantigravity_jp.wav",
+                VoiceLanguage.KR => "res://PenanceMod/scenes/audio/wandantigravity_kr.wav",
+                VoiceLanguage.IT => "res://PenanceMod/scenes/audio/wandantigravity_cn.wav",
+                _ => "res://PenanceMod/scenes/audio/wandantigravity_cn.wav",
+            };     
+            await AudioManager.PlayCustomSfx(audioPath);       
+        }
 
         // 1. 收集所有需要消耗的诅咒
         var allCursesToExhaust = new List<CardModel>();

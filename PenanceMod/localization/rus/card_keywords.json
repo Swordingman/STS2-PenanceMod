@@ -1,0 +1,19 @@
+{
+  "PENANCEMOD-CURSE_OF_WOLVES.description": "Особая карта Проклятия. Автоматически разыгрывается при взятии в руку.",
+  "PENANCEMOD-CURSE_OF_WOLVES.title": "Проклятие Стаи",
+
+  "PENANCEMOD-BARRIER.description": "Особая защитная величина. Когда Защита истощена, Барьер поглощает оставшийся урон. Барьер не исчезает в конце вашего хода.",
+  "PENANCEMOD-BARRIER.title": "Барьер",
+
+  "PENANCEMOD-JUDGEMENT.description": "Когда ваш Барьер получает урон от врага, наносит атакующему урон, равный вашему #yПравосудию.",
+  "PENANCEMOD-JUDGEMENT.title": "Правосудие",
+
+  "PENANCEMOD-THORN_AURA.description": "В конце вашего хода наносит всем врагам урон, равный вашей #yТернистой #yАуре.",
+  "PENANCEMOD-THORN_AURA.title": "Тернистая Аура",
+
+  "PENANCEMOD-CEASE_FIRE.description": "Игроки с #yПеремирием не могут разыгрывать Атаки. Враги с #yПеремирием пропускают ход, если собираются атаковать.",
+  "PENANCEMOD-CEASE_FIRE.title": "Перемирие",
+
+  "PENANCEMOD-JUSTIFIED_DEFENSE.description": "Пока эта способность активна, вы получаете дополнительную энергию и берёте карты каждый раз, когда получаете урон.",
+  "PENANCEMOD-JUSTIFIED_DEFENSE.title": "Самооборона"
+}

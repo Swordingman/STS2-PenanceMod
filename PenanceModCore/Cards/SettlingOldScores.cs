@@ -59,16 +59,19 @@ public class SettlingOldScores : PenanceBaseCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        string audioPath = PenanceConfig.CharacterVoice switch
-        {
-            VoiceLanguage.EN => "res://PenanceMod/scenes/audio/settingoldscores_en.wav",
-            VoiceLanguage.JP => "res://PenanceMod/scenes/audio/settingoldscores_jp.wav",
-            VoiceLanguage.KR => "res://PenanceMod/scenes/audio/settingoldscores_cn.wav",
-            VoiceLanguage.IT => "res://PenanceMod/scenes/audio/settingoldscores_cn.wav",
-            _ => "res://PenanceMod/scenes/audio/settingoldscores_cn.wav",
-        };
         await AudioManager.PlayCustomSfx(WolfCurseSfx);
-        await AudioManager.PlayCustomSfx(audioPath);
+        if (PenanceConfig.EnableWolfCurseSpeak)
+        {
+            string audioPath = PenanceConfig.CharacterVoice switch
+            {
+                VoiceLanguage.EN => "res://PenanceMod/scenes/audio/settingoldscores_en.wav",
+                VoiceLanguage.JP => "res://PenanceMod/scenes/audio/settingoldscores_jp.wav",
+                VoiceLanguage.KR => "res://PenanceMod/scenes/audio/settingoldscores_cn.wav",
+                VoiceLanguage.IT => "res://PenanceMod/scenes/audio/settingoldscores_cn.wav",
+                _ => "res://PenanceMod/scenes/audio/settingoldscores_cn.wav",
+            };
+            await AudioManager.PlayCustomSfx(audioPath);    
+        }
 
         int drawBatchSize = DynamicVars["Settling-Draw"].IntValue;
         int nonAttackCount = 0;

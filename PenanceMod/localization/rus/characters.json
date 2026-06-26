@@ -1,0 +1,23 @@
+{
+  "PENANCEMOD-PENANCE_MOD.aromaPrinciple": "[sine][gold]Абсолютного правосудия не существует, но я всё равно буду призывать к нему![/gold][/sine]",
+  "PENANCEMOD-PENANCE_MOD.banter.alive.endTurnPing": "Не затягивайте суд без необходимости. Ваше колебание лишь даст этим преступникам передышку.",
+  "PENANCEMOD-PENANCE_MOD.banter.dead.endTurnPing": "Даже если я пала, взоры суда всё ещё обращены на вас... Вынесите приговор, не медлите больше.",
+  "PENANCEMOD-PENANCE_MOD.cardsModifierDescription": "Карты Пенанс теперь появляются в наградах и магазинах.",
+  "PENANCEMOD-PENANCE_MOD.cardsModifierTitle": "Карты Пенанс",
+  "PENANCEMOD-PENANCE_MOD.description": "Судья из Сиракуз, несущая тени прошлого и тяжесть закона.\nПоскольку закон не может достичь этого Шпиля, она становится воплощением порядка, прокладывая путь через тернии, чтобы защищать справедливость.",
+  "PENANCEMOD-PENANCE_MOD.eventDeathPrevention": "Они и тьма за ними могут время от времени одерживать верх... но даже самый тягостный сезон дождей когда-нибудь закончится.",
+  "PENANCEMOD-PENANCE_MOD.goldMonologue": "[sine]Возможно, этого состояния будет достаточно, чтобы восстановить пронизанную дырами судебную систему Нового Вольсиния...[/sine]",
+  "PENANCEMOD-PENANCE_MOD.possessiveAdjective": "Её",
+  "PENANCEMOD-PENANCE_MOD.pronounObject": "Её",
+  "PENANCEMOD-PENANCE_MOD.pronounPossessive": "Её",
+  "PENANCEMOD-PENANCE_MOD.pronounSubject": "Она",
+  "PENANCEMOD-PENANCE_MOD.title": "Пенанс",
+  "PENANCEMOD-PENANCE_MOD.titleObject": "Пенанс",
+  "PENANCEMOD-PENANCE_MOD.unlockText": "Сыграйте за [pink]{Prerequisite}[/pink], чтобы разблокировать этого персонажа.",
+  "PENANCEMOD-PENANCE_MOD.skin0": "Базовая",
+  "PENANCEMOD-PENANCE_MOD.skin1": "Легкий Румянец",
+  "PENANCEMOD-PENANCE_MOD.skin2": "Пишущая",
+  "PENANCEMOD-WOLF_CURSE_LIMITER": "Проклятия Стаи достигли лимита в этом ходу!",
+  "PENANCEMOD-CharacterVoice": "Конфигурация Озвучки",
+  "PENANCEMOD-Voice_Settings": "Настройки Озвучки"
+}

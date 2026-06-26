@@ -74,16 +74,19 @@ public class ContinuousRain : PenanceBaseCard
         var allCreatures = CombatState.Creatures;
         var player = Owner.Creature;
 
-        string audioPath = PenanceConfig.CharacterVoice switch
-        {
-            VoiceLanguage.EN => "res://PenanceMod/scenes/audio/continuousrain_en.wav",
-            VoiceLanguage.JP => "res://PenanceMod/scenes/audio/continuousrain_jp.wav",
-            VoiceLanguage.KR => "res://PenanceMod/scenes/audio/continuousrain_kr.wav",
-            VoiceLanguage.IT => "res://PenanceMod/scenes/audio/continuousrain_it.wav",
-            _ => "res://PenanceMod/scenes/audio/continuousrain_cn.wav",
-        };
         await AudioManager.PlayCustomSfx(WolfCurseSfx);
-        await AudioManager.PlayCustomSfx(audioPath);
+        if (PenanceConfig.EnableWolfCurseSpeak)
+        {
+            string audioPath = PenanceConfig.CharacterVoice switch
+            {
+                VoiceLanguage.EN => "res://PenanceMod/scenes/audio/continuousrain_en.wav",
+                VoiceLanguage.JP => "res://PenanceMod/scenes/audio/continuousrain_jp.wav",
+                VoiceLanguage.KR => "res://PenanceMod/scenes/audio/continuousrain_kr.wav",
+                VoiceLanguage.IT => "res://PenanceMod/scenes/audio/continuousrain_it.wav",
+                _ => "res://PenanceMod/scenes/audio/continuousrain_cn.wav",
+            };
+            await AudioManager.PlayCustomSfx(audioPath);
+        }
 
         int selfDebuff = DynamicVars.ContainsKey("Rain-SelfDebuff") ? DynamicVars["Rain-SelfDebuff"].IntValue : 2;
         int enemyDebuff = DynamicVars.ContainsKey("Rain-EnemyDebuff") ? DynamicVars["Rain-EnemyDebuff"].IntValue : 2;

@@ -65,16 +65,19 @@ public class ArtOfTheHidingFox : PenanceBaseCard
     {
         var creature = Owner.Creature;
 
-        string audioPath = PenanceConfig.CharacterVoice switch
-        {
-            VoiceLanguage.EN => "res://PenanceMod/scenes/audio/artofthehidingfox_en.wav",
-            VoiceLanguage.JP => "res://PenanceMod/scenes/audio/artofthehidingfox_jp.wav",
-            VoiceLanguage.KR => "res://PenanceMod/scenes/audio/artofthehidingfox_kr.wav",
-            VoiceLanguage.IT => "res://PenanceMod/scenes/audio/artofthehidingfox_it.wav",
-            _ => "res://PenanceMod/scenes/audio/artofthehidingfox_cn.wav",
-        };
         await AudioManager.PlayCustomSfx(WolfCurseSfx);
-        await AudioManager.PlayCustomSfx(audioPath);
+        if (PenanceConfig.EnableWolfCurseSpeak)
+        {
+            string audioPath = PenanceConfig.CharacterVoice switch
+            {
+                VoiceLanguage.EN => "res://PenanceMod/scenes/audio/artofthehidingfox_en.wav",
+                VoiceLanguage.JP => "res://PenanceMod/scenes/audio/artofthehidingfox_jp.wav",
+                VoiceLanguage.KR => "res://PenanceMod/scenes/audio/artofthehidingfox_kr.wav",
+                VoiceLanguage.IT => "res://PenanceMod/scenes/audio/artofthehidingfox_it.wav",
+                _ => "res://PenanceMod/scenes/audio/artofthehidingfox_cn.wav",
+            };
+            await AudioManager.PlayCustomSfx(audioPath);
+        }
         
         // �?安全取值：按注册顺序提�?
         var vars = DynamicVars.Values.ToList();
