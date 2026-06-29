@@ -60,7 +60,7 @@ public class SyracusanWolves : PenanceBaseCard
             var randomCurse = WolfCurseHelper.GetRandomWolfCurse(player, CombatState, IsUpgraded);
 
             // 加入抽牌堆。
-            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(randomCurse, PileType.Draw, Owner), 2.2f);
+            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(randomCurse, PileType.Draw, Owner, CardPilePosition.Random), 2.2f);
         }
     }
 

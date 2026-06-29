@@ -125,6 +125,11 @@ public class WandAntigravity : PenanceBaseCard
             for (int i = 0; i < targetCount; i++)
             {
                 var randomCurse = WolfCurseHelper.GetRandomWolfCurse(player, CombatState, IsUpgraded);
+
+                while (randomCurse is WandAntigravity)
+                {
+                    randomCurse = WolfCurseHelper.GetRandomWolfCurse(player, CombatState, IsUpgraded);
+                }
                 
                 var cardNode = await CardPileCmd.AddGeneratedCardToCombat(randomCurse, PileType.Discard, Owner);
                 CardCmd.PreviewCardPileAdd(cardNode, 0.5f); 

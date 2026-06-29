@@ -117,5 +117,10 @@
 
   "PENANCEMOD-INESCAPABLE_NET_POWER.title": "Неизбежная Сеть",
   "PENANCEMOD-INESCAPABLE_NET_POWER.description": "После потери HP, если сумма [gold]Тернистой Ауры[/gold] или [gold]Правосудия[/gold] не меньше потерянного количества, потратьте равное количество и восстановите столько же HP. Осталось {Amount} срабатываний.",
-  "PENANCEMOD-INESCAPABLE_NET_POWER.smartDescription": "После потери HP, если сумма [gold]Тернистой Ауры[/gold] или [gold]Правосудия[/gold] не меньше потерянного количества, потратьте равное количество и восстановите столько же HP. Осталось {Amount} срабатываний."
+  "PENANCEMOD-INESCAPABLE_NET_POWER.smartDescription": "После потери HP, если сумма [gold]Тернистой Ауры[/gold] или [gold]Правосудия[/gold] не меньше потерянного количества, потратьте равное количество и восстановите столько же HP. Осталось {Amount} срабатываний.",
+
+  "PENANCEMOD-CARNIVAL_MOMENT_POWER.title": "Момент Карнавала",
+  "PENANCEMOD-CARNIVAL_MOMENT_POWER.description": "Заменяет все ваши [blue]автоматически срабатывающие[/blue] эффекты [gold]Проклятий Стаи[/gold] на: заполнение руки случайными картами; их стоимость становится [blue]0[/blue]!",
+  "PENANCEMOD-CARNIVAL_MOMENT_POWER.smartDescription": "Заменяет все ваши [blue]автоматически срабатывающие[/blue] эффекты [gold]Проклятий Стаи[/gold] на: заполнение руки случайными картами; их стоимость становится [blue]0[/blue]!"
+
 }

@@ -117,5 +117,9 @@
 
   "PENANCEMOD-INESCAPABLE_NET_POWER.title": "Inescapable Net",
   "PENANCEMOD-INESCAPABLE_NET_POWER.description": "After you lose HP, if you have a total of [gold]Thorn Aura[/gold] or [gold]Judgment[/gold] not less than that amount, Consume an equal amount and heal the same amount of HP. {Amount} triggers remaining.",
-  "PENANCEMOD-INESCAPABLE_NET_POWER.smartDescription": "After you lose HP, if you have a total of [gold]Thorn Aura[/gold] or [gold]Judgment[/gold] not less than that amount, Consume an equal amount and heal the same amount of HP. {Amount} triggers remaining."
+  "PENANCEMOD-INESCAPABLE_NET_POWER.smartDescription": "After you lose HP, if you have a total of [gold]Thorn Aura[/gold] or [gold]Judgment[/gold] not less than that amount, Consume an equal amount and heal the same amount of HP. {Amount} triggers remaining.",
+
+    "PENANCEMOD-CARNIVAL_MOMENT_POWER.title": "Carnival Moment",
+  "PENANCEMOD-CARNIVAL_MOMENT_POWER.description": "Replace all of your [blue]automatically triggered[/blue] [gold]Wolfpack Curse[/gold] effects with: fill your hand with random cards, and set their cost to [blue]0[/blue]!",
+  "PENANCEMOD-CARNIVAL_MOMENT_POWER.smartDescription": "Replace all of your [blue]automatically triggered[/blue] [gold]Wolfpack Curse[/gold] effects with: fill your hand with random cards, and set their cost to [blue]0[/blue]!"
 }

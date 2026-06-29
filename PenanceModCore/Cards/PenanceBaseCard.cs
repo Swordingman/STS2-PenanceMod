@@ -13,6 +13,7 @@ using PenanceMod.PenanceModCode.Extensions;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Localization;
+using PenanceMod.Scripts.Utils;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -110,18 +111,46 @@ public abstract class PenanceBaseCard : CustomCardModel
     /// </summary>
     protected async Task TriggerWolfAutoplay(PlayerChoiceContext choiceContext, CardModel card, Creature? target = null)
     {
-        if (card == null || card.Owner == null || card.Owner.Creature == null) return;
+        if (card == null || card.Owner == null || card.Owner.Creature == null || CombatState == null) return;
         if (CombatManager.Instance.IsOverOrEnding || card.Owner.Creature.IsDead) return;
 
-        // --- 核心修改：上限拦截 ---
+        await CreatureCmd.TriggerAnim(card.Owner.Creature, "Cast", 0.2f);
+
+        var carnivalPower = card.Owner.Creature.GetPower<CarnivalMomentPower>();
+        if (carnivalPower != null)
+        {
+            await AudioManager.PlayCustomSfx(WolfCurseSfx);
+            if (PenanceConfig.EnableWolfCurseSpeak)
+            {
+                string audioPath = PenanceConfig.CharacterVoice switch
+                {
+                    VoiceLanguage.EN => "res://PenanceMod/scenes/audio/carnivalmoment_en.wav",
+                    VoiceLanguage.JP => "res://PenanceMod/scenes/audio/carnivalmoment_jp.wav",
+                    VoiceLanguage.KR => "res://PenanceMod/scenes/audio/carnivalmoment_kr.wav",
+                    VoiceLanguage.IT => "res://PenanceMod/scenes/audio/carnivalmoment_it.wav",
+                    _ => "res://PenanceMod/scenes/audio/carnivalmoment_cn.wav",
+                };     
+                await AudioManager.PlayCustomSfx(audioPath);       
+            }
+            await CardCmd.Exhaust(choiceContext, card);
+            await carnivalPower.TriggerCarnivalEffect(choiceContext, CombatState);
+            return;
+        }
+
         int triggeredCount = GetWolfCursesTriggeredThisTurn();
         if (triggeredCount >= MaxWolfCursesPerTurn)
         {
-            TalkCmd.Play(new LocString("characters", "PENANCEMOD-WOLF_CURSE_LIMITER"), card.Owner.Creature, VfxColor.White);
-            return; 
+            await CarnivalVfxHelper.PlayCarnivalMomentVfx(choiceContext, CombatState, card.Owner.Creature);
+            await PowerCmd.Apply<CarnivalMomentPower>(choiceContext, Owner.Creature, 1, Owner.Creature, this);
+            carnivalPower = card.Owner.Creature.GetPower<CarnivalMomentPower>();
+            
+            if (carnivalPower != null)
+            {
+                await CardCmd.Exhaust(choiceContext, card);
+                await carnivalPower.TriggerCarnivalEffect(choiceContext, CombatState);
+            }
+            return;
         }
-
-        await CreatureCmd.TriggerAnim(card.Owner.Creature, "Cast", 0.2f);
 
         await CardCmd.AutoPlay(
             choiceContext,

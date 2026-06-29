@@ -117,5 +117,9 @@
 
   "PENANCEMOD-INESCAPABLE_NET_POWER.title": "法网恢恢",
   "PENANCEMOD-INESCAPABLE_NET_POWER.description": "在你失去生命值后，如果你拥有总计不低于该数值的[gold]荆棘环身[/gold]或[gold]裁决[/gold]，则消耗等量并恢复等量生命值。剩余{Amount}次。",
-  "PENANCEMOD-INESCAPABLE_NET_POWER.smartDescription": "在你失去生命值后，如果你拥有总计不低于该数值的[gold]荆棘环身[/gold]或[gold]裁决[/gold]，则消耗等量并恢复等量生命值。剩余{Amount}次。"
+  "PENANCEMOD-INESCAPABLE_NET_POWER.smartDescription": "在你失去生命值后，如果你拥有总计不低于该数值的[gold]荆棘环身[/gold]或[gold]裁决[/gold]，则消耗等量并恢复等量生命值。剩余{Amount}次。",
+
+  "PENANCEMOD-CARNIVAL_MOMENT_POWER.title": "狂欢时刻",
+  "PENANCEMOD-CARNIVAL_MOMENT_POWER.description": "将你所有[blue]自动触发[/blue]的[gold]狼群诅咒[/gold]效果替换为：使用随机牌填满你的手牌，并使它们的费用变为[blue]0[/blue]！",
+  "PENANCEMOD-CARNIVAL_MOMENT_POWER.smartDescription": "将你所有[blue]自动触发[/blue]的[gold]狼群诅咒[/gold]效果替换为：使用随机牌填满你的手牌，并使它们的费用变为[blue]0[/blue]！"
 }

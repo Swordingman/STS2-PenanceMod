@@ -50,11 +50,7 @@ public class TheTrial : PenanceBaseCard
         var target = cardPlay.Target;
         if (target == null) return;
 
-        // 🌟 这里的 IntValue 已经被官方 CalculatedDamageVar 算得明明白白
-        // 力量、乘算、虚弱、易伤，全在里面了！
-        int finalDamage = DynamicVars["CalculatedDamage"].IntValue;
-
-        await DamageCmd.Attack(finalDamage)
+        await DamageCmd.Attack(DynamicVars.CalculatedDamage)
             .FromCard(this)
             .Targeting(target)
             .WithHitFx(VfxCmd.heavyBluntPath)
