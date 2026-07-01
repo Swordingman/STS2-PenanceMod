@@ -13,6 +13,7 @@ using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using PenanceMod.Scripts.Utils;
+using BaseLib.Patches.UI;
 
 namespace PenanceMod.PenanceModCode.Character;
 
@@ -83,14 +84,13 @@ public class PenanceMod : PlaceholderCharacterModel
     }
 
     // 多人模式-手指。
-    // public override string CustomArmPointingTexturePath => null;
+    public override string CustomArmPointingTexturePath => "res://PenanceMod/images/charui/hand_point.png";
     // 多人模式剪刀石头布-石头。
-    // public override string CustomArmRockTexturePath => null;
+    public override string CustomArmRockTexturePath => "res://PenanceMod/images/charui/hand_rock.png";
     // 多人模式剪刀石头布-布。
-    // public override string CustomArmPaperTexturePath => null;
+    public override string CustomArmPaperTexturePath => "res://PenanceMod/images/charui/hand_paper.png";
     // 多人模式剪刀石头布-剪刀。
-    // public override string CustomArmScissorsTexturePath => null;
-
+    public override string CustomArmScissorsTexturePath => "res://PenanceMod/images/charui/hand_scissors.png";
     // 人物选择背景。
     public override string CustomCharacterSelectBg => "res://PenanceMod/scenes/Penance_bg.tscn";
     // 人物选择图标。
@@ -100,13 +100,19 @@ public class PenanceMod : PlaceholderCharacterModel
     // 人物选择过渡动画。
     // public override string CustomCharacterSelectTransitionPath => "res://materials/transitions/ironclad_transition_mat.tres";
     // 地图上的角色标记图标、表情轮盘上的角色头像
-    // public override string CustomMapMarkerPath => null;
+    public override string CustomMapMarkerPath => "res://icon.svg";
     // 攻击音效
-    // public override string CustomAttackSfx => null;
+    public override string CustomAttackSfx => "res://PenanceMod/scenes/audio/p_atk_gavel_n.wav";
     // 施法音效
     // public override string CustomCastSfx => null;
     // 死亡音效
     public override string CustomDeathSfx => "res://PenanceMod/scenes/audio/die.wav";
+
+    public override RelicIconData? CustomYummyCookie => new RelicIconData(
+        BigIconPath: "res://PenanceMod/images/relics/large/Cookies.png", 
+        PackedIconPath: "res://PenanceMod/images/relics/large/Cookies.png",
+        PackedIconOutlinePath: "res://PenanceMod/images/relics/large/Cookies.png"
+    );
 
     // 角色选择音效
     public override string CharacterSelectSfx => PenanceConfig.CharacterVoice switch
