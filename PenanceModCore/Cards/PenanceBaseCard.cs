@@ -14,6 +14,7 @@ using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Localization;
 using PenanceMod.Scripts.Utils;
+using PenanceMod.PenanceModCode.Relics;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -113,6 +114,18 @@ public abstract class PenanceBaseCard : CustomCardModel
     {
         if (card == null || card.Owner == null || card.Owner.Creature == null || CombatState == null) return;
         if (CombatManager.Instance.IsOverOrEnding || card.Owner.Creature.IsDead) return;
+
+        var player = card.Owner.Creature.Player;
+        if (player != null)
+        {
+            var chapterRelic = player.GetRelic<ChapterOfPenance>();
+            
+            // 🌟 挑战 4：狼群诅咒 - 自动释放时消耗 1 点能量
+            if (chapterRelic != null && PenanceConfig.EnabledChallenges.Contains(4))
+            {
+                await PlayerCmd.LoseEnergy(1, player);
+            }
+        }
 
         await CreatureCmd.TriggerAnim(card.Owner.Creature, "Cast", 0.2f);
 

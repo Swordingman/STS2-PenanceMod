@@ -88,3 +88,44 @@ theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 48
 text = "皮肤名字"
 horizontal_alignment = 1
+
+[node name="ChallengeSelectorPanel" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1335.0
+offset_top = 558.0
+offset_right = 1685.0
+offset_bottom = 928.0
+
+[node name="ToggleMenuButton" type="Button" parent="ChallengeSelectorPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -349.0
+offset_top = 2.0
+offset_right = -69.0
+offset_bottom = 62.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "UI_PLACEHOLDER"
+
+[node name="ChallengeMenuPanel" type="PanelContainer" parent="ChallengeSelectorPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -350.0
+offset_top = 70.0
+offset_bottom = 200.0
+grow_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChallengeSelectorPanel/ChallengeMenuPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ChallengeLabel" type="Label" parent="ChallengeSelectorPanel/ChallengeMenuPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "UI_PLACEHOLDER"
+horizontal_alignment = 1

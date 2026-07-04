@@ -19,5 +19,7 @@
   "PENANCEMOD-PENANCE_MOD.skin2": "Пишущая",
   "PENANCEMOD-WOLF_CURSE_LIMITER": "Проклятия Стаи достигли лимита в этом ходу!",
   "PENANCEMOD-CharacterVoice": "Конфигурация Озвучки",
-  "PENANCEMOD-Voice_Settings": "Настройки Озвучки"
+  "PENANCEMOD-Voice_Settings": "Настройки Озвучки",
+  "PENANCEMOD_CHALLENGE_TOGGLE_BTN": "Испытания",
+  "PENANCEMOD_CHALLENGE_TITLE": "Выберите дополнительные эффекты:"
 }

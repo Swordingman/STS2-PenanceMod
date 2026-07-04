@@ -15,6 +15,9 @@ using System.Collections.Generic;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using PenanceMod.PenanceModCode.Relics;
+using PenanceMod.Scripts.Utils;
+using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -125,6 +128,59 @@ public class BarrierPower : CustomPowerModel
             if (judgement != null && judgement.Amount > 0)
             {
                 await judgement.TriggerJudgementDamageAsync(dealer, choiceContext);
+            }
+        }
+    }
+
+    // ==========================================
+    // 🌟 挑战 1：屏障上限等同于最大生命值
+    // ==========================================
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
+    {
+        // 1. 必须确保变动的是“我们自己”这个屏障能力，且拥有者是玩家
+        if (power == this && Owner != null && Owner.IsPlayer && Owner.Player != null)
+        {
+            // 2. 尝试获取苦修之章遗物实例
+            var chapterRelic = Owner.Player.GetRelic<ChapterOfPenance>();
+
+            // 3. 如果遗物存在，且启用了挑战1
+            if (chapterRelic != null && PenanceConfig.EnabledChallenges.Contains(1))
+            {
+                // 如果当前层数超过了最大生命值，强制回调
+                if (this.Amount > Owner.MaxHp)
+                {
+                    this.SetAmount(Owner.MaxHp);
+                    
+                    // 直接使用刚才获取的实例闪烁，省去再次查找的开销
+                    chapterRelic.Flash();
+                }
+            }
+        }
+    }
+
+    // ==========================================
+    // 🌟 挑战 2：回合开始时屏障衰减 50%
+    // ==========================================
+    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+    {
+        // 1. 确保是当前能力拥有者的回合开始了
+        if (Owner != null && Owner == player.Creature)
+        {
+            // 2. 尝试获取苦修之章遗物实例
+            var chapterRelic = player.GetRelic<ChapterOfPenance>();
+
+            // 3. 如果遗物存在，且启用了挑战2
+            if (chapterRelic != null && PenanceConfig.EnabledChallenges.Contains(2))
+            {
+                if (this.Amount > 0)
+                {
+                    // 闪烁遗物提示玩家触发了衰减
+                    chapterRelic.Flash();
+
+                    // C# 整数除法自动向下取整，比如 5 / 2 = 2。我们减去这部分，保留 3
+                    int decayAmount = this.Amount / 2;
+                    this.SetAmount(this.Amount - decayAmount);
+                }
             }
         }
     }

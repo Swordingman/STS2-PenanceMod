@@ -13,6 +13,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using PenanceMod.PenanceModCode.Character;
 using BaseLib.Utils;
+using PenanceMod.PenanceModCode.Relics;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Models;
 
 namespace PenanceMod.Scripts.Potions;
 
@@ -42,16 +45,14 @@ public class BottleOfWolfBlood : CustomPotionModel
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
         var owner = Owner;
-        if (owner?.Creature?.CombatState == null) return;
+        if (owner?.Creature?.CombatState == null)
+            return;
 
-        // 获取选择次数
         int amount = DynamicVars.Cards.IntValue;
         var allCurses = WolfCurseHelper.GetAllWolfCurses();
 
-        // 根据药水效力，循环执行对应的选择次数
         for (int i = 0; i < amount; i++)
         {
-            // 1. 使用 CardFactory 实例化 3 张不重复的随机狼群诅咒
             var cardsToChoose = CardFactory.GetDistinctForCombat(
                 owner,
                 allCurses,
@@ -59,18 +60,38 @@ public class BottleOfWolfBlood : CustomPotionModel
                 owner.RunState.Rng.CombatCardGeneration
             ).ToList();
 
-            // 2. 呼出三选一界面
+            if (HasCarnivalMoment(owner))
+            {
+                UpgradeWolfCursePreviewCards(cardsToChoose);
+            }
+
             var chosenCard = await CardSelectCmd.FromChooseACardScreen(
-                choiceContext, 
-                cardsToChoose, 
-                owner, 
+                choiceContext,
+                cardsToChoose,
+                owner,
                 canSkip: false
             );
 
-            // 3. 将选中的卡生成并加入手牌 (PileType.Hand)
             if (chosenCard != null)
             {
                 await CardPileCmd.AddGeneratedCardToCombat(chosenCard, PileType.Hand, owner);
+            }
+        }
+    }
+
+    private static bool HasCarnivalMoment(Player owner)
+    {
+        return owner.Relics.Any(relic => relic is CarnivalMoment);
+    }
+
+    private static void UpgradeWolfCursePreviewCards(IEnumerable<CardModel> cards)
+    {
+        foreach (var card in cards)
+        {
+            if (card.Tags.Contains(PenanceCardTags.CurseOfWolves) && card.IsUpgradable)
+            {
+                card.UpgradeInternal();
+                card.FinalizeUpgradeInternal();
             }
         }
     }

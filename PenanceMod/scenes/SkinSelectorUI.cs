@@ -5,14 +5,21 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using PenanceMod.PenanceModCode.Character;
-using PenanceMod.Scripts.Utils; // 确保引入你的人物主类所在的命名空间
+using PenanceMod.Scripts.Utils; // 确保引入你的人物主类及配置类所在的命名空间
 
 public partial class SkinSelectorUI : Control
 {
+    // --- 皮肤选择器相关的节点 ---
     private TextureButton? _leftBtn;
     private TextureButton? _rightBtn;
     private Label? _nameLabel;
     private Node2D? _modelPlaceholder;
+
+    // --- 挑战选项相关的节点 ---
+    private Button? _toggleMenuBtn;
+    private PanelContainer? _challengeMenuPanel;
+    private Label? _challengeTitleLabel;
+    private VBoxContainer? _challengesVBox;
 
     // 当前支持的最大皮肤数量
     private const int MaxSkins = 3; 
@@ -20,55 +27,119 @@ public partial class SkinSelectorUI : Control
 
     public override void _Ready()
     {
-        // 1. 严格对应 .tscn 的节点树层级获取节点 (已修改为 ArrowContainer)
+        // 1. 严格对应 .tscn 的节点树层级获取节点
         _leftBtn = GetNode<TextureButton>("SkinSelectorPanel/ArrowContainer/LeftArrow");
         _rightBtn = GetNode<TextureButton>("SkinSelectorPanel/ArrowContainer/RightArrow");
         _nameLabel = GetNode<Label>("SkinSelectorPanel/SkinName");
         _modelPlaceholder = GetNode<Node2D>("SkinSelectorPanel/SubViewportContainer/SubViewport/ModelInstancePlaceholder");
 
-        // 2. 动态加载解包出来的官方界面箭头贴图
+        // 2. 获取挑战选项相关节点
+        _toggleMenuBtn = GetNode<Button>("ChallengeSelectorPanel/ToggleMenuButton");
+        _challengeMenuPanel = GetNode<PanelContainer>("ChallengeSelectorPanel/ChallengeMenuPanel");
+        _challengeTitleLabel = GetNode<Label>("ChallengeSelectorPanel/ChallengeMenuPanel/VBoxContainer/ChallengeLabel");
+        _challengesVBox = GetNode<VBoxContainer>("ChallengeSelectorPanel/ChallengeMenuPanel/VBoxContainer");
+
+        // 3. 动态加载解包出来的官方界面箭头贴图
         var leftArrowTex = GD.Load<Texture2D>("res://images/packed/common_ui/settings_tiny_left_arrow.png");
         var rightArrowTex = GD.Load<Texture2D>("res://images/packed/common_ui/settings_tiny_right_arrow.png");
         
-        // 3. 给按钮赋予贴图 (解决箭头不可见的问题)
+        // 4. 给按钮赋予贴图
         if (_leftBtn != null) _leftBtn.TextureNormal = leftArrowTex;
         if (_rightBtn != null) _rightBtn.TextureNormal = rightArrowTex;
 
-        // 4. 绑定左右箭头点击事件
+        // 5. 绑定左右箭头点击事件
         if (_leftBtn != null) _leftBtn.Pressed += OnLeftPressed;
         if (_rightBtn != null) _rightBtn.Pressed += OnRightPressed;
 
-        // 5. 从官方 ModelDb 获取全局唯一的斥罪角色模型实例
+        // 从官方 ModelDb 获取全局唯一的斥罪角色模型实例
         _currentCharacter = ModelDb.Character<PenanceMod.PenanceModCode.Character.PenanceMod>();
         
+        // 6. 初始化挑战选项 UI
+        InitChallengeUI();
+
         UpdateUI();
+    }
+
+    private void InitChallengeUI()
+    {
+        if (_toggleMenuBtn != null) 
+            _toggleMenuBtn.Text = new LocString("characters", "PENANCEMOD_CHALLENGE_TOGGLE_BTN").GetFormattedText();
+            
+        if (_challengeTitleLabel != null) 
+            _challengeTitleLabel.Text = new LocString("characters", "PENANCEMOD_CHALLENGE_TITLE").GetFormattedText();
+
+        // 核心改造：动态探测并生成复选框
+        if (_challengesVBox != null)
+        {
+            int index = 1;
+            while (true)
+            {
+                string locKey = $"PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.{index}";
+                
+                // 如果本地化文件里存在这个词条，就生成一个选项
+                if (LocString.Exists("relics", locKey))
+                {
+                    CheckBox cb = new CheckBox();
+                    cb.Text = new LocString("relics", locKey).GetFormattedText();
+                    
+                    // 还原你在 tscn 里设置的字体大小
+                    cb.AddThemeFontSizeOverride("font_size", 24);
+                    
+                    // 读取配置，如果列表里有这个序号，说明被勾选了
+                    cb.ButtonPressed = PenanceConfig.EnabledChallenges.Contains(index);
+
+                    // 局部变量捕获（重要！防止委托闭包问题）
+                    int challengeId = index;
+                    
+                    cb.Toggled += (isToggled) => 
+                    {
+                        if (isToggled && !PenanceConfig.EnabledChallenges.Contains(challengeId))
+                            PenanceConfig.EnabledChallenges.Add(challengeId);
+                        else if (!isToggled)
+                            PenanceConfig.EnabledChallenges.Remove(challengeId);
+                            
+                        ModConfig.SaveDebounced<PenanceConfig>();
+                    };
+
+                    _challengesVBox.AddChild(cb);
+                    index++;
+                }
+                else
+                {
+                    // 如果连续找不到词条，说明挑战条目读取完毕，跳出循环
+                    break; 
+                }
+            }
+        }
+
+        if (_toggleMenuBtn != null && _challengeMenuPanel != null)
+        {
+            _toggleMenuBtn.Pressed += () => 
+            {
+                _challengeMenuPanel.Visible = !_challengeMenuPanel.Visible;
+            };
+        }
     }
 
     private void OnLeftPressed()
     {
-        // 直接修改静态配置变量！
         PenanceConfig.CurrentSkinIndex--;
         if (PenanceConfig.CurrentSkinIndex < 0) 
         {
             PenanceConfig.CurrentSkinIndex = MaxSkins - 1;
         }
-
         ModConfig.SaveDebounced<PenanceConfig>();
-            
         UpdateUI();
     }
 
     private void OnRightPressed()
     {
-        // 直接修改静态配置变量！
         PenanceConfig.CurrentSkinIndex++;
         if (PenanceConfig.CurrentSkinIndex >= MaxSkins) 
         {
             PenanceConfig.CurrentSkinIndex = 0;
         }
-
         ModConfig.SaveDebounced<PenanceConfig>();
-            
         UpdateUI();
     }
 
@@ -97,7 +168,6 @@ public partial class SkinSelectorUI : Control
             }
 
             // --- 3. 根据当前皮肤编号，动态载入对应的动画 .tscn ---
-            // 此时由于 PenanceConfig 变了，这里获取到的 CustomVisualPath 也会跟着变！
             string modelPath = _currentCharacter.CustomVisualPath;
 
             if (Godot.FileAccess.FileExists(modelPath))

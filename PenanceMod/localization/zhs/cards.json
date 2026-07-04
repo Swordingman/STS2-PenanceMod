@@ -12,7 +12,7 @@
   "PENANCEMOD-AMBUSH_SHADOW.description": "随机丢弃{Ambush-Magic:diff()}张手牌。\n获得1层[gold]无实体[/gold]。",
 
   "PENANCEMOD-ART_OF_THE_HIDING_FOX.title": "隐狐之艺",
-  "PENANCEMOD-ART_OF_THE_HIDING_FOX.description": "跳过你的回合。获得{Fox-Magic:diff()}点[gold]力量[/gold]、[gold]裁决[/gold]和[gold]荆棘环身[/gold]。获得{Fox-Barrier:diff()}点[gold]屏障[/gold]。{IfUpgraded:show:\n[purple]本回合[gold]保留[/gold]手牌。[/purple]|}",
+  "PENANCEMOD-ART_OF_THE_HIDING_FOX.description": "跳过你的回合。获得{Fox-Magic:diff()}点[gold]力量[/gold]、[gold]裁决[/gold]和[gold]荆棘环身[/gold]。获得{Fox-Barrier:diff()}点[gold]屏障[/gold]。{IfUpgraded:show:\n[purple]本回合[gold]保留[/gold]手牌以及能量。[/purple]|}",
 
   "PENANCEMOD-ASCETICISM.title": "苦行",
   "PENANCEMOD-ASCETICISM.description": "每当你的[gold]屏障[/gold]受到伤害时，获得{Asceticism-Magic:diff()}层[gold]荆棘环身[/gold]。",
@@ -206,7 +206,7 @@
   "PENANCEMOD-RESOLUTE.description": "获得3点[gold]屏障[/gold]。\n获得{Resolute-BarrierX:diff()}点[gold]屏障[/gold]X次，获得{IfUpgraded:show:X+1|X}点[gold]裁决[/gold]。",
 
   "PENANCEMOD-TANGLED_THREADS.title": "缝线缠身",
-  "PENANCEMOD-TANGLED_THREADS.description": "随机[gold]消耗[/gold]手牌中3张牌。\n随机造成{IfUpgraded:show:X+X|X}次伤害，伤害值等于被[gold]消耗[/gold]牌的总耗能。\n然后抽5张牌。",
+  "PENANCEMOD-TANGLED_THREADS.description": "消耗所有{energyPrefix:energyIcons(1)}。\n随机选择等同于所消耗能量数量的手牌，使其在本场战斗中耗能变为0。{IfUpgraded:show:\n返还{energyPrefix:energyIcons(1)}。|}",
 
   "PENANCEMOD-TEMPERING.title": "淬炼",
   "PENANCEMOD-TEMPERING.description": "失去3点生命值。\n获得{Tempering-Barrier:diff()}点[gold]屏障[/gold]。",

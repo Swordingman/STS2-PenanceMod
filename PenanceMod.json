@@ -3,9 +3,11 @@
   "name": "PenanceMod",
   "author": "Chirpchump",
   "description": "杀戮尖塔2斥罪模组",
-  "version": "0.9.50",
+  "version": "0.9.90",
   "has_pck": true,
   "has_dll": true,
-  "dependencies": ["BaseLib"],
+  "dependencies": [
+    { "id": "BaseLib", "min_version": "3.3.1" }
+  ],
   "affects_gameplay": true
 }

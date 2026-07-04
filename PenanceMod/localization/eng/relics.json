@@ -2,6 +2,7 @@
   "PENANCEMOD-PENANCE_BASIC_RELIC.title": "Penance Badge",
   "PENANCEMOD-PENANCE_BASIC_RELIC.description": "At the start of combat, gain [gold]Barrier[/gold] equal to [blue]10%[/blue] of your Max HP and [blue]1[/blue] [gold]Judgment[/gold], and gain all stored [gold]Barrier[/gold].\nHealing from Potions and Resting is converted into an equal amount of [gold]Barrier[/gold] (stored out of combat).\nAt the end of combat, convert [blue]10%[/blue] of your remaining [gold]Barrier[/gold] into HP healing.",
   "PENANCEMOD-PENANCE_BASIC_RELIC.flavor": "March forward upon the thorns, carving a path where none existed before.",
+  "PENANCEMOD-PENANCE_BASIC_RELIC.short_description": "At the start of combat, gain Barrier, Judgment, and Stored Barrier. Non-combat healing is converted into Stored Barrier. At the end of combat, heal based on your remaining Barrier percentage. (Enter the game to view more.)",
 
   "PENANCEMOD-BLACK_UMBRELLA.title": "Black Umbrella",
   "PENANCEMOD-BLACK_UMBRELLA.description": "Once per combat, when your [gold]Block[/gold] is broken for the first time, apply [blue]{Umbrella-Vuln}[/blue] [gold]Vulnerable[/gold] to the attacker and gain [blue]{Umbrella-Str}[/blue] [gold]Strength[/gold].",
@@ -53,5 +54,13 @@
 
   "PENANCEMOD-THORNY_ROAD.title": "The Thorny Road That Continues",
   "PENANCEMOD-THORNY_ROAD.flavor": "It pricks you constantly, reminding you of the weight of justice.",
-  "PENANCEMOD-THORNY_ROAD.description": "At the start of combat, gain [gold]Barrier[/gold] equal to [blue]30%[/blue] of your Max HP and [blue]3[/blue] [gold]Judgment[/gold], and gain all stored [gold]Barrier[/gold].\nWhenever you kill an enemy in combat, store [gold]Barrier[/gold] equal to [blue]10%[/blue] of your Max HP into the relic.\nHealing from [gold]Rest Sites[/gold] and [gold]Potions[/gold] is converted into an equal amount of [gold]Barrier[/gold] (stored into the relic outside of combat).\nAt the end of combat, convert [blue]10%[/blue] of your remaining [gold]Barrier[/gold] into HP healing."
+  "PENANCEMOD-THORNY_ROAD.description": "At the start of combat, gain [gold]Barrier[/gold] equal to [blue]30%[/blue] of your Max HP and [blue]3[/blue] [gold]Judgment[/gold], and gain all stored [gold]Barrier[/gold].\nWhenever you kill an enemy in combat, store [gold]Barrier[/gold] equal to [blue]10%[/blue] of your Max HP into the relic.\nHealing from [gold]Rest Sites[/gold] and [gold]Potions[/gold] is converted into an equal amount of [gold]Barrier[/gold] (stored into the relic outside of combat).\nAt the end of combat, convert [blue]10%[/blue] of your remaining [gold]Barrier[/gold] into HP healing.",
+
+  "PENANCEMOD-CHAPTER_OF_PENANCE.title": "Chapter of Penance",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.description": "[gold]【Path of Thorns】[/gold]\n{challenges}",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.flavor": "The more you bear, the heavier the judgment.",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.1": "Your Barrier cap is equal to your Max HP.",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.2": "At the start of your turn, Barrier decays by 50%.",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.3": "After Thorn Aura triggers, its stacks are reduced by 50%.",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.4": "When automatically playing a Wolfpack Curse, lose 1 Energy."
 }

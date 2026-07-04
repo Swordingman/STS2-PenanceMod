@@ -10,6 +10,8 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using PenanceMod.Scripts.Utils;
+using PenanceMod.PenanceModCode.Relics;
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -56,6 +58,19 @@ public class ThornAuraPower : CustomPowerModel
                     {
                         await PowerCmd.Apply<WeakPower>(choiceContext, enemy, weakAmount, Owner, null);
                     }
+                }
+            }
+
+            // 🌟 挑战 3：荆棘环身 - 触发后层数减少 50%
+            var chapterRelic = Owner.Player?.GetRelic<ChapterOfPenance>();
+            if (chapterRelic != null && PenanceConfig.EnabledChallenges.Contains(3))
+            {
+                // 向下取整，比如 5 层 -> 减少 2 层 -> 变为 3 层
+                int reduction = Amount / 2;
+                if (reduction > 0)
+                {
+                    SetAmount(Amount - reduction);
+                    chapterRelic.Flash(); // 直接用拿到的遗物实例闪烁
                 }
             }
         }

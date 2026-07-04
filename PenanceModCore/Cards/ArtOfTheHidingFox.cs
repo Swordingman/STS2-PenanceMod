@@ -3,6 +3,7 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -31,7 +32,6 @@ public class ArtOfTheHidingFox : PenanceBaseCard
         HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves)
     ];
     
-    // �?顺序注册动态变量：索引0是Buff量，索引1是屏障量
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Fox-Magic", 3m)
             .WithTooltip("PENANCEMOD-JUDGEMENT")
@@ -60,6 +60,21 @@ public class ArtOfTheHidingFox : PenanceBaseCard
             _autoPlaying = false;
         }
     }
+    private bool _retainEnergyOnce;
+
+    public override bool ShouldReceiveCombatHooks => base.ShouldReceiveCombatHooks || _retainEnergyOnce;
+
+    public override bool ShouldPlayerResetEnergy(Player player)
+    {
+        if (!_retainEnergyOnce)
+            return true;
+
+        if (player != Owner)
+            return true;
+
+        _retainEnergyOnce = false;
+        return false;
+    }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -79,30 +94,25 @@ public class ArtOfTheHidingFox : PenanceBaseCard
             await AudioManager.PlayCustomSfx(audioPath);
         }
         
-        // �?安全取值：按注册顺序提�?
         var vars = DynamicVars.Values.ToList();
         int buffAmount = vars.Count > 0 ? vars[0].IntValue : 3;
         int barrierAmount = vars.Count > 1 ? vars[1].IntValue : 25;
 
-        // 1. 获得力量 (假设二代原版依然�?StrengthPower)
-        await PowerCmd.Apply<StrengthPower>(choiceContext,creature, buffAmount, creature, this);
-        
-        // 2. 获得裁决 (直接调用基类方法)
+        await PowerCmd.Apply<StrengthPower>(choiceContext, creature, buffAmount, creature, this);
         await ApplyJudgement(creature, buffAmount);
-        
-        // 3. 获得荆棘环身 (这里假设你已经写�?ThornAuraPower)
-        await PowerCmd.Apply<ThornAuraPower>(choiceContext,creature, buffAmount, creature, this);
-        
-        // 4. 获得屏障 (直接调用基类方法)
+        await PowerCmd.Apply<ThornAuraPower>(choiceContext, creature, buffAmount, creature, this);
         await ApplyBarrier(creature, barrierAmount);
 
-        // 5. 升级后保留手�?
         if (IsUpgraded)
         {
-            await PowerCmd.Apply<RetainHandPower>(choiceContext,creature, 1, creature, this);
+            if (Owner.PlayerCombatState is { } combatState)
+            {
+                _retainEnergyOnce = true;
+            }
+
+            await PowerCmd.Apply<RetainHandPower>(choiceContext, creature, 1, creature, this);
         }
 
-        // 6. 强制结束回合
         PlayerCmd.EndTurn(Owner, false);
     }
 

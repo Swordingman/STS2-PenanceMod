@@ -146,9 +146,21 @@ public class PenanceMod : PlaceholderCharacterModel
     ];
 
     // 初始遗物
-    public override IReadOnlyList<RelicModel> StartingRelics => [
-        ModelDb.Relic<PenanceBasicRelic>(),
-    ];
+    public override IReadOnlyList<RelicModel> StartingRelics
+    {
+        get
+        {
+            var relics = new System.Collections.Generic.List<RelicModel>
+            {
+                ModelDb.Relic<PenanceBasicRelic>() 
+            };
+            if (PenanceConfig.EnabledChallenges.Count > 0)
+            {
+                relics.Add(ModelDb.Relic<ChapterOfPenance>()); 
+            }
+            return relics;
+        }
+    }
 
     // 攻击建筑师的攻击特效列表
     public override List<string> GetArchitectAttackVfx() => [

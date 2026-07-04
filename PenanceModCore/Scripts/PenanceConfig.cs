@@ -16,6 +16,9 @@ public sealed class PenanceConfig : SimpleModConfig
 {
     [ConfigHideInUI]
     public static int CurrentSkinIndex { get; set; } = 0;
+    
+    [ConfigHideInUI]
+    public static System.Collections.Generic.List<int> EnabledChallenges { get; set; } = new();
 
     // ===================================
     // 语音设置 (Voice Settings)

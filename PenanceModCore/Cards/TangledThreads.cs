@@ -57,8 +57,9 @@ public class TangledThreads : PenanceBaseCard
         var player = Owner;
         var creature = player.Creature;
         var combatState = creature.CombatState;
+        var playerCombatState = player.PlayerCombatState;
 
-        if (combatState == null)
+        if (combatState == null || playerCombatState == null)
             return;
 
         await AudioManager.PlayCustomSfx(WolfCurseSfx);
@@ -72,44 +73,44 @@ public class TangledThreads : PenanceBaseCard
                 VoiceLanguage.IT => "res://PenanceMod/scenes/audio/tangledthreads_it.wav",
                 _ => "res://PenanceMod/scenes/audio/tangledthreads_cn.wav",
             };
-            await AudioManager.PlayCustomSfx(audioPath);    
+
+            await AudioManager.PlayCustomSfx(audioPath);
         }
 
+        int energyLost = System.Math.Max(0, (int)playerCombatState.Energy);
+
+        if (energyLost <= 0)
+            return;
+
+        await PlayerCmd.LoseEnergy(energyLost, player);
+
+        if (IsUpgraded)
+        {
+            await PlayerCmd.GainEnergy(1, player);
+        }
 
         var hand = PileType.Hand.GetPile(player);
 
         var candidates = hand.Cards
             .Where(card => !ReferenceEquals(card, this))
+            .Where(CanBeMadeFreeThisCombat)
             .ToList();
 
-        int targetExhaustCount = 3;
-        int actualExhaustCount = System.Math.Min(targetExhaustCount, candidates.Count);
-        var cardsToExhaust = PickRandomCards(candidates, actualExhaustCount);
-        int totalCost = 0;
+        int actualCount = System.Math.Min(energyLost, candidates.Count);
+        var cardsToMakeFree = PickRandomCards(candidates, actualCount);
 
-        foreach (CardModel card in cardsToExhaust)
+        foreach (CardModel card in cardsToMakeFree)
         {
-            totalCost += GetPositiveCurrentEnergyCost(card);
-            await CardCmd.Exhaust(choiceContext, card, causedByEthereal: false);
+            card.SetToFreeThisCombat();
         }
+    }
 
-        int hitCount = IsUpgraded ? targetExhaustCount * 2 : targetExhaustCount;
+    private static bool CanBeMadeFreeThisCombat(CardModel card)
+    {
+        if (card.EnergyCost.CostsX)
+            return false;
 
-        if (totalCost > 0 && hitCount > 0)
-        {
-            await Cmd.Wait(0.1f);
-
-            await DamageCmd.Attack(totalCost)
-                .FromCard(this)
-                .TargetingRandomOpponents(combatState, allowDuplicates: true)
-                .WithHitCount(hitCount)
-                .Unpowered()
-                .WithNoAttackerAnim()
-                .WithHitFx(VfxCmd.giantHorizontalSlashPath) 
-                .Execute(choiceContext);
-        }
-
-        await CardPileCmd.Draw(choiceContext, 5, player);
+        return card.EnergyCost.GetWithModifiers(CostModifiers.All) > 0;
     }
 
     private List<CardModel> PickRandomCards(List<CardModel> source, int count)
@@ -125,15 +126,6 @@ public class TangledThreads : PenanceBaseCard
         }
 
         return result;
-    }
-
-    private static int GetPositiveCurrentEnergyCost(CardModel card)
-    {
-        if (card.EnergyCost.CostsX)
-            return 0;
-
-        int cost = card.EnergyCost.GetWithModifiers(CostModifiers.All);
-        return System.Math.Max(0, cost);
     }
 
     protected override void OnUpgrade()

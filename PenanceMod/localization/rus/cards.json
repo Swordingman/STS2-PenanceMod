@@ -12,7 +12,7 @@
   "PENANCEMOD-AMBUSH_SHADOW.description": "Случайно сбрасывает {Ambush-Magic:diff()} карт.\nДаёт 1 [gold]Непробиваемость[/gold].",
 
   "PENANCEMOD-ART_OF_THE_HIDING_FOX.title": "Искусство Скрытой Лисы",
-  "PENANCEMOD-ART_OF_THE_HIDING_FOX.description": "Пропускает ваш ход. Получает {Fox-Magic:diff()} [gold]Силы[/gold], [gold]Правосудия[/gold] и [gold]Тернистой Ауры[/gold]. Получает {Fox-Barrier:diff()} [gold]Барьера[/gold].{IfUpgraded:show:\n[purple][gold]Задерживает[/gold] вашу руку в этом ходу.[/purple]|}",
+  "PENANCEMOD-ART_OF_THE_HIDING_FOX.description": "Пропускает ваш ход. Получает {Fox-Magic()} [gold]Силы[/gold], [gold]Правосудия[/gold] и [gold]Тернистой Ауры[/gold]. Получает {Fox-Barrier()} [gold]Барьера[/gold].{IfUpgraded:show:\n[purple][gold]Задерживает[/gold] вашу руку и энергию в этом ходу.[/purple]|}",
 
   "PENANCEMOD-ASCETICISM.title": "Аскетизм",
   "PENANCEMOD-ASCETICISM.description": "Когда ваш [gold]Барьер[/gold] получает урон, получает {Asceticism-Magic:diff()} [gold]Тернистой Ауры[/gold].",
@@ -207,7 +207,7 @@
   "PENANCEMOD-RESOLUTE.description": "Получает 3 [gold]Барьера[/gold].\nПолучает {Resolute-BarrierX:diff()} [gold]Барьера[/gold] X раз, получает {IfUpgraded:show:X+1|X} [gold]Правосудия[/gold].",
 
   "PENANCEMOD-TANGLED_THREADS.title": "Запутанные Нити",
-  "PENANCEMOD-TANGLED_THREADS.description": "Случайно [gold]Сжигает[/gold] 3 карты из руки.\nНаносит урон {IfUpgraded:show:X+X|X} раз случайным врагам, равный суммарной стоимости сожжённых карт.\nЗатем берёт 5 карт.",
+  "PENANCEMOD-TANGLED_THREADS.description": "Тратит всю {energyPrefix:energyIcons(1)}.\nСлучайно выбирает карты в руке в количестве, равном потраченной {energyPrefix:energyIcons(1)}. Они стоят 0 в этом бою.{IfUpgraded:show:\nВозвращает {energyPrefix:energyIcons(1)}.|}",
 
   "PENANCEMOD-TEMPERING.title": "Закалка",
   "PENANCEMOD-TEMPERING.description": "Теряет 3 HP.\nПолучает {Tempering-Barrier:diff()} [gold]Барьера[/gold].",

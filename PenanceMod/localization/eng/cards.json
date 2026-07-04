@@ -12,7 +12,7 @@
   "PENANCEMOD-AMBUSH_SHADOW.description": "Randomly discard {Ambush-Magic:diff()} cards.\nGain 1 [gold]Intangible[/gold].",
 
   "PENANCEMOD-ART_OF_THE_HIDING_FOX.title": "La Volpe Nascosta",
-  "PENANCEMOD-ART_OF_THE_HIDING_FOX.description": "Skip your turn. Gain {Fox-Magic:diff()} [gold]Strength[/gold], [gold]Judgment[/gold], and [gold]Thorn Aura[/gold]. Gain {Fox-Barrier:diff()} [gold]Barrier[/gold].{IfUpgraded:show:\n[purple][gold]Retain[/gold] your hand this turn.[/purple]|}",
+  "PENANCEMOD-ART_OF_THE_HIDING_FOX.description": "Skip your turn. Gain {Fox-Magic()} [gold]Strength[/gold], [gold]Judgment[/gold], and [gold]Thorn Aura[/gold]. Gain {Fox-Barrier()} [gold]Barrier[/gold].{IfUpgraded:show:\n[purple][gold]Retain[/gold] your hand and Energy this turn.[/purple]|}",
 
   "PENANCEMOD-ASCETICISM.title": "Asceticism",
   "PENANCEMOD-ASCETICISM.description": "Whenever your [gold]Barrier[/gold] takes damage, gain {Asceticism-Magic:diff()} [gold]Thorn Aura[/gold].",
@@ -207,7 +207,7 @@
   "PENANCEMOD-RESOLUTE.description": "Gain 3 [gold]Barrier[/gold].\nGain {Resolute-BarrierX:diff()} [gold]Barrier[/gold] X times, gain {IfUpgraded:show:X+1|X} [gold]Judgment[/gold].",
 
   "PENANCEMOD-TANGLED_THREADS.title": "Lockstitch",
-  "PENANCEMOD-TANGLED_THREADS.description": "Randomly [gold]Exhaust[/gold] 3 cards from your hand.\nDeal damage {IfUpgraded:show:X+X|X} times to random enemies, equal to the total cost of exhausted cards.\nThen draw 5 cards.",
+  "PENANCEMOD-TANGLED_THREADS.description": "Spend all {energyPrefix:energyIcons(1)}.\nRandomly choose cards in your hand equal to the amount of {energyPrefix:energyIcons(1)} spent. They cost 0 this combat.{IfUpgraded:show:\nRefund {energyPrefix:energyIcons(1)}.|}",
 
   "PENANCEMOD-TEMPERING.title": "Tempering",
   "PENANCEMOD-TEMPERING.description": "Lose 3 HP.\nGain {Tempering-Barrier:diff()} [gold]Barrier[/gold].",

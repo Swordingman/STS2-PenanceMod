@@ -19,5 +19,7 @@
   "PENANCEMOD-PENANCE_MOD.skin2": "Scribing",
   "PENANCEMOD-WOLF_CURSE_LIMITER": "Wolf Curses have reached the limit for this turn!",
   "PENANCEMOD-CharacterVoice": "Voice Language Configuration",
-  "PENANCEMOD-Voice_Settings": "Voice Settings"
+  "PENANCEMOD-Voice_Settings": "Voice Settings",
+  "PENANCEMOD_CHALLENGE_TOGGLE_BTN": "Challenge Options",
+  "PENANCEMOD_CHALLENGE_TITLE": "Select additional effects here:"
 }

@@ -20,5 +20,6 @@
   "PENANCEMOD-WOLF_CURSE_LIMITER": "本回合狼群已达上限！",
   "PENANCEMOD-CharacterVoice": "语音语言配置",
   "PENANCEMOD-Voice_Settings": "语音设置",
-  "PENANCEMOD-CharacterVoice_HoverTip": "Switch the operator's voice lines triggered by in-game card interactions.\nNote: Some operators currently lack specific voice recordings in certain minor languages (e.g., Italian). If no audio is available for the selected language, the default Chinese voice recording will be played automatically"
+  "PENANCEMOD_CHALLENGE_TOGGLE_BTN": "挑战选项",
+  "PENANCEMOD_CHALLENGE_TITLE": "在这里可以选择附加效果："
 }
