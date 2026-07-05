@@ -41,7 +41,8 @@ public class ThornAuraPower : CustomPowerModel
                 Amount,               
                 ValueProp.Unpowered,  
                 Owner,                
-                null                  
+                null,
+                null               
             );
 
             var lawPower = Owner.GetPower<InTheNameOfTheLawPower>();

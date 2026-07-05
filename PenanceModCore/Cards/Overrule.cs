@@ -37,7 +37,7 @@ public class Overrule : PenanceBaseCard
 
         // 2. 造成伤害
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(target)
             .Execute(choiceContext);
 

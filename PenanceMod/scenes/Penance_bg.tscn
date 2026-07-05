@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dxdmnheebwy3h"]
 
-[ext_resource type="Script" uid="uid://bd0u42ikrjqf8" path="res://PenanceMod/scenes/SkinSelectorUI.cs" id="1_ag528"]
+[ext_resource type="Script" uid="uid://djpeoacvxcnpi" path="res://PenanceModCore/Patches/SkinSelectorUI.cs" id="1_ag528"]
 [ext_resource type="Texture2D" uid="uid://xisn75xejlh6" path="res://penance.png" id="1_cmeyh"]
 
 [node name="Control" type="Control"]

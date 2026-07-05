@@ -114,7 +114,7 @@ public class FinaleCatastrophe : PenanceBaseCard
 
             if (target != null)
             {
-                await CreatureCmd.Damage(choiceContext, target, 1, ValueProp.Unpowered, this);
+                await CreatureCmd.Damage(choiceContext, target, 1, ValueProp.Unpowered, this, cardPlay);
                 VfxCmd.PlayOnCreatureCenter(target, VfxCmd.slashPath);
                 NGame.Instance?.ScreenShake(ShakeStrength.Weak, ShakeDuration.Short);
                 await Cmd.Wait(0.05f);

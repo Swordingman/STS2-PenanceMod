@@ -56,8 +56,20 @@ public class TrialDamageVar : DamageVar
 
         if (runGlobalHooks && card.Owner != null)
         {
-            // 注意这里改回了 All，因为我们希望 UI 能正确计算并显示“活力”、易伤和虚弱等！
-            num = Hook.ModifyDamage(card.Owner.RunState, card.CombatState, target, card.Owner.Creature, num, Props, card, ModifyDamageHookType.All, previewMode, out IEnumerable<AbstractModel> _);
+            // 在 card 后面补上 null 作为 cardPlay 参数
+            num = Hook.ModifyDamage(
+                card.Owner.RunState, 
+                card.CombatState, 
+                target, 
+                card.Owner.Creature, 
+                num, 
+                Props, 
+                card,                          // 7. cardSource
+                null,                          // 8. cardPlay (预览阶段传 null)
+                ModifyDamageHookType.All,      // 9. hookType
+                previewMode,                   // 10. previewMode
+                out IEnumerable<AbstractModel> _ // 11. modifiers (丢弃)
+            );
         }
 
         this.PreviewValue = num;

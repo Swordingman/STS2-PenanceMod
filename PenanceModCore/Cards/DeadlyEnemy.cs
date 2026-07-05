@@ -63,7 +63,7 @@ public class DeadlyEnemy : PenanceBaseCard
         return incomingDamage;
     }
 
-    public override decimal ModifyDamageAdditive(Creature? target, decimal damage, ValueProp props, Creature? dealer, CardModel? cardSource)
+    public override decimal ModifyDamageAdditive(Creature? target, decimal damage, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         if (target != null && target.IsPlayer && damage > 0)
         {

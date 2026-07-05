@@ -44,7 +44,7 @@ public class UnwaveringPower : CustomPowerModel
     // ==========================================
     // 效果 2：受到的伤害减少 30%
     // ==========================================
-    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
+    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         if (Owner != null &&
             target == Owner &&

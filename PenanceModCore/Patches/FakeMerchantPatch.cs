@@ -35,7 +35,11 @@ public static class NFakeMerchant_StartCharacterAnimation_Patch
     {
         try
         {
-            return visuals.SpineAnimation.SetAnimation(animationName);
+            // 1. 先执行设置动画的操作（因为它是 void，所以单列一行）
+            visuals.SpineAnimation.SetAnimation(animationName);
+
+            // 2. 然后获取刚刚设置的动画轨道并返回。
+            return visuals.SpineAnimation.GetCurrentTrack(0); 
         }
         catch (Exception e)
         {

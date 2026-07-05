@@ -65,7 +65,7 @@ public class GuiltyAsCharged : PenanceBaseCard
         int finalDamage = DynamicVars["CalculatedDamage"].IntValue;
 
         await DamageCmd.Attack(finalDamage)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(target)
             .WithHitFx(VfxCmd.heavyBluntPath)
             .Execute(choiceContext);

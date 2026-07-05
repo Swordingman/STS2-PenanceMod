@@ -38,7 +38,7 @@ public class BarbedRebuke : PenanceBaseCard
 
         // 1. 造成基础伤害
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(target)
             .Execute(choiceContext);
 

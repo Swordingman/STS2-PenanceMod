@@ -9,6 +9,7 @@ using PenanceMod.PenanceModCode.Monsters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace PenanceMod.PenanceModCode.Patches;
 
@@ -18,7 +19,8 @@ namespace PenanceMod.PenanceModCode.Patches;
     typeof(decimal),
     typeof(ValueProp),
     typeof(Creature),
-    typeof(CardModel))]
+    typeof(CardModel),
+    typeof(CardPlay))]
 public static class CivilianMeatShieldPatch
 {
     [HarmonyPrefix]

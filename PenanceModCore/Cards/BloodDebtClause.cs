@@ -40,7 +40,7 @@ public class BloodDebtClause : PenanceBaseCard
         // 1. 抛弃傻乎乎的 for 循环！直接把所有存活敌人作为一个集合喂给 Targeting。
         // 引擎会自动把它渲染成一次极其爽快的、同时跳字的 AoE 攻击！
         var attackCmd = await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .WithHitFx(VfxCmd.giantHorizontalSlashPath)
             .TargetingAllOpponents(combatState)
             .Execute(choiceContext);

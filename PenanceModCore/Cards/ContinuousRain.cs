@@ -93,7 +93,7 @@ public class ContinuousRain : PenanceBaseCard
 
         VfxCmd.PlayFullScreenInCombat(VfxCmd.giantHorizontalSlashPath, player);
         
-        await CreatureCmd.Damage(choiceContext, allCreatures, DynamicVars.Damage.BaseValue, ValueProp.Unpowered, player, this);
+        await CreatureCmd.Damage(choiceContext, allCreatures, DynamicVars.Damage.BaseValue, ValueProp.Unpowered, player, this, cardPlay);
 
         await PowerCmd.Apply<VulnerablePower>(choiceContext,player, selfDebuff, player, this);
         await PowerCmd.Apply<WeakPower>(choiceContext,player, selfDebuff, player, this);

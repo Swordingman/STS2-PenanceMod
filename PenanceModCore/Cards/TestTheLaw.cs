@@ -30,7 +30,7 @@ public class TestTheLaw : PenanceBaseCard
         if (diff > 0)
         {
             // 超过 10，扣血并获得 3 倍屏障
-            await CreatureCmd.Damage(choiceContext, creature, diff, ValueProp.Unblockable, this);
+            await CreatureCmd.Damage(choiceContext, creature, diff, ValueProp.Unblockable, this, cardPlay);
             await ApplyBarrier(creature, diff * 3);
         }
         else if (diff < 0)

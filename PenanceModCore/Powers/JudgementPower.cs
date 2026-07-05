@@ -63,7 +63,8 @@ public class JudgementPower : CustomPowerModel
             amount: finalDamage,
             props: ValueProp.Unpowered,
             dealer: ownerCreature,
-            cardSource: null
+            cardSource: null,
+            cardPlay: null
         );
 
         var revenge = ownerCreature.GetPower<CodeOfRevengePower>();

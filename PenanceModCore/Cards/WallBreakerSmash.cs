@@ -28,18 +28,18 @@ public class WallBreakerSmash : PenanceBaseCard
     ];
 
     // ==========================================
-    // �?官方标准拦截：使�?ShouldPlay 钩子
+    // �?官方标准拦截：使�?ShouldPlay 钩子
     // ==========================================
     public override bool ShouldPlay(CardModel card, AutoPlayType autoPlayType)
     {
-        // 既然这是个全局广播的钩子，我们只需要管“这张牌自己”要被打出时的情�?
+        // 既然这是个全局广播的钩子，我们只需要管“这张牌自己”要被打出时的情�?
         if (card == this)
         {
             int barrierCost = DynamicVars["WallBreaker-Cost"].IntValue;
             var barrierPower = Owner?.Creature.GetPower<BarrierPower>();
 
             // 屏障不足，直接无情拒绝！
-            // 引擎会自动把 this (本卡) 登记�?preventer�?
+            // 引擎会自动把 this (本卡) 登记�?preventer�?
             if (barrierPower == null || barrierPower.Amount < barrierCost)
             {
                 return false; 
@@ -54,7 +54,7 @@ public class WallBreakerSmash : PenanceBaseCard
         var creature = Owner?.Creature;
         if (creature == null || cardPlay.Target == null) return;
 
-        // 既然能走�?OnPlay，说�?ShouldPlay 已经通过，屏障绝对够扣，闭眼直扣�?
+        // 既然能走�?OnPlay，说�?ShouldPlay 已经通过，屏障绝对够扣，闭眼直扣�?
         int barrierCost = DynamicVars["WallBreaker-Cost"].IntValue;
         var barrierPower = creature.GetPower<BarrierPower>();
 
@@ -72,7 +72,7 @@ public class WallBreakerSmash : PenanceBaseCard
 
         // 大锤落下
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx(VfxCmd.heavyBluntPath)
             .Execute(choiceContext);

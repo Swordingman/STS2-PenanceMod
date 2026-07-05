@@ -60,7 +60,7 @@ public class NoSentenceNeeded : PenanceBaseCard
 
         // 造成 50 (升级 60) 点的基础伤害
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(target)
             .Execute(choiceContext);
     }

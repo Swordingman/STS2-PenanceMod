@@ -37,7 +37,7 @@ public class GavelStrike : PenanceBaseCard
 
         // 1. 造成伤害
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(target)
             .Execute(choiceContext);
 

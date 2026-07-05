@@ -52,12 +52,12 @@ public class ToothForTooth : PenanceBaseCard
 
         // 1. 失去 2 点生命值
         var selfDamageVar = new DamageVar(2, ValueProp.Unblockable);
-        await CreatureCmd.Damage(choiceContext, creature, selfDamageVar, this);
+        await CreatureCmd.Damage(choiceContext, creature, selfDamageVar, this, cardPlay);
         await Cmd.Wait(0.1f);
 
         // 2. 造成伤害
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_blunt")
             .Execute(choiceContext);

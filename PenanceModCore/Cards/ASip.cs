@@ -72,7 +72,9 @@ public class ASip : PenanceBaseCard
                 creature,
                 hpToLose,
                 ValueProp.Unblockable,
-                this
+                creature,
+                this,
+                cardPlay
             );
         }
 

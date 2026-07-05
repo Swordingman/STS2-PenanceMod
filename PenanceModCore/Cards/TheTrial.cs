@@ -51,7 +51,7 @@ public class TheTrial : PenanceBaseCard
         if (target == null) return;
 
         await DamageCmd.Attack(DynamicVars.CalculatedDamage)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(target)
             .WithHitFx(VfxCmd.heavyBluntPath)
             .Execute(choiceContext);

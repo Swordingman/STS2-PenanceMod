@@ -85,6 +85,7 @@ public sealed class MafiaGodfather : CustomMonsterModel
                     cleaner.CurrentHp,
                     ValueProp.Unblockable,
                     Creature,
+                    null,
                     null
                 );
             }
