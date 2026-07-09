@@ -89,6 +89,11 @@ public class SceneInvestigationPower : CustomPowerModel
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
+        if (Owner?.Player != null && cardPlay.Card.Owner != Owner.Player) 
+        {
+            return;
+        }
+
         var currentType = cardPlay.Card.Type;
 
         if (currentType != CardType.Attack && currentType != CardType.Skill && currentType != CardType.Power)

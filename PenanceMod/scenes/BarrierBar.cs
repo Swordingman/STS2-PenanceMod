@@ -32,7 +32,6 @@ public partial class BarrierBar : Control
 
         MouseFilter = MouseFilterEnum.Ignore;
         Visible = false;
-        ZIndex = 2;
 
         // 【位置修正】向左偏移一半宽度 (-74) 使其居中，向上移动 (-25) 悬浮于血条上方
         Position = new Vector2(-134f, -25f);

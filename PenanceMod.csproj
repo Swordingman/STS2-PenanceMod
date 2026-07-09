@@ -13,7 +13,7 @@
     <!-- === 新增：Godot 打包配置 === -->
     <GodotExe>D:\Godot_v4.5.1-stable_mono_win64\Godot_v4.5.1-stable_mono_win64.exe</GodotExe>
     <!-- Godot 里的导出预设名称 -->
-    <ExportPresetName>1</ExportPresetName>
+    <ExportPresetName>Windows DeskTop</ExportPresetName>
   </PropertyGroup>
 
   <ItemGroup>

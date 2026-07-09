@@ -24,11 +24,18 @@ public class CeasefirePower : CustomPowerModel
     // ==========================================
     public override bool ShouldPlay(CardModel card, AutoPlayType autoPlayType)
     {
-        // 如果这能力的拥有者是玩家，并且你想打出的牌是“攻击牌”，直接拦截！
-        if (Owner.IsPlayer && card.Type == CardType.Attack)
+        // 🌟 核心修复：如果这张牌的主人（打牌者）不是当前能力的持有者，直接放行！
+        if (card.Owner != Owner.Player)
+        {
+            return true;
+        }
+
+        // 只有当能力持有者自己想打出攻击牌时，才进行拦截
+        if (card.Type == CardType.Attack)
         {
             return false;
         }
+        
         return true; 
     }
 

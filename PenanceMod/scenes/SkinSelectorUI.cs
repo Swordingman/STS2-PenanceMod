@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using PenanceMod.PenanceModCode.Character;
-using PenanceMod.Scripts.Utils; // 确保引入你的人物主类及配置类所在的命名空间
+using PenanceMod.Scripts.Utils;
 
 public partial class SkinSelectorUI : Control
 {
@@ -22,7 +22,7 @@ public partial class SkinSelectorUI : Control
     private VBoxContainer? _challengesVBox;
 
     // 当前支持的最大皮肤数量
-    private const int MaxSkins = 3; 
+    private const int MaxSkins = 3;
     private PenanceMod.PenanceModCode.Character.PenanceMod? _currentCharacter;
 
     public override void _Ready()
@@ -42,7 +42,7 @@ public partial class SkinSelectorUI : Control
         // 3. 动态加载解包出来的官方界面箭头贴图
         var leftArrowTex = GD.Load<Texture2D>("res://images/packed/common_ui/settings_tiny_left_arrow.png");
         var rightArrowTex = GD.Load<Texture2D>("res://images/packed/common_ui/settings_tiny_right_arrow.png");
-        
+
         // 4. 给按钮赋予贴图
         if (_leftBtn != null) _leftBtn.TextureNormal = leftArrowTex;
         if (_rightBtn != null) _rightBtn.TextureNormal = rightArrowTex;
@@ -53,7 +53,7 @@ public partial class SkinSelectorUI : Control
 
         // 从官方 ModelDb 获取全局唯一的斥罪角色模型实例
         _currentCharacter = ModelDb.Character<PenanceMod.PenanceModCode.Character.PenanceMod>();
-        
+
         // 6. 初始化挑战选项 UI
         InitChallengeUI();
 
@@ -62,10 +62,10 @@ public partial class SkinSelectorUI : Control
 
     private void InitChallengeUI()
     {
-        if (_toggleMenuBtn != null) 
+        if (_toggleMenuBtn != null)
             _toggleMenuBtn.Text = new LocString("characters", "PENANCEMOD_CHALLENGE_TOGGLE_BTN").GetFormattedText();
-            
-        if (_challengeTitleLabel != null) 
+
+        if (_challengeTitleLabel != null)
             _challengeTitleLabel.Text = new LocString("characters", "PENANCEMOD_CHALLENGE_TITLE").GetFormattedText();
 
         // 核心改造：动态探测并生成复选框
@@ -75,29 +75,29 @@ public partial class SkinSelectorUI : Control
             while (true)
             {
                 string locKey = $"PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.{index}";
-                
+
                 // 如果本地化文件里存在这个词条，就生成一个选项
                 if (LocString.Exists("relics", locKey))
                 {
                     CheckBox cb = new CheckBox();
                     cb.Text = new LocString("relics", locKey).GetFormattedText();
-                    
+
                     // 还原你在 tscn 里设置的字体大小
                     cb.AddThemeFontSizeOverride("font_size", 24);
-                    
+
                     // 读取配置，如果列表里有这个序号，说明被勾选了
                     cb.ButtonPressed = PenanceConfig.EnabledChallenges.Contains(index);
 
                     // 局部变量捕获（重要！防止委托闭包问题）
                     int challengeId = index;
-                    
-                    cb.Toggled += (isToggled) => 
+
+                    cb.Toggled += (isToggled) =>
                     {
                         if (isToggled && !PenanceConfig.EnabledChallenges.Contains(challengeId))
                             PenanceConfig.EnabledChallenges.Add(challengeId);
                         else if (!isToggled)
                             PenanceConfig.EnabledChallenges.Remove(challengeId);
-                            
+
                         ModConfig.SaveDebounced<PenanceConfig>();
                     };
 
@@ -107,14 +107,14 @@ public partial class SkinSelectorUI : Control
                 else
                 {
                     // 如果连续找不到词条，说明挑战条目读取完毕，跳出循环
-                    break; 
+                    break;
                 }
             }
         }
 
         if (_toggleMenuBtn != null && _challengeMenuPanel != null)
         {
-            _toggleMenuBtn.Pressed += () => 
+            _toggleMenuBtn.Pressed += () =>
             {
                 _challengeMenuPanel.Visible = !_challengeMenuPanel.Visible;
             };
@@ -124,7 +124,7 @@ public partial class SkinSelectorUI : Control
     private void OnLeftPressed()
     {
         PenanceConfig.CurrentSkinIndex--;
-        if (PenanceConfig.CurrentSkinIndex < 0) 
+        if (PenanceConfig.CurrentSkinIndex < 0)
         {
             PenanceConfig.CurrentSkinIndex = MaxSkins - 1;
         }
@@ -135,7 +135,7 @@ public partial class SkinSelectorUI : Control
     private void OnRightPressed()
     {
         PenanceConfig.CurrentSkinIndex++;
-        if (PenanceConfig.CurrentSkinIndex >= MaxSkins) 
+        if (PenanceConfig.CurrentSkinIndex >= MaxSkins)
         {
             PenanceConfig.CurrentSkinIndex = 0;
         }
@@ -149,7 +149,7 @@ public partial class SkinSelectorUI : Control
         {
             // --- 1. 读取本地化 JSON 里的皮肤名称 ---
             string currentSkinKey = $"PENANCEMOD-PENANCE_MOD.skin{PenanceConfig.CurrentSkinIndex}";
-            
+
             // 假设你在游戏内注册的语言 Table 名字是 "characters"
             if (LocString.Exists("characters", currentSkinKey))
             {
@@ -159,7 +159,7 @@ public partial class SkinSelectorUI : Control
             {
                 _nameLabel.Text = $"Missing Loc: {currentSkinKey}";
             }
-            
+
             // --- 2. 销毁 SubViewport 内旧的小人预览模型 ---
             foreach (Node child in _modelPlaceholder.GetChildren())
             {
@@ -250,16 +250,16 @@ public partial class SkinSelectorUI : Control
                     return; // 播放成功，直接收工
                 }
             }
-            
+
             // 情况 4: 终极兜底方案
             if (current.HasMethod("set_animation"))
             {
-                try 
+                try
                 {
                     current.Call("set_animation", "idle_loop", true, 0);
                     return;
                 }
-                catch {}
+                catch { }
             }
 
             // 把当前节点的所有子节点加入队列，继续往下找
