@@ -62,5 +62,10 @@
   "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.1": "屏障的上限等同于你的最大生命值。",
   "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.2": "回合开始时，屏障衰减50%。",
   "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.3": "荆棘环身在触发后，层数减少50%。",
-  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.4": "自动释放狼群诅咒时，能量会减少1。"
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.4": "自动释放狼群诅咒时，能量会减少1。",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.5": "【排练日】将所有基础打击和防御替换为20张庭审预演。",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.6": "【狼与美女】初始卡组额外携带可以给予狼群诅咒的普通与罕见卡牌，额外获得遗物狂欢时刻。",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.7": "【小锤40】初始卡组额外携带可以给予虚弱的普通与罕见卡牌，额外获得遗物红面具。",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.8": "【大锤80】初始卡组额外携带审判，以及可以给予力量的部分卡牌，额外获得遗物金刚杵。",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.9": "【一天一苹果】初始卡组额外携带可以获得最大生命值的卡牌以及遗物。"
 }

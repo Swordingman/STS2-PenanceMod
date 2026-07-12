@@ -37,7 +37,7 @@ public partial class SkinSelectorUI : Control
         _toggleMenuBtn = GetNode<Button>("ChallengeSelectorPanel/ToggleMenuButton");
         _challengeMenuPanel = GetNode<PanelContainer>("ChallengeSelectorPanel/ChallengeMenuPanel");
         _challengeTitleLabel = GetNode<Label>("ChallengeSelectorPanel/ChallengeMenuPanel/VBoxContainer/ChallengeLabel");
-        _challengesVBox = GetNode<VBoxContainer>("ChallengeSelectorPanel/ChallengeMenuPanel/VBoxContainer");
+        _challengesVBox = GetNode<VBoxContainer>("ChallengeSelectorPanel/ChallengeMenuPanel/VBoxContainer/ScrollContainer/OptionsVBox");
 
         // 3. 动态加载解包出来的官方界面箭头贴图
         var leftArrowTex = GD.Load<Texture2D>("res://images/packed/common_ui/settings_tiny_left_arrow.png");

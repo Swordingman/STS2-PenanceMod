@@ -1,18 +1,17 @@
-using HarmonyLib;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Rooms; // 需要引入 Room 命名空间来判断篝火
 using PenanceMod.PenanceModCode.Powers;
-using PenanceMod.PenanceModCode.Character;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Saves;
-using MegaCrit.Sts2.Core.Saves.Runs;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Combat;
 using System.Threading.Tasks;
+using PenanceMod.PenanceModCode.Character;
+using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.Saves.Runs;
+using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace PenanceMod.PenanceModCode.Relics;
 
@@ -27,8 +26,8 @@ public class PenanceBasicRelic : CustomRelicModel
 
     public override RelicModel? GetUpgradeReplacement() => ModelDb.Relic<ThornyRoad>();
 
-    // 完美保留你药水检测的逻辑
-    public static bool IsPotionActive = false;
+    // ✅ 修复：去掉 static，改为实例属性
+    public bool IsPotionActive { get; set; } = false;
 
     [SavedProperty(SerializationCondition.SaveIfNotTypeDefault)]
     public int PenanceMod_StoredHeal { get; set; }
@@ -88,7 +87,6 @@ public class PenanceBasicRelic : CustomRelicModel
         }
     }
 
-    // 完美保留你的药水开关
     public override Task BeforePotionUsed(PotionModel potion, Creature? target)
     {
         IsPotionActive = true;
@@ -115,41 +113,5 @@ public class PenanceBasicRelic : CustomRelicModel
             Flash();
             AddStoredHeal(originalHealAmount);
         }
-    }
-}
-
-// ✅ 精准拦截补丁：只在“药水状态”或“身处篝火房间”时拦截
-[HarmonyPatch(typeof(Creature), "HealInternal")]
-public static class PotionHealPatch
-{
-    [HarmonyPrefix]
-    public static bool Prefix(Creature __instance, decimal amount)
-    {
-        // 排除非玩家和无意义的数值
-        if (!__instance.IsPlayer || amount <= 0 || __instance.Player == null) return true;
-
-        // 🌟 核心修正：濒死抢救豁免！
-        // 如果玩家血量已经归零或更低，说明这是复活类道具（如瓶装精灵）在救命。
-        // 绝对不能把救命血转成屏障，直接放行原版回血！
-        if (__instance.CurrentHp <= 0) return true;
-
-        var relic = __instance.Player.GetRelic<PenanceBasicRelic>();
-        if (relic != null)
-        {
-            // 条件 1：药水是否正在生效
-            bool isPotion = PenanceBasicRelic.IsPotionActive;
-
-            // 条件 2：玩家当前是否在篝火房间
-            bool isAtCampfire = __instance.Player.RunState.CurrentRoom is RestSiteRoom;
-
-            // 只拦截药水和休息处
-            if (isPotion || isAtCampfire)
-            {
-                relic.TriggerHealingConversion((int)amount);
-                return false; // 阻断原版回血
-            }
-        }
-
-        return true;
     }
 }

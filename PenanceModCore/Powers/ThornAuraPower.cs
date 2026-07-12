@@ -63,7 +63,7 @@ public class ThornAuraPower : CustomPowerModel
 
             // 🌟 挑战 3：荆棘环身 - 触发后层数减少 50%
             var chapterRelic = Owner.Player?.GetRelic<ChapterOfPenance>();
-            if (chapterRelic != null && PenanceConfig.EnabledChallenges.Contains(3))
+            if (chapterRelic != null && chapterRelic.HasChallenge(3))
             {
                 // 向下取整，比如 5 层 -> 减少 2 层 -> 变为 3 层
                 int reduction = Amount / 2;

@@ -62,5 +62,10 @@
   "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.1": "Your Barrier cap is equal to your Max HP.",
   "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.2": "At the start of your turn, Barrier decays by 50%.",
   "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.3": "After Thorn Aura triggers, its stacks are reduced by 50%.",
-  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.4": "When automatically playing a Wolfpack Curse, lose 1 Energy."
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.4": "When automatically playing a Wolfpack Curse, lose 1 Energy.",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.5": "【Rehearsal Day】 Replaces all basic Strikes and Defends with 20 Court Rehearsals.",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.6": "【Beauty and the Wolf】 Your starting deck contains extra Common and Uncommon cards that apply Wolfpack Curses. You also obtain the relic Time of Revelry.",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.7": "【Bonk!】 Your starting deck contains extra Common and Uncommon cards that apply Weak. You also obtain the relic Red Mask.",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.8": "【Banhammer】 Your starting deck contains Judgment and some cards that grant Strength. You also obtain the relic Vajra.",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.9": "【An Apple a Day】 Your starting deck contains extra cards and relics that increase Max HP."
 }

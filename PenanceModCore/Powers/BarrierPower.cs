@@ -144,7 +144,7 @@ public class BarrierPower : CustomPowerModel
             var chapterRelic = Owner.Player.GetRelic<ChapterOfPenance>();
 
             // 3. 如果遗物存在，且启用了挑战1
-            if (chapterRelic != null && PenanceConfig.EnabledChallenges.Contains(1))
+            if (chapterRelic != null && chapterRelic.HasChallenge(1))
             {
                 // 如果当前层数超过了最大生命值，强制回调
                 if (this.Amount > Owner.MaxHp)
@@ -163,24 +163,33 @@ public class BarrierPower : CustomPowerModel
     // ==========================================
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        // 1. 确保是当前能力拥有者的回合开始了
+        MegaCrit.Sts2.Core.Logging.Log.Info($"[PenanceMod] 回合开始钩子触发了！当前屏障层数: {this.Amount}");
+
         if (Owner != null && Owner == player.Creature)
         {
-            // 2. 尝试获取苦修之章遗物实例
             var chapterRelic = player.GetRelic<ChapterOfPenance>();
-
-            // 3. 如果遗物存在，且启用了挑战2
-            if (chapterRelic != null && PenanceConfig.EnabledChallenges.Contains(2))
+            
+            if (chapterRelic == null)
             {
+                MegaCrit.Sts2.Core.Logging.Log.Info($"[PenanceMod] 报错：玩家身上找不到苦修之章遗物！");
+                return;
+            }
+
+            MegaCrit.Sts2.Core.Logging.Log.Info($"[PenanceMod] 找到遗物。它身上记录的挑战是: '{chapterRelic.SavedChallenges}'");
+
+            if (chapterRelic.HasChallenge(2))
+            {
+                MegaCrit.Sts2.Core.Logging.Log.Info($"[PenanceMod] 判定通过！开始执行 50% 衰减...");
                 if (this.Amount > 0)
                 {
-                    // 闪烁遗物提示玩家触发了衰减
                     chapterRelic.Flash();
-
-                    // C# 整数除法自动向下取整，比如 5 / 2 = 2。我们减去这部分，保留 3
                     int decayAmount = this.Amount / 2;
                     this.SetAmount(this.Amount - decayAmount);
                 }
+            }
+            else
+            {
+                MegaCrit.Sts2.Core.Logging.Log.Info($"[PenanceMod] 没有挑战2，跳过衰减。");
             }
         }
     }

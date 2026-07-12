@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cp3hyykr1qhew"]
+[gd_scene load_steps=3 format=3 uid="uid://cp3hyykr1qhew"]
 
 [ext_resource type="SpineSkeletonDataResource" uid="uid://cclpmpitdtefh" path="res://PenanceMod/scenes/Penance_anim_skin0.tres" id="1_4qih6"]
+[ext_resource type="Script" uid="uid://p17ahiyctnhg" path="res://PenanceMod/scenes/PenanceVisuals.cs" id="1_gc4qa"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_gc4qa")
 
 [node name="Visuals" type="SpineSprite" parent="."]
 skeleton_data_res = ExtResource("1_4qih6")

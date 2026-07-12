@@ -62,5 +62,10 @@
   "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.1": "Лимит Барьера равен вашему макс. HP.",
   "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.2": "В начале вашего хода Барьер уменьшается на 50%.",
   "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.3": "После срабатывания Тернистой Ауры её стаки уменьшаются на 50%.",
-  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.4": "При автоматическом разыгрывании Проклятия Стаи теряет 1 энергию."
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.4": "При автоматическом разыгрывании Проклятия Стаи теряет 1 энергию.",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.5": "【День Репетиций】 Заменяет все базовые Удары и Защиты на 20 Судебных Репетиций.",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.6": "【Волк и Красавица】 Ваша стартовая колода содержит дополнительные Обычные и Необычные карты, накладывающие Проклятие Стаи. Вы также получаете реликвию Время Ликования.",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.7": "【Бонк!】 Ваша стартовая колода содержит дополнительные Обычные и Необычные карты, накладывающие Слабость. Вы также получаете реликвию Красная Маска.",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.8": "【Банхаммер】 Ваша стартовая колода содержит Правосудие и некоторые карты, дающие Силу. Вы также получаете реликвию Ваджра.",
+  "PENANCEMOD-CHAPTER_OF_PENANCE.challenge.description.9": "【Яблоко в день】 Ваша стартовая колода содержит дополнительные карты и реликвии, увеличивающие макс. HP."
 }

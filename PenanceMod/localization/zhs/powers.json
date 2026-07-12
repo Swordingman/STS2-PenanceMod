@@ -52,8 +52,8 @@
   "PENANCEMOD-CROWN_OF_THORNS_POWER.smartDescription": "回合开始时，失去[red]2[/red]点生命，获得[blue]{Amount}[/blue]层[gold]荆棘环身[/gold]，并给予所有敌人[blue]{Amount}[/blue]层[gold]虚弱[/gold]。",
 
   "PENANCEMOD-SCENE_INVESTIGATION_POWER.title": "调查现场",
-  "PENANCEMOD-SCENE_INVESTIGATION_POWER.description": "你的回合中：\n连续使用[blue]2[/blue]张攻击牌，获得[blue]{Amount}[/blue]张{IfUpgraded:show:升级后的|}随机技能牌；\n连续使用[blue]2[/blue]张技能牌，获得[blue]{Amount}[/blue]张{IfUpgraded:show:[gold]升级后的[/gold]|}随机攻击牌；\n连续使用[blue]2[/blue]张能力牌，获得{EnergyTotal:energyIcons()}。\n(生成的卡牌具有 消耗 和 虚无 )",
-  "PENANCEMOD-SCENE_INVESTIGATION_POWER.smartDescription": "你的回合中：\n连续使用[blue]2[/blue]张攻击牌，获得[blue]{Amount}[/blue]张{IfUpgraded:show:升级后的|}随机技能牌；\n连续使用[blue]2[/blue]张技能牌，获得[blue]{Amount}[/blue]张{IfUpgraded:show:[gold]升级后的[/gold]|}随机攻击牌；\n连续使用[blue]2[/blue]张能力牌，获得{EnergyTotal:energyIcons()}。\n(生成的卡牌具有 消耗 和 虚无 )",
+  "PENANCEMOD-SCENE_INVESTIGATION_POWER.description": "你的回合中：\n连续使用[blue]2[/blue]张攻击牌，获得[blue]{Amount}[/blue]张{IsUpgraded:show:升级后的|}随机技能牌；\n连续使用[blue]2[/blue]张技能牌，获得[blue]{Amount}[/blue]张{IsUpgraded:show:[gold]升级后的[/gold]|}随机攻击牌；\n连续使用[blue]2[/blue]张能力牌，获得{EnergyTotal:energyIcons()}。\n(生成的卡牌具有 消耗 和 虚无 )",
+  "PENANCEMOD-SCENE_INVESTIGATION_POWER.smartDescription": "你的回合中：\n连续使用[blue]2[/blue]张攻击牌，获得[blue]{Amount}[/blue]张{IsUpgraded:show:升级后的|}随机技能牌；\n连续使用[blue]2[/blue]张技能牌，获得[blue]{Amount}[/blue]张{IsUpgraded:show:[gold]升级后的[/gold]|}随机攻击牌；\n连续使用[blue]2[/blue]张能力牌，获得{EnergyTotal:energyIcons()}。\n(生成的卡牌具有 消耗 和 虚无 )",
 
   "PENANCEMOD-PLAYER_FACING_POWER.title": "被包围",
   "PENANCEMOD-PLAYER_FACING_POWER.description": "你正处于包围之中。打出[blue]攻击牌[/blue]会改变你的朝向。\n当你[red]背对[/red]敌人时，敌人会优先攻击平民。",

@@ -121,7 +121,7 @@ public abstract class PenanceBaseCard : CustomCardModel
             var chapterRelic = player.GetRelic<ChapterOfPenance>();
             
             // 🌟 挑战 4：狼群诅咒 - 自动释放时消耗 1 点能量
-            if (chapterRelic != null && PenanceConfig.EnabledChallenges.Contains(4))
+            if (chapterRelic != null && chapterRelic.HasChallenge(4))
             {
                 await PlayerCmd.LoseEnergy(1, player);
             }

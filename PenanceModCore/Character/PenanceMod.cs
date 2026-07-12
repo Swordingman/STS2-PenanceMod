@@ -50,7 +50,7 @@ public class PenanceMod : PlaceholderCharacterModel
     // 卡牌拖尾场景。
     // public override string CustomTrailPath => "res://scenes/vfx/card_trail_ironclad.tscn";
     // 人物头像路径。
-    public override string CustomIconTexturePath => "res://icon.svg";
+    public override string CustomIconTexturePath => "res://PenanceMod/Icon.svg";
     // 人物头像2号。
     public override string CustomIconPath => "res://PenanceMod/scenes/Penance_Icon.tscn";
     // 能量表盘tscn路径。要自定义见下。
@@ -100,7 +100,7 @@ public class PenanceMod : PlaceholderCharacterModel
     // 人物选择过渡动画。
     // public override string CustomCharacterSelectTransitionPath => "res://materials/transitions/ironclad_transition_mat.tres";
     // 地图上的角色标记图标、表情轮盘上的角色头像
-    public override string CustomMapMarkerPath => "res://icon.svg";
+    public override string CustomMapMarkerPath => "res://PenanceMod/Icon.svg";
     // 攻击音效
     public override string CustomAttackSfx => "res://PenanceMod/scenes/audio/p_atk_gavel_n.wav";
     // 施法音效
@@ -132,18 +132,59 @@ public class PenanceMod : PlaceholderCharacterModel
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<PenanceModPotionPool>();
 
     // 初始卡组
-    public override IEnumerable<CardModel> StartingDeck => [
-        ModelDb.Card<StrikePenance>(),
-        ModelDb.Card<StrikePenance>(),
-        ModelDb.Card<StrikePenance>(),
-        ModelDb.Card<StrikePenance>(),
-        ModelDb.Card<StrikePenance>(),
-        ModelDb.Card<DefendPenance>(),
-        ModelDb.Card<DefendPenance>(),
-        ModelDb.Card<DefendPenance>(),
-        ModelDb.Card<Censure>(),
-        ModelDb.Card<Resolute>()
-    ];
+    public override IEnumerable<CardModel> StartingDeck
+    {
+        get
+        {
+            var customDeck = new List<CardModel>
+            {
+                ModelDb.Card<Censure>(),
+                ModelDb.Card<Resolute>()
+            };
+
+            if (PenanceConfig.EnabledChallenges.Contains(5))
+            {
+                customDeck.AddRange(Enumerable.Repeat(ModelDb.Card<CourtRehearsal>(), 20));
+            }
+            if (PenanceConfig.EnabledChallenges.Contains(6))
+            {
+                customDeck.Add(ModelDb.Card<ToothForTooth>());
+                customDeck.Add(ModelDb.Card<FamilyArbitration>());
+                customDeck.Add(ModelDb.Card<BloodDebtClause>());
+                customDeck.Add(ModelDb.Card<SyracusanWolves>());
+                customDeck.Add(ModelDb.Card<JuryEntry>());
+            }
+            if (PenanceConfig.EnabledChallenges.Contains(7))
+            {
+                customDeck.Add(ModelDb.Card<Quell>());
+                customDeck.Add(ModelDb.Card<PendingJudgment>());
+                customDeck.Add(ModelDb.Card<Overrule>());
+                customDeck.Add(ModelDb.Card<SilenceWrath>());
+            }
+            if (PenanceConfig.EnabledChallenges.Contains(8))
+            {
+                customDeck.Add(ModelDb.Card<TheTrial>());
+                customDeck.Add(ModelDb.Card<ASip>());
+                customDeck.Add(ModelDb.Card<Upright>());
+                customDeck.Add(ModelDb.Card<TippingScales>());
+                customDeck.Add(ModelDb.Card<SilenceWrath>());
+            }
+            if (PenanceConfig.EnabledChallenges.Contains(9))
+            {
+                customDeck.Add(ModelDb.Card<WeightOfLaw>());
+                customDeck.Add(ModelDb.Card<FinalVerdict>());
+            }
+            if (
+                !PenanceConfig.EnabledChallenges.Contains(5)
+                )
+            {
+                customDeck.AddRange(Enumerable.Repeat(ModelDb.Card<StrikePenance>(), 5));
+                customDeck.AddRange(Enumerable.Repeat(ModelDb.Card<DefendPenance>(), 3));
+            }
+
+            return customDeck;
+        }
+    }
 
     // 初始遗物
     public override IReadOnlyList<RelicModel> StartingRelics
@@ -157,6 +198,24 @@ public class PenanceMod : PlaceholderCharacterModel
             if (PenanceConfig.EnabledChallenges.Count > 0)
             {
                 relics.Add(ModelDb.Relic<ChapterOfPenance>()); 
+            }
+            if (PenanceConfig.EnabledChallenges.Contains(6))
+            {
+                relics.Add(ModelDb.Relic<CarnivalMoment>()); 
+            }
+            if (PenanceConfig.EnabledChallenges.Contains(7))
+            {
+                relics.Add(ModelDb.Relic<RedMask>()); 
+            }
+            if (PenanceConfig.EnabledChallenges.Contains(8))
+            {
+                relics.Add(ModelDb.Relic<Vajra>()); 
+            }
+            if (PenanceConfig.EnabledChallenges.Contains(9))
+            {
+                relics.Add(ModelDb.Relic<SiracusanWine>());
+                relics.Add(ModelDb.Relic<DragonFruit>());
+                relics.Add(ModelDb.Relic<ChosenCheese>());
             }
             return relics;
         }

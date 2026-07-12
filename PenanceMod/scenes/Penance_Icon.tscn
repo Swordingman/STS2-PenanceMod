@@ -1,8 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://cjj77atdigu66"]
 
-[ext_resource type="Texture2D" uid="uid://c74j78xov786k" path="res://icon.svg" id="1_2861s"]
+[ext_resource type="Texture2D" uid="uid://cr75eukcb424w" path="res://PenanceMod/images/charui/Icon.png" id="1_2861s"]
 
 [node name="PenanceIcon" type="TextureRect"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
