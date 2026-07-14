@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddyl53mfowwvk"]
+[gd_scene load_steps=4 format=3 uid="uid://ddyl53mfowwvk"]
 
 [ext_resource type="Script" uid="uid://dhyxc83p4i76n" path="res://PenanceModCore/Scripts/PenanceRestSiteNode.cs" id="1_cnmsv"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://roumj4cratvx" path="res://PenanceMod/scenes/Penance_rest_site_skin0.tres" id="1_o2ckr"]
+[ext_resource type="Script" uid="uid://b058wprqjxxxs" path="res://PenanceModCore/Scripts/PenanceRestSiteOptionNode.cs" id="3_w0wu3"]
 
 [node name="PenanceRestSite" type="Node2D"]
 position = Vector2(15, 40)
@@ -29,6 +30,7 @@ offset_left = -235.0
 offset_top = -368.0
 offset_right = 234.0
 offset_bottom = 348.0
+script = ExtResource("3_w0wu3")
 
 [node name="Hitbox" type="Control" parent="ControlRoot"]
 unique_name_in_owner = true
