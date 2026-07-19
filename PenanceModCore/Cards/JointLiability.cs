@@ -12,6 +12,7 @@ using PenanceMod.PenanceModCode.Powers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BaseLib.Extensions;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -26,7 +27,7 @@ public class JointLiability : PenanceBaseCard
 
     // 🌟 注册变量：基础伤害 6
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(6, ValueProp.Move)
+        new DamageVar(6, ValueProp.Move).WithTooltip("PENANCEMOD-JUDGEMENT")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

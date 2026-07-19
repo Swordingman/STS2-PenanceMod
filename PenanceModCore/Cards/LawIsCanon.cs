@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using PenanceMod.PenanceModCode.Powers; 
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -17,6 +18,11 @@ public class LawIsCanon : PenanceBaseCard
     public LawIsCanon() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self, true)
     {
     }
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier),
+        HoverTipFactory.FromKeyword(PenanceKeywords.Judgement)
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

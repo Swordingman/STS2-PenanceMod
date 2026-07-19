@@ -12,6 +12,7 @@ using PenanceMod.PenanceModCode.Powers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BaseLib.Extensions;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -25,7 +26,7 @@ public class NoSentenceNeeded : PenanceBaseCard
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(50, ValueProp.Move)
+        new DamageVar(50, ValueProp.Move).WithTooltip("PENANCEMOD-BARRIER")
     ];
 
     // ==========================================

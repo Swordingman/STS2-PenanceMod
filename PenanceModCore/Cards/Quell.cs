@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models.Powers;
 using BaseLib.Extensions;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -24,11 +25,15 @@ public class Quell : PenanceBaseCard
     {
     }
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<WeakPower>(),
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier)
+    ];
+
     // 🌟 注册变量：[0] 伤害(8)，[1] 虚弱层数(1)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(7, ValueProp.Move),
         new DynamicVar("Quell-Weak", 2m)
-        .WithTooltip("PENANCEMOD-BARRIER")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

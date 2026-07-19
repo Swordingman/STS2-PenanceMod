@@ -30,7 +30,7 @@
   "PENANCEMOD-BLOOD_FOR_BLOOD.description": "造成{Damage:diff()}点伤害。\n获得1层[gold]正当防卫[/gold]。",
 
   "PENANCEMOD-BREAK_THE_SHACKLES.title": "挣脱枷锁",
-  "PENANCEMOD-BREAK_THE_SHACKLES.description": "获得3点[gold]荆棘环身[/gold]。\n额外获得相当于你当前[gold]裁决[/gold]层数{Shackles-Percent:diff()}% 的[gold]荆棘环身[/gold]。{DynamicTotalText}",
+  "PENANCEMOD-BREAK_THE_SHACKLES.description": "获得3点[gold]荆棘环身[/gold]。\n额外获得相当于你当前[gold]裁决[/gold]层数{Shackles-Percent:diff()}%的[gold]荆棘环身[/gold]。{DynamicTotalText}",
   "PENANCEMOD-BREAK_THE_SHACKLES.extended_description": "\n[purple]（当前总计获得{amount}点。）[/purple]",
 
   "PENANCEMOD-BURDENED_JOURNEY.title": "负荆前行",
@@ -46,7 +46,7 @@
   "PENANCEMOD-CENSURE.description": "造成{Damage:diff()}点伤害。\n获得{Censure-Judgement:diff()}层[gold]裁决[/gold]。",
 
   "PENANCEMOD-CITATION_OF_LAW.title": "法条援引",
-  "PENANCEMOD-CITATION_OF_LAW.description": "获得{Citation-Base:diff()}点[gold]屏障[/gold]。\n然后，获得等同于当前[gold]屏障[/gold]{Citation-Percent:diff()}% 的[gold]屏障[/gold]。{DynamicTotal}",
+  "PENANCEMOD-CITATION_OF_LAW.description": "获得{Citation-Base:diff()}点[gold]屏障[/gold]。\n然后，获得等同于当前[gold]屏障[/gold]{Citation-Percent:diff()}%的[gold]屏障[/gold]。{DynamicTotal}",
   "PENANCEMOD-CITATION_OF_LAW.extended_description": "\n[purple]（当前总计获得{amount}点。）[/purple]",
 
   "PENANCEMOD-CODE_OF_REVENGE.title": "复仇法典",
@@ -143,7 +143,7 @@
   "PENANCEMOD-LAST_STAND.description": "获得{LastStand-Barrier:diff()}点[gold]屏障[/gold]。\n获得{LastStand-Ceasefire:diff()}层[gold]止戈[/gold]。",
 
   "PENANCEMOD-LAW_ENFORCEMENT.title": "执法",
-  "PENANCEMOD-LAW_ENFORCEMENT.description": "造成等同于你当前[gold]屏障[/gold]值{Law-Percent:diff()}% 的伤害。{DynamicDamageText}\n如果该伤害的基础值不足 10 点，获得该值两倍的[gold]屏障[/gold]。",
+  "PENANCEMOD-LAW_ENFORCEMENT.description": "造成等同于你当前[gold]屏障[/gold]值{Law-Percent:diff()}%的伤害。{DynamicDamageText}\n如果该伤害的基础值不足 10 点，获得该值两倍的[gold]屏障[/gold]。",
   "PENANCEMOD-LAW_ENFORCEMENT.extended_description": "\n[purple]（当前基础伤害：{amount}点）[/purple]",
 
   "PENANCEMOD-LAW_IS_CANON.title": "法为正典",
@@ -308,5 +308,8 @@
   "PENANCEMOD-TEST_THE_LAW.description": "将你的生命值变为10。若生命值因此降低，获得降低量3倍的[gold]屏障[/gold]。\n本场战斗中，每当你因卡牌效果失去生命时，恢复等量生命并获得等量[gold]屏障[/gold]（并同时存入遗物），再获得2层[gold]裁决[/gold]与[gold]荆棘环身[/gold]。",
 
   "PENANCEMOD-PREEMPTIVE_STRIKE.title": "先手打击",
-  "PENANCEMOD-PREEMPTIVE_STRIKE.description": "造成{Damage:diff()}点伤害。\n在接下来的{Strike-Turns:diff()}个回合中，回合开始时获得3层[gold]正当防卫[/gold]。"
+  "PENANCEMOD-PREEMPTIVE_STRIKE.description": "造成{Damage:diff()}点伤害。\n在接下来的{Strike-Turns:diff()}个回合中，回合开始时获得3层[gold]正当防卫[/gold]。",
+
+  "PENANCEMOD-STAND_AS_EQUALS.title": "分庭抗礼",
+  "PENANCEMOD-STAND_AS_EQUALS.description": "获得{StandAsEquals-Barrier:diff()}层[gold]屏障[/gold]，然后将你拥有的所有[gold]屏障[/gold]平均分配给所有队友。"
 }

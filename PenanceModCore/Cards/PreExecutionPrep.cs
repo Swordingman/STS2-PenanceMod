@@ -15,6 +15,7 @@ using BaseLib.Patches.Hooks;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -29,6 +30,12 @@ public class PreExecutionPrep : PenanceBaseCard
     // 🌟 注册基础关键词：消耗
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Judgement),
+        HoverTipFactory.FromKeyword(PenanceKeywords.ThornAura),
+        HoverTipFactory.FromPower<StrengthPower>()
+    ];
+    
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var player = Owner;

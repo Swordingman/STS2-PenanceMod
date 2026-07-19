@@ -11,6 +11,7 @@ using PenanceMod.PenanceModCode.Powers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -21,8 +22,13 @@ public class TippingScales : PenanceBaseCard
     {
     }
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Judgement),
+        HoverTipFactory.FromPower<StrengthPower>()
+    ];
+
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Tipping-JudgeCost", 2m).WithTooltip("PENANCEMOD-JUDGEMENT"),
+        new DynamicVar("Tipping-JudgeCost", 2m),
         new DynamicVar("Tipping-Str", 1m)
     ];
 

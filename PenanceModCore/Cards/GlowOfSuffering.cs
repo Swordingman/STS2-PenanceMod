@@ -11,6 +11,7 @@ using PenanceMod.PenanceModCode.Powers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -21,10 +22,13 @@ public class GlowOfSuffering : PenanceBaseCard
     {
     }
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier),
+        HoverTipFactory.FromKeyword(PenanceKeywords.ThornAura)
+    ];
+    
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Glow-Mult", 1m)
-            .WithTooltip("PENANCEMOD-BARRIER")
-            .WithTooltip("PENANCEMOD-THORN_AURA")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

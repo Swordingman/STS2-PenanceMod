@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -22,9 +23,14 @@ public class PendingJudgment : PenanceBaseCard
     {
     }
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<WeakPower>(),
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier),
+    ];
+
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Pending-Weak", 1m),
-        new DynamicVar("Pending-Barrier", 4m).WithTooltip("PENANCEMOD-BARRIER")
+        new DynamicVar("Pending-Barrier", 4m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

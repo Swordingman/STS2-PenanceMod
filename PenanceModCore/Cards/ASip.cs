@@ -15,6 +15,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using BaseLib.Extensions;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -31,8 +32,13 @@ public class ASip : PenanceBaseCard
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier),
+        HoverTipFactory.FromPower<StrengthPower>()
+    ];
+    
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar(PenaltyKey, 3m).WithTooltip("PENANCEMOD-BARRIER")
+        new DynamicVar(PenaltyKey, 3m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

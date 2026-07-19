@@ -3,6 +3,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
@@ -20,6 +21,10 @@ public class Upright : PenanceBaseCard
     public Upright() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
     {
     }
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<StrengthPower>()
+    ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new UprightStrengthVar("Upright-Str", 1m)

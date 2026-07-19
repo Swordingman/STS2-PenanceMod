@@ -25,10 +25,8 @@ public class Objection : PenanceBaseCard
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, CardKeyword.Ethereal];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(6, ValueProp.Move),
-        new DynamicVar("Objection-Cost", 5m)
-            .WithTooltip("PENANCEMOD-JUDGEMENT")
-            .WithTooltip("PENANCEMOD-CEASE_FIRE")
+        new DamageVar(6, ValueProp.Move).WithTooltip("PENANCEMOD-JUDGEMENT"),
+        new DynamicVar("Objection-Cost", 5m).WithTooltip("PENANCEMOD-CEASE_FIRE")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

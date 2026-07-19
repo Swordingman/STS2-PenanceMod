@@ -9,6 +9,8 @@ using PenanceMod.PenanceModCode.Powers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -18,6 +20,10 @@ public class BideTime : PenanceBaseCard
     public BideTime() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self, true)
     {
     }
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<VigorPower>()
+    ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Bide-Vigor", 14m)

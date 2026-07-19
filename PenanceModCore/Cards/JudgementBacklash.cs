@@ -11,6 +11,7 @@ using PenanceMod.PenanceModCode.Powers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BaseLib.Extensions;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -24,7 +25,7 @@ public class JudgementBacklash : PenanceBaseCard
 
     // 🌟 注册变量：基础伤害 3
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(3, ValueProp.Move)
+        new DamageVar(3, ValueProp.Move).WithTooltip("PENANCEMOD-JUDGEMENT")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

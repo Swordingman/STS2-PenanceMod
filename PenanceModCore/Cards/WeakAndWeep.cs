@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Powers;
 using PenanceMod.PenanceModCode.Character;
@@ -20,6 +21,10 @@ public class WeakAndWeep : PenanceBaseCard
     public WeakAndWeep() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy, true)
     {
     }
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.ThornAura)
+    ];
 
     // 默认附带消耗词条
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];

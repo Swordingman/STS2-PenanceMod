@@ -11,6 +11,8 @@ using PenanceMod.PenanceModCode.Powers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BaseLib.Extensions;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -25,6 +27,11 @@ public class GavelBarrage : PenanceBaseCard
 
     // ⭐ 声明这是 X 费卡
     protected override bool HasEnergyCostX => true;
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Judgement),
+        HoverTipFactory.FromKeyword(PenanceKeywords.ThornAura)
+    ];
 
     // 🌟 注册变量：基础伤害 (3)
     protected override IEnumerable<DynamicVar> CanonicalVars => [

@@ -15,6 +15,7 @@ using BaseLib.Utils;
 using PenanceMod.PenanceModCode.Relics;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -25,8 +26,13 @@ public class JuryEntry : PenanceBaseCard
     {
     }
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier),
+        HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves)
+    ];
+
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Jury-Barrier", 14m).WithTooltip("PENANCEMOD-BARRIER")
+        new DynamicVar("Jury-Barrier", 14m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

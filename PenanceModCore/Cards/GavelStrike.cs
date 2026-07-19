@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Models.Powers;
 using BaseLib.Extensions;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -25,9 +26,13 @@ public class GavelStrike : PenanceBaseCard
     
     protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<WeakPower>(),
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier)
+    ];
+    
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(8, ValueProp.Move)
-        .WithTooltip("PENANCEMOD-BARRIER")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

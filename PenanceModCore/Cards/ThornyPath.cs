@@ -10,6 +10,8 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using PenanceMod.PenanceModCode.Powers; 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -20,8 +22,13 @@ public class ThornyPath : PenanceBaseCard
     {
     }
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.ThornAura),
+        HoverTipFactory.FromPower<WeakPower>(),
+    ];
+
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("ThornyPath-Amt", 2m).WithTooltip("PENANCEMOD-THORN_AURA")
+        new DynamicVar("ThornyPath-Amt", 2m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

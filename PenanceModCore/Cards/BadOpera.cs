@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models;
 using BaseLib.Utils;
 using BaseLib.Extensions;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -25,9 +26,13 @@ public class BadOpera : PenanceBaseCard
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Judgement),
+        HoverTipFactory.FromPower<StrengthPower>()
+    ];
+    
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Opera-CurseCount", 1m)
-        .WithTooltip("PENANCEMOD-JUDGEMENT")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

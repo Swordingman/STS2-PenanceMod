@@ -5,13 +5,13 @@
   "PENANCEMOD-BARRIER.description": "A special defensive value. When Block is depleted, Barrier absorbs the remaining damage. Barrier does not expire at the end of your turn.",
   "PENANCEMOD-BARRIER.title": "Barrier",
 
-  "PENANCEMOD-JUDGEMENT.description": "Whenever your Barrier takes damage from an enemy, deal damage equal to your #yJudgment to the attacker.",
+  "PENANCEMOD-JUDGEMENT.description": "Whenever your Barrier takes damage from an enemy, deal damage equal to your Judgment to the attacker.",
   "PENANCEMOD-JUDGEMENT.title": "Judgment",
 
-  "PENANCEMOD-THORN_AURA.description": "At the end of your turn, deal damage to ALL enemies equal to your #yThorn #yAura.",
+  "PENANCEMOD-THORN_AURA.description": "At the end of your turn, deal damage to ALL enemies equal to your Thorn Aura.",
   "PENANCEMOD-THORN_AURA.title": "Thorn Aura",
 
-  "PENANCEMOD-CEASE_FIRE.description": "Players with #yArmistice cannot play Attacks. Enemies with #yArmistice will skip their turn if they intend to attack.",
+  "PENANCEMOD-CEASE_FIRE.description": "Players with Armistice cannot play Attacks. Enemies with Armistice will skip their turn if they intend to attack.",
   "PENANCEMOD-CEASE_FIRE.title": "Armistice",
 
   "PENANCEMOD-JUSTIFIED_DEFENSE.description": "While this ability is active, gain additional Energy and draw cards whenever you take damage.",

@@ -10,6 +10,8 @@ using PenanceMod.PenanceModCode.Powers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -20,6 +22,11 @@ public class InTheNameOfTheLaw : PenanceBaseCard
     public InTheNameOfTheLaw() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, true)
     {
     }
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.ThornAura),
+        HoverTipFactory.FromPower<WeakPower>()
+    ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Law-Weak", 1m)

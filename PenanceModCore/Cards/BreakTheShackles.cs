@@ -4,6 +4,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization; // LocString 命名空间
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
@@ -23,8 +24,13 @@ public class BreakTheShackles : PenanceBaseCard
     {
     }
     
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Judgement),
+        HoverTipFactory.FromKeyword(PenanceKeywords.ThornAura)
+    ];
+    
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar(PercentKey, 20m).WithTooltip("PENANCEMOD-THORN_AURA") // 初始 20%
+        new DynamicVar(PercentKey, 20m)
     ];
 
     // ==========================================
@@ -59,7 +65,7 @@ public class BreakTheShackles : PenanceBaseCard
         if (IsInCombat)
         {
             int total = CalculateTotalAmount();
-            // �?使用 LocString 引用 JSON 中的 extended_description
+            // �?使用 LocString 引用 JSON 中的 extended_description
             LocString extendedDesc = new LocString("cards", "PENANCEMOD-BREAK_THE_SHACKLES.extended_description");
             extendedDesc.Add("amount", total);
             
@@ -72,7 +78,7 @@ public class BreakTheShackles : PenanceBaseCard
     }
 
     // ==========================================
-    // 打出与升�?
+    // 打出与升�?
     // ==========================================
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -85,7 +91,7 @@ public class BreakTheShackles : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        // 百分比提�?(20% -> 30%)
+        // 百分比提�?(20% -> 30%)
         var percentVar = DynamicVars.Values.First();
         percentVar.UpgradeValueBy(10);
     }

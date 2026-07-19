@@ -4,6 +4,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using PenanceMod.PenanceModCode.Character;
@@ -22,18 +23,21 @@ public class BurdenedJourney : PenanceBaseCard
     {
     }
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Judgement),
+        HoverTipFactory.FromKeyword(PenanceKeywords.ThornAura)
+    ];
+
     // 基础数值为 3
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Burden-Magic", 2m)
-            .WithTooltip("PENANCEMOD-JUDGEMENT")
-            .WithTooltip("PENANCEMOD-THORN_AURA")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var creature = Owner.Creature;
         
-        // 安全获取第一个动态变�?
+        // 安全获取第一个动态变量
         var magicVar = DynamicVars.Values.First();
         int amount = magicVar.IntValue;
 

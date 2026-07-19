@@ -11,6 +11,8 @@ using PenanceMod.PenanceModCode.Powers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -21,9 +23,15 @@ public class SilenceWrath : PenanceBaseCard
     {
     }
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier),
+        HoverTipFactory.FromPower<WeakPower>(),
+        HoverTipFactory.FromPower<StrengthPower>()
+    ];
+
     // 只有一个通用变量
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("SilenceWrath-Amt", 2m).WithTooltip("PENANCEMOD-BARRIER")
+        new DynamicVar("SilenceWrath-Amt", 2m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

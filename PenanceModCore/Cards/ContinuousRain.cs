@@ -34,7 +34,9 @@ public class ContinuousRain : PenanceBaseCard
     protected override HashSet<CardTag> CanonicalTags => [PenanceCardTags.CurseOfWolves];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves)
+        HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves),
+        HoverTipFactory.FromPower<WeakPower>(),
+        HoverTipFactory.FromPower<VulnerablePower>()
     ];
     
     // 顺序注册变量：0 = 伤害, 1 = 给自己的Debuff(2), 2 = 给敌人的Debuff(2)

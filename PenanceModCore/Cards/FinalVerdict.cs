@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using BaseLib.Extensions;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -31,7 +32,7 @@ public class FinalVerdict : PenanceBaseCard
 
     // 🌟 注册变量：索引 0 = 基础伤害 (18)， 索引 1 = 最大生命值收益 (3)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(18, ValueProp.Move),
+        new DamageVar(18, ValueProp.Move).WithTooltip("PENANCEMOD-JUDGEMENT"),
         new DynamicVar("Verdict-MaxHp", 3m)
     ];
 

@@ -29,14 +29,16 @@ public class ArtOfTheHidingFox : PenanceBaseCard
     protected override HashSet<CardTag> CanonicalTags => [PenanceCardTags.CurseOfWolves];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves)
+        HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves),
+        HoverTipFactory.FromKeyword(PenanceKeywords.Judgement),
+        HoverTipFactory.FromKeyword(PenanceKeywords.ThornAura),
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier),
+        HoverTipFactory.FromPower<StrengthPower>()
     ];
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Fox-Magic", 3m)
-            .WithTooltip("PENANCEMOD-JUDGEMENT")
-            .WithTooltip("PENANCEMOD-THORN_AURA"),
-        new DynamicVar("Fox-Barrier", 25m).WithTooltip("PENANCEMOD-BARRIER")
+        new DynamicVar("Fox-Magic", 3m),
+        new DynamicVar("Fox-Barrier", 25m)
     ];
 
     private bool _autoPlaying;

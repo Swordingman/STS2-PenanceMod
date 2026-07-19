@@ -17,11 +17,11 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(PenanceModCardPool))]
 public class ConsultTheDossier : PenanceBaseCard
 {
-    public ConsultTheDossier() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
+    public ConsultTheDossier() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, true)
     {
     }
 
-    // 🌟 注册变量：抽牌数 (2)，每次给的裁决层�?(改为 1)
+    // 🌟 注册变量：抽牌数 (2)，每次给的裁决层�?(改为 1)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Consult-Draw", 2m),
         new DynamicVar("Consult-Judge", 1m).WithTooltip("PENANCEMOD-JUDGEMENT")
@@ -29,7 +29,7 @@ public class ConsultTheDossier : PenanceBaseCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 字典取值更稳妥和直�?
+        // 字典取值更稳妥和直�?
         int drawAmount = DynamicVars["Consult-Draw"].IntValue;
         int judgeAmountPerCard = DynamicVars["Consult-Judge"].IntValue;
 
@@ -38,7 +38,7 @@ public class ConsultTheDossier : PenanceBaseCard
 
         if (drawnCards != null)
         {
-            // 2. 统计抽到的技能牌数量 (利用 LINQ �?Count)
+            // 2. 统计抽到的技能牌数量 (利用 LINQ �?Count)
             int skillCardCount = drawnCards.Count(c => c.Type == CardType.Skill);
 
             if (skillCardCount > 0)
@@ -53,7 +53,7 @@ public class ConsultTheDossier : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        // 升级抽牌�?(2 -> 3)
+        // 升级抽牌�?(2 -> 3)
         DynamicVars["Consult-Draw"].UpgradeValueBy(1);
     }
 }

@@ -94,8 +94,15 @@ public class SettlingOldScores : PenanceBaseCard
                     // 使用官方 API 进行自动打出
                     await CardCmd.AutoPlay(choiceContext, card, null);
                     
-                    // 打完之后立刻消耗
-                    await CardCmd.Exhaust(choiceContext, card, causedByEthereal: false);
+                    // 获取玩家当前的“消耗堆”对象实例
+                    var exhaustPile = PileType.Exhaust.GetPile(Owner);
+                    
+                    // 安全校验：确保卡牌所在堆不是 null（没有被彻底移出游戏），且不在消耗堆中
+                    if (card.Pile != null && card.Pile != exhaustPile)
+                    {
+                        // 打完之后立刻消耗
+                        await CardCmd.Exhaust(choiceContext, card, causedByEthereal: false);
+                    }
                     
                     // 连发间隔，视觉上更清晰
                     await Cmd.Wait(0.5f);

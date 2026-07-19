@@ -11,12 +11,35 @@ public class PenanceCardTags
     public static CardTag CurseOfWolves;
 }
 
-// 2. 注册关键词 (UI显示用)
 public class PenanceKeywords
 {
-    // 自定义枚举的名字。最终会变成 PENANCE-CURSE_OF_WOLVES
+    // 狼群诅咒
     [CustomEnum("CURSE_OF_WOLVES")]
-    // 自动出现在卡牌描述的最前面
     [KeywordProperties(AutoKeywordPosition.Before)] 
     public static CardKeyword CurseOfWolves;
+
+    // 屏障
+    [CustomEnum("BARRIER")]
+    [KeywordProperties(AutoKeywordPosition.Before)]
+    public static CardKeyword Barrier;
+
+    // 裁决
+    [CustomEnum("JUDGEMENT")]
+    [KeywordProperties(AutoKeywordPosition.Before)]
+    public static CardKeyword Judgement;
+
+    // 荆棘环身
+    [CustomEnum("THORN_AURA")]
+    [KeywordProperties(AutoKeywordPosition.Before)]
+    public static CardKeyword ThornAura;
+
+    // 止戈
+    [CustomEnum("CEASE_FIRE")]
+    [KeywordProperties(AutoKeywordPosition.Before)]
+    public static CardKeyword CeaseFire;
+
+    // 正当防卫
+    [CustomEnum("JUSTIFIED_DEFENSE")]
+    [KeywordProperties(AutoKeywordPosition.Before)]
+    public static CardKeyword JustifiedDefense;
 }

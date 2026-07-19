@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models.Powers;
 using BaseLib.Utils;
+using BaseLib.Extensions;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -23,6 +25,10 @@ public class Overrule : PenanceBaseCard
     // 只保留伤害变量，移除已经不需要的屏障变量
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(6, ValueProp.Move)
+    ];
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<WeakPower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

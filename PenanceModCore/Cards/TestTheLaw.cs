@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using PenanceMod.PenanceModCode.Powers;
 using System.Threading.Tasks;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -17,6 +18,12 @@ public class TestTheLaw : PenanceBaseCard
     public TestTheLaw() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self, true)
     {
     }
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier),
+        HoverTipFactory.FromKeyword(PenanceKeywords.Judgement),
+        HoverTipFactory.FromKeyword(PenanceKeywords.ThornAura)
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

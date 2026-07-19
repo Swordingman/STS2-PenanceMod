@@ -99,9 +99,6 @@ public class WandAntigravity : PenanceBaseCard
                 // 打破同帧叠加，将“一声巨响”变成“机关枪连射”
                 await Cmd.Wait(0.05f); 
             }
-
-            // 确保所有的消耗动作都彻底跑完，再往下进行计数和生成
-            await Task.WhenAll(exhaustTasks);
         }
 
         // 2. 统计消耗堆中的目标数量

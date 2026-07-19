@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -23,37 +24,39 @@ public class Excommunication : PenanceBaseCard
     {
     }
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<StrengthPower>(),
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier)
+    ];
+
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Excom-Barrier", 3m).WithTooltip("PENANCEMOD-BARRIER"),
+        new DynamicVar("Excom-Barrier", 3m),
         new DynamicVar("Excom-Str", 1m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var player = Owner;
-        
-        // 1. 获取三个牌库里的所有诅�?        
+            
         var handCurses = PileType.Hand.GetPile(player).Cards.Where(c => c.Type == CardType.Curse).ToList();
         var drawCurses = PileType.Draw.GetPile(player).Cards.Where(c => c.Type == CardType.Curse).ToList();
         var discardCurses = PileType.Discard.GetPile(player).Cards.Where(c => c.Type == CardType.Curse).ToList();
 
-        // 将它们合并成一个列�?        
         var allCurses = handCurses.Concat(drawCurses).Concat(discardCurses).ToList();
         int curseCount = allCurses.Count;
 
         if (curseCount > 0)
         {
-            // 2. 消耗所有找到的诅咒
             foreach (var curse in allCurses)
             {
-                await CardCmd.Exhaust(choiceContext, curse, causedByEthereal: false);
+                await CardCmd.Exhaust(choiceContext, curse, false);
+                await Cmd.Wait(0.05f);
             }
 
             await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
 
             await Cmd.Wait(0.2f);
-
-            // 3. 计算并获得收�?            
+      
             int totalBarrier = curseCount * DynamicVars["Excom-Barrier"].IntValue;
             int totalStr = curseCount * DynamicVars["Excom-Str"].IntValue;
 

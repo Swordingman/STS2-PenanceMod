@@ -8,6 +8,9 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using PenanceMod.PenanceModCode.Powers; 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using BaseLib.Extensions;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -22,6 +25,10 @@ public class LawModification : PenanceBaseCard
     // 🌟 注册基础关键词：消耗，保留
     public override IEnumerable<CardKeyword> CanonicalKeywords => 
         [CardKeyword.Exhaust, CardKeyword.Retain];
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier)
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

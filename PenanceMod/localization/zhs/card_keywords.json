@@ -11,7 +11,7 @@
   "PENANCEMOD-THORN_AURA.description": "回合结束时，对所有敌人造成等同于荆棘环身层数的伤害。",
   "PENANCEMOD-THORN_AURA.title": "荆棘环身",
 
-  "PENANCEMOD-CEASE_FIRE.description": "处于止戈 状态的玩家无法打出攻击牌。处于止戈状态的敌人如果意图攻击，将跳过该回合。",
+  "PENANCEMOD-CEASE_FIRE.description": "处于止戈状态的玩家无法打出攻击牌。处于止戈状态的敌人如果意图攻击，将跳过该回合。",
   "PENANCEMOD-CEASE_FIRE.title": "止戈",
 
   "PENANCEMOD-JUSTIFIED_DEFENSE.description": "能力存在时，受击会获得额外能量和抽卡。",

@@ -10,6 +10,8 @@ using PenanceMod.PenanceModCode.Powers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -20,6 +22,12 @@ public class JudgmentHasBegun : PenanceBaseCard
     public JudgmentHasBegun() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self, true)
     {
     }
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier),
+        HoverTipFactory.FromKeyword(PenanceKeywords.Judgement),
+        HoverTipFactory.FromPower<StrengthPower>()
+    ];
 
     // 🌟 注册基础关键词：消耗
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];

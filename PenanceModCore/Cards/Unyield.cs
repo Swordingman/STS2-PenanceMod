@@ -11,6 +11,7 @@ using PenanceMod.PenanceModCode.Powers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -23,11 +24,15 @@ public class Unyield : PenanceBaseCard
     {
     }
 
+     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier),
+        HoverTipFactory.FromKeyword(PenanceKeywords.Judgement),
+        HoverTipFactory.FromKeyword(PenanceKeywords.ThornAura)
+    ];
+
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Unyield-XB", 4m).WithTooltip("PENANCEMOD-BARRIER"),
+        new DynamicVar("Unyield-XB", 4m),
         new DynamicVar("Unyield-XM", 2m)
-            .WithTooltip("PENANCEMOD-JUDGEMENT")
-            .WithTooltip("PENANCEMOD-THORN_AURA")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

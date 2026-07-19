@@ -7,6 +7,8 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using PenanceMod.PenanceModCode.Powers; 
 using System.Threading.Tasks;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -17,6 +19,11 @@ public class CourtMajesty : PenanceBaseCard
     public CourtMajesty() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, true)
     {
     }
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<WeakPower>(),
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier)
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

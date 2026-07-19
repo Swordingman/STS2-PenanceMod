@@ -31,7 +31,8 @@ public class AmbushShadow : PenanceBaseCard
     protected override HashSet<CardTag> CanonicalTags => [PenanceCardTags.CurseOfWolves];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves)
+        HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves),
+        HoverTipFactory.FromPower<IntangiblePower>()
     ];
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [

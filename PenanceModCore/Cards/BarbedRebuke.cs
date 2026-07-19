@@ -14,6 +14,7 @@ using System;
 using MegaCrit.Sts2.Core.Models.Powers;
 using BaseLib.Utils;
 using BaseLib.Extensions;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -24,9 +25,13 @@ public class BarbedRebuke : PenanceBaseCard
     {
     }
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.ThornAura),
+        HoverTipFactory.FromPower<WeakPower>()
+    ];
+    
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(6, ValueProp.Move)
-        .WithTooltip("PENANCEMOD-THORN_AURA")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

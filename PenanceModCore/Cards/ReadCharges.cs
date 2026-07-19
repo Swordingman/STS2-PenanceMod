@@ -11,6 +11,7 @@ using PenanceMod.PenanceModCode.Powers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BaseLib.Extensions;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -25,6 +26,7 @@ public class ReadCharges : PenanceBaseCard
     // 🌟 注册变量：抽牌数 (初始 1)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Read-Draw", 1m)
+        .WithTooltip("PENANCEMOD-JUDGEMENT")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

@@ -309,5 +309,8 @@
   "PENANCEMOD-TEST_THE_LAW.description": "Set your HP to 10. If your HP decreases from this, gain 3 times the reduced amount as [gold]Barrier[/gold].\nThis combat, whenever you lose HP from a card effect, heal the same amount and gain that amount of [gold]Barrier[/gold] (also storing it in the relic), then gain 2 [gold]Judgment[/gold] and [gold]Thorn Aura[/gold].",
 
   "PENANCEMOD-PREEMPTIVE_STRIKE.title": "Preemptive Strike",
-  "PENANCEMOD-PREEMPTIVE_STRIKE.description": "Deal {Damage:diff()} damage.\nFor the next {Strike-Turns:diff()} turns, gain 3 [gold]Self-Defense[/gold] at the start of your turn."
+  "PENANCEMOD-PREEMPTIVE_STRIKE.description": "Deal {Damage:diff()} damage.\nFor the next {Strike-Turns:diff()} turns, gain 3 [gold]Self-Defense[/gold] at the start of your turn.",
+
+  "PENANCEMOD-STAND_AS_EQUALS.title": "Stand As Equals",
+  "PENANCEMOD-STAND_AS_EQUALS.description": "Gain {StandAsEquals-Barrier:diff()} [gold]Barrier[/gold]. Then, evenly distribute all your [gold]Barrier[/gold] among all teammates."
 }

@@ -12,20 +12,26 @@ using PenanceMod.PenanceModCode.Powers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
 [Pool(typeof(PenanceModCardPool))]
 public class Silence : PenanceBaseCard
 {
-    // 耗能 1，类�?Skill，稀有度 Common，目�?Self
+    // 耗能 1，类�?Skill，稀有度 Common，目�?Self
     public Silence() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, true)
     {
     }
 
-    // 🌟 注册变量：获得的屏障�?(初始 8)
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier),
+        HoverTipFactory.FromKeyword(PenanceKeywords.Judgement)
+    ];
+
+    // 🌟 注册变量：获得的屏障�?(初始 8)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Silence-Barrier", 8m).WithTooltip("PENANCEMOD-BARRIER")
+        new DynamicVar("Silence-Barrier", 8m)
     ];
 
     // ==========================================
@@ -59,14 +65,14 @@ public class Silence : PenanceBaseCard
             // 稍微停顿一下，让玩家看清金边触发带来的两段独立增益
             await Cmd.Wait(0.15f);
 
-            // 3. 额外获得 3 点裁�?(固定数值，复用基类快捷方法)
+            // 3. 额外获得 3 点裁�?(固定数值，复用基类快捷方法)
             await ApplyJudgement(creature, 3);
         }
     }
 
     protected override void OnUpgrade()
     {
-        // 屏障数值提�?3 (8 -> 11)
+        // 屏障数值提�?3 (8 -> 11)
         var vars = DynamicVars.Values.ToList();
         if (vars.Count > 0)
         {

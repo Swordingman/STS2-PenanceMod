@@ -11,6 +11,7 @@ using PenanceMod.PenanceModCode.Powers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -22,9 +23,14 @@ public class GuardianOfTheLaw : PenanceBaseCard
     {
     }
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Judgement),
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier)
+    ];
+
     // 🌟 注册变量：获得的裁决点数 (3)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Guardian-Magic", 3m).WithTooltip("PENANCEMOD-JUDGEMENT")
+        new DynamicVar("Guardian-Magic", 3m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

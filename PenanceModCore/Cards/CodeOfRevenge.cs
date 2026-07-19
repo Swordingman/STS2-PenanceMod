@@ -11,6 +11,7 @@ using PenanceMod.PenanceModCode.Powers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -22,9 +23,14 @@ public class CodeOfRevenge : PenanceBaseCard
     {
     }
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Judgement),
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier)
+    ];
+    
     // 🌟 注册魔法数字：屏障获取量�?3
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("CodeOfRevenge-Magic", 3m).WithTooltip("PENANCEMOD-BARRIER")
+        new DynamicVar("CodeOfRevenge-Magic", 3m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

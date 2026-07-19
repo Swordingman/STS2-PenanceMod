@@ -309,5 +309,8 @@
   "PENANCEMOD-TEST_THE_LAW.description": "Устанавливает ваше HP на 10. Если ваше HP уменьшается, получает утроенное количество [gold]Барьера[/gold].\nВ этом бою каждый раз, когда вы теряете HP от эффекта карты, восстанавливаете то же количество и получаете столько же [gold]Барьера[/gold] (также сохраняя в реликвии), затем получаете 2 [gold]Правосудия[/gold] и [gold]Тернистой Ауры[/gold].",
 
   "PENANCEMOD-PREEMPTIVE_STRIKE.title": "Упреждающий Удар",
-  "PENANCEMOD-PREEMPTIVE_STRIKE.description": "Наносит {Damage:diff()} урона.\nВ течение следующих {Strike-Turns:diff()} ходов в начале вашего хода получает 3 [gold]Самообороны[/gold]."
+  "PENANCEMOD-PREEMPTIVE_STRIKE.description": "Наносит {Damage:diff()} урона.\nВ течение следующих {Strike-Turns:diff()} ходов в начале вашего хода получает 3 [gold]Самообороны[/gold].",
+
+  "PENANCEMOD-STAND_AS_EQUALS.title": "На равных",
+  "PENANCEMOD-STAND_AS_EQUALS.description": "Получите {StandAsEquals-Barrier:diff()} [gold]Барьер[/gold]. Затем равномерно распределите весь ваш [gold]Барьер[/gold] между всеми союзниками."
 }

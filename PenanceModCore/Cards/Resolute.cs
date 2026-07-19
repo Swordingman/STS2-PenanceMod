@@ -11,6 +11,7 @@ using PenanceMod.PenanceModCode.Powers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -25,10 +26,13 @@ public class Resolute : PenanceBaseCard, ITranscendenceCard
     {
     }
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(PenanceKeywords.Barrier),
+        HoverTipFactory.FromKeyword(PenanceKeywords.Judgement)
+    ];
+
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Resolute-BarrierX", 3m)
-        .WithTooltip("PENANCEMOD-BARRIER")
-        .WithTooltip("PENANCEMOD-JUDGEMENT")
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

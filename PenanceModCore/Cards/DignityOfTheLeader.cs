@@ -30,7 +30,8 @@ public class DignityOfTheLeader : PenanceBaseCard
     protected override HashSet<CardTag> CanonicalTags => [PenanceCardTags.CurseOfWolves];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves)
+        HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves),
+        HoverTipFactory.FromKeyword(PenanceKeywords.CeaseFire),
     ];
     
     // 🌟 注册变量：获得的能量数 (初始 2)
