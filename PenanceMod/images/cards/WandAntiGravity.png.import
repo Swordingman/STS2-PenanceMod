@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://clmrom6j10yby"
-path="res://.godot/imported/WandAntiGravity.png-3432d04e7f058c90c734acd58c6b3ae1.ctex"
+path="res://.godot/imported/WandAntigravity.png-265ce975a3e6dcacb792af4579d6778c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PenanceMod/images/cards/WandAntiGravity.png"
-dest_files=["res://.godot/imported/WandAntiGravity.png-3432d04e7f058c90c734acd58c6b3ae1.ctex"]
+source_file="res://PenanceMod/images/cards/WandAntigravity.png"
+dest_files=["res://.godot/imported/WandAntigravity.png-265ce975a3e6dcacb792af4579d6778c.ctex"]
 
 [params]
 

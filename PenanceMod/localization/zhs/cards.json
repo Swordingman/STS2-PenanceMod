@@ -6,7 +6,7 @@
   "PENANCEMOD-DEFEND_PENANCE.description": "获得{Block:diff()}点[gold]格挡[/gold]。",
 
   "PENANCEMOD-ADJOURN.title": "休庭",
-  "PENANCEMOD-ADJOURN.description": "结束你的回合。\n本回合每打出一张牌，获得{Magic:diff()}点[gold]屏障[/gold]。\n（若你的生命值低于 50%，改为恢复{Magic:diff()}点生命）",
+  "PENANCEMOD-ADJOURN.description": "结束你的回合。\n本回合每打出一张牌，获得{Magic:diff()}点[gold]屏障[/gold]。\n（若你的生命值低于50%，改为恢复{Magic:diff()}点生命）",
 
   "PENANCEMOD-AMBUSH_SHADOW.title": "伏击之影",
   "PENANCEMOD-AMBUSH_SHADOW.description": "随机丢弃{Ambush-Magic:diff()}张手牌。\n获得1层[gold]无实体[/gold]。",
@@ -19,7 +19,7 @@
 
   "PENANCEMOD-A_SIP.title": "小酌一杯",
   "PENANCEMOD-A_SIP.description": "失去{ASip-Penalty:diff()}点[gold]屏障[/gold]。如果不足，则失去等量生命值。\n获得2点[gold]力量[/gold]。\n在手牌中加入一张此牌的复制品。该复制品拥有[gold]虚无[/gold]，且失去的数值增加2点。",
-  
+
   "PENANCEMOD-BARBED_REBUKE.title": "你荆然敢!",
   "PENANCEMOD-BARBED_REBUKE.description": "造成{Damage:diff()}点伤害。\n比较目标的[gold]虚弱[/gold]与你的[gold]荆棘环身[/gold]层数，将较低者的层数提升至与较高者相等。",
 
@@ -143,7 +143,7 @@
   "PENANCEMOD-LAST_STAND.description": "获得{LastStand-Barrier:diff()}点[gold]屏障[/gold]。\n获得{LastStand-Ceasefire:diff()}层[gold]止戈[/gold]。",
 
   "PENANCEMOD-LAW_ENFORCEMENT.title": "执法",
-  "PENANCEMOD-LAW_ENFORCEMENT.description": "造成等同于你当前[gold]屏障[/gold]值{Law-Percent:diff()}%的伤害。{DynamicDamageText}\n如果该伤害的基础值不足 10 点，获得该值两倍的[gold]屏障[/gold]。",
+  "PENANCEMOD-LAW_ENFORCEMENT.description": "造成等同于你当前[gold]屏障[/gold]值{Law-Percent:diff()}%的伤害。{DynamicDamageText}\n如果该伤害的基础值不足10点，获得该值两倍的[gold]屏障[/gold]。",
   "PENANCEMOD-LAW_ENFORCEMENT.extended_description": "\n[purple]（当前基础伤害：{amount}点）[/purple]",
 
   "PENANCEMOD-LAW_IS_CANON.title": "法为正典",
@@ -151,16 +151,16 @@
 
   "PENANCEMOD-LAW_MODIFICATION.title": "法则修正",
   "PENANCEMOD-LAW_MODIFICATION.description": "将你的[gold]格挡[/gold]转换为[gold]屏障[/gold]。",
-  
+
   "PENANCEMOD-NO_SENTENCE_NEEDED.title": "无需宣判",
-  "PENANCEMOD-NO_SENTENCE_NEEDED.description": "只能在你的[gold]屏障[/gold]为0且生命值低于50%时打出。\n造成{Damage:diff()}点伤害。",
-  "PENANCEMOD-NO_SENTENCE_NEEDED.cant_use_message": "我必须在[gold]屏障[/gold]归零且生命值不足一半时才能打出这张牌。",
+  "PENANCEMOD-NO_SENTENCE_NEEDED.description": "只能在你的[gold]屏障[/gold]为0时打出。\n造成{Damage:diff()}点伤害。",
+  "PENANCEMOD-NO_SENTENCE_NEEDED.cant_use_message": "我必须在[gold]屏障[/gold]归零时才能打出这张牌。",
 
   "PENANCEMOD-OVERRULE.title": "驳回",
   "PENANCEMOD-OVERRULE.description": "造成{Damage:diff()}点伤害。给予1层[gold]虚弱[/gold]。\n如果目标已拥有[gold]虚弱[/gold]，将其层数翻倍。",
 
   "PENANCEMOD-PENALTY_REGRESSION.title": "刑责回溯",
-  "PENANCEMOD-PENALTY_REGRESSION.description": "造成{Damage:diff()}点伤害。\n使你身上的所有减益效果层数减少 1。",
+  "PENANCEMOD-PENALTY_REGRESSION.description": "造成{Damage:diff()}点伤害。\n使你身上的所有减益效果层数减少1。",
 
   "PENANCEMOD-PERJURY.title": "伪证",
   "PENANCEMOD-PERJURY.description": "{IfUpgraded:show:选择|随机}弃掉2张手牌。\n抽2张牌。",

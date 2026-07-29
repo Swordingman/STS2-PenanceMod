@@ -18,8 +18,7 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(PenanceModCardPool))]
 public class JudgementBacklash : PenanceBaseCard
 {
-    // 耗能 1，类型 Attack，稀有度 Uncommon，目标 AnyEnemy
-    public JudgementBacklash() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, true)
+    public JudgementBacklash() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, true)
     {
     }
 

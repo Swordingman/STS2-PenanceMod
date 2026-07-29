@@ -27,7 +27,7 @@ public class DrinkPoison : PenanceBaseCard
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar(PenaltyKey, 3m)
+        new DynamicVar(PenaltyKey, 2m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

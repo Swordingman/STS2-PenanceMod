@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Entities.Powers; // 力量Power
+using MegaCrit.Sts2.Core.Entities.Powers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,6 +37,9 @@ public class Excommunication : PenanceBaseCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var player = Owner;
+
+        if (player == null || CombatState == null)
+            return;
             
         var handCurses = PileType.Hand.GetPile(player).Cards.Where(c => c.Type == CardType.Curse).ToList();
         var drawCurses = PileType.Draw.GetPile(player).Cards.Where(c => c.Type == CardType.Curse).ToList();
@@ -45,24 +48,29 @@ public class Excommunication : PenanceBaseCard
         var allCurses = handCurses.Concat(drawCurses).Concat(discardCurses).ToList();
         int curseCount = allCurses.Count;
 
-        if (curseCount > 0)
+        if (curseCount <= 0)
+            return;
+
+        // 错峰并发消耗，使大量诅咒快速连续进入消耗堆
+        var exhaustTasks = new List<Task>();
+
+        foreach (var curse in allCurses)
         {
-            foreach (var curse in allCurses)
-            {
-                await CardCmd.Exhaust(choiceContext, curse, false);
-                await Cmd.Wait(0.05f);
-            }
-
-            await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
-
-            await Cmd.Wait(0.2f);
-      
-            int totalBarrier = curseCount * DynamicVars["Excom-Barrier"].IntValue;
-            int totalStr = curseCount * DynamicVars["Excom-Str"].IntValue;
-
-            await ApplyBarrier(player.Creature, totalBarrier);
-            await PowerCmd.Apply<StrengthPower>(choiceContext, player.Creature, totalStr, player.Creature, this);
+            exhaustTasks.Add(CardCmd.Exhaust(choiceContext, curse, false));
+            await Cmd.Wait(0.05f);
         }
+
+        // 等待所有诅咒消耗完成后再给予收益
+        await Task.WhenAll(exhaustTasks);
+
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
+        await Cmd.Wait(0.2f);
+      
+        int totalBarrier = curseCount * DynamicVars["Excom-Barrier"].IntValue;
+        int totalStr = curseCount * DynamicVars["Excom-Str"].IntValue;
+
+        await ApplyBarrier(player.Creature, totalBarrier);
+        await PowerCmd.Apply<StrengthPower>(choiceContext, player.Creature, totalStr, player.Creature, this);
     }
 
     protected override void OnUpgrade()

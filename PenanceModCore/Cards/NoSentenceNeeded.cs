@@ -45,12 +45,7 @@ public class NoSentenceNeeded : PenanceBaseCard
 
             // 2. 检查是否有屏障
             bool hasBarrier = (creature.GetPower<BarrierPower>()?.Amount ?? 0) > 0;
-
-            // 3. 检查生命值是否不足一半 (直接调用你在 PenanceBaseCard 里写好的完美辅助方法！)
-            bool isHalfHealth = IsHalfHealth(creature);
-
-            // 只有当“没有屏障” 且 “血量不足一半” 时，才允许打出！
-            return !hasBarrier && isHalfHealth;
+            return !hasBarrier;
         }
     }
 

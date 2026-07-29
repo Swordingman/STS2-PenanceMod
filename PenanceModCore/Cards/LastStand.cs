@@ -17,15 +17,12 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(PenanceModCardPool))]
 public class LastStand : PenanceBaseCard
 {
-    // 耗能 2，类�?Skill，稀有度 Uncommon，目�?Self
     public LastStand() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
     {
     }
 
-    // 🌟 注册基础关键词：消�?
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
-    // 🌟 注册变量：[0] 屏障�?30)，[1] 止戈层数(3)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("LastStand-Barrier", 24m).WithTooltip("PENANCEMOD-BARRIER"),
         new DynamicVar("LastStand-Ceasefire", 2m).WithTooltip("PENANCEMOD-CEASE_FIRE")
@@ -39,18 +36,16 @@ public class LastStand : PenanceBaseCard
 
         var creature = Owner.Creature;
 
-        // 1. 获得巨额屏障
         await PowerCmd.Apply<BarrierPower>(choiceContext,creature, barrierAmount, creature, this);
 
-        // 停顿一下，让两股强大的力量视觉上分离开
         await Cmd.Wait(0.15f);
 
-        // 2. 获得止戈副作�?
         await PowerCmd.Apply<CeasefirePower>(choiceContext,creature, ceasefireAmount, creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["LastStand-Barrier"].UpgradeValueBy(6);
+        DynamicVars["LastStand-Barrier"].UpgradeValueBy(2);
+        DynamicVars["LastStand-Ceasefire"].UpgradeValueBy(-1);
     }
 }

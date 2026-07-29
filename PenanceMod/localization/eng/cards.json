@@ -154,8 +154,8 @@
   "PENANCEMOD-LAW_MODIFICATION.description": "Convert your [gold]Block[/gold] into [gold]Barrier[/gold].",
   
   "PENANCEMOD-NO_SENTENCE_NEEDED.title": "No Sentence Needed",
-  "PENANCEMOD-NO_SENTENCE_NEEDED.description": "Can only be played if your [gold]Barrier[/gold] is 0 and your HP is below 50%.\nDeal {Damage:diff()} damage.",
-  "PENANCEMOD-NO_SENTENCE_NEEDED.cant_use_message": "I can only play this card when my [gold]Barrier[/gold] is 0 and my HP is below 50%.",
+  "PENANCEMOD-NO_SENTENCE_NEEDED.description": "Can only be played if your [gold]Barrier[/gold] is 0.\nDeal {Damage:diff()} damage.",
+  "PENANCEMOD-NO_SENTENCE_NEEDED.cant_use_message": "I can only play this card when my [gold]Barrier[/gold] is 0.",
 
   "PENANCEMOD-OVERRULE.title": "Overrule",
   "PENANCEMOD-OVERRULE.description": "Deal {Damage:diff()} damage. Apply 1 [gold]Weak[/gold].\nIf the target already has [gold]Weak[/gold], double its stacks.",

@@ -1,94 +1,126 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Factories;
-using MegaCrit.Sts2.Core.Saves;
-using MegaCrit.Sts2.Core.Saves.Runs;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using PenanceMod.PenanceModCode.Character;
+using PenanceMod.Scripts.Cards;
 
 namespace PenanceMod.PenanceModCode.Powers;
 
 public class CourtRehearsalTrackerPower : CustomPowerModel
 {
+    private sealed class TrackedCardState
+    {
+        public CardModel Card { get; set; }
+
+        public bool IsUpgradedMode { get; set; }
+
+        public TrackedCardState(CardModel card, bool isUpgradedMode)
+        {
+            Card = card;
+            IsUpgradedMode = isUpgradedMode;
+        }
+    }
+
+    private readonly List<TrackedCardState> _trackedCards = [];
+
     public override PowerType Type => PowerType.Buff;
-    
+
     public override PowerStackType StackType => PowerStackType.None;
 
     protected override bool IsVisibleInternal => false;
 
-    public CardModel? PenanceMod_TrackedCard { get; set; }
-
-    public bool PenanceMod_IsUpgradedMode { get; set; }
-
-    public override async Task BeforeFlush(PlayerChoiceContext choiceContext, Player player)
+    public void Track(CardModel card, bool isUpgradedMode)
     {
-        // 确保是当前 Power 拥有者的手牌结算阶段
-        if (Owner != player.Creature) return;
+        var existing = _trackedCards.FirstOrDefault(tracked => object.ReferenceEquals(tracked.Card, card));
 
-        var handPile = PileType.Hand.GetPile(player);
-
-        // 检查被追踪的卡是否还在手牌里（说明这回合玩家把这张牌憋在手里没打）
-        if (PenanceMod_TrackedCard != null && handPile.Cards.Contains(PenanceMod_TrackedCard))
+        if (existing != null)
         {
-            var newCard = GenerateRandomCard(player, PenanceMod_TrackedCard.Id.Entry);
-            if (newCard != null)
-            {
-                // 给新牌加上保留(Retain)和消耗(Exhaust)
-                newCard.AddKeyword(CardKeyword.Retain);
-                newCard.AddKeyword(CardKeyword.Exhaust);
-
-                // 变身为下一张牌
-                await CardCmd.Transform(PenanceMod_TrackedCard, newCard);
-
-                // 更新追踪目标
-                PenanceMod_TrackedCard = newCard;
-            }
+            existing.IsUpgradedMode |= isUpgradedMode;
+            return;
         }
-        else
-        {
-            // 如果它不在手里（比如被打出或被手动丢弃了），追踪器自毁
-            await PowerCmd.Remove(this);
-        }
+
+        _trackedCards.Add(new TrackedCardState(card, isUpgradedMode));
     }
 
-    public override Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
-    {
-        if (cardPlay.Card == PenanceMod_TrackedCard)
-        {
-            // 如果打出了追踪的卡，使用弃用等待安全销毁追踪器
-            _ = PowerCmd.Remove(this);
-        }
-        return Task.CompletedTask;
-    }
-
-    private CardModel? GenerateRandomCard(Player player, string currentCardEntryId)
+    private CardModel? GenerateRandomCard(Player player, string currentCardEntryId, bool isUpgradedMode)
     {
         var candidates = ModelDb.AllCardPools
-            .OfType<PenanceModCardPool>() 
+            .OfType<PenanceModCardPool>()
             .SelectMany(pool => pool.AllCardIds)
             .Select(id => ModelDb.GetById<CardModel>(id))
-            .Where(card => card != null && card.Type != CardType.Curse && card.Type != CardType.Status && card.Id.Entry != currentCardEntryId)
+            .Where(card => card != null
+                && card is not CourtRehearsal
+                && card.Type != CardType.Curse
+                && card.Type != CardType.Status
+                && card.Id.Entry != currentCardEntryId)
             .ToList();
 
         if (candidates.Count == 0) return null;
 
-        var randomCard = CardFactory.GetDistinctForCombat(
-            player, candidates, 1, player.RunState.Rng.CombatCardGeneration
-        ).FirstOrDefault();
+        var randomCard = CardFactory.GetDistinctForCombat(player, candidates, 1, player.RunState.Rng.CombatCardGeneration).FirstOrDefault();
 
-        if (randomCard != null && PenanceMod_IsUpgradedMode && randomCard.IsUpgradable && !randomCard.IsUpgraded)
+        if (randomCard != null && isUpgradedMode && randomCard.IsUpgradable && !randomCard.IsUpgraded)
         {
             randomCard.UpgradeInternal();
             randomCard.FinalizeUpgradeInternal();
         }
 
         return randomCard;
+    }
+
+    public override async Task BeforeFlush(PlayerChoiceContext choiceContext, Player player)
+    {
+        if (Owner != player.Creature) return;
+
+        var handPile = PileType.Hand.GetPile(player);
+
+        foreach (var tracked in _trackedCards.ToList())
+        {
+            var isStillInHand = handPile.Cards.Any(card => object.ReferenceEquals(card, tracked.Card));
+
+            if (!isStillInHand)
+            {
+                _trackedCards.Remove(tracked);
+                continue;
+            }
+
+            var newCard = GenerateRandomCard(player, tracked.Card.Id.Entry, tracked.IsUpgradedMode);
+            if (newCard == null) continue;
+
+            newCard.AddKeyword(CardKeyword.Retain);
+            newCard.AddKeyword(CardKeyword.Exhaust);
+
+            /*
+             * 这里已经排除了 CourtRehearsal，
+             * 不会再发生“Tracker 变出庭审预演，庭审预演立刻嵌套变形”的情况。
+             */
+            await CardCmd.Transform(tracked.Card, newCard);
+
+            // Transform 发生在手牌中，不会经过加入牌库时的替换 Hook。
+            tracked.Card = newCard;
+        }
+
+        if (_trackedCards.Count == 0)
+        {
+            await PowerCmd.Remove(this);
+        }
+    }
+
+    public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
+    {
+        var removedCount = _trackedCards.RemoveAll(tracked => object.ReferenceEquals(tracked.Card, cardPlay.Card));
+
+        if (removedCount > 0 && _trackedCards.Count == 0)
+        {
+            await PowerCmd.Remove(this);
+        }
     }
 }

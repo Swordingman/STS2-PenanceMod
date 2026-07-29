@@ -22,7 +22,7 @@ public class Objection : PenanceBaseCard
     }
 
     // 🌟 注册关键字：消耗，虚无
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, CardKeyword.Ethereal];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(6, ValueProp.Move).WithTooltip("PENANCEMOD-JUDGEMENT"),

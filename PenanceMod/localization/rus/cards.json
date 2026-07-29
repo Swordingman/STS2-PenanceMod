@@ -154,8 +154,8 @@
   "PENANCEMOD-LAW_MODIFICATION.description": "Конвертирует вашу [gold]Защиту[/gold] в [gold]Барьер[/gold].",
 
   "PENANCEMOD-NO_SENTENCE_NEEDED.title": "Приговор Не Требуется",
-  "PENANCEMOD-NO_SENTENCE_NEEDED.description": "Может быть разыграна только если ваш [gold]Барьер[/gold] равен 0 и ваше HP ниже 50%.\nНаносит {Damage:diff()} урона.",
-  "PENANCEMOD-NO_SENTENCE_NEEDED.cant_use_message": "Я могу разыграть эту карту только когда мой [gold]Барьер[/gold] равен 0 и HP ниже 50%.",
+  "PENANCEMOD-NO_SENTENCE_NEEDED.description": "Может быть разыграна только если ваш [gold]Барьер[/gold] равен 0.\nНаносит {Damage:diff()} урона.",
+  "PENANCEMOD-NO_SENTENCE_NEEDED.cant_use_message": "Я могу разыграть эту карту только когда мой [gold]Барьер[/gold] равен 0.",
 
   "PENANCEMOD-OVERRULE.title": "Отмена Решения",
   "PENANCEMOD-OVERRULE.description": "Наносит {Damage:diff()} урона. Накладывает 1 [gold]Ослабление[/gold].\nЕсли у цели уже есть [gold]Ослабление[/gold], удваивает его стаки.",

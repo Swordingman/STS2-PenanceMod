@@ -26,7 +26,7 @@ public static class InjectBarrierUIPatch
 
         string modelId = creature.ModelId.ToString();
 
-        if (!creature.IsPlayer || modelId != PenanceModelId)
+        if (!creature.IsPlayer)
             return;
 
         if (__instance.HasMeta(BarrierBarInjectedMeta))

@@ -15,6 +15,7 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Localization;
 using PenanceMod.Scripts.Utils;
 using PenanceMod.PenanceModCode.Relics;
+using MegaCrit.Sts2.Core.Random;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -24,6 +25,7 @@ public abstract class PenanceBaseCard : CustomCardModel
     public override string PortraitPath => $"res://PenanceMod/images/cards/{GetType().Name}.png";
 
     public string WolfCurseSfx => "res://PenanceMod/scenes/audio/trigger_wolfcurse.wav";
+    public string OWWWWWW => "res://PenanceMod/scenes/audio/OWWWW.wav";
 
     public PenanceBaseCard(int energyCost, CardType type, CardRarity rarity, TargetType targetType, bool shouldShowInCardLibrary) 
         : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
@@ -132,7 +134,9 @@ public abstract class PenanceBaseCard : CustomCardModel
         var carnivalPower = card.Owner.Creature.GetPower<CarnivalMomentPower>();
         if (carnivalPower != null)
         {
-            await AudioManager.PlayCustomSfx(WolfCurseSfx);
+            string wolfSfx = Rng.Chaotic.NextInt(100) == 0 ? OWWWWWW : WolfCurseSfx;
+
+            await AudioManager.PlayCustomSfx(wolfSfx);
             if (PenanceConfig.EnableWolfCurseSpeak)
             {
                 string audioPath = PenanceConfig.CharacterVoice switch
