@@ -63,7 +63,14 @@ public class DeadlyEnemy : PenanceBaseCard
         return incomingDamage;
     }
 
+    #if STS2_BETA
+    public override decimal ModifyDamageAdditive(Creature? target, decimal damage, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
+    { return ModifyDamageAdditiveCore(target, damage); }
+    #else
     public override decimal ModifyDamageAdditive(Creature? target, decimal damage, ValueProp props, Creature? dealer, CardModel? cardSource)
+    { return ModifyDamageAdditiveCore(target, damage); }
+    #endif
+    private decimal ModifyDamageAdditiveCore(Creature? target, decimal damage)
     {
         if (target != null && target.IsPlayer && damage > 0)
         {

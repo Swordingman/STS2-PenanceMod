@@ -42,7 +42,11 @@ public class DrinkPoison : PenanceBaseCard
         // 1. 失去生命值 (采用 Unblockable 直接扣血)
         if (hpToLose > 0)
         {
+            #if STS2_BETA
+            await CreatureCmd.Damage(choiceContext, creature, hpToLose, ValueProp.Unblockable, this, cardPlay);
+            #else
             await CreatureCmd.Damage(choiceContext, creature, hpToLose, ValueProp.Unblockable, this);
+            #endif
         }
 
         // 2. 获得 1 能量，抽 1 张牌

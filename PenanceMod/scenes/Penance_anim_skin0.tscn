@@ -6,6 +6,10 @@
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_gc4qa")
 
+[node name="FormVfx" type="Control" parent="."]
+unique_name_in_owner = true
+mouse_filter = 2
+
 [node name="Visuals" type="SpineSprite" parent="."]
 skeleton_data_res = ExtResource("1_4qih6")
 preview_skin = "Default"

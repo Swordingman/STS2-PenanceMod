@@ -39,7 +39,7 @@ public class CodeStrike : PenanceBaseCard
         if (target == null) return;
 
         var attackCmd = await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(target)
             .Execute(choiceContext);
 

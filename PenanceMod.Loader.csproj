@@ -1,0 +1,74 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>12.0</LangVersion>
+
+    <!-- 文件最后会改名成 PenanceMod.dll，但程序集内部不能也叫 PenanceMod -->
+    <AssemblyName>PenanceMod.Loader</AssemblyName>
+    <RootNamespace>PenanceMod.Loader</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+
+    <Sts2Dir>Z:\steam\steamapps\common\Slay the Spire 2</Sts2Dir>
+    <Sts2DataDir>$(Sts2Dir)\data_sts2_windows_x86_64</Sts2DataDir>
+    <StableReferenceDir>$(Sts2Dir)\mods\References\Stable</StableReferenceDir>
+    <ModOutputDir>$(Sts2Dir)\mods\PenanceMod</ModOutputDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Loader\PenanceModLoader.cs" />
+  </ItemGroup>
+
+  <!-- Loader 只引用最老的 Stable API，不引用 BaseLib -->
+  <ItemGroup>
+    <Reference Include="sts2">
+      <HintPath>$(StableReferenceDir)\sts2.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="DeployLoader" AfterTargets="Build">
+    <MakeDir Directories="$(ModOutputDir)" />
+
+    <Copy SourceFiles="$(TargetPath)"
+          DestinationFiles="$(ModOutputDir)\PenanceMod.dll" />
+
+    <Message Text="Loader 已部署到：$(ModOutputDir)\PenanceMod.dll"
+             Importance="high" />
+  </Target>
+
+  <Target Name="CleanPenanceModOutput"
+          AfterTargets="DeployLoader">
+
+    <ItemGroup>
+      <!-- 1. 明确定义一个“白名单”，分行写非常安全，不会有格式问题 -->
+      <FilesToKeep Include="$(ModOutputDir)\PenanceMod.dll" />
+      <FilesToKeep Include="$(ModOutputDir)\PenanceMod.Stable.dll" />
+      <FilesToKeep Include="$(ModOutputDir)\PenanceMod.Beta.dll" />
+      <FilesToKeep Include="$(ModOutputDir)\PenanceMod.json" />
+      <FilesToKeep Include="$(ModOutputDir)\PenanceMod.pck" />
+
+      <!-- 2. 获取所有文件，并排除掉白名单中的文件 -->
+      <PenanceModFilesToDelete 
+        Include="$(ModOutputDir)\**\*" 
+        Exclude="@(FilesToKeep)" />
+    </ItemGroup>
+
+    <!-- 3. 删除多余文件 -->
+    <Delete Files="@(PenanceModFilesToDelete)"
+            TreatErrorsAsWarnings="true" />
+
+    <!-- 4. 清理空目录 (非空目录RemoveDir会自动跳过，产生一条警告，TreatErrorsAsWarnings会将其压制) -->
+    <ItemGroup>
+      <PenanceModDirectories Include="$(ModOutputDir)\**\" />
+    </ItemGroup>
+
+    <RemoveDir Directories="@(PenanceModDirectories)"
+               ContinueOnError="true" />
+
+    <Message Text="[PenanceMod.Loader] 输出目录清理完成，仅保留了白名单中的正式发布文件。"
+             Importance="high" />
+  </Target>
+</Project>

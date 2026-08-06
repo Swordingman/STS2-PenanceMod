@@ -18,8 +18,14 @@ public class CourtMajestyPower : CustomPowerModel
     public override string? CustomPackedIconPath => $"res://PenanceMod/images/powers/{nameof(CourtMajestyPower)}.png";
     public override string? CustomBigIconPath => $"res://PenanceMod/images/powers/large/{nameof(CourtMajestyPower)}.png";
 
-    // 🌟 核心监听：在乘算阶段拦截伤害
+    #if STS2_BETA
+    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
+    { return ModifyDamageMultiplicativeCore(target, amount, dealer); }
+    #else
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
+    { return ModifyDamageMultiplicativeCore(target, amount, dealer); }
+    #endif
+    private decimal ModifyDamageMultiplicativeCore(Creature? target, decimal amount, Creature? dealer)
     {
         // 确保受击者是玩家自己（挂载了这个能力的生物），且攻击者存在
         if (target == Owner && dealer != null && dealer != Owner)

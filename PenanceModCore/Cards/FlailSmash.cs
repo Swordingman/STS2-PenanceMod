@@ -40,7 +40,7 @@ public class FlailSmash : PenanceBaseCard
 
         // 1. 造成伤害
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(target)
             .Execute(choiceContext);
 

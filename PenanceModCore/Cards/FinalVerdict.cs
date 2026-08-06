@@ -54,7 +54,7 @@ public class FinalVerdict : PenanceBaseCard
 
         // 3. 造成伤害，并接收结算结果
         var attackCmd = await DamageCmd.Attack(totalBaseDamage)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(target)
             .Execute(choiceContext);
 

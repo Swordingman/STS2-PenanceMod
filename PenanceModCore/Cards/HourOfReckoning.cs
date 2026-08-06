@@ -75,7 +75,7 @@ public class HourOfReckoning : PenanceBaseCard
 
         // 造成伤害，DamageCmd 会拿这个总值自动去吃力量、易伤等修饰
         await DamageCmd.Attack(totalDamage)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(target)
             .Execute(choiceContext);
     }

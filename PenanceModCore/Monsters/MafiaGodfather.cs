@@ -79,6 +79,17 @@ public sealed class MafiaGodfather : CustomMonsterModel
         {
             foreach (Creature cleaner in LivingCleaners().ToList())
             {
+                #if STS2_BETA
+                await CreatureCmd.Damage(
+                    new ThrowingPlayerChoiceContext(),
+                    cleaner,
+                    cleaner.CurrentHp,
+                    ValueProp.Unblockable,
+                    Creature,
+                    null,
+                    null
+                );
+                #else
                 await CreatureCmd.Damage(
                     new ThrowingPlayerChoiceContext(),
                     cleaner,
@@ -87,6 +98,7 @@ public sealed class MafiaGodfather : CustomMonsterModel
                     Creature,
                     null
                 );
+                #endif
             }
         }
     }

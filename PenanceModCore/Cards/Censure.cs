@@ -18,12 +18,12 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(PenanceModCardPool))]
 public class Censure : PenanceBaseCard
 {
-    // 耗能 1，类�?Attack，稀有度 Basic，目�?AnyEnemy
+    // 耗能 1，类�?Attack，稀有度 Basic，目�?AnyEnemy
     public Censure() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy, true)
     {
     }
 
-    // 🌟 按顺序注册：索引 0 为伤�?(6)，索�?1 为裁决数�?(2)
+    // 🌟 按顺序注册：索引 0 为伤�?(6)，索�?1 为裁决数�?(2)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(6, ValueProp.Move),
         new DynamicVar("Censure-Judgement", 2m).WithTooltip("PENANCEMOD-JUDGEMENT")
@@ -36,11 +36,11 @@ public class Censure : PenanceBaseCard
 
         // 1. 造成伤害
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(target)
             .Execute(choiceContext);
 
-        // 2. 获得裁决 (抓取索引 1 的变�?
+        // 2. 获得裁决 (抓取索引 1 的变�?
         var vars = DynamicVars.Values.ToList();
         int judgementAmount = vars.Count > 1 ? vars[1].IntValue : 2;
 

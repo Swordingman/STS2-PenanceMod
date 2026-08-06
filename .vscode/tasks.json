@@ -1,0 +1,55 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "dotnet build Stable",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}\\PenanceMod.csproj",
+        "-t:Rebuild",
+        "-p:GameBranch=Stable"
+      ],
+      "group": "build",
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "dotnet build Beta",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}\\PenanceMod.csproj",
+        "-t:Rebuild",
+        "-p:GameBranch=Beta",
+        "-p:SkipGodotExport=true"
+      ],
+      "group": "build",
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "dotnet build Loader",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}\\PenanceMod.Loader.csproj",
+        "-t:Rebuild"
+      ],
+      "group": "build",
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "dotnet build All",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "dotnet build Stable",
+        "dotnet build Beta",
+        "dotnet build Loader"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}

@@ -31,7 +31,12 @@ public class Tempering : PenanceBaseCard
         if (creature == null) return;
 
         var selfDamageVar = new DamageVar(3, ValueProp.Unblockable);
+
+        #if STS2_BETA
+        await CreatureCmd.Damage(choiceContext, creature, selfDamageVar, this, cardPlay);
+        #else
         await CreatureCmd.Damage(choiceContext, creature, selfDamageVar, this);
+        #endif
 
         await Cmd.Wait(0.1f);
 

@@ -37,7 +37,11 @@ public class TestTheLaw : PenanceBaseCard
         if (diff > 0)
         {
             // 超过 10，扣血并获得 3 倍屏障
+            #if STS2_BETA
+            await CreatureCmd.Damage(choiceContext, creature, diff, ValueProp.Unblockable, this, cardPlay);
+            #else
             await CreatureCmd.Damage(choiceContext, creature, diff, ValueProp.Unblockable, this);
+            #endif
             await ApplyBarrier(creature, diff * 3);
         }
         else if (diff < 0)

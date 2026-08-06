@@ -114,6 +114,7 @@
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.0-2.char": "Правовые принципы правосудия стоят выше воли любого человека. Готовься встретиться с законом!",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.0-2.next": "Продолжить",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.0-3.ancient": "Этот фарс должен закончиться.",
+  "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.0-attack": "Both",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-0r.char": "Суд не окончен, Архитектор. Пока существует грех, молоток не успокоится.",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-0r.next": "Продолжить",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-1r.ancient": "Почему Неов всегда любит присылать марионеток, утопающих в ложном правосудии?",
@@ -121,9 +122,11 @@
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-2r.char": "Моё правосудие никогда не бывает ложным!",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-2r.next": "Продолжить",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-3r.ancient": "Заседание закрыто, судья.",
+  "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-attack": "Both",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-0r.ancient": "Без моего правления всё в этом Шпиле давно бы развалилось.",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-0r.next": "Возразить",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-1r.char": "Если твой \"порядок\" должен строиться на бесконечной боли и крови, то это тирания, которая должна быть полностью свергнута!",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-1r.next": "Продолжить",
-  "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-2r.ancient": "Упрямая дура. Гни со своим \"правосудием\"."
+  "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-2r.ancient": "Упрямая дура. Гни со своим \"правосудием\".",
+  "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-attack": "Both"
 }

@@ -73,6 +73,16 @@ public class ASip : PenanceBaseCard
 
         if (hpToLose > 0)
         {
+            #if STS2_BETA
+            await CreatureCmd.Damage(
+                choiceContext,
+                creature,
+                hpToLose,
+                ValueProp.Unblockable,
+                this,
+                cardPlay
+            );
+            #else
             await CreatureCmd.Damage(
                 choiceContext,
                 creature,
@@ -80,6 +90,7 @@ public class ASip : PenanceBaseCard
                 ValueProp.Unblockable,
                 this
             );
+            #endif
         }
 
         await PowerCmd.Apply<StrengthPower>(

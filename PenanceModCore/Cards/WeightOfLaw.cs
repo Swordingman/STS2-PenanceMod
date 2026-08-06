@@ -35,7 +35,12 @@ public class WeightOfLaw : PenanceBaseCard
         // 1. 失去 6 点生命值
         var selfDamageVar = new DamageVar(6, ValueProp.Unblockable);
         await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);
+
+        #if STS2_BETA
+        await CreatureCmd.Damage(choiceContext, creature, selfDamageVar, this, cardPlay);
+        #else
         await CreatureCmd.Damage(choiceContext, creature, selfDamageVar, this);
+        #endif
 
         await Cmd.Wait(0.1f);
 

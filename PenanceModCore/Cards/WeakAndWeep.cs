@@ -47,7 +47,7 @@ public class WeakAndWeep : PenanceBaseCard
         if (weakStacks > 0 && thornAuraAmt > 0)
         {
             await DamageCmd.Attack(thornAuraAmt)
-                .FromCard(this)
+                .FromCardCompatibility(this, cardPlay)
                 .Targeting(target)
                 .WithHitCount(weakStacks) // 👈 直接把虚弱层数塞给 HitCount
                 .Unpowered()              // 技能牌造成的荆棘伤害通常不吃力量加成

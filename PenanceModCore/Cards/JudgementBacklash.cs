@@ -47,7 +47,7 @@ public class JudgementBacklash : PenanceBaseCard
             if (target.IsDead) break;
 
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this)
+                .FromCardCompatibility(this, cardPlay)
                 .Targeting(target)
                 .Execute(choiceContext);
 

@@ -28,23 +28,48 @@ public class UnwaveringPower : CustomPowerModel
     // ==========================================
     // 效果 1：让所有攻击牌消耗
     // ==========================================
-	public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(CardModel card, bool isAutoPlay, ResourceInfo resources, PileType pileType, CardPilePosition position)
-	{
-		if (card.Owner.Creature != base.Owner)
-		{
-			return (pileType, position);
-		}
-		if (card.Type != CardType.Attack)
-		{
-			return (pileType, position);
-		}
-		return (PileType.Exhaust, position);
-	}
+    private bool ShouldExhaust(CardModel card)
+    {
+        return card.Owner.Creature == Owner && card.Type == CardType.Attack;
+    }
+
+    #if STS2_BETA
+    public override CardLocation ModifyCardPlayResultLocation(CardModel card, bool isAutoPlay, ResourceInfo resources, CardLocation location)
+    {
+        if (ShouldExhaust(card))
+            location.pileType = PileType.Exhaust;
+
+        return location;
+    }
+    public override Task AfterModifyingCardPlayResultLocation(CardModel card, CardLocation cardLocation)
+    {
+        if (ShouldExhaust(card) && cardLocation.pileType == PileType.Exhaust)
+            Flash();
+
+        return Task.CompletedTask;
+    }
+    #else
+    public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(CardModel card, bool isAutoPlay, ResourceInfo resources, PileType pileType, CardPilePosition position)
+    {
+        if (!ShouldExhaust(card))
+            return (pileType, position);
+
+        Flash();
+        return (PileType.Exhaust, position);
+    }
+    #endif
 
     // ==========================================
     // 效果 2：受到的伤害减少 30%
     // ==========================================
+    #if STS2_BETA
+    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
+    { return ModifyDamageMultiplicativeCore(target, amount, props); }
+    #else
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
+    { return ModifyDamageMultiplicativeCore(target, amount, props); }
+    #endif
+    private decimal ModifyDamageMultiplicativeCore(Creature? target, decimal amount, ValueProp props)
     {
         if (Owner != null &&
             target == Owner &&
@@ -57,6 +82,7 @@ public class UnwaveringPower : CustomPowerModel
         // ✅ 不满足条件时（比如你攻击敌人），返回 1.0 倍率，代表伤害不变
         return 1.0m; 
     }
+
 
     // ==========================================
     // 效果 3：回合结束获得荆棘

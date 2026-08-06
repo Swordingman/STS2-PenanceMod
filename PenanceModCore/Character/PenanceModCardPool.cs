@@ -16,7 +16,7 @@ public class PenanceModCardPool : CustomCardPoolModel
 
 
     // 卡池的主题色。
-    public override Color DeckEntryCardColor => new(144, 119, 22);
+    public override Color DeckEntryCardColor => Color.Color8(144, 119, 22);
 
     public override string CardFrameMaterialPath => "../../../PenanceMod/scenes/blank_frame";
 

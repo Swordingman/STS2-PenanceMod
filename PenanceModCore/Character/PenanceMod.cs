@@ -34,18 +34,16 @@ public class PenanceMod : PlaceholderCharacterModel
     public override int StartingHp => 65;
 
     // 人物模型tscn路径。要自定义见下。
-    public override string CustomVisualPath 
+    public static string GetVisualPath(int skinIndex)
     {
-        get 
+        return PenanceSkinState.Normalize(skinIndex) switch
         {
-            return PenanceConfig.CurrentSkinIndex switch
-            {
-                1 => "res://PenanceMod/scenes/Penance_anim_skin1.tscn", // 偶尔醉陶
-                2 => "res://PenanceMod/scenes/Penance_anim_skin2.tscn", // 记叙
-                _ => "res://PenanceMod/scenes/Penance_anim_skin0.tscn", // 默认皮肤 (Index 0)
-            };
-        }
+            1 => "res://PenanceMod/scenes/Penance_anim_skin1.tscn",
+            2 => "res://PenanceMod/scenes/Penance_anim_skin2.tscn",
+            _ => "res://PenanceMod/scenes/Penance_anim_skin0.tscn"
+        };
     }
+    public override string CustomVisualPath => GetVisualPath(PenanceConfig.CurrentSkinIndex);
 
     // 卡牌拖尾场景。
     // public override string CustomTrailPath => "res://scenes/vfx/card_trail_ironclad.tscn";
@@ -57,31 +55,28 @@ public class PenanceMod : PlaceholderCharacterModel
     public override string CustomEnergyCounterPath => "res://PenanceMod/scenes/Penance_eneg.tscn";
 
     // 篝火休息场景。
-    public override string CustomRestSiteAnimPath
+    public static string GetRestSiteAnimPath(int skinIndex)
     {
-        get
+        return PenanceSkinState.Normalize(skinIndex) switch
         {
-            return PenanceConfig.CurrentSkinIndex switch
-            {
-                1 => "res://PenanceMod/scenes/Penance_rest_site_skin1.tscn", // 偶尔醉陶
-                2 => "res://PenanceMod/scenes/Penance_rest_site_skin2.tscn", // 记叙
-                _ => "res://PenanceMod/scenes/Penance_rest_site_skin0.tscn", // 默认皮肤
-            };
-        }
+            1 => "res://PenanceMod/scenes/Penance_rest_site_skin1.tscn",
+            2 => "res://PenanceMod/scenes/Penance_rest_site_skin2.tscn",
+            _ => "res://PenanceMod/scenes/Penance_rest_site_skin0.tscn"
+        };
     }
+    public override string CustomRestSiteAnimPath => GetRestSiteAnimPath(PenanceConfig.CurrentSkinIndex);
+    
     // 商店人物场景。
-    public override string CustomMerchantAnimPath
+    public static string GetMerchantAnimPath(int skinIndex)
     {
-        get
+        return PenanceSkinState.Normalize(skinIndex) switch
         {
-            return PenanceConfig.CurrentSkinIndex switch
-            {
-                1 => "res://PenanceMod/scenes/Relaxed_Penance_anim_skin1.tscn", // 偶尔醉陶
-                2 => "res://PenanceMod/scenes/Relaxed_Penance_anim_skin2.tscn", // 记叙
-                _ => "res://PenanceMod/scenes/Relaxed_Penance_anim_skin0.tscn", // 默认皮肤
-            };
-        }
+            1 => "res://PenanceMod/scenes/Relaxed_Penance_anim_skin1.tscn",
+            2 => "res://PenanceMod/scenes/Relaxed_Penance_anim_skin2.tscn",
+            _ => "res://PenanceMod/scenes/Relaxed_Penance_anim_skin0.tscn"
+        };
     }
+    public override string CustomMerchantAnimPath => GetMerchantAnimPath(PenanceConfig.CurrentSkinIndex);
 
     // 多人模式-手指。
     public override string CustomArmPointingTexturePath => "res://PenanceMod/images/charui/hand_point.png";

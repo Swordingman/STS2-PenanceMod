@@ -6,6 +6,8 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using PenanceMod.PenanceModCode.Character;
 using PenanceMod.Scripts.Utils;
+using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
+using PenanceMod.PenanceModCode.Networking;
 
 public partial class SkinSelectorUI : Control
 {
@@ -27,6 +29,14 @@ public partial class SkinSelectorUI : Control
 
     public override void _Ready()
     {
+        if (IsInsideMultiplayerLoadScreen())
+        {
+            GetNode<TextureRect>("TextureRect").Visible = true;
+            GetNode<Control>("SkinSelectorPanel").Visible = false;
+            GetNode<Control>("ChallengeSelectorPanel").Visible = false;
+            return;
+        }
+
         // 1. 严格对应 .tscn 的节点树层级获取节点
         _leftBtn = GetNode<TextureButton>("SkinSelectorPanel/ArrowContainer/LeftArrow");
         _rightBtn = GetNode<TextureButton>("SkinSelectorPanel/ArrowContainer/RightArrow");
@@ -124,23 +134,48 @@ public partial class SkinSelectorUI : Control
     private void OnLeftPressed()
     {
         PenanceConfig.CurrentSkinIndex--;
+
         if (PenanceConfig.CurrentSkinIndex < 0)
-        {
             PenanceConfig.CurrentSkinIndex = MaxSkins - 1;
-        }
+
         ModConfig.SaveDebounced<PenanceConfig>();
         UpdateUI();
+        LobbySkinNetwork.PublishLocalSkin();
     }
 
     private void OnRightPressed()
     {
         PenanceConfig.CurrentSkinIndex++;
+
         if (PenanceConfig.CurrentSkinIndex >= MaxSkins)
-        {
             PenanceConfig.CurrentSkinIndex = 0;
-        }
+
         ModConfig.SaveDebounced<PenanceConfig>();
         UpdateUI();
+        LobbySkinNetwork.PublishLocalSkin();
+    }
+
+    private void PublishSkinSelection()
+    {
+        var screen = FindCharacterSelectScreen();
+        if (screen == null) return;
+
+        LobbySkinNetwork.PublishLocalSkin(screen.Lobby);
+    }
+
+    private NCharacterSelectScreen? FindCharacterSelectScreen()
+    {
+        Node? current = this;
+
+        while (current != null)
+        {
+            if (current is NCharacterSelectScreen screen)
+                return screen;
+
+            current = current.GetParent();
+        }
+
+        return null;
     }
 
     private void UpdateUI()
@@ -203,20 +238,26 @@ public partial class SkinSelectorUI : Control
             {
                 try
                 {
+                    #if STS2_BETA
+                    visuals.SpineAnimation.SetAnimation("idle_loop");
+                    #else
                     MegaTrackEntry? entry = visuals.SpineAnimation.SetAnimation("idle_loop");
                     if (entry != null)
                     {
                         entry.SetLoop(true);
                         entry.SetTimeScale(MegaCrit.Sts2.Core.Random.Rng.Chaotic.NextFloat(0.9f, 1.1f));
+
                         float animationEnd = entry.GetAnimationEnd();
                         if (animationEnd > 0f)
                         {
-                            entry.SetTrackTime((animationEnd + MegaCrit.Sts2.Core.Random.Rng.Chaotic.NextFloat(-0.5f, 0.5f)) % animationEnd);
+                            float offset = MegaCrit.Sts2.Core.Random.Rng.Chaotic.NextFloat(-0.5f, 0.5f);
+                            entry.SetTrackTime((animationEnd + offset) % animationEnd);
                         }
                     }
-                    return; // 播放成功，直接收工
+                    #endif
+                    return;
                 }
-                catch (System.Exception e)
+                catch (Exception e)
                 {
                     GD.PushWarning($"[PenanceMod UI] NCreatureVisuals 播放报错: {e.Message}");
                 }
@@ -271,5 +312,20 @@ public partial class SkinSelectorUI : Control
 
         // 如果找遍了所有的子节点都没找到能播放的
         GD.PushWarning("[PenanceMod UI] 地毯式搜索完毕：未能在模型中找到包含 idle_loop 的 NCreatureVisuals、SpineSprite 或 AnimationPlayer 节点。");
+    }
+
+    private bool IsInsideMultiplayerLoadScreen()
+    {
+        Node? current = this;
+
+        while (current != null)
+        {
+            if (current is NMultiplayerLoadGameScreen)
+                return true;
+
+            current = current.GetParent();
+        }
+
+        return false;
     }
 }

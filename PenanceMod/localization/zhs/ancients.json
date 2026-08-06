@@ -114,6 +114,7 @@
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.0-2.char": "正义的法理凌驾于任何个人的意志之上。准备伏法吧！",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.0-2.next": "继续",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.0-3.ancient": "这场闹剧该结束了。",
+  "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.0-attack": "Both",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-0r.char": "审判尚未结束，建筑师。只要罪恶犹存，法槌就不会停下。",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-0r.next": "继续",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-1r.ancient": "涅奥怎么总是喜欢派一些沉溺于虚假正义的玩偶上来？",
@@ -121,9 +122,11 @@
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-2r.char": "我的判决，绝不虚假！",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-2r.next": "继续",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-3r.ancient": "休庭了，法官。",
+  "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-attack": "Both",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-0r.ancient": "没有我的统治，这高塔里的一切早就分崩离析了。",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-0r.next": "反驳",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-1r.char": "如果你的“秩序”必须建立在无尽的痛苦与鲜血之上，那它就是必须被彻底推翻的暴政！",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-1r.next": "继续",
-  "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-2r.ancient": "冥顽不灵。和你的“公正”一起烂掉吧。"
+  "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-2r.ancient": "冥顽不灵。和你的“公正”一起烂掉吧。",
+  "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-attack": "Both"
 }

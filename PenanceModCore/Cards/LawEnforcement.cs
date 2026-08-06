@@ -18,12 +18,12 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(PenanceModCardPool))]
 public class LawEnforcement : PenanceBaseCard
 {
-    // 耗能 2，类�?Attack，稀有度 Uncommon，目�?AnyEnemy
+    // 耗能 2，类�?Attack，稀有度 Uncommon，目�?AnyEnemy
     public LawEnforcement() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, true)
     {
     }
 
-    // 🌟 注册变量：百分比数�?(初始 50)
+    // 🌟 注册变量：百分比数�?(初始 50)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DynamicVar("Law-Percent", 50m).WithTooltip("PENANCEMOD-BARRIER")
     ];
@@ -41,12 +41,12 @@ public class LawEnforcement : PenanceBaseCard
         var vars = DynamicVars.Values.ToList();
         int percent = vars.Count > 0 ? vars[0].IntValue : 50;
 
-        // 2. 计算动态基础伤害 (屏障 * 百分�?
+        // 2. 计算动态基础伤害 (屏障 * 百分�?
         int baseDamage = (int)(barrierAmount * (percent / 100f));
 
-        // 3. 造成伤害�?这个 baseDamage 传给底层后，引擎会自动让它吃力量、易伤等修饰)
+        // 3. 造成伤害�?这个 baseDamage 传给底层后，引擎会自动让它吃力量、易伤等修饰)
         await DamageCmd.Attack(baseDamage)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(target)
             .Execute(choiceContext);
 
@@ -64,7 +64,7 @@ public class LawEnforcement : PenanceBaseCard
     }
 
     // ==========================================
-    // 📝 动�?UI：实时显示算出来的面板伤�?
+    // 📝 动�?UI：实时显示算出来的面板伤�?
     // ==========================================
     protected override void AddExtraArgsToDescription(LocString description)
     {
@@ -91,7 +91,7 @@ public class LawEnforcement : PenanceBaseCard
 
     protected override void OnUpgrade()
     {
-        // 百分比提�?25 (50 -> 75)
+        // 百分比提�?25 (50 -> 75)
         var vars = DynamicVars.Values.ToList();
         if (vars.Count > 0)
         {

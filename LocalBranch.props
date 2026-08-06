@@ -1,0 +1,5 @@
+<Project>
+  <PropertyGroup>
+    <GameBranch Condition="'$(GameBranch)' == ''">Stable</GameBranch>
+  </PropertyGroup>
+</Project>

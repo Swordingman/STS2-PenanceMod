@@ -46,7 +46,7 @@ public class JointLiability : PenanceBaseCard
 
         // 3. 执行 AOE 伤害
         await DamageCmd.Attack(totalDamage)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             // 🌟 核心：使用旋风斩同款的全场敌方目标锁定 API
             .TargetingAllOpponents(CombatState)
             .Execute(choiceContext);

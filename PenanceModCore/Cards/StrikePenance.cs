@@ -43,7 +43,7 @@ public class StrikePenance : PenanceBaseCard
             return;
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
     }

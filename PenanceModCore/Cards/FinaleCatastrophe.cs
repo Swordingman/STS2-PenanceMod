@@ -114,7 +114,12 @@ public class FinaleCatastrophe : PenanceBaseCard
 
             if (target != null)
             {
+                #if STS2_BETA
+                await CreatureCmd.Damage(choiceContext, target, 1, ValueProp.Unpowered, this, cardPlay);
+                #else
                 await CreatureCmd.Damage(choiceContext, target, 1, ValueProp.Unpowered, this);
+                #endif
+
                 VfxCmd.PlayOnCreatureCenter(target, VfxCmd.slashPath);
                 NGame.Instance?.ScreenShake(ShakeStrength.Weak, ShakeDuration.Short);
                 await Cmd.Wait(0.05f);

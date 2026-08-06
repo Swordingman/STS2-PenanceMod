@@ -5,7 +5,7 @@
 [node name="SpineSprite" type="SpineSprite"]
 skeleton_data_res = ExtResource("1_pnxw5")
 preview_skin = "default"
-preview_animation = "relax_loop"
+preview_animation = "relaxed_loop"
 preview_frame = false
 preview_time = 0.0
 scale = Vector2(0.8, 0.8)

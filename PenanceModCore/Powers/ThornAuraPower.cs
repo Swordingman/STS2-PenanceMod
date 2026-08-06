@@ -35,14 +35,26 @@ public class ThornAuraPower : CustomPowerModel
 
             VfxCmd.PlayOnSide(CombatSide.Enemy, VfxCmd.giantHorizontalSlashPath, Owner.CombatState);
 
+            #if STS2_BETA
             await CreatureCmd.Damage(
                 choiceContext,        
                 enemies,               
                 Amount,               
                 ValueProp.Unpowered,  
                 Owner,                
-                null                  
+                null,
+                null             
             );
+            #else
+            await CreatureCmd.Damage(
+                choiceContext,        
+                enemies,               
+                Amount,               
+                ValueProp.Unpowered,  
+                Owner,                
+                null             
+            );
+            #endif
 
             var lawPower = Owner.GetPower<InTheNameOfTheLawPower>();
             int weakAmount = lawPower?.Amount ?? 0;

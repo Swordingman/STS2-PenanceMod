@@ -37,7 +37,11 @@ public class Sting : PenanceBaseCard
 
         // 1. 失去生命�?
         var selfDamageVar = new DamageVar(3, ValueProp.Unblockable);
+        #if STS2_BETA
+        await CreatureCmd.Damage(choiceContext, creature, selfDamageVar, this, cardPlay);
+        #else
         await CreatureCmd.Damage(choiceContext, creature, selfDamageVar, this);
+        #endif
 
         // 稍微停顿，让扣血的红字和后面�?Buff 的特效错开，打击感更好
         await Cmd.Wait(0.1f);

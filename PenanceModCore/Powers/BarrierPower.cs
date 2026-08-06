@@ -18,6 +18,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using PenanceMod.PenanceModCode.Relics;
 using PenanceMod.Scripts.Utils;
 using MegaCrit.Sts2.Core.Entities.Players;
+using System.Linq;
 
 namespace PenanceMod.PenanceModCode.Powers;
 
@@ -98,36 +99,53 @@ public class BarrierPower : CustomPowerModel
         var owner = Owner;
         if (owner == null || target != owner) return;
 
-        // 处理屏障破裂事件
         if (_pendingBarrierBroken)
         {
             _pendingBarrierBroken = false;
             var wrath = owner.GetPower<SilenceWrathPower>();
-            // 注意：如果你的 OnBarrierBroken 里面也有打伤害的逻辑，它也必须改成 async/await！
-            wrath?.OnBarrierBroken(); 
+            wrath?.OnBarrierBroken();
         }
 
-        // 处理裁决反击事件
-        if (dealer != null && _pendingJudgementTargets.Contains(dealer))
+        if (dealer == null || !_pendingJudgementTargets.Contains(dealer)) return;
+
+        _pendingJudgementTargets.Remove(dealer);
+
+        var asceticism = owner.GetPower<AsceticismPower>();
+        asceticism?.OnBarrierDamaged();
+
+        var guardian = owner.GetPower<GuardianOfTheLawPower>();
+        guardian?.OnBarrierDamaged();
+
+        var silenceWrath = owner.GetPower<SilenceWrathPower>();
+        silenceWrath?.OnBarrierDamaged(dealer);
+
+        await TriggerAllJudgementsAsync(dealer, choiceContext);
+    }
+
+    private async Task TriggerAllJudgementsAsync(Creature dealer, PlayerChoiceContext choiceContext)
+    {
+        var combatState = Owner?.CombatState;
+        if (combatState == null) return;
+
+        var playerCreatures = combatState.PlayerCreatures.ToArray();
+
+        foreach (var playerCreature in playerCreatures)
         {
-            // 划掉名字，防止重复触发
-            _pendingJudgementTargets.Remove(dealer);
+            if (!dealer.IsAlive) break;
 
-            // 触发其他非伤害类的能力效果
-            var asceticism = owner.GetPower<AsceticismPower>();
-            asceticism?.OnBarrierDamaged();
+            var judgement = playerCreature.GetPower<JudgementPower>();
+            if (judgement == null || judgement.Amount <= 0) continue;
 
-            var guardian = owner.GetPower<GuardianOfTheLawPower>();
-            guardian?.OnBarrierDamaged();
+            choiceContext.PushModel(judgement);
 
-            var wrath = owner.GetPower<SilenceWrathPower>();
-            wrath?.OnBarrierDamaged(dealer);
-
-            // 安全地触发裁决反击！把游戏真实的 choiceContext 传过去
-            var judgement = owner.GetPower<JudgementPower>();
-            if (judgement != null && judgement.Amount > 0)
+            try
             {
                 await judgement.TriggerJudgementDamageAsync(dealer, choiceContext);
+            }
+            finally
+            {
+                choiceContext.PopModel(judgement);
+                judgement.InvokeExecutionFinished();
             }
         }
     }

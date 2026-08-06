@@ -1,5 +1,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -10,6 +11,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Models.RelicPools;
 using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.Saves.Runs;
+using MegaCrit.Sts2.Core.ValueProps;
 using PenanceMod.PenanceModCode.Character;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -26,9 +28,8 @@ public class BlackUmbrella : CustomRelicModel
     protected override string PackedIconOutlinePath => $"res://PenanceMod/images/relics/large/{nameof(BlackUmbrella)}.png";
     protected override string BigIconPath => $"res://PenanceMod/images/relics/large/{nameof(BlackUmbrella)}.png";
 
-    // 注册变量：[0] 易伤层数 (1)，[1] 力量层数 (1)
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Umbrella-Vuln", 1m),
+        new DynamicVar("Umbrella-Vuln", 2m),
         new DynamicVar("Umbrella-Str", 1m)
     ];
 
@@ -44,18 +45,60 @@ public class BlackUmbrella : CustomRelicModel
         return Task.CompletedTask;
     }
 
-    public async Task TriggerOnBlockBroken(PlayerChoiceContext choiceContext, Creature attacker)
+    private Creature? _pendingAttacker;
+    private PlayerChoiceContext? _pendingChoiceContext;
+
+    public override Task BeforeDamageReceived(
+        PlayerChoiceContext choiceContext,
+        Creature target,
+        decimal amount,
+        ValueProp props,
+        Creature? dealer,
+        CardModel? cardSource)
     {
-        if (PenanceMod_TriggeredThisCombat) 
+        if (target.Player == Owner && target.Block > 0)
+        {
+            _pendingAttacker = dealer;
+            _pendingChoiceContext = choiceContext;
+        }
+
+        return Task.CompletedTask;
+    }
+
+    #if STS2_BETA
+    public override async Task AfterBlockBroken(PlayerChoiceContext choiceContext, Creature target, Creature? breaker)
+    {
+        if (PenanceMod_TriggeredThisCombat || target.Player != Owner)
             return;
 
         PenanceMod_TriggeredThisCombat = true;
-        
-        Status = RelicStatus.Disabled; 
-        
+        Status = RelicStatus.Disabled;
         Flash();
 
-        var creature = Owner.Creature;
+        int vulnAmt = DynamicVars["Umbrella-Vuln"].IntValue;
+        int strAmt = DynamicVars["Umbrella-Str"].IntValue;
+
+        if (breaker != null)
+            await PowerCmd.Apply<VulnerablePower>(choiceContext, breaker, vulnAmt, target, null);
+
+        await PowerCmd.Apply<StrengthPower>(choiceContext, target, strAmt, target, null);
+    }
+    #else
+    public override async Task AfterBlockBroken(Creature creature)
+    {
+        if (PenanceMod_TriggeredThisCombat)
+            return;
+
+        if (creature.Player != Owner)
+            return;
+
+        PenanceMod_TriggeredThisCombat = true;
+        Status = RelicStatus.Disabled;
+        Flash();
+
+        var choiceContext = _pendingChoiceContext ?? new ThrowingPlayerChoiceContext();
+        var attacker = _pendingAttacker;
+
         int vulnAmt = DynamicVars["Umbrella-Vuln"].IntValue;
         int strAmt = DynamicVars["Umbrella-Str"].IntValue;
 
@@ -63,5 +106,9 @@ public class BlackUmbrella : CustomRelicModel
             await PowerCmd.Apply<VulnerablePower>(choiceContext, attacker, vulnAmt, creature, null);
 
         await PowerCmd.Apply<StrengthPower>(choiceContext, creature, strAmt, creature, null);
+
+        _pendingAttacker = null;
+        _pendingChoiceContext = null;
     }
+    #endif
 }

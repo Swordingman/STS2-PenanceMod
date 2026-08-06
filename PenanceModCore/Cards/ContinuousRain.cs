@@ -95,8 +95,12 @@ public class ContinuousRain : PenanceBaseCard
 
         VfxCmd.PlayFullScreenInCombat(VfxCmd.giantHorizontalSlashPath, player);
         
+        #if STS2_BETA
+        await CreatureCmd.Damage(choiceContext, allCreatures, DynamicVars.Damage.BaseValue, ValueProp.Unpowered, player, this, cardPlay);
+        #else
         await CreatureCmd.Damage(choiceContext, allCreatures, DynamicVars.Damage.BaseValue, ValueProp.Unpowered, player, this);
-
+        #endif
+        
         await PowerCmd.Apply<VulnerablePower>(choiceContext,player, selfDebuff, player, this);
         await PowerCmd.Apply<WeakPower>(choiceContext,player, selfDebuff, player, this);
 

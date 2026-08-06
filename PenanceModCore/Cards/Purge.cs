@@ -42,7 +42,7 @@ public class Purge : PenanceBaseCard
 
 		// 1. 执行群体攻击
 		var attackCommand = await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-			.FromCard(this)
+			.FromCardCompatibility(this, cardPlay)
 			.WithHitFx("vfx/vfx_giant_horizontal_slash")
 			.TargetingAllOpponents(combatState)
 			.Execute(choiceContext);

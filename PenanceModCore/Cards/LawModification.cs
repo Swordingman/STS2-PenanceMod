@@ -42,7 +42,11 @@ public class LawModification : PenanceBaseCard
             await CreatureCmd.TriggerAnim(creature, "Cast", 0.2f);
 
             // 1. 失去所有格挡
+            #if STS2_BETA
+            await CreatureCmd.LoseBlock(choiceContext, creature, currentBlock, creature);
+            #else
             await CreatureCmd.LoseBlock(creature, currentBlock);
+            #endif
 
             // 稍微停顿，让碎甲特效和上屏障特效分离开，手感更好
             await Cmd.Wait(0.15f);

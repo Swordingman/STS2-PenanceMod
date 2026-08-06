@@ -53,11 +53,21 @@ public class GuiltyAsCharged : PenanceBaseCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var target = cardPlay.Target;
+        #if STS2_BETA
+        var player = cardPlay.Player;
+        if (target == null || player == null) return;
+        #else
         if (target == null) return;
+        #endif
+
 
         if (target.Block > 0)
         {
+            #if STS2_BETA
+            await CreatureCmd.LoseBlock(choiceContext, target, target.Block, player.Creature);
+            #else
             await CreatureCmd.LoseBlock(target, target.Block);
+            #endif
             await Cmd.Wait(0.1f); 
         }
 
@@ -65,7 +75,7 @@ public class GuiltyAsCharged : PenanceBaseCard
         int finalDamage = DynamicVars["CalculatedDamage"].IntValue;
 
         await DamageCmd.Attack(finalDamage)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(target)
             .WithHitFx(VfxCmd.heavyBluntPath)
             .Execute(choiceContext);

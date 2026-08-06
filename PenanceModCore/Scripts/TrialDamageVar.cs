@@ -57,7 +57,11 @@ public class TrialDamageVar : DamageVar
         if (runGlobalHooks && card.Owner != null)
         {
             // 注意这里改回了 All，因为我们希望 UI 能正确计算并显示“活力”、易伤和虚弱等！
+            #if STS2_BETA
+            num = Hook.ModifyDamage(card.Owner.RunState, card.CombatState, target, card.Owner.Creature, num, Props, card, null, ModifyDamageHookType.All, previewMode, out IEnumerable<AbstractModel> _);
+            #else
             num = Hook.ModifyDamage(card.Owner.RunState, card.CombatState, target, card.Owner.Creature, num, Props, card, ModifyDamageHookType.All, previewMode, out IEnumerable<AbstractModel> _);
+            #endif
         }
 
         this.PreviewValue = num;

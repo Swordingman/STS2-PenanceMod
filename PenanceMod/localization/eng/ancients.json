@@ -114,6 +114,7 @@
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.0-2.char": "The legal principles of justice supercede the will of any individual. Prepare to face the law!",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.0-2.next": "Continue",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.0-3.ancient": "This farce must end.",
+  "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.0-attack": "Both",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-0r.char": "The trial is not over, Architect. As long as sin exists, the gavel will not rest.",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-0r.next": "Continue",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-1r.ancient": "Why does Neow always like to send up puppets drowning in false justice?",
@@ -121,9 +122,11 @@
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-2r.char": "My judgment is never false!",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-2r.next": "Continue",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-3r.ancient": "Court is adjourned, Judge.",
+  "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.1-attack": "Both",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-0r.ancient": "Without my rule, everything in this Spire would have fallen apart long ago.",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-0r.next": "Rebut",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-1r.char": "If your \"order\" must be built upon endless pain and blood, then it is a tyranny that must be utterly overthrown!",
   "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-1r.next": "Continue",
-  "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-2r.ancient": "Stubborn fool. Rot away with your \"justice.\""
+  "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-2r.ancient": "Stubborn fool. Rot away with your \"justice.\"",
+  "THE_ARCHITECT.talk.PENANCEMOD-PENANCE_MOD.2-attack": "Both"
 }
