@@ -1,5 +1,5 @@
 <Project>
   <PropertyGroup>
-    <GameBranch Condition="'$(GameBranch)' == ''">Stable</GameBranch>
+    <GameBranch Condition="'$(GameBranch)' == ''">Beta</GameBranch>
   </PropertyGroup>
 </Project>

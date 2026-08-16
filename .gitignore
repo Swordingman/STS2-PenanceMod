@@ -4,3 +4,16 @@
 bin/
 obj/
 windows/
+
+# Build outputs / generated exports
+build/
+*.pck
+*.tmp
+
+# IDE / OS local state
+.idea/workspace.xml
+*.user
+*.suo
+
+# Local machine build configuration
+LocalBranch.props

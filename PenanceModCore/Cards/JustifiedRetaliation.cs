@@ -25,7 +25,7 @@ public class JustifiedRetaliation : PenanceBaseCard
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromKeyword(PenanceKeywords.Barrier),
-        HoverTipFactory.FromKeyword(PenanceKeywords.CeaseFire)
+        HoverTipFactory.FromKeyword(PenanceKeywords.JustifiedDefense)
     ];
 
     // 🌟 注册变量：获得的屏障�?(初始 7)

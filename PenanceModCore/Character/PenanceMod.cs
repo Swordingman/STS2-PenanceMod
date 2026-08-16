@@ -224,4 +224,20 @@ public class PenanceMod : PlaceholderCharacterModel
         VfxCmd.slashPath,
         VfxCmd.heavyBluntPath
     ];
+
+    public override CreatureAnimator? SetupCustomAnimationStates(MegaSprite controller)
+    {
+    #if STS2_BETA
+        return SetupAnimationState(
+            controller,
+            idleName: "idle_loop",
+            deadName: "die",
+            hitName: "hurt",
+            attackName: "attack",
+            castName: "cast"
+        );
+    #else
+        return null;
+    #endif
+    }
 }
