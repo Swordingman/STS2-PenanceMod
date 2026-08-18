@@ -1,5 +1,5 @@
 using BaseLib.Abstracts;
-using BaseLib.Utils.NodeFactories; // 🌟 新增：必须引入节点工厂
+using BaseLib.Utils.NodeFactories;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Combat;
@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
-using MegaCrit.Sts2.Core.Nodes.Combat; // 🌟 新增：NCreatureVisuals 需要这个
+using MegaCrit.Sts2.Core.Nodes.Combat;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -108,12 +108,28 @@ public sealed class VolsiniiMobHeavy : CustomMonsterModel
 
     private async Task NormalAttackMove(IReadOnlyList<Creature> targets)
     {
-        await DamageCmd.Attack(NormalAttackDamage).FromMonster(this).WithAttackerAnim("Attack", 0.5f).WithHitFx(VfxCmd.bluntPath).Execute(null);
+        if (targets.Count == 0)
+            return;
+
+        Creature target = VolsiniiCourtTargeting.GetAttackTarget(Creature, targets[0]);
+
+        await DamageCmd.Attack(NormalAttackDamage).FromMonster(this).Targeting(target)
+            .WithAttackerAnim("Attack", 0.5f)
+            .WithHitFx(VfxCmd.bluntPath)
+            .Execute(null);
     }
 
     private async Task HeavyAttackMove(IReadOnlyList<Creature> targets)
     {
-        await DamageCmd.Attack(HeavyAttackDamage).FromMonster(this).WithAttackerAnim("Attack", 0.5f).WithHitFx(VfxCmd.heavyBluntPath, null, "heavy_attack.mp3").Execute(null);
+        if (targets.Count == 0)
+            return;
+
+        Creature target = VolsiniiCourtTargeting.GetAttackTarget(Creature, targets[0]);
+
+        await DamageCmd.Attack(HeavyAttackDamage).FromMonster(this).Targeting(target)
+            .WithAttackerAnim("Attack", 0.5f)
+            .WithHitFx(VfxCmd.heavyBluntPath, null, "heavy_attack.mp3")
+            .Execute(null);
     }
 
     private async Task BlockMoveAction(IReadOnlyList<Creature> targets)

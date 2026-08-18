@@ -54,7 +54,7 @@ public sealed class VolsiniiCourtEvent : CustomEventModel
     private Task Fight()
     {
         // 实例化具体的遭遇战并传入
-        EnterCombatWithoutExitingEvent(ModelDb.Encounter<VolsiniiCourtEncounter>().ToMutable(), Array.Empty<Reward>(), shouldResumeAfterCombat: true);
+        EnterCombatWithoutExitingEvent(ModelDb.Encounter<VolsiniiCourtEncounter>(), Array.Empty<Reward>(), shouldResumeAfterCombat: true);
         return Task.CompletedTask;
     }
 

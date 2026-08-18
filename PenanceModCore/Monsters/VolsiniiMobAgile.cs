@@ -73,22 +73,32 @@ public sealed class VolsiniiMobAgile : CustomMonsterModel
         await PowerCmd.Apply<BackAttackLeftPower>(new ThrowingPlayerChoiceContext(), Creature, 1m, Creature, null);
     }
 
-    private async Task MultiAttackMove(IReadOnlyList<Creature> targets)
-    {
-        await DamageCmd.Attack(MultiAttackDamage).WithHitCount(3).FromMonster(this)
-        .WithAttackerAnim("Attack", 0.5f)
-        .WithHitFx(VfxCmd.slashPath)
-        .Execute(null);
-    }
-
     private async Task BlockMoveAction(IReadOnlyList<Creature> targets)
     {
         await CreatureCmd.GainBlock(Creature, 8m, ValueProp.Move, null);
     }
 
+    private async Task MultiAttackMove(IReadOnlyList<Creature> targets)
+    {
+        if (targets.Count == 0)
+            return;
+
+        Creature target = VolsiniiCourtTargeting.GetAttackTarget(Creature, targets[0]);
+
+        await DamageCmd.Attack(MultiAttackDamage).WithHitCount(3).FromMonster(this).Targeting(target)
+            .WithAttackerAnim("Attack", 0.5f)
+            .WithHitFx(VfxCmd.slashPath)
+            .Execute(null);
+    }
+
     private async Task NormalAttackMove(IReadOnlyList<Creature> targets)
     {
-        await DamageCmd.Attack(NormalAttackDamage).FromMonster(this)
+        if (targets.Count == 0)
+            return;
+
+        Creature target = VolsiniiCourtTargeting.GetAttackTarget(Creature, targets[0]);
+
+        await DamageCmd.Attack(NormalAttackDamage).FromMonster(this).Targeting(target)
             .WithAttackerAnim("Attack", 0.5f)
             .WithHitFx(VfxCmd.bluntPath)
             .Execute(null);

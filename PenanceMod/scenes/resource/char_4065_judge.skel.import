@@ -1,0 +1,13 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://cdmjf2diqdvip"
+valid=false
+
+[deps]
+
+source_file="res://PenanceMod/scenes/resource/char_4065_judge.skel"
+
+[params]
+

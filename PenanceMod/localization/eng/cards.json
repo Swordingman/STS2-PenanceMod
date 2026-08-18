@@ -252,7 +252,7 @@
   "PENANCEMOD-WAND_ANTIGRAVITY.title": "Arcane Staff - Anti-Gravity Mode",
   "PENANCEMOD-WAND_ANTIGRAVITY.description": "[gold]Exhaust[/gold] all [gold]Curse[/gold] cards not in the exhaust pile.\nFor each {IfUpgraded:show:card|[gold]Curse[/gold] card} in the exhaust pile, add a random [gold]Wolfpack Curse[/gold] to your discard pile.",
 
-  "PENANCEMOD-UNYIELD.title": "Unyield",
+  "PENANCEMOD-UNYIELD.title": "Unyielding",
   "PENANCEMOD-UNYIELD.description": "Gain {IfUpgraded:show:5X+5|4X+4} [gold]Barrier[/gold].\nGain {IfUpgraded:show:2X+3|X+2} [gold]Judgment[/gold] and [gold]Thorn Aura[/gold].",
 
   "PENANCEMOD-DESTRUCTION_BEFORE_CREATION.title": "Destruction Before Creation",

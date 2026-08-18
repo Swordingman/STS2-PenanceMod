@@ -28,7 +28,8 @@ public sealed class GreyDealEvent : CustomEventModel
 
     public override bool IsAllowed(IRunState runState)
     {
-        return runState.CurrentActIndex == 2;
+        return runState.CurrentActIndex == 2 &&
+               runState.Players.All(player => player.Character is PenanceModCode.Character.PenanceMod);
     }
 
     protected override IReadOnlyList<EventOption> GenerateInitialOptions() 
