@@ -25,7 +25,9 @@ public class JudgementPower : CustomPowerModel
     public async Task TriggerJudgementDamageAsync(Creature target, PlayerChoiceContext choiceContext)
     {
         var owner = Owner;
-        if (owner == null || target == null || !target.IsAlive || Amount <= 0) return;
+        var combatState = owner.CombatState;
+        if (combatState == null || target == null || !target.IsAlive || Amount <= 0) return;
+        if (!combatState.Enemies.Contains(target)) return;
 
         var player = owner.Player ?? owner.PetOwner;
         if (player == null) return;

@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Logging;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -40,37 +41,84 @@ public class Excommunication : PenanceBaseCard
 
         if (player == null || CombatState == null)
             return;
-            
-        var handCurses = PileType.Hand.GetPile(player).Cards.Where(c => c.Type == CardType.Curse).ToList();
-        var drawCurses = PileType.Draw.GetPile(player).Cards.Where(c => c.Type == CardType.Curse).ToList();
-        var discardCurses = PileType.Discard.GetPile(player).Cards.Where(c => c.Type == CardType.Curse).ToList();
 
-        var allCurses = handCurses.Concat(drawCurses).Concat(discardCurses).ToList();
-        int curseCount = allCurses.Count;
+        var handCurses = PileType.Hand.GetPile(player)
+            .Cards
+            .Where(c => c.Type == CardType.Curse)
+            .ToList();
+
+        var drawCurses = PileType.Draw.GetPile(player)
+            .Cards
+            .Where(c => c.Type == CardType.Curse)
+            .ToList();
+
+        var discardCurses = PileType.Discard.GetPile(player)
+            .Cards
+            .Where(c => c.Type == CardType.Curse)
+            .ToList();
+
+
+        var cursesToExhaust = new List<(CardModel card, bool skipVisuals)>();
+
+
+        foreach (var curse in handCurses)
+        {
+            cursesToExhaust.Add((curse, false));
+        }
+
+        foreach (var curse in drawCurses)
+        {
+            cursesToExhaust.Add((curse, true));
+        }
+
+        foreach (var curse in discardCurses)
+        {
+            cursesToExhaust.Add((curse, true));
+        }
+
+
+        int curseCount = cursesToExhaust.Count;
 
         if (curseCount <= 0)
             return;
 
-        // 错峰并发消耗，使大量诅咒快速连续进入消耗堆
-        var exhaustTasks = new List<Task>();
 
-        foreach (var curse in allCurses)
+        // 串行 Exhaust，保证多人同步顺序一致
+        for (int i = 0; i < cursesToExhaust.Count; i++)
         {
-            exhaustTasks.Add(CardCmd.Exhaust(choiceContext, curse, false));
-            await Cmd.Wait(0.05f);
-        }
+            var item = cursesToExhaust[i];
 
-        // 等待所有诅咒消耗完成后再给予收益
-        await Task.WhenAll(exhaustTasks);
+            bool skipVisuals = i >= 5;
+
+            await CardCmd.Exhaust(
+                choiceContext,
+                item.card,
+                causedByEthereal: false,
+                skipVisuals: skipVisuals
+            );
+
+            if (skipVisuals)
+            {
+                item.card.Pile?.InvokeCardAddFinished();
+            }
+        }
 
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", 0.2f);
         await Cmd.Wait(0.2f);
-      
+
+
         int totalBarrier = curseCount * DynamicVars["Excom-Barrier"].IntValue;
         int totalStr = curseCount * DynamicVars["Excom-Str"].IntValue;
 
         await ApplyBarrier(player.Creature, totalBarrier);
-        await PowerCmd.Apply<StrengthPower>(choiceContext, player.Creature, totalStr, player.Creature, this);
+
+        await PowerCmd.Apply<StrengthPower>(
+            choiceContext,
+            player.Creature,
+            totalStr,
+            player.Creature,
+            this
+        );
     }
 
     protected override void OnUpgrade()

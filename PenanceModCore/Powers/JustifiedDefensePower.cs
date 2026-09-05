@@ -25,12 +25,10 @@ public class JustifiedDefensePower : CustomPowerModel
     // 完美对应 StS1 里的 atStartOfTurn 
     public override async Task AfterPlayerTurnStartEarly(PlayerChoiceContext choiceContext, Player player)
     {
-        // 确保只有在能力拥有者自己的回合开始时才移除
-        if (Owner != null)
-        {
-            // 使用之前刚学到的泛型移除指令，安全高效
-            await PowerCmd.Remove<JustifiedDefensePower>(Owner);
-        }
+        if (Owner == null || player.Creature != Owner)
+            return;
+
+        await PowerCmd.Remove<JustifiedDefensePower>(Owner);
     }
 
     // ==========================================

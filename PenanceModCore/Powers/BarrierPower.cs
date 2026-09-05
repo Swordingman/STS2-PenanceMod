@@ -82,7 +82,7 @@ public class BarrierPower : CustomPowerModel
             NGame.Instance?.ScreenShake(ShakeStrength.Weak, ShakeDuration.Short);
 
             // 记录攻击者，留给下面的 AfterDamageReceived 真正进行排队反击
-            if (dealer != null && dealer != owner)
+            if (dealer != null && dealer != owner && owner.CombatState != null && owner.CombatState.Enemies.Contains(dealer))
             {
                 _pendingJudgementTargets.Add(dealer);
             }
@@ -102,8 +102,10 @@ public class BarrierPower : CustomPowerModel
         if (_pendingBarrierBroken)
         {
             _pendingBarrierBroken = false;
+
             var wrath = owner.GetPower<SilenceWrathPower>();
-            wrath?.OnBarrierBroken();
+            if (wrath != null)
+                await wrath.OnBarrierBroken(choiceContext);
         }
 
         if (dealer == null || !_pendingJudgementTargets.Contains(dealer)) return;
@@ -117,7 +119,8 @@ public class BarrierPower : CustomPowerModel
         guardian?.OnBarrierDamaged();
 
         var silenceWrath = owner.GetPower<SilenceWrathPower>();
-        silenceWrath?.OnBarrierDamaged(dealer);
+        if (silenceWrath != null)
+            await silenceWrath.OnBarrierDamaged(choiceContext, dealer);
 
         await TriggerAllJudgementsAsync(dealer, choiceContext);
     }

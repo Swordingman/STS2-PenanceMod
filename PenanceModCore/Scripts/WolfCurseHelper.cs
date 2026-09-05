@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using PenanceMod.PenanceModCode.Relics;
+using PenanceMod.Scripts.Cards;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,11 +26,7 @@ public static class WolfCurseHelper
             .ToList();
     }
 
-    public static CardModel GetRandomWolfCurse(
-        Player player,
-        ICombatState combatState,
-        bool upgradeBecauseSourceCardIsUpgraded = false
-    )
+    public static CardModel GetRandomWolfCurse(Player player, ICombatState combatState, bool upgradeBecauseSourceCardIsUpgraded = false, Type? excludedCardType = null)
     {
         if (player == null)
             throw new ArgumentNullException(nameof(player));
@@ -39,14 +36,19 @@ public static class WolfCurseHelper
 
         var list = GetAllWolfCurses();
 
+        if (excludedCardType != null)
+        {
+            list = list
+                .Where(card => card.GetType() != excludedCardType)
+                .ToList();
+        }
+
         if (list.Count == 0)
             throw new InvalidOperationException("没有找到任何带 CurseOfWolves Tag 的狼群诅咒牌。");
 
         int randomIndex = player.RunState.Rng.Shuffle.NextInt(list.Count);
         var canonicalCard = list[randomIndex];
 
-        // 关键：不要 ToMutable。
-        // 用官方 Soul 那种方式：combatState.CreateCard<T>(player)
         var randomCard = CreateCombatCardFromCanonical(
             canonicalCard,
             player,

@@ -19,17 +19,14 @@ public class PreemptiveStrikePower : CustomPowerModel
     public override string? CustomBigIconPath => $"res://PenanceMod/images/powers/large/{nameof(PreemptiveStrikePower)}.png";
 
     // 🌟 在玩家回合开始时触发
-    public override async Task AfterPlayerTurnStartLate(PlayerChoiceContext choiceContext, Player player)
+    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (player.Creature == Owner && Amount > 0)
-        {
-            Flash(); // 闪烁图标给玩家提示
-            
-            // 1. 获得 3 层正当防卫 (请确保你的项目中已存在 JustifiedDefensePower 类)
-            await PowerCmd.Apply<JustifiedDefensePower>(choiceContext, Owner, 3, Owner, null);
+        if (Owner == null || player.Creature != Owner || Amount <= 0)
+            return;
 
-            // 2. 持续回合倒计时减 1 (层数归零时，引擎底层通常会自动移除该能力)
-            await PowerCmd.Apply<PreemptiveStrikePower>(choiceContext, Owner, -1, Owner, null);
-        }
+        Flash();
+
+        await PowerCmd.Apply<JustifiedDefensePower>(choiceContext, Owner, 3, Owner, null);
+        await PowerCmd.Decrement(this);
     }
 }

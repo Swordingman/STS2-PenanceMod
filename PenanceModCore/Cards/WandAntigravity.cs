@@ -61,6 +61,7 @@ public class WandAntigravity : PenanceBaseCard
             return;
 
         await AudioManager.PlayCustomSfx(WolfCurseSfx);
+
         if (PenanceConfig.EnableWolfCurseSpeak)
         {
             string audioPath = PenanceConfig.CharacterVoice switch
@@ -70,72 +71,90 @@ public class WandAntigravity : PenanceBaseCard
                 VoiceLanguage.KR => "res://PenanceMod/scenes/audio/wandantigravity_kr.wav",
                 VoiceLanguage.IT => "res://PenanceMod/scenes/audio/wandantigravity_cn.wav",
                 _ => "res://PenanceMod/scenes/audio/wandantigravity_cn.wav",
-            };     
-            await AudioManager.PlayCustomSfx(audioPath);       
+            };
+
+            await AudioManager.PlayCustomSfx(audioPath);
         }
 
-        // 1. 收集所有需要消耗的诅咒
-        var allCursesToExhaust = new List<CardModel>();
-        var otherPiles = new[] { PileType.Hand, PileType.Draw, PileType.Discard };
-        
-        foreach (var pileType in otherPiles)
+
+        // 收集需要消耗的诅咒
+        var cursesToExhaust = new List<(CardModel card, bool skipVisuals)>();
+
+
+        var handPile = PileType.Hand.GetPile(player);
+        var drawPile = PileType.Draw.GetPile(player);
+        var discardPile = PileType.Discard.GetPile(player);
+
+
+        foreach (var card in handPile.Cards.Where(c => c.Type == CardType.Curse && c != this))
         {
-            var pile = pileType.GetPile(player);
-            // 找出所有诅咒并直接加入列表（排除自身）
-            allCursesToExhaust.AddRange(pile.Cards.Where(c => c.Type == CardType.Curse && c != this));
+            cursesToExhaust.Add((card, false));
         }
 
-        // 🌟 核心修改：错峰并发消耗（拉链式消耗）
-        if (allCursesToExhaust.Any())
+
+        foreach (var card in drawPile.Cards.Where(c => c.Type == CardType.Curse && c != this))
         {
-            var exhaustTasks = new List<Task>();
-            
-            foreach (var curse in allCursesToExhaust)
-            {
-                // 启动当前这张牌的消耗任务，并存入列表
-                exhaustTasks.Add(CardCmd.Exhaust(choiceContext, curse, causedByEthereal: false));
-                
-                // 极短的错峰延迟 (0.05 秒)
-                // 打破同帧叠加，将“一声巨响”变成“机关枪连射”
-                await Cmd.Wait(0.05f); 
-            }
+            cursesToExhaust.Add((card, true));
         }
 
-        // 2. 统计消耗堆中的目标数量
+
+        foreach (var card in discardPile.Cards.Where(c => c.Type == CardType.Curse && c != this))
+        {
+            cursesToExhaust.Add((card, true));
+        }
+
+
+        // 串行 Exhaust，避免多人同步状态分裂
+        foreach (var item in cursesToExhaust)
+        {
+            await CardCmd.Exhaust(
+                choiceContext,
+                item.card,
+                causedByEthereal: false,
+                skipVisuals: item.skipVisuals
+            );
+        }
+
+
+        // 按原设计统计 Exhaust 堆数量
         var exhaustPile = PileType.Exhaust.GetPile(player);
         int targetCount = 0;
 
         if (IsUpgraded)
         {
-            // 升级后：每有一张牌（不限类型）
+            // 升级：每张消耗牌
             targetCount = exhaustPile.Cards.Count;
         }
         else
         {
-            // 升级前：每有一张诅咒
+            // 未升级：每张消耗的诅咒
             targetCount = exhaustPile.Cards.Count(c => c.Type == CardType.Curse);
         }
 
-        // 3. 根据数量洗入随机狼群诅咒
-        if (targetCount > 0)
-        {
-            for (int i = 0; i < targetCount; i++)
-            {
-                var randomCurse = WolfCurseHelper.GetRandomWolfCurse(player, CombatState, IsUpgraded);
 
-                while (randomCurse is WandAntigravity)
-                {
-                    randomCurse = WolfCurseHelper.GetRandomWolfCurse(player, CombatState, IsUpgraded);
-                }
-                
-                var cardNode = await CardPileCmd.AddGeneratedCardToCombat(randomCurse, PileType.Discard, Owner);
-                CardCmd.PreviewCardPileAdd(cardNode, 0.5f); 
-            }
+        // 生成随机狼群诅咒
+        for (int i = 0; i < targetCount; i++)
+        {
+            var randomCurse = WolfCurseHelper.GetRandomWolfCurse(
+                player,
+                CombatState,
+                IsUpgraded,
+                typeof(WandAntigravity)
+            );
+
+
+            var cardNode = await CardPileCmd.AddGeneratedCardToCombat(
+                randomCurse,
+                PileType.Discard,
+                Owner
+            );
+
+            CardCmd.PreviewCardPileAdd(cardNode, 0.5f);
         }
     }
 
     protected override void OnUpgrade()
     {
-        // 升级逻辑已经在 OnPlay 中通过 IsUpgraded 实现
+        // 升级逻辑在 OnPlay 中处理
     }
 }

@@ -16,23 +16,23 @@ public class SilenceWrathPower : CustomPowerModel
     public override string? CustomPackedIconPath => $"res://PenanceMod/images/powers/{nameof(SilenceWrathPower)}.png";
     public override string? CustomBigIconPath => $"res://PenanceMod/images/powers/large/{nameof(SilenceWrathPower)}.png";
 
-    public void OnBarrierDamaged(Creature attacker)
+    public async Task OnBarrierDamaged(PlayerChoiceContext choiceContext, Creature attacker)
     {
-        if (attacker != null && attacker != Owner && Amount > 0)
+        if (attacker != Owner && Amount > 0)
         {
-            Flash(); 
-            // 挨打给虚弱，层数为 Amount
-            _ = PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), attacker, Amount, Owner, null);
+            Flash();
+
+            await PowerCmd.Apply<WeakPower>(choiceContext, attacker, Amount, Owner, null);
         }
     }
 
-    public void OnBarrierBroken()
+    public async Task OnBarrierBroken(PlayerChoiceContext choiceContext)
     {
         if (Amount > 0)
         {
-            Flash(); 
-            // 盾破给力量，数值也是 Amount
-            _ = PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
+            Flash();
+
+            await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, Amount, Owner, null);
         }
     }
 }
