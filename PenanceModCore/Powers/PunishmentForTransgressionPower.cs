@@ -42,11 +42,13 @@ public class PunishmentForTransgressionPower : CustomPowerModel
     // ==========================================
     public override Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
-        // 如果打出的卡牌类型是攻击，则标记为 true
-        if (cardPlay.Card.Type == CardType.Attack)
+        if (Owner?.Player != null &&
+            cardPlay.Card.Owner == Owner.Player &&
+            cardPlay.Card.Type == CardType.Attack)
         {
             _attackPlayed = true;
         }
+
         return Task.CompletedTask;
     }
 

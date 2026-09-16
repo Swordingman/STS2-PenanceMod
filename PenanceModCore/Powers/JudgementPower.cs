@@ -15,27 +15,23 @@ public class JudgementPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-
-    public override string? CustomPackedIconPath =>
-        $"res://PenanceMod/images/powers/{nameof(JudgementPower)}.png";
-
-    public override string? CustomBigIconPath =>
-        $"res://PenanceMod/images/powers/large/{nameof(JudgementPower)}.png";
+    public override string? CustomPackedIconPath => $"res://PenanceMod/images/powers/{nameof(JudgementPower)}.png";
+    public override string? CustomBigIconPath => $"res://PenanceMod/images/powers/large/{nameof(JudgementPower)}.png";
 
     public async Task TriggerJudgementDamageAsync(Creature target, PlayerChoiceContext choiceContext)
     {
         var owner = Owner;
-        var combatState = owner.CombatState;
-        if (combatState == null || target == null || !target.IsAlive || Amount <= 0) return;
-        if (!combatState.Enemies.Contains(target)) return;
+        var combatState = owner?.CombatState;
+
+        if (owner == null || combatState == null || !target.IsAlive || Amount <= 0 || !combatState.Enemies.Contains(target))
+            return;
 
         var player = owner.Player ?? owner.PetOwner;
         if (player == null) return;
 
         int finalDamage = Amount;
 
-        if (player.GetRelic<Innocent>() != null)
-            finalDamage = (int)Math.Floor(finalDamage * 1.2f);
+        if (player.GetRelic<Innocent>() != null) finalDamage = (int)Math.Floor(finalDamage * 1.2f);
 
         var shopVoucher = player.GetRelic<ShopVoucher>();
         if (shopVoucher != null)
@@ -49,24 +45,11 @@ public class JudgementPower : CustomPowerModel
         Flash();
         VfxCmd.PlayOnCreatureCenter(target, VfxCmd.slashPath);
 
-        #if STS2_BETA
-        await CreatureCmd.Damage(
-            choiceContext,
-            targets: new[] { target },
-            finalDamage,
-            ValueProp.Unpowered,
-            owner,
-            null,
-            null);
-        #else
-        await CreatureCmd.Damage(
-            choiceContext,
-            targets: new[] { target },
-            finalDamage,
-            ValueProp.Unpowered,
-            owner,
-            null);
-        #endif
+#if STS2_BETA
+        await CreatureCmd.Damage(choiceContext, new[] { target }, finalDamage, ValueProp.Unpowered, owner, null, null);
+#else
+        await CreatureCmd.Damage(choiceContext, new[] { target }, finalDamage, ValueProp.Unpowered, owner, null);
+#endif
 
         var revenge = owner.GetPower<CodeOfRevengePower>();
         revenge?.OnJudgementTriggered();
