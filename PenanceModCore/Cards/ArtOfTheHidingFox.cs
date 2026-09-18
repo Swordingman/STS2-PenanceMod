@@ -1,7 +1,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -24,14 +23,16 @@ namespace PenanceMod.Scripts.Cards;
 [Pool(typeof(CurseCardPool))]
 public class ArtOfTheHidingFox : PenanceBaseCard
 {
-    public ArtOfTheHidingFox() : base(1, CardType.Curse, CardRarity.Curse, TargetType.Self, true)
-    {
-    }
+    public ArtOfTheHidingFox() : base(1, CardType.Curse, CardRarity.Curse, TargetType.Self, true) {}
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, PenanceKeywords.CurseOfWolves];
-    protected override HashSet<CardTag> CanonicalTags => [PenanceCardTags.CurseOfWolves];
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        [CardKeyword.Exhaust, PenanceKeywords.CurseOfWolves];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override HashSet<CardTag> CanonicalTags =>
+        [PenanceCardTags.CurseOfWolves];
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromKeyword(PenanceKeywords.CurseOfWolves),
         HoverTipFactory.FromKeyword(PenanceKeywords.Judgement),
         HoverTipFactory.FromKeyword(PenanceKeywords.ThornAura),
@@ -39,45 +40,32 @@ public class ArtOfTheHidingFox : PenanceBaseCard
         HoverTipFactory.FromPower<StrengthPower>()
     ];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("Fox-Magic", 3m),
-        new DynamicVar("Fox-Barrier", 25m)
-    ];
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+        [new DynamicVar("Fox-Magic", 3m), new DynamicVar("Fox-Barrier", 25m)];
 
-    private bool _autoPlaying;
-    private bool _pendingEndTurn;
     private bool _retainEnergyOnce;
 
-    // 确保卡牌进入消耗堆后仍能正确接收 Hook 事件
-    public override bool ShouldReceiveCombatHooks => base.ShouldReceiveCombatHooks || _retainEnergyOnce || _pendingEndTurn;
+    // 升级后的狐狸进入消耗堆后，仍需要接收下一次能量重置 Hook。
+    public override bool ShouldReceiveCombatHooks => base.ShouldReceiveCombatHooks || _retainEnergyOnce;
 
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
-        if (card != this)
-            return;
+        if (card != this) return;
 
-        if (_autoPlaying)
-            return;
-
-        _autoPlaying = true;
-
-        try
-        {
-            await TriggerWolfAutoplay(choiceContext, card);
-        }
-        finally
-        {
-            _autoPlaying = false;
-        }
+        // 狐狸不再使用普通 TriggerWolfAutoplay。
+        //
+        // TriggerForFox 最终不会直接 CardCmd.AutoPlay，
+        // 而是 enqueue 一个真正的 PlayCardAction。
+        //
+        // 因此这里返回以后，当前抽牌 Hook 可以正常结束，
+        // 狐狸随后作为独立的出牌 Action 进行结算。
+        await TriggerForFox(choiceContext, card);
     }
 
     public override bool ShouldPlayerResetEnergy(Player player)
     {
-        if (!_retainEnergyOnce)
-            return true;
-
-        if (player != Owner)
-            return true;
+        if (!_retainEnergyOnce) return true;
+        if (player != Owner) return true;
 
         _retainEnergyOnce = false;
         return false;
@@ -114,48 +102,14 @@ public class ArtOfTheHidingFox : PenanceBaseCard
 
         if (IsUpgraded)
         {
-            if (Owner.PlayerCombatState is { } combatState)
-            {
-                _retainEnergyOnce = true;
-            }
-
+            _retainEnergyOnce = true;
             await PowerCmd.Apply<RetainHandPower>(choiceContext, creature, 1, creature, this);
         }
 
-        if (_autoPlaying)
-        {
-            _pendingEndTurn = true;
-        }
-        else
-        {
-            PlayerCmd.EndTurn(Owner, false);
-        }
+        // 无论手动还是 TriggerForFox 自动触发，现在都会在真正的 PlayCardAction 中来到这里。
+        // 因此统一按照原本已经验证正常的手动逻辑强制结束回合。
+        PlayerCmd.EndTurn(Owner, false);
     }
 
-    // 场景 1：开局自动打出阶段，等待所有回合开始弹窗及预打出结算完毕后安全结束回合
-    public override async Task AfterAutoPrePlayPhaseEntered(PlayerChoiceContext choiceContext, Player player)
-    {
-        if (player != Owner || !_pendingEndTurn)
-            return;
-
-        _pendingEndTurn = false;
-        PlayerCmd.EndTurn(player, false);
-    }
-
-    // 场景 2：常规出牌阶段（Play 阶段）通过过牌卡抽到并自动打出时，在打出完成时结束回合
-    public override async Task AfterCardPlayedLate(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        if (cardPlay.Card != this || !_pendingEndTurn)
-            return;
-
-        if (Owner.PlayerCombatState?.Phase == PlayerTurnPhase.Play)
-        {
-            _pendingEndTurn = false;
-            PlayerCmd.EndTurn(Owner, false);
-        }
-    }
-
-    protected override void OnUpgrade()
-    {
-    }
+    protected override void OnUpgrade() {}
 }

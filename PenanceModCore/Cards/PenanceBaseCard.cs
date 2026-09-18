@@ -16,6 +16,7 @@ using MegaCrit.Sts2.Core.Localization;
 using PenanceMod.Scripts.Utils;
 using PenanceMod.PenanceModCode.Relics;
 using MegaCrit.Sts2.Core.Random;
+using MegaCrit.Sts2.Core.Context;
 
 namespace PenanceMod.Scripts.Cards;
 
@@ -174,5 +175,81 @@ public abstract class PenanceBaseCard : CustomCardModel
             card,
             target
         );
+    }
+
+    /// <summary>
+    /// 狐狸专用自动释放。
+    /// 与普通狼群诅咒不同，狐狸通过真正的 PlayCardAction 进入同步队列，
+    /// 从而让结束回合发生在正常的出牌 Action 内。
+    /// </summary>
+    protected async Task TriggerForFox(PlayerChoiceContext choiceContext, CardModel card, Creature? target = null)
+    {
+        if (card == null || card.Owner == null || card.Owner.Creature == null || CombatState == null) return;
+        if (CombatManager.Instance.IsOverOrEnding || card.Owner.Creature.IsDead) return;
+
+        var player = card.Owner.Creature.Player;
+        if (player != null)
+        {
+            var chapterRelic = player.GetRelic<ChapterOfPenance>();
+
+            // 挑战 4：狼群诅咒自动释放时额外消耗 1 点能量。
+            if (chapterRelic != null && chapterRelic.HasChallenge(4))
+                await PlayerCmd.LoseEnergy(1, player);
+        }
+
+        await CreatureCmd.TriggerAnim(card.Owner.Creature, "Cast", 0.2f);
+
+        var carnivalPower = card.Owner.Creature.GetPower<CarnivalMomentPower>();
+        if (carnivalPower != null)
+        {
+            string wolfSfx = Rng.Chaotic.NextInt(100) == 0 ? OWWWWWW : WolfCurseSfx;
+
+            await AudioManager.PlayCustomSfx(wolfSfx);
+
+            if (PenanceConfig.EnableWolfCurseSpeak)
+            {
+                string audioPath = PenanceConfig.CharacterVoice switch
+                {
+                    VoiceLanguage.EN => "res://PenanceMod/scenes/audio/carnivalmoment_en.wav",
+                    VoiceLanguage.JP => "res://PenanceMod/scenes/audio/carnivalmoment_jp.wav",
+                    VoiceLanguage.KR => "res://PenanceMod/scenes/audio/carnivalmoment_kr.wav",
+                    VoiceLanguage.IT => "res://PenanceMod/scenes/audio/carnivalmoment_it.wav",
+                    _ => "res://PenanceMod/scenes/audio/carnivalmoment_cn.wav",
+                };
+
+                await AudioManager.PlayCustomSfx(audioPath);
+            }
+
+            await CardCmd.Exhaust(choiceContext, card);
+            await carnivalPower.TriggerCarnivalEffect(choiceContext, CombatState);
+            return;
+        }
+
+        int triggeredCount = GetWolfCursesTriggeredThisTurn();
+        if (triggeredCount >= MaxWolfCursesPerTurn)
+        {
+            await CarnivalVfxHelper.PlayCarnivalMomentVfx(choiceContext, CombatState, card.Owner.Creature);
+            await PowerCmd.Apply<CarnivalMomentPower>(choiceContext, Owner.Creature, 1, Owner.Creature, this);
+
+            carnivalPower = card.Owner.Creature.GetPower<CarnivalMomentPower>();
+            if (carnivalPower != null)
+            {
+                await CardCmd.Exhaust(choiceContext, card);
+                await carnivalPower.TriggerCarnivalEffect(choiceContext, CombatState);
+            }
+
+            return;
+        }
+
+        // 狐狸最关键的区别：
+        // 不使用 CardCmd.AutoPlay，因为它会在当前 Draw Hook 内嵌套完成整次出牌。
+        //
+        // 改为真正 enqueue 一个 PlayCardAction，让狐狸和手动出牌走同一套 Action 生命周期。
+        // 由于这是“自动释放”，先将这次出牌费用临时设为 0。
+        card.EnergyCost.SetUntilPlayed(0);
+
+        // PlayCardAction 属于玩家驱动的网络 Action，只由卡牌 Owner 的客户端请求一次。
+        if (LocalContext.IsMe(card.Owner))
+            RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(new PlayCardAction(card, target));
     }
 }
